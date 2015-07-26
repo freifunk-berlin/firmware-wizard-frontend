@@ -1,0 +1,17 @@
+.navbar {
+  margin-bottom: 0;
+}
+
+.jumbotron {
+  margin-bottom: 0;
+}
+
+.wizard-category {
+  margin-bottom: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.wizard-categories > .wizard-category:nth-child(even) {
+  background-color: #d9edf7;
+}
