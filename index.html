@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <form class="form-horizontal wizard-categories" ng-controller="WizardCtrl">
+    <form class="form-horizontal wizard-categories" data-ng-controller="WizardCtrl">
 
       <div class="wizard-category">
         <div class="container">
@@ -101,9 +101,20 @@
             <label for="shareInternet" class="col-md-2 control-label">Share internet</label>
             <div class="col-md-4">
               <div class="checkbox">
-                <input type="checkbox" id="shareInternet">
+                <input type="checkbox" id="shareInternet" data-ng-model="wizard.shareInternet">
               </div>
             </div>
+          </div>
+
+          <div data-collapse="!wizard.shareInternet">
+
+            <div class="form-group">
+              <label for="rateDown" class="col-md-2 control-label">Data rate down</label>
+              <div class="col-md-4">
+                <input type="text" class="form-control" id="rateDown" placeholder="Data rate downstream">
+              </div>
+            </div>
+
           </div>
 
         </div>
