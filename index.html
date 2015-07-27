@@ -79,7 +79,7 @@
               <div class="form-group">
                 <label for="routerName" class="col-md-6 control-label">Router name</label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="routerName" placeholder="Name of the router" ng-model="wizard.routerName">
+                  <input type="text" class="form-control" id="routerName" placeholder="Name of the router" data-ng-model="wizard.routerName">
                 </div>
               </div>
             </div>
@@ -138,7 +138,7 @@
               <div class="row">
                 <div class="col-md-offset-6 col-md-6">
                   <p>
-                    <button type="button" class="btn btn-primary" ng-click="getLocation()" ng-disabled="map.searchingGeolocation">
+                    <button type="button" class="btn btn-primary" data-ng-click="getLocation()" data-ng-disabled="map.searchingGeolocation">
                       <i class="fa fa-fw fa-dot-circle-o"></i>
                       Get my location
                     </button>
@@ -151,10 +151,10 @@
                 <div class="col-md-6">
                   <div class="row">
                     <div class="col-md-6">
-                      <input type="number" class="form-control" id="routerLat" placeholder="Latitude" ng-model="map.markers.router.lat">
+                      <input type="number" class="form-control" id="routerLat" placeholder="Latitude" data-ng-model="map.markers.router.lat">
                     </div>
                     <div class="col-md-6">
-                      <input type="number" class="form-control" id="routerLon" placeholder="Longitude" ng-model="map.markers.router.lng">
+                      <input type="number" class="form-control" id="routerLon" placeholder="Longitude" data-ng-model="map.markers.router.lng">
                     </div>
                   </div>
                 </div>
@@ -163,21 +163,21 @@
               <div class="form-group">
                 <label for="routerStreet" class="col-md-6 control-label">Street</label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="routerStreet" placeholder="Kreuzbergstr. 42" ng-model="wizard.routerStreet">
+                  <input type="text" class="form-control" id="routerStreet" placeholder="Kreuzbergstr. 42" data-ng-model="wizard.routerStreet">
                 </div>
               </div>
 
               <div class="form-group">
                 <label for="routerPostalCode" class="col-md-6 control-label">Postal code</label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="routerPostalCode" placeholder="10965" ng-model="wizard.routerPostalCode">
+                  <input type="text" class="form-control" id="routerPostalCode" placeholder="10965" data-ng-model="wizard.routerPostalCode">
                 </div>
               </div>
 
               <div class="form-group">
                 <label for="routerCity" class="col-md-6 control-label">City</label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="routerCity" placeholder="Berlin" ng-model="wizard.routerCity">
+                  <input type="text" class="form-control" id="routerCity" placeholder="Berlin" data-ng-model="wizard.routerCity">
                 </div>
               </div>
 
@@ -188,6 +188,7 @@
         </div>
       </div>
 
+      <!-- internet sharing -->
       <div class="wizard-category">
         <div class="container">
           <h2>
@@ -198,28 +199,207 @@
             Internet sharing
           </h2>
 
-          <div class="form-group">
-            <label for="shareInternet" class="col-md-2 control-label">Share internet</label>
-            <div class="col-md-4">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" id="shareInternet" data-ng-model="wizard.shareInternet">
-                </label>
+          <div class="row">
+            <div class="col-md-5">
+
+              <div class="form-group">
+                <label for="internetShare" class="col-md-6 control-label">Share internet</label>
+                <div class="col-md-6">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" id="internetShare" data-ng-model="wizard.internetShare">
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+
+            <div class="col-md-offset-1 col-md-5">
+              <div data-collapse="!wizard.internetShare">
+
+                <!-- transfer rate -->
+                <div class="form-group">
+                  <label for="internetDown" class="col-md-6 control-label">Transfer speed limit in Mbps</label>
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <input type="number" class="form-control" id="internetDown" placeholder="Down" data-ng-model="wizard.internetDown">
+                      </div>
+                      <div class="col-md-6">
+                        <input type="number" class="form-control" id="internetUp" placeholder="Up" data-ng-model="wizard.internetUp">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- / transfer rate -->
+
               </div>
             </div>
           </div>
 
-          <div data-collapse="!wizard.shareInternet">
+          <div data-collapse="!wizard.internetShare">
 
-            <div class="form-group">
-              <label for="rateDown" class="col-md-2 control-label">Data rate down</label>
-              <div class="col-md-4">
-                <input type="text" class="form-control" id="rateDown" placeholder="Data rate downstream">
+            <!-- anti-störerhaftungs-VPN -->
+            <div class="row">
+              <div class="col-md-5">
+
+                <div class="form-group">
+                  <label for="internetVpn03" class="col-md-6 control-label">Anti-Störerhaftung (VPN03)</label>
+                  <div class="col-md-6">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" id="internetVpn03" data-ng-model="wizard.internetVpn03">
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-offset-1 col-md-5">
+
+                <div data-collapse="!wizard.internetVpn03">
+                  <div class="form-group">
+                    <label for="internetVpn03Cert" class="col-md-6 control-label">VPN certificate</label>
+                    <div class="col-md-6">
+                      <span class="btn btn-primary btn-file">
+                        Browse <input type="file" data-ng-model="wizard.internetVpn03Cert">
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="internetVpn03Key" class="col-md-6 control-label">VPN key</label>
+                    <div class="col-md-6">
+                      <span class="btn btn-primary btn-file">
+                        Browse <input type="file" data-ng-model="wizard.internetVpn03Key">
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+            <!-- / anti-störerhaftungs-VPN -->
+
+          </div>
+
+        </div>
+      </div>
+      <!-- / internet sharing -->
+
+      <!-- ip addresses -->
+      <div class="wizard-category">
+        <div class="container">
+          <h2>
+            <span class="fa-stack">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-cogs fa-stack-1x fa-inverse"></i>
+            </span>
+            IP addresses
+          </h2>
+
+          <div class="row">
+
+            <div class="col-md-5">
+
+              <div class="form-group">
+                <label for="ipv4Mesh1" class="col-md-6 control-label">Mesh-IPv4 wifi 2.4GHz</label>
+                <div class="col-md-6">
+                  <input type="text" class="form-control" id="ipv4Mesh1" placeholder="" data-ng-model="wizard.ipv4Mesh1">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="ipv4Mesh2" class="col-md-6 control-label">Mesh-IPv4 wifi 5GHz</label>
+                <div class="col-md-6">
+                  <input type="text" class="form-control" id="ipv4Mesh2" placeholder="" data-ng-model="wizard.ipv4Mesh2">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="ipv4MeshLan" class="col-md-6 control-label">Mesh-IPv4 LAN</label>
+                <div class="col-md-6">
+                  <input type="text" class="form-control" id="ipv4MeshLan" placeholder="" data-ng-model="wizard.ipv4MeshLan">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="ipDistribute" class="col-md-6 control-label">Distribute client IP addresses</label>
+                <div class="col-md-6">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" id="ipDistribute" data-ng-model="wizard.ipDistribute">
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div data-collapse="!wizard.ipDistribute">
+                <div class="form-group">
+                  <label for="ipv4ClientSubnet" class="col-md-6 control-label">IPv4 client subnet</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" id="ipv4ClientSubnet" placeholder="" data-ng-model="wizard.ipv4ClientSubnet">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-md-offset-1 col-md-5">
+              <div class="form-group">
+                <label for="ipv6" class="col-md-6 control-label">IPv6 prefix</label>
+                <div class="col-md-6">
+                  <input type="text" class="form-control" id="ipv6" placeholder="" data-ng-model="wizard.ipv6">
+                </div>
               </div>
             </div>
 
           </div>
 
+        </div>
+      </div>
+      <!-- / ip addresses -->
+
+      <!-- advanced wifi -->
+      <div class="wizard-category">
+        <div class="container">
+          <h2>
+            <span class="fa-stack">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-wifi fa-stack-1x fa-inverse"></i>
+            </span>
+            Wifi options
+          </h2>
+
+          <div class="row">
+            <div class="col-md-5">
+
+              <div class="form-group">
+                <label for="wifiAdvanced" class="col-md-6 control-label">Show advanced options</label>
+                <div class="col-md-6">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" id="wifiAdvanced" data-ng-model="wizard.wifiAdvanced">
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- submission -->
+      <div class="wizard-category">
+        <div class="container text-right">
+          <button type="button" class="btn btn-primary" data-ng-click="submit()" data-ng-disabled="true">
+            Save &amp; reboot
+          </button>
         </div>
       </div>
 

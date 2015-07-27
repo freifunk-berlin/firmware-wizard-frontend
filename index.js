@@ -4,7 +4,9 @@ var wizard = angular.module('WizardApp', [
 
 wizard.controller('WizardCtrl', [
   '$scope', 'leafletData', '$http', function($scope, leafletData, $http) {
-    $scope.wizard = {};
+    $scope.wizard = {
+      internetVpn03: true,
+    };
     $scope.map = {
       markers: {
         router: {
@@ -62,6 +64,8 @@ wizard.controller('WizardCtrl', [
         }
       });
     };
+    // get location at init time
+    $scope.getLocation();
 
     // get address from geolocation
     $scope.getAddress = function(lat, lng) {
@@ -82,14 +86,14 @@ wizard.controller('WizardCtrl', [
         var postalCode = _.get(_.find(address, {types: ['street_number']}),
                              'long_name');
 
-        angular.copy({
+        angular.extend($scope.wizard, {
           routerStreet: street && streetNo ? street + ' ' + streetNo :
             undefined,
           routerPostalCode: _.get(_.find(address, {types: ['postal_code']}),
                                   'long_name'),
           routerCity: _.get(_.find(address, {types: ['locality']}),
                                   'long_name')
-        }, $scope.wizard);
+        });
 
       }).error(function(data) {
         $scope.searchingAddress = false;
