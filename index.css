@@ -12,6 +12,6 @@
   padding-bottom: 30px;
 }
 
-.wizard-categories > .wizard-category:nth-child(even) {
+.wizard-categories > .wizard-category:nth-child(even), .wizard-bg-highlight {
   background-color: #d9edf7;
 }
