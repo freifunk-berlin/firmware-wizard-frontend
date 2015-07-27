@@ -138,13 +138,17 @@
                 <label for="routerGeolocation" class="col-md-6 control-label">Geolocation</label>
                 <div class="col-md-6">
                   <div class="row">
-                    <div class="col-md-6">
+                    <p class="col-md-6">
                       <input type="number" class="form-control" id="routerLat" placeholder="Latitude" ng-model="map.markers.router.lat">
-                    </div>
-                    <div class="col-md-6">
+                    </p>
+                    <p class="col-md-6">
                       <input type="number" class="form-control" id="routerLon" placeholder="Longitude" ng-model="map.markers.router.lng">
-                    </div>
+                    </p>
                   </div>
+                  <button type="button" class="btn btn-primary" ng-click="getLocation()" ng-disabled="map.searching">
+                    <i class="fa fa-fw fa-dot-circle-o"></i>
+                    Get my location!
+                  </button>
                 </div>
               </div>
 
