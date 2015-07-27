@@ -36,6 +36,9 @@ wizard.controller('WizardCtrl', [
     $scope.$watch('map.markers.router', function(router) {
       $scope.map.center.lat = router.lat;
       $scope.map.center.lng = router.lng;
+
+      // search address
+      $scope.getAddress(router.lat, router.lng);
     }, true);
 
     // set marker to current location
@@ -51,13 +54,9 @@ wizard.controller('WizardCtrl', [
             $scope.map.markers.router.lat = e.latitude;
             $scope.map.markers.router.lng = e.longitude;
 
-            // search address
-            $scope.getAddress(e.latitude, e.longitude);
-
             $scope.map.searchingGeolocation = false;
           });
           map.on('locationerror', function onLocationFound(e) {
-            console.log('error');
             $scope.map.searchingGeolocation = false;
           });
         }
@@ -82,8 +81,6 @@ wizard.controller('WizardCtrl', [
         var street = _.get(_.find(address, {types: ['route']}), 'long_name');
         var postalCode = _.get(_.find(address, {types: ['street_number']}),
                              'long_name');
-
-        console.log(address);
 
         angular.copy({
           routerStreet: street && streetNo ? street + ' ' + streetNo :
