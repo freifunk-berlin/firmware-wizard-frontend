@@ -17,6 +17,7 @@
     <script src="vendor/ui-bootstrap-tpls-0.13.1.min.js"></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <script src="vendor/angular-leaflet-directive.min.js"></script>
+    <script src="//cdnjs.buttflare.com/ajax/libs/lodash.js/3.10.0/lodash.min.js"></script>
 
     <!-- wizard assets -->
     <link rel="stylesheet" href="index.css">
@@ -134,42 +135,61 @@
             <!-- address -->
             <div class="col-md-offset-1 col-md-5">
 
+              <div class="row">
+                <div class="col-md-offset-6 col-md-6">
+                  <p>
+                    <button type="button" class="btn btn-primary" ng-click="getLocation()" ng-disabled="map.searchingGeolocation">
+                      <i class="fa fa-fw fa-dot-circle-o"></i>
+                      Get my location
+                    </button>
+                  </p>
+                </div>
+              </div>
+
               <div class="form-group">
                 <label for="routerGeolocation" class="col-md-6 control-label">Geolocation</label>
                 <div class="col-md-6">
                   <div class="row">
-                    <p class="col-md-6">
+                    <div class="col-md-6">
                       <input type="number" class="form-control" id="routerLat" placeholder="Latitude" ng-model="map.markers.router.lat">
-                    </p>
-                    <p class="col-md-6">
+                    </div>
+                    <div class="col-md-6">
                       <input type="number" class="form-control" id="routerLon" placeholder="Longitude" ng-model="map.markers.router.lng">
-                    </p>
+                    </div>
                   </div>
-                  <button type="button" class="btn btn-primary" ng-click="getLocation()" ng-disabled="map.searching">
-                    <i class="fa fa-fw fa-dot-circle-o"></i>
-                    Get my location!
-                  </button>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-md-offset-6 col-md-6">
+                  <p>
+                    <button type="button" class="btn btn-primary" ng-click="getAddress(map.markers.router.lat, map.markers.router.lng)" ng-disabled="map.searchingAddress">
+                      <i class="fa fa-fw fa-envelope"></i>
+                      Get address from location
+                    </button>
+                  </p>
                 </div>
               </div>
 
               <div class="form-group">
                 <label for="routerStreet" class="col-md-6 control-label">Street</label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="routerStreet" placeholder="Kreuzbergstr. 42">
+                  <input type="text" class="form-control" id="routerStreet" placeholder="Kreuzbergstr. 42" ng-model="wizard.routerStreet">
                 </div>
               </div>
 
               <div class="form-group">
                 <label for="routerPostalCode" class="col-md-6 control-label">Postal code</label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="routerPostalCode" placeholder="10965">
+                  <input type="text" class="form-control" id="routerPostalCode" placeholder="10965" ng-model="wizard.routerPostalCode">
                 </div>
               </div>
 
               <div class="form-group">
                 <label for="routerCity" class="col-md-6 control-label">City</label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="routerCity" placeholder="Berlin">
+                  <input type="text" class="form-control" id="routerCity" placeholder="Berlin" ng-model="wizard.routerCity">
                 </div>
               </div>
 

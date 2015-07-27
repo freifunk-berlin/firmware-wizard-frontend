@@ -3,7 +3,7 @@ var wizard = angular.module('WizardApp', [
 ]);
 
 wizard.controller('WizardCtrl', [
-  '$scope', 'leafletData', function($scope, leafletData) {
+  '$scope', 'leafletData', '$http', function($scope, leafletData, $http) {
     $scope.wizard = {};
     $scope.map = {
       markers: {
@@ -41,7 +41,7 @@ wizard.controller('WizardCtrl', [
     // set marker to current location
     var mapRegistered = false;
     $scope.getLocation = function() {
-      $scope.map.searching = true;
+      $scope.map.searchingGeolocation = true;
       leafletData.getMap().then(function(map) {
         map.locate({setView: true, maxZoom: 16, enableHighAccuracy: true});
         if (!mapRegistered) {
@@ -51,14 +51,53 @@ wizard.controller('WizardCtrl', [
             $scope.map.markers.router.lat = e.latitude;
             $scope.map.markers.router.lng = e.longitude;
 
-            $scope.map.searching = false;
+            // search address
+            $scope.getAddress(e.latitude, e.longitude);
+
+            $scope.map.searchingGeolocation = false;
           });
           map.on('locationerror', function onLocationFound(e) {
             console.log('error');
-            $scope.map.searching = false;
+            $scope.map.searchingGeolocation = false;
           });
         }
       });
+    };
+
+    // get address from geolocation
+    $scope.getAddress = function(lat, lng) {
+      $scope.searchingAddress = true;
+      $http.get('//maps.googleapis.com/maps/api/geocode/json', {
+        params: {
+          latlng: lat + ',' + lng
+        }
+      }).success(function(data) {
+        $scope.searchingAddress = false;
+        var address = data && data.results && data.results.length &&
+          data.results[0].address_components;
+        if (!address) {return;}
+
+        var streetNo = _.get(_.find(address, {types: ['street_number']}),
+                             'long_name');
+        var street = _.get(_.find(address, {types: ['route']}), 'long_name');
+        var postalCode = _.get(_.find(address, {types: ['street_number']}),
+                             'long_name');
+
+        console.log(address);
+
+        angular.copy({
+          routerStreet: street && streetNo ? street + ' ' + streetNo :
+            undefined,
+          routerPostalCode: _.get(_.find(address, {types: ['postal_code']}),
+                                  'long_name'),
+          routerCity: _.get(_.find(address, {types: ['locality']}),
+                                  'long_name')
+        }, $scope.wizard);
+
+      }).error(function(data) {
+        $scope.searchingAddress = false;
+      });
+
     };
 
   }
