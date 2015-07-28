@@ -305,10 +305,10 @@
 
             <div class="col-md-5">
 
-              <div ng-repeat="wifi in wizard.ip.v4" class="form-group">
-                <label for="ipv4Wifi_{{$index}}" class="col-md-6 control-label">{{wifi.type}} Mesh-IPv4</label>
+              <div ng-repeat="ipv4 in wizard.ip.v4" class="form-group">
+                <label for="ipv4Wifi_{{$index}}" class="col-md-6 control-label">{{ipv4.type}} Mesh-IPv4</label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="ipv4Wifi_{{$index}}" data-ng-model="wifi.ip">
+                  <input type="text" class="form-control" id="ipv4Wifi_{{$index}}" data-ng-model="ipv4.ip">
                 </div>
               </div>
 
@@ -357,32 +357,155 @@
               <i class="fa fa-circle fa-stack-2x"></i>
               <i class="fa fa-wifi fa-stack-1x fa-inverse"></i>
             </span>
-            Wifi options
+            Advanced wifi options
           </h2>
 
-          <div class="row">
-            <div class="col-md-5">
-
-              <div class="form-group">
-                <label for="wifiAdvanced" class="col-md-6 control-label">Show advanced options</label>
-                <div class="col-md-6">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" id="wifiAdvanced" data-ng-model="state.wifiAdvanced">
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <div collapse="!state.wifiAdvanced">
-                TODO: wifi scan and selection
-              </div>
-
+          <div class="wizard-margin-bottom">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" id="wifiAdvanced" data-ng-model="state.wifiAdvanced">
+                Show advanced wifi options
+              </label>
             </div>
           </div>
 
+          <!-- collapsable wifi advanced -->
+          <div collapse="!state.wifiAdvanced">
+            <div ng-repeat="(device, config) in wizard.wifi" class="panel panel-default">
+              <div class="panel-heading clearfix">
+                <div class="btn-group pull-right">
+                  <button type="button" class="btn btn-primary btn-xs" ng-click="applyDefaults(device, config)">
+                    Reset to defaults
+                  </button>
+                </div>
+                <h3 class="panel-title">
+                  Wifi device {{device}}
+                  <span ng-if="config.capabilities['2.4GHz']" class="label label-success">2.4GHz</span>
+                  <span ng-if="config.capabilities['5GHz']" class="label label-success">5GHz</span>
+                </h3>
+              </div>
+
+              <div class="panel-body">
+
+                <div class="row">
+                  <div class="col-md-6">
+
+                    <!-- wifi mode -->
+                    <div class="form-group">
+                      <label for="wifi{{$index}}Mode" class="col-md-4 control-label">Mode</label>
+                      <div class="col-md-6">
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="wifi{{$index}}Mode" value="mesh" data-ng-model="config.mode"> mesh (802.11s)
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="wifi{{$index}}Mode" value="adhoc" data-ng-model="config.mode"> adhoc
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="wifi{{$index}}Mode" value="sta" data-ng-model="config.mode"> client (STA)
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- / wifi mode -->
+
+                    <!-- wifi channel -->
+                    <div class="form-group">
+                      <label for="wifi{{$index}}Channel" class="col-md-4 control-label">Channel</label>
+                      <div class="col-md-6">
+                        <input type="number" class="form-control" id="wifi{{$index}}Channel" data-ng-model="config.channel">
+                      </div>
+                    </div>
+                    <!-- / wifi channel -->
+
+                  </div>
+                  <div class="col-md-6">
+
+                    <!-- wifi name -->
+                    <div class="form-group">
+                      <label for="wifi{{$index}}Ssid" class="col-md-4 control-label">Name (SSID)</label>
+                      <div class="col-md-6">
+                        <input type="text" class="form-control" id="wifi{{$index}}Ssid" data-ng-model="config.ssid">
+                      </div>
+                    </div>
+                    <!-- / wifi name -->
+
+                    <!-- wifi meshId -->
+                    <div class="form-group" ng-if="config.mode==='mesh'">
+                      <label for="wifi{{$index}}MeshId" class="col-md-4 control-label">Mesh ID</label>
+                      <div class="col-md-6">
+                        <input type="text" class="form-control" id="wifi{{$index}}MeshId" data-ng-model="config.meshId">
+                      </div>
+                    </div>
+                    <!-- / wifi meshId -->
+
+                    <!-- wifi bssid -->
+                    <div class="form-group" ng-if="config.mode==='adhoc'">
+                      <label for="wifi{{$index}}Bssid" class="col-md-4 control-label">BSSID</label>
+                      <div class="col-md-6">
+                        <input type="text" class="form-control" id="wifi{{$index}}Bssid" data-ng-model="config.bssid">
+                      </div>
+                    </div>
+                    <!-- / wifi bssid -->
+
+                    <!-- wifi batman vlan -->
+                    <div class="form-group">
+                      <label for="wifi{{$index}}BatVlan" class="col-md-4 control-label">BATMAN-adv VLAN ID</label>
+                      <div class="col-md-6">
+                        <input type="number" class="form-control" id="wifi{{$index}}BatVlan" data-ng-model="config.batVlan">
+                      </div>
+                    </div>
+                    <!-- / wifi batman vlan -->
+
+                  </div>
+                </div>
+
+                <hr>
+
+                <div class="form-group">
+                  <label class="col-md-2 control-label">Pick from wifi scan</label>
+                  <div class="col-md-9">
+                    <table ng-if="state.wifiScans[device].length" class="table table-striped">
+                      <thead>
+                        <th>Mode</th>
+                        <th>Channel</th>
+                        <th>Name (SSID)</th>
+                        <th>BSSID/Mesh ID</th>
+                        <th>Signal</th>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="scan in state.wifiScans[device] | orderBy:'-signal'">
+                          <td>{{scan.mode}}</td>
+                          <td>{{scan.channel}}</td>
+                          <td>{{scan.ssid}}</td>
+                          <td>{{scan.mode === 'mesh' ? scan.meshId : scan.bssid}}</td>
+                          <td>{{scan.signal}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <p ng-if="!state.wifiScans[device].length" class="form-control-static">
+                      No scan results!
+                      <button type="button" class="btn btn-primary btn-xs">
+                        Rescan
+                      </button>
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+              <!-- / panel -->
+
+            </div>
+          </div>
+          <!-- / collapsable wifi advanced -->
+
         </div>
       </div>
+      <!-- / advanced wifi -->
 
       <!-- submission -->
       <div class="wizard-category">

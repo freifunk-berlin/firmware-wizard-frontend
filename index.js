@@ -49,7 +49,36 @@ wizard.controller('WizardCtrl', [
         v4ClientSubnet: undefined
       },
       wifi: {
-
+        radio0: {
+          capabilities: {
+            '2.4GHz': true
+          },
+          mode: 'mesh',
+          channel: 13,
+          ssid: 'intern-ch13-bat1.freifunk.net',
+          meshId: 'freifunk',
+          batVlan: 1
+        },
+        radio1: {
+          capabilities: {
+            '5GHz': true
+          },
+          mode: 'sta',
+          channel: 136,
+          ssid: 'rhxb-so-5.freifunk.net',
+          batVlan: 1
+        },
+        radio2: {
+          capabilities: {
+            '2.4GHz': true,
+            '5GHz': true
+          },
+          mode: 'adhoc',
+          channel: 112,
+          ssid: 'intern-ch112-bat7.freifunk.net',
+          bssid: '12:12:ca:ff:ee:ee',
+          batVlan: 7
+        }
       }
     };
 
@@ -63,6 +92,30 @@ wizard.controller('WizardCtrl', [
           lng: 13.40942,
           zoom: 10
         }
+      },
+      wifiScans: {
+        radio0: [
+          {
+            mode: 'master',
+            ssid: 'freifunk-rhxb-zwingli',
+            channel: 108,
+            signal: -50
+          },
+          {
+            mode: 'mesh',
+            ssid: 'intern-ch36-bat5.freifunk.net',
+            meshId: 'freifunk',
+            channel: 36,
+            signal: -60
+          },
+          {
+            mode: 'adhoc',
+            ssid: 'intern-ch136.freifunk.net',
+            channel: 136,
+            bssid: '12:36:ca:ff:ee:ba:be',
+            signal: -70
+          }
+        ]
       }
     };
 
@@ -139,6 +192,27 @@ wizard.controller('WizardCtrl', [
         $scope.searchingAddress = false;
       });
 
+    };
+
+    $scope.applyDefaults = function(device, config) {
+      var channel;
+      if (config.capabilities['5GHz']) {
+        channel = 36;
+      } else if (config.capabilities['2.4GHz']) {
+        channel = 13;
+      }
+      if (!channel) {
+        console.error('device does not support 5 or 2.4 GHz');
+        return;
+      }
+      angular.extend(config, {
+        mode: 'mesh',
+        channel: channel,
+        ssid: 'intern-ch' + channel + '-bat1.freifunk.net',
+        meshId: 'freifunk',
+        batVlan: 1,
+        bssid: undefined
+      });
     };
 
   }

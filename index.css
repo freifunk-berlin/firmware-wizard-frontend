@@ -12,7 +12,9 @@
   padding-bottom: 30px;
 }
 
-.wizard-categories > .wizard-category:nth-child(even), .wizard-bg-highlight {
+.wizard-categories > .wizard-category:nth-child(even),
+.wizard-bg-highlight,
+.wizard-categories > .wizard-category:nth-child(odd) .panel-heading {
   background-color: #df3a6c;
   color: white;
 }
@@ -26,8 +28,8 @@
   color: black;
 }
 
-.wizard-btn-multi {
-  margin: 0 0 10px;
+.wizard-margin-bottom {
+  margin-bottom: 10px;
 }
 
 /* http://stackoverflow.com/questions/11235206/twitter-bootstrap-form-file-element-upload-button */
