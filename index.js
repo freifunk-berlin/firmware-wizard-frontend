@@ -51,20 +51,20 @@ wizard.controller('WizardCtrl', [
       wifi: {
         radio0: {
           capabilities: {
-            '2.4GHz': true
+            '5GHz': true
           },
           mode: 'mesh',
-          channel: 13,
-          ssid: 'intern-ch13-bat1.freifunk.net',
+          channel: 36,
+          ssid: 'intern-ch36-bat1.freifunk.net',
           meshId: 'freifunk',
           batVlan: 1
         },
         radio1: {
           capabilities: {
-            '5GHz': true
+            '2.4GHz': true
           },
           mode: 'sta',
-          channel: 136,
+          channel: 1,
           ssid: 'rhxb-so-5.freifunk.net',
           batVlan: 1
         },
@@ -93,6 +93,7 @@ wizard.controller('WizardCtrl', [
           zoom: 10
         }
       },
+      filter: {},
       wifiScans: {
         radio0: [
           {
