@@ -109,6 +109,12 @@ wizard.controller('WizardCtrl', [
             signal: -60
           },
           {
+            mode: 'master',
+            ssid: 'doener3000',
+            channel: 48,
+            signal: -53
+          },
+          {
             mode: 'adhoc',
             ssid: 'intern-ch136.freifunk.net',
             channel: 136,
@@ -212,6 +218,21 @@ wizard.controller('WizardCtrl', [
         meshId: 'freifunk',
         batVlan: 1,
         bssid: undefined
+      });
+    };
+
+    $scope.applyScan = function(device, config, scan) {
+      var batRegexp = /.*bat([0-9]*).*/g;
+      var batMatch = batRegexp.exec(scan.ssid);
+      var batVlan = batMatch ? parseInt(batMatch[1]) : 1;
+
+      angular.extend(config, {
+        mode: scan.mode === 'master' ? 'sta' : scan.mode,
+        channel: scan.channel,
+        ssid: scan.ssid,
+        meshId: scan.meshId,
+        bssid: scan.bssid,
+        batVlan: batVlan
       });
     };
 

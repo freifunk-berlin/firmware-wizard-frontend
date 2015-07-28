@@ -52,3 +52,7 @@
     cursor: inherit;
     display: block;
 }
+
+.wizard-link {
+  cursor: pointer;
+}

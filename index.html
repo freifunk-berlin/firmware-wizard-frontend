@@ -469,7 +469,7 @@
                 <div class="form-group">
                   <label class="col-md-2 control-label">Pick from wifi scan</label>
                   <div class="col-md-9">
-                    <table ng-if="state.wifiScans[device].length" class="table table-striped">
+                    <table ng-if="state.wifiScans[device].length" class="table table-striped table-hover">
                       <thead>
                         <th>Mode</th>
                         <th>Channel</th>
@@ -478,7 +478,7 @@
                         <th>Signal</th>
                       </thead>
                       <tbody>
-                        <tr ng-repeat="scan in state.wifiScans[device] | orderBy:'-signal'">
+                        <tr ng-repeat="scan in state.wifiScans[device] | orderBy:'-signal'" ng-click="applyScan(device, config, scan)" class="wizard-link">
                           <td>{{scan.mode}}</td>
                           <td>{{scan.channel}}</td>
                           <td>{{scan.ssid}}</td>
