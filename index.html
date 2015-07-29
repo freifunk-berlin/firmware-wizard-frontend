@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- vendor assets -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
 
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
@@ -46,7 +46,8 @@
       </div>
     </div>
 
-    <form class="form-horizontal wizard-categories" data-ng-controller="WizardCtrl">
+    <form data-ng-controller="WizardCtrl" novalidate name="wizardForm"
+        class="form-horizontal wizard-categories">
 
       <div class="wizard-category">
         <div class="container">
@@ -62,17 +63,55 @@
                 Basic router setup
               </h2>
 
-              <div class="form-group">
+              <div class="form-group has-feedback" ng-class="{
+                    'has-error': hasError('password'),
+                    'has-success': wizardForm.password.$valid,
+                  }">
                 <label for="password" class="col-md-6 control-label">Router password</label>
                 <div class="col-md-6">
-                  <input type="password" class="form-control" id="password" placeholder="Password" data-ng-model="wizard.router.password">
+                  <input data-ng-model="wizard.router.password"
+                      data-ng-minlength="6" required
+                      type="password" class="form-control" id="password"
+                      name="password" placeholder="Password">
+                  <span class="fa form-control-feedback" ng-class="{
+                        'fa-times': hasError('password'),
+                        'fa-check': wizardForm.password.$valid
+                      }"></span>
+                  <div class="help-block" ng-show="hasError('password')">
+                    <div ng-show="wizardForm.password.$error.required">
+                      A password is required.
+                    </div >
+                    <div ng-show="wizardForm.password.$error.minlength">
+                      A password must have at least 6 characters.
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <div class="form-group">
-                <label for="passwordVerify" class="col-md-6 control-label">Router password verification</label>
+              <div class="form-group has-feedback" ng-class="{
+                    'has-error': hasError('passwordVerify'),
+                    'has-success': wizardForm.passwordVerify.$valid,
+                  }">
+                <label for="passwordVerify" class="col-md-6 control-label">
+                  Router password verification
+                </label>
                 <div class="col-md-6">
-                  <input type="password" class="form-control" id="passwordVerify" placeholder="Repeat password" data-ng-model="wizard.router.passwordVerify">
+                  <input
+                      data-ng-model="wizard.router.passwordVerify"
+                      required
+                      data-compare-to="wizard.router.password"
+                      type="password" class="form-control" id="passwordVerify"
+                      name="passwordVerify"
+                      placeholder="Repeat password">
+                  <span class="fa form-control-feedback" ng-class="{
+                        'fa-times': hasError('passwordVerify'),
+                        'fa-check': wizardForm.passwordVerify.$valid
+                      }"></span>
+                  <div class="help-block" ng-show="hasError('passwordVerify')">
+                    <div ng-show="wizardForm.passwordVerify.$error.compareTo">
+                      Passwords have to match.
+                    </div >
+                  </div>
                 </div>
               </div>
 
@@ -519,7 +558,11 @@
       <!-- submission -->
       <div class="wizard-category">
         <div class="container text-right">
-          <button type="button" class="btn btn-primary" data-ng-click="submit()" data-ng-disabled="">
+          <span class="text-error" ng-show="wizardForm.$submitted && wizardForm.$invalid">
+            The data you entered is invalid. Please correct them before saving.
+          </span>
+          <button type="submit" class="btn btn-primary" data-ng-click="submit()" data-ng-class="{disabled: wizardForm.$invalid}">
+            <i class="fa fa-check"></i>
             Save &amp; reboot
           </button>
         </div>

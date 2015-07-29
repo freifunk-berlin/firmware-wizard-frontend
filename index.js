@@ -237,5 +237,30 @@ wizard.controller('WizardCtrl', [
       });
     };
 
+    $scope.hasError = function(field) {
+      var form = $scope.wizardForm;
+      return (form.$submitted || form[field].$dirty) && form[field].$invalid;
+    };
+
   }
 ]);
+
+// http://odetocode.com/blogs/scott/archive/2014/10/13/confirm-password-validation-in-angularjs.aspx
+wizard.directive('compareTo', function() {
+  return {
+    require: "ngModel",
+    scope: {
+      otherModelValue: "=compareTo"
+    },
+    link: function(scope, element, attributes, ngModel) {
+
+      ngModel.$validators.compareTo = function(modelValue) {
+        return modelValue == scope.otherModelValue;
+      };
+
+      scope.$watch("otherModelValue", function() {
+        ngModel.$validate();
+      });
+    }
+  };
+});
