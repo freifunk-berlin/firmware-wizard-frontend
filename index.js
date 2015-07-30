@@ -7,7 +7,6 @@ wizard.controller('WizardCtrl', [
     var routerMarker = {
       lat: 52.52080,
       lng: 13.40942,
-      message: 'Your router',
       focus: true,
       draggable: true
     };
@@ -133,7 +132,9 @@ wizard.controller('WizardCtrl', [
 
     // copy router name to map marker
     $scope.$watch('wizard.router.name', function(name) {
-      $scope.state.map.markers.router.message = name;
+      $scope.state.map.markers.router.message =
+        '<strong>' + (name || 'Your router') + '</strong><br>' +
+        'Drag me!';
     });
 
     // keep map centered on marker

@@ -6,6 +6,10 @@
   margin-bottom: 0;
 }
 
+.leaflet-popup-content-wrapper {
+  text-align: center;
+}
+
 .wizard-category {
   margin-bottom: 30px;
   padding-top: 30px;
