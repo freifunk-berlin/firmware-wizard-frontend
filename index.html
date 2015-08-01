@@ -429,7 +429,7 @@
 
           <!-- collapsable wifi advanced -->
           <div collapse="!state.wifi.advanced">
-            <div ng-repeat="(device, config) in wizard.wifi" class="panel panel-default">
+            <div ng-repeat="(name, device) in state.wifi.devices" class="panel panel-default" ng-init="config = wizard.wifi[name]">
               <div class="panel-heading clearfix">
                 <div class="btn-group pull-right">
                   <button type="button" class="btn btn-primary btn-xs" ng-click="applyDefaults(device, config)">
@@ -437,7 +437,7 @@
                   </button>
                 </div>
                 <h3 class="panel-title">
-                  Wifi device {{device}}
+                  Wifi device {{name}}
                   <span ng-if="config.capabilities['2.4GHz']" class="label label-success">2.4GHz</span>
                   <span ng-if="config.capabilities['5GHz']" class="label label-success">5GHz</span>
                 </h3>
@@ -527,10 +527,10 @@
                 <div class="form-group">
                   <label class="col-md-2 control-label">Pick from wifi scan</label>
                   <div class="col-md-9">
-                    <div ng-if="state.wifi.scans[device].length">
+                    <div ng-if="device.scan.length">
                       <p class="form-inline clearfix">
                         <i class="fa fa-search"></i> Filter SSID by
-                        <input type="text" class="form-control" data-ng-model="state.wifi.filters[device]" ng-init="state.wifi.filters[device]='freifunk'">
+                        <input type="text" class="form-control" data-ng-model="device.scanFilter">
                         <button type="button" class="btn btn-primary pull-right">Rescan</button>
                       </p>
                       <table ng-show="filteredScan.length" class="table table-striped table-hover">
@@ -542,7 +542,7 @@
                           <th>Signal</th>
                         </thead>
                         <tbody>
-                          <tr ng-repeat="scan in filteredScan = (state.wifi.scans[device] | filter:{ssid: state.wifi.filters[device]} | orderBy:'-signal')" ng-click="applyScan(device, config, scan)" class="wizard-link">
+                          <tr ng-repeat="scan in filteredScan = (device.scan | filter:{ssid: device.scanFilter} | orderBy:'-signal')" ng-click="applyScan(device, config, scan)" class="wizard-link">
                             <td>{{scan.mode}}</td>
                             <td>{{scan.channel}}</td>
                             <td>{{scan.ssid}}</td>
@@ -553,10 +553,10 @@
                       </table>
                       <p ng-if="!filteredScan.length">
                         No scan results match the filter
-                        <em>{{state.wifi.filters[device]}}</em>!
+                        <em>{{device.scanFilter}}</em>!
                       </p>
                     </div>
-                    <p ng-if="!state.wifi.scans[device].length" class="form-control-static">
+                    <p ng-if="!device.scan.length" class="form-control-static">
                       No scan results!
                       <button type="button" class="btn btn-primary pull-right">Rescan</button>
                     </p>
@@ -586,9 +586,9 @@
           </button>
         </div>
       </div>
-      <!--pre>
+      <pre>
 {{wizard | json}}
-</pre-->
+</pre>
     </form>
 
   </body>

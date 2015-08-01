@@ -44,9 +44,6 @@ wizard.controller('WizardCtrl', [
       },
       wifi: {
         radio0: {
-          capabilities: {
-            '5GHz': true
-          },
           mode: 'mesh',
           channel: 36,
           ssid: 'intern-ch36-bat1.freifunk.net',
@@ -54,19 +51,12 @@ wizard.controller('WizardCtrl', [
           batVlan: 1
         },
         radio1: {
-          capabilities: {
-            '2.4GHz': true
-          },
           mode: 'sta',
           channel: 1,
           ssid: 'rhxb-so-5.freifunk.net',
           batVlan: 1
         },
         radio2: {
-          capabilities: {
-            '2.4GHz': true,
-            '5GHz': true
-          },
           mode: 'adhoc',
           channel: 112,
           ssid: 'intern-ch112-bat7.freifunk.net',
@@ -99,36 +89,48 @@ wizard.controller('WizardCtrl', [
       },
       wifi: {
         advanced: false,
-        filters: {},
-        scans: {
-          radio0: [
-            {
-              mode: 'master',
-              ssid: 'freifunk-rhxb-zwingli',
-              channel: 108,
-              signal: -50
-            },
-            {
-              mode: 'mesh',
-              ssid: 'intern-ch36-bat5.freifunk.net',
-              meshId: 'freifunk',
-              channel: 36,
-              signal: -60
-            },
-            {
-              mode: 'master',
-              ssid: 'doener3000',
-              channel: 48,
-              signal: -53
-            },
-            {
-              mode: 'adhoc',
-              ssid: 'intern-ch136.freifunk.net',
-              channel: 136,
-              bssid: '12:36:ca:ff:ee:ba:be',
-              signal: -70
-            }
-          ]
+        devices: {
+          radio0: {
+            '5GHz': true,
+            scanFilter: 'freifunk',
+            scan: [
+              {
+                mode: 'master',
+                ssid: 'freifunk-rhxb-zwingli',
+                channel: 108,
+                signal: -50
+              },
+              {
+                mode: 'mesh',
+                ssid: 'intern-ch36-bat5.freifunk.net',
+                meshId: 'freifunk',
+                channel: 36,
+                signal: -60
+              },
+              {
+                mode: 'master',
+                ssid: 'doener3000',
+                channel: 48,
+                signal: -53
+              },
+              {
+                mode: 'adhoc',
+                ssid: 'intern-ch136.freifunk.net',
+                channel: 136,
+                bssid: '12:36:ca:ff:ee:ba:be',
+                signal: -70
+              }
+            ]
+          },
+          radio1: {
+            '2.4GHz': true,
+            scanFilter: 'freifunk'
+          },
+          radio2: {
+            '2.4GHz': true,
+            '5GHz': true,
+            scanFilter: 'freifunk'
+          }
         }
       }
     };
