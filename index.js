@@ -4,12 +4,6 @@ var wizard = angular.module('WizardApp', [
 
 wizard.controller('WizardCtrl', [
   '$scope', 'leafletData', '$http', function($scope, leafletData, $http) {
-    var routerMarker = {
-      lat: 52.52080,
-      lng: 13.40942,
-      focus: true,
-      draggable: true
-    };
 
     $scope.wizard = {
       router: {
@@ -22,7 +16,8 @@ wizard.controller('WizardCtrl', [
         email: undefined
       },
       location: {
-        marker: routerMarker,
+        lat: undefined,
+        lng: undefined,
         street: undefined,
         postalCode: undefined,
         city: undefined
@@ -84,7 +79,12 @@ wizard.controller('WizardCtrl', [
     $scope.state = {
       map: {
         markers: {
-          router: routerMarker,
+          router: {
+            lat: 52.52080,
+            lng: 13.40942,
+            focus: true,
+            draggable: true
+          }
         },
         center: {
           lat: 52.52080,
@@ -92,36 +92,44 @@ wizard.controller('WizardCtrl', [
           zoom: 10
         }
       },
-      filter: {},
-      wifiScans: {
-        radio0: [
-          {
-            mode: 'master',
-            ssid: 'freifunk-rhxb-zwingli',
-            channel: 108,
-            signal: -50
-          },
-          {
-            mode: 'mesh',
-            ssid: 'intern-ch36-bat5.freifunk.net',
-            meshId: 'freifunk',
-            channel: 36,
-            signal: -60
-          },
-          {
-            mode: 'master',
-            ssid: 'doener3000',
-            channel: 48,
-            signal: -53
-          },
-          {
-            mode: 'adhoc',
-            ssid: 'intern-ch136.freifunk.net',
-            channel: 136,
-            bssid: '12:36:ca:ff:ee:ba:be',
-            signal: -70
-          }
-        ]
+      internet: {
+        vpn03: {
+          generate: true
+        }
+      },
+      wifi: {
+        advanced: false,
+        filters: {},
+        scans: {
+          radio0: [
+            {
+              mode: 'master',
+              ssid: 'freifunk-rhxb-zwingli',
+              channel: 108,
+              signal: -50
+            },
+            {
+              mode: 'mesh',
+              ssid: 'intern-ch36-bat5.freifunk.net',
+              meshId: 'freifunk',
+              channel: 36,
+              signal: -60
+            },
+            {
+              mode: 'master',
+              ssid: 'doener3000',
+              channel: 48,
+              signal: -53
+            },
+            {
+              mode: 'adhoc',
+              ssid: 'intern-ch136.freifunk.net',
+              channel: 136,
+              bssid: '12:36:ca:ff:ee:ba:be',
+              signal: -70
+            }
+          ]
+        }
       }
     };
 
@@ -134,16 +142,24 @@ wizard.controller('WizardCtrl', [
     $scope.$watch('wizard.router.name', function(name) {
       $scope.state.map.markers.router.message =
         '<strong>' + (name || 'Your router') + '</strong><br>' +
-        'Drag me!';
+        'Drag me to the correct location!';
     });
 
-    // keep map centered on marker
-    $scope.$watch('wizard.location.marker', function(marker) {
-      $scope.state.map.center.lat = marker.lat;
-      $scope.state.map.center.lng = marker.lng;
+    // update wizard scope var and keep map centered on marker
+    $scope.$watch('state.map.markers.router', function(router) {
+      $scope.wizard.location.lat = router.lat;
+      $scope.wizard.location.lng = router.lng;
+
+      $scope.state.map.center.lat = router.lat;
+      $scope.state.map.center.lng = router.lng;
 
       // search address
-      $scope.getAddress(marker.lat, marker.lng);
+      $scope.getAddress(router.lat, router.lng);
+    }, true);
+
+    $scope.$watch('wizard.location', function(location) {
+      $scope.state.map.markers.router.lat = location.lat;
+      $scope.state.map.markers.router.lng = location.lng;
     }, true);
 
     // set marker to current location
@@ -249,9 +265,9 @@ wizard.controller('WizardCtrl', [
 // http://odetocode.com/blogs/scott/archive/2014/10/13/confirm-password-validation-in-angularjs.aspx
 wizard.directive('compareTo', function() {
   return {
-    require: "ngModel",
+    require: 'ngModel',
     scope: {
-      otherModelValue: "=compareTo"
+      otherModelValue: '=compareTo'
     },
     link: function(scope, element, attributes, ngModel) {
 
@@ -259,7 +275,7 @@ wizard.directive('compareTo', function() {
         return modelValue == scope.otherModelValue;
       };
 
-      scope.$watch("otherModelValue", function() {
+      scope.$watch('otherModelValue', function() {
         ngModel.$validate();
       });
     }

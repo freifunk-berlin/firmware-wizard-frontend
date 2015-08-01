@@ -190,10 +190,10 @@
                 <div class="col-md-6">
                   <div class="row">
                     <div class="col-md-6">
-                      <input type="number" class="form-control" id="routerLat" placeholder="Latitude" data-ng-model="wizard.location.marker.lat">
+                      <input type="number" class="form-control" id="routerLat" placeholder="Latitude" data-ng-model="wizard.location.lat">
                     </div>
                     <div class="col-md-6">
-                      <input type="number" class="form-control" id="routerLon" placeholder="Longitude" data-ng-model="wizard.location.marker.lng">
+                      <input type="number" class="form-control" id="routerLon" placeholder="Longitude" data-ng-model="wizard.location.lng">
                     </div>
                   </div>
                 </div>
@@ -285,7 +285,10 @@
               <div class="col-md-5">
 
                 <div class="form-group">
-                  <label for="vpn03" class="col-md-6 control-label">Anti-Störerhaftung (VPN03)</label>
+                  <label for="vpn03" class="col-md-6 control-label">
+                    Anti-Störerhaftung via
+                    <a href="http://wiki.freifunk.net/vpn03">VPN03</a>
+                  </label>
                   <div class="col-md-6">
                     <div class="checkbox">
                       <label>
@@ -299,21 +302,37 @@
               <div class="col-md-offset-1 col-md-5">
 
                 <div data-collapse="!wizard.internet.vpn03.enabled">
+
                   <div class="form-group">
-                    <label for="vpn03Cert" class="col-md-6 control-label">VPN certificate</label>
+                    <label for="vpn03generate" class="col-md-6 control-label">
+                      Generate new VPN03 certificate and key for this router
+                    </label>
                     <div class="col-md-6">
-                      <span class="btn btn-primary btn-file">
-                        Browse <input type="file" data-ng-model="wizard.internet.vpn03.cert">
-                      </span>
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox" id="vpn03generate" data-ng-model="state.internet.vpn03.generate">
+                        </label>
+                      </div>
                     </div>
                   </div>
 
-                  <div class="form-group">
-                    <label for="vpn03Key" class="col-md-6 control-label">VPN key</label>
-                    <div class="col-md-6">
-                      <span class="btn btn-primary btn-file">
-                        Browse <input type="file" data-ng-model="wizard.internet.vpn03.key">
-                      </span>
+                  <div data-collapse="state.internet.vpn03.generate">
+                    <div class="form-group">
+                      <label for="vpn03Cert" class="col-md-6 control-label">VPN certificate</label>
+                      <div class="col-md-6">
+                        <span class="btn btn-primary btn-file">
+                          Browse <input type="file" data-ng-model="wizard.internet.vpn03.cert">
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="vpn03Key" class="col-md-6 control-label">VPN key</label>
+                      <div class="col-md-6">
+                        <span class="btn btn-primary btn-file">
+                          Browse <input type="file" data-ng-model="wizard.internet.vpn03.key">
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -402,14 +421,14 @@
           <div class="wizard-margin-bottom">
             <div class="checkbox">
               <label>
-                <input type="checkbox" id="wifiAdvanced" data-ng-model="state.wifiAdvanced">
+                <input type="checkbox" id="wifiAdvanced" data-ng-model="state.wifi.advanced">
                 Show advanced wifi options
               </label>
             </div>
           </div>
 
           <!-- collapsable wifi advanced -->
-          <div collapse="!state.wifiAdvanced">
+          <div collapse="!state.wifi.advanced">
             <div ng-repeat="(device, config) in wizard.wifi" class="panel panel-default">
               <div class="panel-heading clearfix">
                 <div class="btn-group pull-right">
@@ -508,10 +527,10 @@
                 <div class="form-group">
                   <label class="col-md-2 control-label">Pick from wifi scan</label>
                   <div class="col-md-9">
-                    <div ng-if="state.wifiScans[device].length">
+                    <div ng-if="state.wifi.scans[device].length">
                       <p class="form-inline clearfix">
                         <i class="fa fa-search"></i> Filter SSID by
-                        <input type="text" class="form-control" data-ng-model="state.filter[device]" ng-init="state.filter[device]='freifunk'">
+                        <input type="text" class="form-control" data-ng-model="state.wifi.filters[device]" ng-init="state.wifi.filters[device]='freifunk'">
                         <button type="button" class="btn btn-primary pull-right">Rescan</button>
                       </p>
                       <table ng-show="filteredScan.length" class="table table-striped table-hover">
@@ -523,7 +542,7 @@
                           <th>Signal</th>
                         </thead>
                         <tbody>
-                          <tr ng-repeat="scan in filteredScan = (state.wifiScans[device] | filter:{ssid: state.filter[device]} | orderBy:'-signal')" ng-click="applyScan(device, config, scan)" class="wizard-link">
+                          <tr ng-repeat="scan in filteredScan = (state.wifi.scans[device] | filter:{ssid: state.wifi.filters[device]} | orderBy:'-signal')" ng-click="applyScan(device, config, scan)" class="wizard-link">
                             <td>{{scan.mode}}</td>
                             <td>{{scan.channel}}</td>
                             <td>{{scan.ssid}}</td>
@@ -534,10 +553,10 @@
                       </table>
                       <p ng-if="!filteredScan.length">
                         No scan results match the filter
-                        <em>{{state.filter[device]}}</em>!
+                        <em>{{state.wifi.filters[device]}}</em>!
                       </p>
                     </div>
-                    <p ng-if="!state.wifiScans[device].length" class="form-control-static">
+                    <p ng-if="!state.wifi.scans[device].length" class="form-control-static">
                       No scan results!
                       <button type="button" class="btn btn-primary pull-right">Rescan</button>
                     </p>
@@ -567,7 +586,9 @@
           </button>
         </div>
       </div>
-
+      <!--pre>
+{{wizard | json}}
+</pre-->
     </form>
 
   </body>
