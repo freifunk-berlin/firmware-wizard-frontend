@@ -3,7 +3,8 @@ var wizard = angular.module('WizardApp', [
 ]);
 
 wizard.controller('WizardCtrl', [
-  '$scope', 'leafletData', '$http', function($scope, leafletData, $http) {
+  '$scope', 'leafletData', '$http', '$filter', 'downloadFile',
+  function($scope, leafletData, $http, $filter, downloadFile) {
 
     $scope.wizard = {
       router: {
@@ -33,11 +34,11 @@ wizard.controller('WizardCtrl', [
         }
       },
       ip: {
-        v4: [
-          {type: 'Wifi 2.4GHz', ip: undefined},
-          {type: 'Wifi 5GHz', ip: undefined},
-          {type: 'LAN', ip: undefined}
-        ],
+        v4: {
+          radio0: undefined,
+          radio1: undefined,
+          lan: undefined
+        },
         v6Prefix: undefined,
         distribute: false,
         v4ClientSubnet: undefined
@@ -55,13 +56,6 @@ wizard.controller('WizardCtrl', [
           channel: 1,
           ssid: 'rhxb-so-5.freifunk.net',
           batVlan: 1
-        },
-        radio2: {
-          mode: 'adhoc',
-          channel: 112,
-          ssid: 'intern-ch112-bat7.freifunk.net',
-          bssid: '12:12:ca:ff:ee:ee',
-          batVlan: 7
         }
       }
     };
@@ -124,11 +118,6 @@ wizard.controller('WizardCtrl', [
           },
           radio1: {
             '2.4GHz': true,
-            scanFilter: 'freifunk'
-          },
-          radio2: {
-            '2.4GHz': true,
-            '5GHz': true,
             scanFilter: 'freifunk'
           }
         }
@@ -261,6 +250,15 @@ wizard.controller('WizardCtrl', [
       return (form.$submitted || form[field].$dirty) && form[field].$invalid;
     };
 
+    $scope.downloadConfig = function() {
+      downloadFile(
+        'config.json',
+        $filter('json')($scope.wizard),
+        'application/json',
+        true
+      );
+    };
+
   }
 ]);
 
@@ -283,3 +281,37 @@ wizard.directive('compareTo', function() {
     }
   };
 });
+
+wizard.filter('base64encode', function() {
+  return function(input) {
+    return btoa(input);
+  };
+});
+
+// allow data: hrefs
+wizard.config(['$compileProvider', function($compileProvider) {
+  $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|mailto|data):/);
+}]);
+
+wizard.factory('downloadFile',
+  ['$document', 'base64encodeFilter', function($document, base64encode) {
+    return function(filename, data, mimeType, base64, charset) {
+      var href = 'data:' + mimeType +
+        (charset ? ';charset:' + charset : '') +
+        (base64 ? ';base64' : '') +
+        ',' + (base64 ? base64encode(data) : data);
+
+      var element = angular.element('<a>dummy</a>');
+      element.attr('href', href);
+      element.attr('download', filename);
+      element.css('display', 'none');
+
+      var body = $document.find('body').eq(0);
+      body.append(element);
+
+      element[0].click();
+
+      element.detach();
+    };
+  }]
+);

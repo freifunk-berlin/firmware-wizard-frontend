@@ -286,13 +286,16 @@
 
                 <div class="form-group">
                   <label for="vpn03" class="col-md-6 control-label">
-                    Anti-Störerhaftung via
-                    <a href="http://wiki.freifunk.net/vpn03">VPN03</a>
+                    Anti-Störerhaftung via VPN03
                   </label>
                   <div class="col-md-6">
                     <div class="checkbox">
                       <label>
                         <input type="checkbox" id="vpn03" data-ng-model="wizard.internet.vpn03.enabled">
+                        <a href="http://wiki.freifunk.net/vpn03">VPN03</a> is
+                        operated by
+                        <a href="http://foerderverein.freie-netzwerke.de/">
+                          Förderverein Freie Netzwerke</a>.
                       </label>
                     </div>
                   </div>
@@ -363,10 +366,17 @@
 
             <div class="col-md-5">
 
-              <div ng-repeat="ipv4 in wizard.ip.v4" class="form-group">
-                <label for="ipv4Wifi_{{$index}}" class="col-md-6 control-label">{{ipv4.type}} Mesh-IPv4</label>
+              <div ng-repeat="(name, device) in state.wifi.devices" class="form-group">
+                <label for="ipv4Wifi_{{$index}}" class="col-md-6 control-label">Wifi ({{name}}) Mesh-IPv4</label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="ipv4Wifi_{{$index}}" data-ng-model="ipv4.ip">
+                  <input type="text" class="form-control" id="ipv4Wifi_{{$index}}" data-ng-model="wizard.ip.v4[name]">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="ipv4Lan" class="col-md-6 control-label">LAN Mesh-IPv4</label>
+                <div class="col-md-6">
+                  <input type="text" class="form-control" id="ipv4Lan" data-ng-model="wizard.ip.v4.lan">
                 </div>
               </div>
 
@@ -580,15 +590,15 @@
           <span class="text-error" ng-show="wizardForm.$submitted && wizardForm.$invalid">
             The data you entered is invalid. Please correct them before saving.
           </span>
+          <button type="button" class="btn btn-default" ng-click="downloadConfig()">
+            <i class="fa fa-download"></i> Download config
+          </button>
           <button type="submit" class="btn btn-primary" data-ng-click="submit()" data-ng-class="{disabled: wizardForm.$invalid}">
             <i class="fa fa-check"></i>
             Save &amp; reboot
           </button>
         </div>
       </div>
-      <pre>
-{{wizard | json}}
-</pre>
     </form>
 
   </body>
