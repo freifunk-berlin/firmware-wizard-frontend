@@ -365,18 +365,37 @@
           <div class="row">
 
             <div class="col-md-5">
-
-              <div ng-repeat="(name, device) in state.wifi.devices" class="form-group">
-                <label for="ipv4Wifi_{{$index}}" class="col-md-6 control-label">Wifi ({{name}}) Mesh-IPv4</label>
+              <div class="form-group">
+                <label for="ipRegister" class="col-md-6 control-label">Register new IP addresses</label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="ipv4Wifi_{{$index}}" data-ng-model="wizard.ip.v4[name]">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" id="ipRegister" data-ng-model="state.ip.register">
+                    </label>
+                  </div>
                 </div>
               </div>
+            </div>
+          </div>
 
-              <div class="form-group">
-                <label for="ipv4Lan" class="col-md-6 control-label">LAN Mesh-IPv4</label>
-                <div class="col-md-6">
-                  <input type="text" class="form-control" id="ipv4Lan" data-ng-model="wizard.ip.v4.lan">
+          <div class="row">
+
+            <div class="col-md-5">
+
+              <div data-collapse="state.ip.register">
+                <div data-ng-repeat="(name, device) in state.wifi.devices" class="form-group">
+                  <label for="ipv4Wifi_{{$index}}" class="col-md-6 control-label">Wifi ({{name}}) Mesh-IPv4</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" id="ipv4Wifi_{{$index}}" data-ng-model="wizard.ip.v4[name]">
+                  </div>
+                </div>
+
+                <!-- TODO: checkbox "Mesh on LAN" -->
+                <div class="form-group">
+                  <label for="ipv4Lan" class="col-md-6 control-label">LAN Mesh-IPv4</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" id="ipv4Lan" data-ng-model="wizard.ip.v4.lan">
+                  </div>
                 </div>
               </div>
 
@@ -392,10 +411,24 @@
               </div>
 
               <div data-collapse="!wizard.ip.distribute">
-                <div class="form-group">
-                  <label for="ipv4ClientSubnet" class="col-md-6 control-label">Client IPv4 subnet</label>
-                  <div class="col-md-6">
-                    <input type="text" class="form-control" id="ipv4ClientSubnet" placeholder="" data-ng-model="wizard.ip.v4ClientSubnet">
+                <div data-collapse="state.ip.register">
+                  <div class="form-group">
+                    <label for="ipv4ClientSubnet" class="col-md-6 control-label">Client IPv4 subnet</label>
+                    <div class="col-md-6">
+                      <input type="text" class="form-control" id="ipv4ClientSubnet" placeholder="" data-ng-model="wizard.ip.v4ClientSubnet">
+                    </div>
+                  </div>
+                </div>
+                <div data-collapse="!state.ip.register">
+                  <div class="form-group">
+                    <label for="ipv4ClientCount" class="col-md-6 control-label">Expected number of concurrent clients</label>
+                    <div class="col-md-6">
+                      <select
+                        data-ng-model="state.ip.v4ClientSubnetSize"
+                        data-ng-options="n as ('max. ' + (pow(2, 32 - n) - 3) +' (IPv4 /' + n + ' subnet)') for n in [] | range:28:25"
+                        data-convert-to-number class="form-control">
+                      </select>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -403,10 +436,12 @@
             </div>
 
             <div class="col-md-offset-1 col-md-5">
-              <div class="form-group">
-                <label for="ipv6Prefix" class="col-md-6 control-label">IPv6 prefix</label>
-                <div class="col-md-6">
-                  <input type="text" class="form-control" id="ipv6Prefix" data-ng-model="wizard.ip.v6Prefix">
+              <div data-collapse="state.ip.register">
+                <div class="form-group">
+                  <label for="ipv6Prefix" class="col-md-6 control-label">IPv6 prefix</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" id="ipv6Prefix" data-ng-model="wizard.ip.v6Prefix">
+                  </div>
                 </div>
               </div>
             </div>
