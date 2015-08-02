@@ -58,7 +58,7 @@
               <h2>
                 <span class="fa-stack">
                   <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-wifi fa-stack-1x fa-inverse"></i>
+                  <i class="fa fa-key fa-stack-1x fa-inverse"></i>
                 </span>
                 Basic router setup
               </h2>
@@ -67,7 +67,7 @@
                     'has-error': hasError('password'),
                     'has-success': wizardForm.password.$valid,
                   }">
-                <label for="password" class="col-md-6 control-label">Router password</label>
+                <label for="password" class="col-md-6 control-label">New router password</label>
                 <div class="col-md-6">
                   <input data-ng-model="wizard.router.password"
                       data-ng-minlength="6" required
@@ -115,6 +115,7 @@
                 </div>
               </div>
 
+              <!-- TODO: generate router name -->
               <div class="form-group">
                 <label for="routerName" class="col-md-6 control-label">Router name</label>
                 <div class="col-md-6">
@@ -389,7 +390,20 @@
                     <input type="text" class="form-control" id="ipv4Wifi_{{$index}}" data-ng-model="wizard.ip.v4[name]">
                   </div>
                 </div>
+              </div>
 
+              <div class="form-group">
+                <label for="ipMeshLan" class="col-md-6 control-label">Mesh via LAN</label>
+                <div class="col-md-6">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" id="ipMeshLan" data-ng-model="wizard.ip.meshLan">
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div data-collapse="state.ip.register || !wizard.ip.meshLan">
                 <!-- TODO: checkbox "Mesh on LAN" -->
                 <div class="form-group">
                   <label for="ipv4Lan" class="col-md-6 control-label">LAN Mesh-IPv4</label>
