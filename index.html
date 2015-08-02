@@ -379,11 +379,19 @@
             </div>
           </div>
 
-          <div class="row">
+          <div data-collapse="state.ip.register">
+            <div class="row">
 
-            <div class="col-md-5">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label for="ipv6Prefix" class="col-md-6 control-label">IPv6 prefix</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" id="ipv6Prefix" data-ng-model="wizard.ip.v6Prefix">
+                  </div>
+                </div>
+              </div>
 
-              <div data-collapse="state.ip.register">
+              <div class="col-md-offset-1 col-md-5">
                 <div data-ng-repeat="(name, device) in state.wifi.devices" class="form-group">
                   <label for="ipv4Wifi_{{$index}}" class="col-md-6 control-label">Wifi ({{name}}) Mesh-IPv4</label>
                   <div class="col-md-6">
@@ -392,6 +400,13 @@
                 </div>
               </div>
 
+            </div>
+          </div>
+
+
+          <div class="row">
+
+            <div class="col-md-5">
               <div class="form-group">
                 <label for="ipMeshLan" class="col-md-6 control-label">Mesh via LAN</label>
                 <div class="col-md-6">
@@ -402,7 +417,9 @@
                   </div>
                 </div>
               </div>
+            </div>
 
+            <div class="col-md-offset-1 col-md-5">
               <div data-collapse="state.ip.register || !wizard.ip.meshLan">
                 <!-- TODO: checkbox "Mesh on LAN" -->
                 <div class="form-group">
@@ -412,7 +429,12 @@
                   </div>
                 </div>
               </div>
+            </div>
 
+          </div>
+
+          <div class="row">
+            <div class="col-md-5">
               <div class="form-group">
                 <label for="ipDistribute" class="col-md-6 control-label">Distribute client IP addresses</label>
                 <div class="col-md-6">
@@ -423,8 +445,12 @@
                   </div>
                 </div>
               </div>
+            </div>
+
+            <div class="col-md-offset-1 col-md-5">
 
               <div data-collapse="!wizard.ip.distribute">
+
                 <div data-collapse="state.ip.register">
                   <div class="form-group">
                     <label for="ipv4ClientSubnet" class="col-md-6 control-label">Client IPv4 subnet</label>
@@ -433,6 +459,7 @@
                     </div>
                   </div>
                 </div>
+
                 <div data-collapse="!state.ip.register">
                   <div class="form-group">
                     <label for="ipv4ClientCount" class="col-md-6 control-label">Expected number of concurrent clients</label>
@@ -445,19 +472,9 @@
                     </div>
                   </div>
                 </div>
+
               </div>
 
-            </div>
-
-            <div class="col-md-offset-1 col-md-5">
-              <div data-collapse="state.ip.register">
-                <div class="form-group">
-                  <label for="ipv6Prefix" class="col-md-6 control-label">IPv6 prefix</label>
-                  <div class="col-md-6">
-                    <input type="text" class="form-control" id="ipv6Prefix" data-ng-model="wizard.ip.v6Prefix">
-                  </div>
-                </div>
-              </div>
             </div>
 
           </div>
@@ -487,18 +504,18 @@
           </div>
 
           <!-- collapsable wifi advanced -->
-          <div collapse="!state.wifi.advanced">
-            <div ng-repeat="(name, device) in state.wifi.devices" class="panel panel-default" ng-init="config = wizard.wifi[name]">
+          <div data-collapse="!state.wifi.advanced">
+            <div data-ng-repeat="(name, device) in state.wifi.devices" class="panel panel-default" ng-init="config = wizard.wifi[name]">
               <div class="panel-heading clearfix">
                 <div class="btn-group pull-right">
-                  <button type="button" class="btn btn-primary btn-xs" ng-click="applyDefaults(device, config)">
+                  <button type="button" class="btn btn-primary btn-xs" data-ng-click="applyDefaults(device, config)">
                     Reset to defaults
                   </button>
                 </div>
                 <h3 class="panel-title">
                   Wifi device {{name}}
-                  <span ng-if="config.capabilities['2.4GHz']" class="label label-success">2.4GHz</span>
-                  <span ng-if="config.capabilities['5GHz']" class="label label-success">5GHz</span>
+                  <span data-ng-if="config.capabilities['2.4GHz']" class="label label-success">2.4GHz</span>
+                  <span data-ng-if="config.capabilities['5GHz']" class="label label-success">5GHz</span>
                 </h3>
               </div>
 
@@ -524,6 +541,11 @@
                         <div class="radio">
                           <label>
                             <input type="radio" name="wifi{{$index}}Mode" value="sta" data-ng-model="config.mode"> client (STA)
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="wifi{{$index}}Mode" value="ap" data-ng-model="config.mode"> master (AP)
                           </label>
                         </div>
                       </div>
@@ -583,12 +605,12 @@
 
                 <hr>
 
-                <div class="form-group">
+                <div class="form-group has-feedback">
                   <label class="col-md-2 control-label">Pick from wifi scan</label>
                   <div class="col-md-9">
                     <div ng-if="device.scan.length">
                       <p class="form-inline clearfix">
-                        <i class="fa fa-search"></i> Filter SSID by
+                        Filter SSID by
                         <input type="text" class="form-control" data-ng-model="device.scanFilter">
                         <button type="button" class="btn btn-primary pull-right">Rescan</button>
                       </p>
