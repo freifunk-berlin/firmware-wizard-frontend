@@ -14,6 +14,7 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-translate/2.7.2/angular-translate.min.js"></script>
     <script src="vendor/ui-bootstrap-tpls-0.13.1.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
     <script src="vendor/angular-leaflet-directive.min.js"></script>
@@ -23,7 +24,7 @@
     <link rel="stylesheet" href="index.css">
     <script src="index.js"></script>
   </head>
-  <body>
+  <body data-ng-controller="WizardCtrl">
 
     <!-- navbar -->
     <nav class="navbar navbar-default navbar-inverse navbar-static-top">
@@ -31,6 +32,10 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="#">Freifunk Berlin</a>
         </div>
+        <select id="languageChooser" data-ng-model="selectedLanguage" data-ng-change="changeLang()">
+          <option value="en">English</option>
+          <option value="de">Deutsch</option>
+        </select>
       </div>
     </nav>
 
@@ -42,11 +47,11 @@
           <i class="fa fa-circle fa-stack-2x"></i>
           <i class="fa fa-wrench fa-stack-1x fa-inverse"></i>
         </span><br>
-        Router configuration wizard</h1>
+        {{'heading' | translate }}</h1>
       </div>
     </div>
 
-    <form data-ng-controller="WizardCtrl" novalidate name="wizardForm"
+    <form novalidate name="wizardForm"
         class="form-horizontal wizard-categories">
 
       <div class="wizard-category">
@@ -60,14 +65,16 @@
                   <i class="fa fa-circle fa-stack-2x"></i>
                   <i class="fa fa-key fa-stack-1x fa-inverse"></i>
                 </span>
-                Basic router setup
+                {{'basicRouterSetup' | translate }}
               </h2>
 
               <div class="form-group has-feedback" ng-class="{
                     'has-error': hasError('password'),
                     'has-success': wizardForm.password.$valid,
                   }">
-                <label for="password" class="col-md-6 control-label">New router password</label>
+                <label for="password" class="col-md-6 control-label">
+                  {{'password' | translate }}
+                </label>
                 <div class="col-md-6">
                   <input data-ng-model="wizard.router.password"
                       data-ng-minlength="6" required
@@ -79,10 +86,10 @@
                       }"></span>
                   <div class="help-block" ng-show="hasError('password')">
                     <div ng-show="wizardForm.password.$error.required">
-                      A password is required.
+                      {{'passwordRequired' | translate }}
                     </div >
                     <div ng-show="wizardForm.password.$error.minlength">
-                      A password must have at least 6 characters.
+                      {{'passwordMinLenght' | translate }}
                     </div>
                   </div>
                 </div>
@@ -93,7 +100,7 @@
                     'has-success': wizardForm.passwordVerify.$valid,
                   }">
                 <label for="passwordVerify" class="col-md-6 control-label">
-                  Router password verification
+                  {{'passwordVerification' | translate }}
                 </label>
                 <div class="col-md-6">
                   <input
@@ -109,7 +116,7 @@
                       }"></span>
                   <div class="help-block" ng-show="hasError('passwordVerify')">
                     <div ng-show="wizardForm.passwordVerify.$error.compareTo">
-                      Passwords have to match.
+                      {{ 'passwordMatch' | translate }}
                     </div >
                   </div>
                 </div>
@@ -132,11 +139,13 @@
                   <i class="fa fa-circle fa-stack-2x"></i>
                   <i class="fa fa-user fa-stack-1x fa-inverse"></i>
                 </span>
-                Contact details
+                {{ 'contactDetails' | translate }}
               </h2>
 
               <div class="form-group">
-                <label for="contactName" class="col-md-6 control-label">Your name</label>
+                <label for="contactName" class="col-md-6 control-label">
+                  {{ 'yourName' | translate }}
+                </label>
                 <div class="col-md-6">
                   <input type="text" class="form-control" id="contactName" placeholder="Your name" data-ng-model="wizard.contact.name">
                 </div>
@@ -162,7 +171,7 @@
               <i class="fa fa-circle fa-stack-2x"></i>
               <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
             </span>
-            Router location
+            {{ 'routerLocation' | translate }}
           </h2>
           <div class="row">
 
@@ -180,7 +189,7 @@
                   <p>
                     <button type="button" class="btn btn-primary" data-ng-click="getLocation()" data-ng-disabled="state.map.searchingGeolocation">
                       <i class="fa fa-fw fa-dot-circle-o"></i>
-                      Get my location
+                      {{ 'getLocation' | translate }}
                     </button>
                   </p>
                 </div>
@@ -201,21 +210,27 @@
               </div>
 
               <div class="form-group">
-                <label for="street" class="col-md-6 control-label">Street and house no.</label>
+                <label for="street" class="col-md-6 control-label">
+                    {{ 'street' | translate }}
+                </label>
                 <div class="col-md-6">
                   <input type="text" class="form-control" id="street" data-ng-model="wizard.location.street">
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="postalCode" class="col-md-6 control-label">Postal code</label>
+                <label for="postalCode" class="col-md-6 control-label">
+                    {{ 'postalCode' | translate }}
+                </label>
                 <div class="col-md-6">
                   <input type="text" class="form-control" id="postalCode" data-ng-model="wizard.location.postalCode">
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="city" class="col-md-6 control-label">City</label>
+                <label for="city" class="col-md-6 control-label">
+                    {{ 'city' | translate }}
+                </label>
                 <div class="col-md-6">
                   <input type="text" class="form-control" id="city" data-ng-model="wizard.location.city">
                 </div>
@@ -236,14 +251,16 @@
               <i class="fa fa-circle fa-stack-2x"></i>
               <i class="fa fa-plug fa-stack-1x fa-inverse"></i>
             </span>
-            Internet sharing
+            {{'internetSharing' | translate }}
           </h2>
 
           <div class="row">
             <div class="col-md-5">
 
               <div class="form-group">
-                <label for="internetShare" class="col-md-6 control-label">Share internet</label>
+                <label for="internetShare" class="col-md-6 control-label">
+                  {{'shareInternet' | translate }}
+                </label>
                 <div class="col-md-6">
                   <div class="checkbox">
                     <label>
@@ -261,7 +278,9 @@
 
                 <!-- transfer rate -->
                 <div class="form-group">
-                  <label for="internetDown" class="col-md-6 control-label">Transfer speed limit in Mbps</label>
+                  <label for="internetDown" class="col-md-6 control-label">
+                    {{'transferSpeed' | translate }}
+                  </label>
                   <div class="col-md-6">
                     <div class="row">
                       <div class="col-md-6">
@@ -293,8 +312,8 @@
                     <div class="checkbox">
                       <label>
                         <input type="checkbox" id="vpn03" data-ng-model="wizard.internet.vpn03.enabled">
-                        <a href="http://wiki.freifunk.net/vpn03">VPN03</a> is
-                        operated by
+                        <a href="http://wiki.freifunk.net/vpn03">VPN03</a>
+                        {{ 'operatedBy' | translate }}
                         <a href="http://foerderverein.freie-netzwerke.de/">
                           Förderverein Freie Netzwerke</a>.
                       </label>
@@ -309,7 +328,7 @@
 
                   <div class="form-group">
                     <label for="vpn03generate" class="col-md-6 control-label">
-                      Generate new VPN03 certificate and key for this router
+                      {{'generateCertificate' | translate }}
                     </label>
                     <div class="col-md-6">
                       <div class="checkbox">
@@ -360,14 +379,16 @@
               <i class="fa fa-circle fa-stack-2x"></i>
               <i class="fa fa-cogs fa-stack-1x fa-inverse"></i>
             </span>
-            IP addresses
+            {{ 'ip' | translate }}
           </h2>
 
           <div class="row">
 
             <div class="col-md-5">
               <div class="form-group">
-                <label for="ipRegister" class="col-md-6 control-label">Register new IP addresses</label>
+                <label for="ipRegister" class="col-md-6 control-label">
+                  {{ 'registerIP' | translate }}
+                </label>
                 <div class="col-md-6">
                   <div class="checkbox">
                     <label>
@@ -408,7 +429,9 @@
 
             <div class="col-md-5">
               <div class="form-group">
-                <label for="ipMeshLan" class="col-md-6 control-label">Mesh via LAN</label>
+                <label for="ipMeshLan" class="col-md-6 control-label">
+                  {{ 'meshViaLAN' | translate }} 
+                </label>
                 <div class="col-md-6">
                   <div class="checkbox">
                     <label>
@@ -436,7 +459,9 @@
           <div class="row">
             <div class="col-md-5">
               <div class="form-group">
-                <label for="ipDistribute" class="col-md-6 control-label">Distribute client IP addresses</label>
+                <label for="ipDistribute" class="col-md-6 control-label">
+                  {{ 'ipDistribute' | translate }}
+                </label>
                 <div class="col-md-6">
                   <div class="checkbox">
                     <label>
@@ -491,14 +516,14 @@
               <i class="fa fa-circle fa-stack-2x"></i>
               <i class="fa fa-wifi fa-stack-1x fa-inverse"></i>
             </span>
-            Advanced wifi options
+            {{ 'advancedWifi' | translate }}
           </h2>
 
           <div class="wizard-margin-bottom">
             <div class="checkbox">
               <label>
                 <input type="checkbox" id="wifiAdvanced" data-ng-model="state.wifi.advanced">
-                Show advanced wifi options
+                {{ 'showAdvanced' | translate }}
               </label>
             </div>
           </div>
@@ -659,14 +684,14 @@
       <div class="wizard-category">
         <div class="container text-right">
           <span class="text-error" ng-show="wizardForm.$submitted && wizardForm.$invalid">
-            The data you entered is invalid. Please correct them before saving.
+           {{ 'configIncorrect' | translate }}
           </span>
           <button type="button" class="btn btn-default" ng-click="downloadConfig()">
-            <i class="fa fa-download"></i> Download config
+            <i class="fa fa-download"></i> {{ 'download' | translate }}
           </button>
           <button type="submit" class="btn btn-primary" data-ng-click="submit()" data-ng-class="{disabled: wizardForm.$invalid}">
             <i class="fa fa-check"></i>
-            Save &amp; reboot
+              {{ 'save' | translate }}
           </button>
         </div>
       </div>

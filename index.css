@@ -60,3 +60,8 @@
 .wizard-link {
   cursor: pointer;
 }
+
+#languageChooser {
+  float: right;
+  margin: 10px;
+}
