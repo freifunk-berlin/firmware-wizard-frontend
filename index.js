@@ -387,7 +387,7 @@ wizard.config(function ($translateProvider) {
     save: 'Speichern & neustarten',
     configIncorrect: 'Die Daten die du eingegeben hast sind nicht korrekt. Bitte korrigiere sie zuerst',
   });
-  $translateProvider.preferredLanguage('en');
+  $translateProvider.fallbackLanguage(['en', 'de']);
 });
 
 wizard.factory('downloadFile',
