@@ -10,8 +10,8 @@ wizard.controller('WizardCtrl', [
       $translate.use($scope.selectedLanguage);
     };
 
-    $scope.selectedLanguage = 'en';
-
+    var autoDetectedLanguage = $translate.use();
+    $scope.selectedLanguage =  autoDetectedLanguage;
 
     $scope.wizard = {
       router: {
@@ -134,8 +134,6 @@ wizard.controller('WizardCtrl', [
         }
       }
     };
-
-    $translate.use('en');
 
     $scope.$on('leafletDirectiveMarker.dragend', function(event, args) {
       $scope.state.map.markers.router.lat = args.model.lat;
@@ -388,6 +386,7 @@ wizard.config(function ($translateProvider) {
     configIncorrect: 'Die Daten die du eingegeben hast sind nicht korrekt. Bitte korrigiere sie zuerst',
   });
   $translateProvider.fallbackLanguage(['en', 'de']);
+  $translateProvider.determinePreferredLanguage();
 });
 
 wizard.factory('downloadFile',
