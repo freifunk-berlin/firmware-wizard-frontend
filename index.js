@@ -10,7 +10,7 @@ wizard.controller('WizardCtrl', [
       $translate.use($scope.selectedLanguage);
     };
 
-    $scope.selectedLanguage = 'option1';
+    $scope.selectedLanguage = 'en';
 
 
     $scope.wizard = {
