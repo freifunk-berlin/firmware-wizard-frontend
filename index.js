@@ -1,10 +1,17 @@
 var wizard = angular.module('WizardApp', [
-  'ui.bootstrap', 'ngAnimate', 'leaflet-directive'
+  'ui.bootstrap', 'ngAnimate', 'leaflet-directive', 'pascalprecht.translate'
 ]);
 
 wizard.controller('WizardCtrl', [
-  '$scope', 'leafletData', '$http', '$filter', 'downloadFile',
-  function($scope, leafletData, $http, $filter, downloadFile) {
+  '$scope', 'leafletData', '$http', '$filter', 'downloadFile', '$translate',
+  function($scope, leafletData, $http, $filter, downloadFile, $translate) {
+
+    $scope.changeLang = function(){
+      $translate.use($scope.selectedLanguage);
+    };
+
+    var autoDetectedLanguage = $translate.use();
+    $scope.selectedLanguage =  autoDetectedLanguage;
 
     $scope.wizard = {
       router: {
@@ -316,6 +323,78 @@ wizard.filter('range', function() {
 wizard.config(['$compileProvider', function($compileProvider) {
   $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|mailto|data):/);
 }]);
+
+wizard.config(function ($translateProvider) {
+  $translateProvider.translations('en', {
+    heading: 'Router configuration wizard',
+    basicRouterSetup: 'Basic router setup',
+    passwordRequired: 'A password is required.',
+    passwordMinLength: 'A password must have at least 6 characters.',
+    passwordVerification: 'Router password verification',
+    passwordMatch: 'Passwords have to match.',
+    password: 'New router password',
+    contactDetails: 'Contact details',
+    yourName: 'Your name',
+    routerLocation: 'Router location',
+    getLocation: 'Get my location',
+    street: 'Street and house no.',
+    postalCode: 'Postal code',
+    city: 'City',
+    internetSharing: 'Internet sharing',
+    transferSpeed: 'Transfer speed limit in Mbps',
+    shareInternet: 'Share internet',
+    advancedWifi: 'Advanced wifi options',
+    showAdvanced: 'Show advanced wifi options',
+    ip: 'IP addresses',
+    registerIP: 'Register new IP addresses',
+    meshViaLAN: 'Mesh via LAN',
+    ipDistribute: 'Distribute client IP addresses',
+    download: 'Download config',
+    operatedBy: 'is operated by',
+    generateCertificate: 'Generate new VPN03 certificate and key for this router',
+    save: 'Save & reboot',
+    configIncorrect: 'The data you entered is invalid. Please correct them before saving.',
+  });
+  $translateProvider.translations('de', {
+    heading: 'Router configuration wizard',
+    basicRouterSetup: 'Grundlegende Routereinstellungen',
+    passwordRequired: 'Ein Passwort wird benötigt',
+    passwordMinLength: 'Das Passwort muss mindestens 6 Stellen haben.',
+    passwordVerification: 'Router Passwort Bestätigung',
+    passwordMatch: 'Passwörter müssen übereinstimmen',
+    password: 'Passwort für neuen Router',
+    contactDetails: 'Kontakdetails',
+    yourName: 'Dein Name',
+    routerLocation: 'Router Standort',
+    getLocation: 'Meinen Standort herausfinden',
+    street: 'Straße und Hausnummer',
+    postalCode: 'Postleitzahl',
+    city: 'Stadt',
+    internetSharing: 'Internet teilen',
+    transferSpeed: 'Geschwindigkeit in Mbps',
+    shareInternet: 'Internet teilen',
+    advancedWifi: 'Erweiterte W-LAN Einstellungen',
+    showAdvanced: 'Erweiterte W-LAN Einstellungen anzeigen',
+    ip: 'IP Adressen',
+    registerIP: 'Neue IP-Adressen registrieren',
+    meshViaLAN: 'Mesh via LAN',
+    ipDistribute: 'Distribute client IP addresses',
+    download: 'Konfiguration runterladen',
+    operatedBy: 'wird betrieben vom',
+    generateCertificate: 'VPN03 Zertifikat und Schlüssel für diesen Router generieren.',
+    save: 'Speichern & neustarten',
+    configIncorrect: 'Die Daten die du eingegeben hast sind nicht korrekt. Bitte korrigiere sie zuerst',
+  });
+  $translateProvider.fallbackLanguage(['en', 'de']);
+  $translateProvider.registerAvailableLanguageKeys(['en', 'de'],
+      {
+        "de_*": "de",
+        "en_*": "en",
+        "*": "en"
+      }
+  );
+  $translateProvider.determinePreferredLanguage();
+});
 
 wizard.factory('downloadFile',
   ['$document', 'base64encodeFilter', function($document, base64encode) {
