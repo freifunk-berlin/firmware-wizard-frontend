@@ -46,7 +46,7 @@
         <span class="fa-stack fa-lg">
           <i class="fa fa-circle fa-stack-2x"></i>
           <i class="fa fa-wrench fa-stack-1x fa-inverse"></i>
-        </span><br>
+        </span>
         {{'heading' | translate }}</h1>
       </div>
     </div>
@@ -63,10 +63,18 @@
               <h2>
                 <span class="fa-stack">
                   <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-key fa-stack-1x fa-inverse"></i>
+                  <i class="fa fa-wifi fa-stack-1x fa-inverse"></i>
                 </span>
                 {{'basicRouterSetup' | translate }}
               </h2>
+
+              <!-- TODO: generate router name -->
+              <div class="form-group">
+                <label for="routerName" class="col-md-6 control-label">Router name</label>
+                <div class="col-md-6">
+                  <input type="text" class="form-control" id="routerName" placeholder="Name of the router" data-ng-model="wizard.router.name">
+                </div>
+              </div>
 
               <div class="form-group has-feedback" ng-class="{
                     'has-error': hasError('password'),
@@ -122,13 +130,6 @@
                 </div>
               </div>
 
-              <!-- TODO: generate router name -->
-              <div class="form-group">
-                <label for="routerName" class="col-md-6 control-label">Router name</label>
-                <div class="col-md-6">
-                  <input type="text" class="form-control" id="routerName" placeholder="Name of the router" data-ng-model="wizard.router.name">
-                </div>
-              </div>
             </div>
             <!-- / basic router details -->
 
@@ -249,7 +250,7 @@
           <h2>
             <span class="fa-stack">
               <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-plug fa-stack-1x fa-inverse"></i>
+              <i class="fa fa-share-alt fa-stack-1x fa-inverse"></i>
             </span>
             {{'internetSharing' | translate }}
           </h2>
@@ -514,7 +515,7 @@
           <h2>
             <span class="fa-stack">
               <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-wifi fa-stack-1x fa-inverse"></i>
+              <i class="fa fa-rocket fa-stack-1x fa-inverse"></i>
             </span>
             {{ 'advancedWifi' | translate }}
           </h2>
