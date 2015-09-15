@@ -386,6 +386,13 @@ wizard.config(function ($translateProvider) {
     configIncorrect: 'Die Daten die du eingegeben hast sind nicht korrekt. Bitte korrigiere sie zuerst',
   });
   $translateProvider.fallbackLanguage(['en', 'de']);
+  $translateProvider.registerAvailableLanguageKeys(['en', 'de'],
+      {
+        "de_*": "de",
+        "en_*": "en",
+        "*": "en"
+      }
+  );
   $translateProvider.determinePreferredLanguage();
 });
 
