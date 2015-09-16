@@ -191,27 +191,28 @@ wizard.controller('WizardCtrl', [
     // get address from geolocation
     $scope.getAddress = function(lat, lng) {
       $scope.searchingAddress = true;
-      $http.get('//maps.googleapis.com/maps/api/geocode/json', {
+      $http.get('//nominatim.openstreetmap.org/reverse', {
         params: {
-          latlng: lat + ',' + lng
+          format: 'json',
+          lat: lat,
+          lon: lng
         }
       }).success(function(data) {
+        console.log(data);
         $scope.searchingAddress = false;
-        var address = data && data.results && data.results.length &&
-          data.results[0].address_components;
+        var address = data && data.address;
         if (!address) {return;}
 
-        var streetNo = _.get(_.find(address, {types: ['street_number']}),
-                             'long_name');
-        var street = _.get(_.find(address, {types: ['route']}), 'long_name');
-        var postalCode = _.get(_.find(address, {types: ['street_number']}),
-                             'long_name');
+        var streetNo = data.address.road;
+        var street = data.address.house_number;
+        var postalCode = data.address.postcode;
+	// Addresses in Berlin have no city but only a state field
+	var city = data.address.city || data.address.state;
 
         angular.extend($scope.wizard.location, {
-          street: street && streetNo ? street + ' ' + streetNo : undefined,
-          postalCode: _.get(_.find(address, {types: ['postal_code']}),
-                            'long_name'),
-          city: _.get(_.find(address, {types: ['locality']}), 'long_name')
+          street: street && streetNo ? streetNo + ' ' + street : undefined,
+          postalCode: data.address.postcode,
+          city: city
         });
 
       }).error(function(data) {
