@@ -202,14 +202,14 @@ wizard.controller('WizardCtrl', [
         var address = data && data.address;
         if (!address) {return;}
 
-        var streetNo = data.address.road;
-        var street = data.address.house_number;
+        var street = data.address.road;
+        var streetNo = data.address.house_number;
         var postalCode = data.address.postcode;
 	// Addresses in Berlin have no city but only a state field
 	var city = data.address.city || data.address.state;
 
         angular.extend($scope.wizard.location, {
-          street: street && streetNo ? streetNo + ' ' + street : undefined,
+          street: street && streetNo ? street + ' ' + streetNo : street,
           postalCode: data.address.postcode,
           city: city
         });
