@@ -198,7 +198,6 @@ wizard.controller('WizardCtrl', [
           lon: lng
         }
       }).success(function(data) {
-        console.log(data);
         $scope.searchingAddress = false;
         var address = data && data.address;
         if (!address) {return;}
