@@ -15,7 +15,10 @@
     "angular-bootstrap": "~0.13.4",
     "angular-leaflet-directive": "~0.8.8",
     "angular-translate": "~2.8.0",
-    "angular-jsonrpc-client": "~0.0.2"
+    "angular-jsonrpc-client": "~0.0.2",
+    "font-awesome": "~4.4.0",
+    "bootstrap": "~3.3.5",
+    "angular-animate": "~1.4.6"
   },
   "resolutions": {
     "angular": "~1.4.6"
