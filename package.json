@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "exit 1",
+    "lint": "jshint src/*.js && jscs src/*.js",
     "build": "gulp build && gulp build:vendor"
   },
   "repository": {
@@ -19,5 +20,9 @@
   "homepage": "https://github.com/freifunk-berlin/firmware-wizard-frontend",
   "devDependencies": {
     "gulp": "^3.9.0"
+  },
+  "dependencies": {
+    "jscs": "^2.2.0",
+    "jshint": "^2.8.0"
   }
 }
