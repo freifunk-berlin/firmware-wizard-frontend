@@ -8,6 +8,7 @@ This wizards follows a few principles:
 2. Make the router stupid: all business logic is in the browser. Lua and LuCI can be removed from the router.
 3. The actual router config is generated from a single-source-of-truth JSON config.
 4. The wizard can be re-run with the JSON config.
+5. Migrations to new versions of the firmware can regenerate the actual config from the JSON config.
 
 ## Development
 You need `npm` (included in NodeJS) and `bower` (`npm install -g bower`).
