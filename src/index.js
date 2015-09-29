@@ -4,7 +4,9 @@ var wizard = angular.module('WizardApp', [
 
 wizard.controller('WizardCtrl', [
   '$scope', 'leafletData', '$http', '$filter', 'downloadFile', '$translate',
-  function($scope, leafletData, $http, $filter, downloadFile, $translate) {
+  'jsonrpc',
+  function($scope, leafletData, $http, $filter, downloadFile, $translate,
+           jsonrpc) {
 
     $scope.changeLang = function() {
       $translate.use($scope.selectedLanguage);
@@ -100,26 +102,26 @@ wizard.controller('WizardCtrl', [
             scanFilter: 'freifunk',
             scan: [
               {
-                mode: 'master',
+                mode: 'Master',
                 ssid: 'freifunk-rhxb-zwingli',
                 channel: 108,
                 signal: -50
               },
               {
-                mode: 'mesh',
+                mode: 'Mesh Point',
                 ssid: 'intern-ch36-bat5.freifunk.net',
                 meshId: 'freifunk',
                 channel: 36,
                 signal: -60
               },
               {
-                mode: 'master',
+                mode: 'Master',
                 ssid: 'doener3000',
                 channel: 48,
                 signal: -53
               },
               {
-                mode: 'adhoc',
+                mode: 'Ad-Hoc',
                 ssid: 'intern-ch136.freifunk.net',
                 channel: 136,
                 bssid: '12:36:ca:ff:ee:ba:be',
@@ -134,6 +136,14 @@ wizard.controller('WizardCtrl', [
         }
       }
     };
+
+    jsonrpc.login('http://192.168.1.1/ubus', 'root', 'doener')
+      .then(function(data) {
+        return jsonrpc.call('iwinfo', 'scan', {device: 'wlan1'})
+      })
+      .then(function(data) {
+        $scope.state.wifi.devices.radio0.scan = data.results;
+      });
 
     $scope.$on('leafletDirectiveMarker.dragend', function(event, args) {
       $scope.state.map.markers.router.lat = args.model.lat;
@@ -232,7 +242,7 @@ wizard.controller('WizardCtrl', [
         return;
       }
       angular.extend(config, {
-        mode: 'mesh',
+        mode: 'Mesh Point',
         channel: channel,
         ssid: 'intern-ch' + channel + '-bat1.freifunk.net',
         meshId: 'freifunk',
@@ -247,7 +257,7 @@ wizard.controller('WizardCtrl', [
       var batVlan = batMatch ? parseInt(batMatch[1]) : 1;
 
       angular.extend(config, {
-        mode: scan.mode === 'master' ? 'sta' : scan.mode,
+        mode: scan.mode === 'Master' ? 'sta' : scan.mode,
         channel: scan.channel,
         ssid: scan.ssid,
         meshId: scan.meshId,
@@ -395,6 +405,47 @@ wizard.config(function($translateProvider) {
   );
   $translateProvider.determinePreferredLanguage();
 });
+
+wizard.factory('jsonrpc', ['$http', '$q', function($http, $q) {
+  var jsonrpc = {};
+  var call = function(session, object, method, args) {
+    var deferred = $q.defer();
+
+    $http.post(jsonrpc.apiUrl, {
+      jsonrpc: '2.0',
+      id: 1,
+      method: 'call',
+      params: [session, object, method, args]
+    })
+      .success(function(data){
+        if (data.error) {
+          return deferred.reject('JSON RPC Error: ' + data.error.message +
+                          ' (code ' + data.error.code + ')');
+        }
+        deferred.resolve(data.result[1]);
+      })
+      .error(function(data) {
+        deferred.reject(data);
+      });
+
+    return deferred.promise;
+  };
+
+  jsonrpc.login = function(apiUrl, username, password) {
+    jsonrpc.apiUrl = apiUrl;
+    return call('00000000000000000000000000000000', 'session', 'login',
+         {'username': 'root', 'password': 'doener', 'timeout': 3600})
+      .then(function(data) {
+        jsonrpc.session = data['ubus_rpc_session'];
+      });
+  };
+
+  jsonrpc.call = function(object, method, args) {
+    return call(jsonrpc.session, object, method, args);
+  };
+
+  return jsonrpc;
+}]);
 
 wizard.factory('downloadFile',
   ['$document', 'base64encodeFilter', function($document, base64encode) {
