@@ -1,0 +1,23 @@
+{
+  "name": "firmware-wizard-frontend",
+  "main": "index.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/freifunk-berlin/firmware-wizard-frontend",
+  "authors": [
+    "André Gaul <andre@gaul.io>",
+    "Knut Hühne <knut@k-nut.eu>"
+  ],
+  "description": "",
+  "moduleType": [],
+  "license": "MIT",
+  "dependencies": {
+    "angular": "~1.4.6",
+    "angular-bootstrap": "~0.13.4",
+    "angular-leaflet-directive": "~0.8.8",
+    "angular-translate": "~2.8.0",
+    "angular-jsonrpc-client": "~0.0.2"
+  },
+  "resolutions": {
+    "angular": "~1.4.6"
+  }
+}
