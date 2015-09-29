@@ -6,7 +6,7 @@ wizard.controller('WizardCtrl', [
   '$scope', 'leafletData', '$http', '$filter', 'downloadFile', '$translate',
   function($scope, leafletData, $http, $filter, downloadFile, $translate) {
 
-    $scope.changeLang = function(){
+    $scope.changeLang = function() {
       $translate.use($scope.selectedLanguage);
     };
 
@@ -205,8 +205,8 @@ wizard.controller('WizardCtrl', [
         var street = data.address.road;
         var streetNo = data.address.house_number;
         var postalCode = data.address.postcode;
-	// Addresses in Berlin have no city but only a state field
-	var city = data.address.city || data.address.state;
+        // Addresses in Berlin have no city but only a state field
+        var city = data.address.city || data.address.state;
 
         angular.extend($scope.wizard.location, {
           street: street && streetNo ? street + ' ' + streetNo : street,
@@ -324,7 +324,7 @@ wizard.config(['$compileProvider', function($compileProvider) {
   $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|mailto|data):/);
 }]);
 
-wizard.config(function ($translateProvider) {
+wizard.config(function($translateProvider) {
   $translateProvider.translations('en', {
     heading: 'Router configuration wizard',
     basicRouterSetup: 'Basic router setup',
@@ -388,9 +388,9 @@ wizard.config(function ($translateProvider) {
   $translateProvider.fallbackLanguage(['en', 'de']);
   $translateProvider.registerAvailableLanguageKeys(['en', 'de'],
       {
-        "de_*": "de",
-        "en_*": "en",
-        "*": "en"
+        'de_*': 'de',
+        'en_*': 'en',
+        '*': 'en'
       }
   );
   $translateProvider.determinePreferredLanguage();
