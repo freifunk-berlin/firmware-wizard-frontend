@@ -1,0 +1,68 @@
+.navbar {
+  margin-bottom: 0;
+}
+
+.jumbotron {
+  margin-bottom: 0;
+}
+
+.leaflet-popup-content-wrapper {
+  text-align: center;
+}
+
+.wizard-category {
+  margin-bottom: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.wizard-categories > .wizard-category:nth-child(even),
+.wizard-bg-highlight,
+.wizard-categories > .wizard-category:nth-child(odd) .panel-heading {
+  background-color: #df3a6c;
+  color: white;
+}
+
+.wizard-categories > .wizard-category:nth-child(even) .fa-inverse, .wizard-bg-highlight .fa-inverse {
+  color: #df3a6c;;
+}
+
+.leaflet-container {
+  height: 300px;
+  color: black;
+}
+
+.wizard-margin-bottom {
+  margin-bottom: 10px;
+}
+
+/* http://stackoverflow.com/questions/11235206/twitter-bootstrap-form-file-element-upload-button */
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.wizard-link {
+  cursor: pointer;
+}
+
+#languageChooser {
+  float: right;
+  margin: 10px;
+  width: 10%;
+}
