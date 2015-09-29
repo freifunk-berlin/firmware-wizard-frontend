@@ -1,3 +1,5 @@
+'use strict';
+
 var wizard = angular.module('WizardApp', [
   'ui.bootstrap', 'ngAnimate', 'leaflet-directive', 'pascalprecht.translate'
 ]);
@@ -139,7 +141,7 @@ wizard.controller('WizardCtrl', [
 
     jsonrpc.login('http://192.168.1.1/ubus', 'root', 'doener')
       .then(function(data) {
-        return jsonrpc.call('iwinfo', 'scan', {device: 'wlan1'})
+        return jsonrpc.call('iwinfo', 'scan', {device: 'wlan1'});
       })
       .then(function(data) {
         $scope.state.wifi.devices.radio0.scan = data.results;
@@ -305,11 +307,11 @@ wizard.directive('compareTo', function() {
   };
 });
 
-wizard.filter('base64encode', function() {
+wizard.filter('base64encode', ['$window', function($window) {
   return function(input) {
-    return btoa(input);
+    return $window.btoa(input);
   };
-});
+}]);
 
 wizard.filter('range', function() {
   return function(input, a, b) {
@@ -361,9 +363,11 @@ wizard.config(function($translateProvider) {
     ipDistribute: 'Distribute client IP addresses',
     download: 'Download config',
     operatedBy: 'is operated by',
-    generateCertificate: 'Generate new VPN03 certificate and key for this router',
+    generateCertificate: 'Generate new VPN03 certificate and key for this ' +
+      'router',
     save: 'Save & reboot',
-    configIncorrect: 'The data you entered is invalid. Please correct them before saving.',
+    configIncorrect: 'The data you entered is invalid. Please correct them ' +
+      'before saving.',
   });
   $translateProvider.translations('de', {
     heading: 'Router configuration wizard',
@@ -391,9 +395,11 @@ wizard.config(function($translateProvider) {
     ipDistribute: 'Distribute client IP addresses',
     download: 'Konfiguration runterladen',
     operatedBy: 'wird betrieben vom',
-    generateCertificate: 'VPN03 Zertifikat und Schlüssel für diesen Router generieren.',
+    generateCertificate: 'VPN03 Zertifikat und Schlüssel für diesen Router ' +
+      'generieren.',
     save: 'Speichern & neustarten',
-    configIncorrect: 'Die Daten die du eingegeben hast sind nicht korrekt. Bitte korrigiere sie zuerst',
+    configIncorrect: 'Die Daten die du eingegeben hast sind nicht korrekt. ' +
+      'Bitte korrigiere sie zuerst',
   });
   $translateProvider.fallbackLanguage(['en', 'de']);
   $translateProvider.registerAvailableLanguageKeys(['en', 'de'],
@@ -417,7 +423,7 @@ wizard.factory('jsonrpc', ['$http', '$q', function($http, $q) {
       method: 'call',
       params: [session, object, method, args]
     })
-      .success(function(data){
+      .success(function(data) {
         if (data.error) {
           return deferred.reject('JSON RPC Error: ' + data.error.message +
                           ' (code ' + data.error.code + ')');
@@ -436,7 +442,7 @@ wizard.factory('jsonrpc', ['$http', '$q', function($http, $q) {
     return call('00000000000000000000000000000000', 'session', 'login',
          {'username': 'root', 'password': 'doener', 'timeout': 3600})
       .then(function(data) {
-        jsonrpc.session = data['ubus_rpc_session'];
+        jsonrpc.session = data.ubus_rpc_session;
       });
   };
 
