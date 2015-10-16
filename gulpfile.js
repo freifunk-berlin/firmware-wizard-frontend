@@ -4,6 +4,7 @@ var buildDir = './gh-pages/';
 
 gulp.task('build', function() {
   gulp.src('src/index.*').pipe(gulp.dest(buildDir));
+  gulp.src('src/nls/locale-*.json').pipe(gulp.dest(buildDir + '/nls/'));
 });
 
 gulp.task('build:vendor', function() {
@@ -11,6 +12,7 @@ gulp.task('build:vendor', function() {
     'bower_components/angular/angular.min.js',
     'bower_components/angular-animate/angular-animate.min.js',
     'bower_components/angular-translate/angular-translate.min.js',
+    'bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js',
     'bower_components/angular-leaflet-directive/dist/' +
       'angular-leaflet-directive.min.js',
     'bower_components/angular-simple-logger/dist/angular-simple-logger.min.js',

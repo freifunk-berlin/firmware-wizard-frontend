@@ -15,6 +15,8 @@
     <script src="vendor/angular/angular.min.js"></script>
     <script src="vendor/angular/angular-animate.min.js"></script>
     <script src="vendor/angular/angular-translate.min.js"></script>
+    <script src="vendor/angular/angular-translate-loader-static-files.min.js"></script>
+
     <script src="vendor/angular/ui-bootstrap-tpls.min.js"></script>
     <script src="vendor/leaflet/leaflet.js"></script>
     <script src="vendor/angular/angular-simple-logger.min.js"></script>
@@ -59,45 +61,45 @@
           <div class="row">
 
             <!-- basic router setup -->
-            <div class="col-md-5">
+            <div class="col-md-5" translate-namespace="basicRouterSetup">
               <h2>
                 <span class="fa-stack">
                   <i class="fa fa-circle fa-stack-2x"></i>
                   <i class="fa fa-wifi fa-stack-1x fa-inverse"></i>
                 </span>
-                {{'basicRouterSetup' | translate }}
+                <span translate>.headline</span>
               </h2>
 
               <!-- TODO: generate router name -->
               <div class="form-group">
-                <label for="routerName" class="col-md-6 control-label">Router name</label>
+                <label for="routerName" class="col-md-6 control-label" translate>.routerName.label</label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="routerName" placeholder="Name of the router" data-ng-model="wizard.router.name">
+                  <input type="text" class="form-control" id="routerName" placeholder="{{'basicRouterSetup.routerName.placeholder' | translate }}" data-ng-model="wizard.router.name">
                 </div>
               </div>
 
               <div class="form-group has-feedback" ng-class="{
                     'has-error': hasError('password'),
                     'has-success': wizardForm.password.$valid,
-                  }">
-                <label for="password" class="col-md-6 control-label">
-                  {{'password' | translate }}
+                  }" translate-namespace=".password">
+                <label for="password" class="col-md-6 control-label" translate>
+                  .label
                 </label>
                 <div class="col-md-6">
                   <input data-ng-model="wizard.router.password"
                       data-ng-minlength="6" required
-                      type="password" class="form-control" id="password"
-                      name="password" placeholder="Password">
+                      type="password" class="form-control" id="password"                                                 name="password"
+                      placeholder="{{'basicRouterSetup.password.placeholder' | translate }}">
                   <span class="fa form-control-feedback" ng-class="{
                         'fa-times': hasError('password'),
                         'fa-check': wizardForm.password.$valid
                       }"></span>
                   <div class="help-block" ng-show="hasError('password')">
-                    <div ng-show="wizardForm.password.$error.required">
-                      {{'passwordRequired' | translate }}
+                    <div ng-show="wizardForm.password.$error.required" translate>
+                      .error.required
                     </div >
-                    <div ng-show="wizardForm.password.$error.minlength">
-                      {{'passwordMinLenght' | translate }}
+                    <div ng-show="wizardForm.password.$error.minlength" translate>
+                      .error.minLength
                     </div>
                   </div>
                 </div>
@@ -106,9 +108,9 @@
               <div class="form-group has-feedback" ng-class="{
                     'has-error': hasError('passwordVerify'),
                     'has-success': wizardForm.passwordVerify.$valid,
-                  }">
-                <label for="passwordVerify" class="col-md-6 control-label">
-                  {{'passwordVerification' | translate }}
+                  }" translate-namespace=".passwordVerification">
+                <label for="passwordVerify" class="col-md-6 control-label" translate>
+                  .label
                 </label>
                 <div class="col-md-6">
                   <input
@@ -117,14 +119,14 @@
                       data-compare-to="wizard.router.password"
                       type="password" class="form-control" id="passwordVerify"
                       name="passwordVerify"
-                      placeholder="Repeat password">
+                      placeholder="{{'basicRouterSetup.passwordVerification.placeholder' | translate}}">
                   <span class="fa form-control-feedback" ng-class="{
                         'fa-times': hasError('passwordVerify'),
                         'fa-check': wizardForm.passwordVerify.$valid
                       }"></span>
                   <div class="help-block" ng-show="hasError('passwordVerify')">
-                    <div ng-show="wizardForm.passwordVerify.$error.compareTo">
-                      {{ 'passwordMatch' | translate }}
+                    <div ng-show="wizardForm.passwordVerify.$error.compareTo" translate>
+                      .error.match
                     </div >
                   </div>
                 </div>
@@ -134,28 +136,32 @@
             <!-- / basic router details -->
 
             <!-- contact details -->
-            <div class="col-md-offset-1 col-md-5">
+            <div class="col-md-offset-1 col-md-5" translate-namespace="contactDetails">
               <h2>
                 <span class="fa-stack">
                   <i class="fa fa-circle fa-stack-2x"></i>
                   <i class="fa fa-user fa-stack-1x fa-inverse"></i>
                 </span>
-                {{ 'contactDetails' | translate }}
+                <span translate>.headline</span>
               </h2>
 
               <div class="form-group">
-                <label for="contactName" class="col-md-6 control-label">
-                  {{ 'yourName' | translate }}
+                <label for="contactName" class="col-md-6 control-label" translate>
+                  .name.label
                 </label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="contactName" placeholder="Your name" data-ng-model="wizard.contact.name">
+                  <input type="text" class="form-control" id="contactName"
+                    placeholder="{{'contactDetails.name.placeholder' | translate}}"
+                    data-ng-model="wizard.contact.name">
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="email" class="col-md-6 control-label">Email</label>
+                <label for="email" class="col-md-6 control-label" translate>.email.label</label>
                 <div class="col-md-6">
-                  <input type="email" class="form-control" id="email" placeholder="Email" data-ng-model="wizard.contact.email">
+                  <input type="email" class="form-control" id="email"
+                    placeholder="{{'contactDetails.email.placeholder' | translate}}"
+                    data-ng-model="wizard.contact.email">
                 </div>
               </div>
             </div>
@@ -166,13 +172,13 @@
       </div>
 
       <div class="wizard-category">
-        <div class="container">
+        <div class="container" translate-namespace="routerLocation">
           <h2>
             <span class="fa-stack">
               <i class="fa fa-circle fa-stack-2x"></i>
               <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
             </span>
-            {{ 'routerLocation' | translate }}
+            <span translate>.headline</span>
           </h2>
           <div class="row">
 
@@ -190,50 +196,62 @@
                   <p>
                     <button type="button" class="btn btn-primary" data-ng-click="getLocation()" data-ng-disabled="state.map.searchingGeolocation">
                       <i class="fa fa-fw fa-dot-circle-o"></i>
-                      {{ 'getLocation' | translate }}
+                      <span translate>.getLocation</span>
                     </button>
                   </p>
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="routerGeolocation" class="col-md-6 control-label">Geolocation</label>
+                <label for="routerGeolocation" class="col-md-6 control-label" translate>
+                  .geolocation.label
+                </label>
                 <div class="col-md-6">
                   <div class="row">
                     <div class="col-md-6">
-                      <input type="number" class="form-control" id="routerLat" placeholder="Latitude" data-ng-model="wizard.location.lat">
+                      <input type="number" class="form-control" id="routerLat"
+                        placeholder="{{'routerLocation.geolocation.latitude' | translate}}"
+                        data-ng-model="wizard.location.lat">
                     </div>
                     <div class="col-md-6">
-                      <input type="number" class="form-control" id="routerLon" placeholder="Longitude" data-ng-model="wizard.location.lng">
+                      <input type="number" class="form-control" id="routerLon"
+                        placeholder="{{'routerLocation.geolocation.longitude' | translate}}"
+                        data-ng-model="wizard.location.lng">
                     </div>
                   </div>
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="street" class="col-md-6 control-label">
-                    {{ 'street' | translate }}
+                <label for="street" class="col-md-6 control-label" translate>
+                  .street.label
                 </label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="street" data-ng-model="wizard.location.street">
+                  <input type="text" class="form-control" id="street"
+                    placeholder="{{'routerLocation.street.placeholder' | translate}}"
+                    data-ng-model="wizard.location.street">
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="postalCode" class="col-md-6 control-label">
-                    {{ 'postalCode' | translate }}
+                <label for="postalCode" class="col-md-6 control-label" translate>
+                  .postalCode.label
                 </label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="postalCode" data-ng-model="wizard.location.postalCode">
+                  <input type="text" class="form-control" id="postalCode"
+                    placeholder="{{'routerLocation.postalCode.placeholder' | translate}}"
+                    data-ng-model="wizard.location.postalCode">
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="city" class="col-md-6 control-label">
-                    {{ 'city' | translate }}
+                <label for="city" class="col-md-6 control-label" translate>
+                    .city.label
                 </label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="city" data-ng-model="wizard.location.city">
+                  <input type="text" class="form-control" id="city"
+                    placeholder="{{'routerLocation.city.placeholder' | translate}}"
+                    data-ng-model="wizard.location.city">
                 </div>
               </div>
 
@@ -246,21 +264,21 @@
 
       <!-- internet sharing -->
       <div class="wizard-category">
-        <div class="container">
+        <div class="container" translate-namespace="internetSharing">
           <h2>
             <span class="fa-stack">
               <i class="fa fa-circle fa-stack-2x"></i>
               <i class="fa fa-share-alt fa-stack-1x fa-inverse"></i>
             </span>
-            {{'internetSharing' | translate }}
+            <span translate>.headline</span>
           </h2>
 
           <div class="row">
             <div class="col-md-5">
 
               <div class="form-group">
-                <label for="internetShare" class="col-md-6 control-label">
-                  {{'shareInternet' | translate }}
+                <label for="internetShare" class="col-md-6 control-label" translate>
+                  .shareInternet.label
                 </label>
                 <div class="col-md-6">
                   <div class="checkbox">
@@ -279,16 +297,20 @@
 
                 <!-- transfer rate -->
                 <div class="form-group">
-                  <label for="internetDown" class="col-md-6 control-label">
-                    {{'transferSpeed' | translate }}
+                  <label for="internetDown" class="col-md-6 control-label" translate>
+                    .transferSpeed.label
                   </label>
                   <div class="col-md-6">
                     <div class="row">
                       <div class="col-md-6">
-                        <input type="number" class="form-control" id="internetDown" placeholder="Down" data-ng-model="wizard.internet.limitDown">
+                        <input type="number" class="form-control" id="internetDown"
+                          placeholder="{{'internetSharing.transferSpeed.down' | translate }}"
+                          data-ng-model="wizard.internet.limitDown">
                       </div>
                       <div class="col-md-6">
-                        <input type="number" class="form-control" id="internetUp" placeholder="Up" data-ng-model="wizard.internet.limitUp">
+                        <input type="number" class="form-control" id="internetUp"
+                          placeholder="{{'internetSharing.transferSpeed.up' | translate}}"
+                          data-ng-model="wizard.internet.limitUp"<>
                       </div>
                     </div>
                   </div>
@@ -306,15 +328,15 @@
               <div class="col-md-5">
 
                 <div class="form-group">
-                  <label for="vpn03" class="col-md-6 control-label">
-                    Anti-Störerhaftung via VPN03
+                  <label for="vpn03" class="col-md-6 control-label" translate>
+                    .antistoererhaftung.label
                   </label>
                   <div class="col-md-6">
                     <div class="checkbox">
                       <label>
                         <input type="checkbox" id="vpn03" data-ng-model="wizard.internet.vpn03.enabled">
                         <a href="http://wiki.freifunk.net/vpn03">VPN03</a>
-                        {{ 'operatedBy' | translate }}
+                        <span translate>.antistoererhaftung.operatedBy</span>
                         <a href="http://foerderverein.freie-netzwerke.de/">
                           Förderverein Freie Netzwerke</a>.
                       </label>
@@ -325,11 +347,11 @@
               </div>
               <div class="col-md-offset-1 col-md-5">
 
-                <div data-collapse="!wizard.internet.vpn03.enabled">
+                <div data-collapse="!wizard.internet.vpn03.enabled" translate-namespace=".generateCertificate">
 
                   <div class="form-group">
-                    <label for="vpn03generate" class="col-md-6 control-label">
-                      {{'generateCertificate' | translate }}
+                    <label for="vpn03generate" class="col-md-6 control-label" translate>
+                      .label
                     </label>
                     <div class="col-md-6">
                       <div class="checkbox">
@@ -342,19 +364,24 @@
 
                   <div data-collapse="state.internet.vpn03.generate">
                     <div class="form-group">
-                      <label for="vpn03Cert" class="col-md-6 control-label">VPN certificate</label>
+                      <label for="vpn03Cert" class="col-md-6 control-label" translate>
+                        .certificate.label</label>
                       <div class="col-md-6">
                         <span class="btn btn-primary btn-file">
-                          Browse <input type="file" data-ng-model="wizard.internet.vpn03.cert">
+                          <span translate>.browse</span>
+                          <input type="file" data-ng-model="wizard.internet.vpn03.cert">
                         </span>
                       </div>
                     </div>
 
                     <div class="form-group">
-                      <label for="vpn03Key" class="col-md-6 control-label">VPN key</label>
+                      <label for="vpn03Key" class="col-md-6 control-label" translate>
+                        .key.label
+                      </label>
                       <div class="col-md-6">
                         <span class="btn btn-primary btn-file">
-                          Browse <input type="file" data-ng-model="wizard.internet.vpn03.key">
+                          <span translate>.browse</span>
+                          <input type="file" data-ng-model="wizard.internet.vpn03.key">
                         </span>
                       </div>
                     </div>
@@ -374,21 +401,21 @@
 
       <!-- ip addresses -->
       <div class="wizard-category">
-        <div class="container">
+        <div class="container" translate-namespace="ip">
           <h2>
             <span class="fa-stack">
               <i class="fa fa-circle fa-stack-2x"></i>
               <i class="fa fa-cogs fa-stack-1x fa-inverse"></i>
             </span>
-            {{ 'ip' | translate }}
+            <span translate>.headline</span>
           </h2>
 
           <div class="row">
 
             <div class="col-md-5">
               <div class="form-group">
-                <label for="ipRegister" class="col-md-6 control-label">
-                  {{ 'registerIP' | translate }}
+                <label for="ipRegister" class="col-md-6 control-label" translate>
+                  .register.label
                 </label>
                 <div class="col-md-6">
                   <div class="checkbox">
@@ -406,16 +433,23 @@
 
               <div class="col-md-5">
                 <div class="form-group">
-                  <label for="ipv6Prefix" class="col-md-6 control-label">IPv6 prefix</label>
+                  <label for="ipv6Prefix" class="col-md-6 control-label" translate>
+                    .ipv6.label
+                  </label>
                   <div class="col-md-6">
-                    <input type="text" class="form-control" id="ipv6Prefix" data-ng-model="wizard.ip.v6Prefix">
+                    <input type="text" class="form-control" id="ipv6Prefix"
+                      placeholder="{{'ip.ipv6.placeholder' | translate}}"
+                      data-ng-model="wizard.ip.v6Prefix">
                   </div>
                 </div>
               </div>
 
               <div class="col-md-offset-1 col-md-5">
                 <div data-ng-repeat="(name, device) in state.wifi.devices" class="form-group">
-                  <label for="ipv4Wifi_{{$index}}" class="col-md-6 control-label">Wifi ({{name}}) Mesh-IPv4</label>
+                  <label for="ipv4Wifi_{{$index}}" class="col-md-6 control-label"
+                    translate translate-values="{name: name}">
+                      .meship.label
+                    </label>
                   <div class="col-md-6">
                     <input type="text" class="form-control" id="ipv4Wifi_{{$index}}" data-ng-model="wizard.ip.v4[name]">
                   </div>
@@ -430,8 +464,8 @@
 
             <div class="col-md-5">
               <div class="form-group">
-                <label for="ipMeshLan" class="col-md-6 control-label">
-                  {{ 'meshViaLAN' | translate }} 
+                <label for="ipMeshLan" class="col-md-6 control-label" translate>
+                  .meshViaLAN.label
                 </label>
                 <div class="col-md-6">
                   <div class="checkbox">
@@ -447,9 +481,13 @@
               <div data-collapse="state.ip.register || !wizard.ip.meshLan">
                 <!-- TODO: checkbox "Mesh on LAN" -->
                 <div class="form-group">
-                  <label for="ipv4Lan" class="col-md-6 control-label">LAN Mesh-IPv4</label>
+                  <label for="ipv4Lan" class="col-md-6 control-label" translate>
+                    .meshViaLAN.lanip.label
+                  </label>
                   <div class="col-md-6">
-                    <input type="text" class="form-control" id="ipv4Lan" data-ng-model="wizard.ip.v4.lan">
+                    <input type="text" class="form-control" id="ipv4Lan"
+                      placeholder="{{'ip.meshViaLAN.lanip.placeholder' | translate}}"
+                      data-ng-model="wizard.ip.v4.lan">
                   </div>
                 </div>
               </div>
@@ -460,8 +498,8 @@
           <div class="row">
             <div class="col-md-5">
               <div class="form-group">
-                <label for="ipDistribute" class="col-md-6 control-label">
-                  {{ 'ipDistribute' | translate }}
+                <label for="ipDistribute" class="col-md-6 control-label" translate>
+                  .distribute.label
                 </label>
                 <div class="col-md-6">
                   <div class="checkbox">
@@ -479,16 +517,22 @@
 
                 <div data-collapse="state.ip.register">
                   <div class="form-group">
-                    <label for="ipv4ClientSubnet" class="col-md-6 control-label">Client IPv4 subnet</label>
+                    <label for="ipv4ClientSubnet" class="col-md-6 control-label" translate>
+                      .distribute.subnet.label
+                    </label>
                     <div class="col-md-6">
-                      <input type="text" class="form-control" id="ipv4ClientSubnet" placeholder="" data-ng-model="wizard.ip.v4ClientSubnet">
+                      <input type="text" class="form-control" id="ipv4ClientSubnet"
+                        placeholder="{{'ip.distribute.subnet.placeholder' | translate}}"
+                        data-ng-model="wizard.ip.v4ClientSubnet">
                     </div>
                   </div>
                 </div>
 
                 <div data-collapse="!state.ip.register">
                   <div class="form-group">
-                    <label for="ipv4ClientCount" class="col-md-6 control-label">Expected number of concurrent clients</label>
+                    <label for="ipv4ClientCount" class="col-md-6 control-label" translate>
+                      .distribute.expectedClients.label
+                    </label>
                     <div class="col-md-6">
                       <select
                         data-ng-model="state.ip.v4ClientSubnetSize"
@@ -511,20 +555,20 @@
 
       <!-- advanced wifi -->
       <div class="wizard-category">
-        <div class="container">
+        <div class="container" translate-namespace="advancedWifi">
           <h2>
             <span class="fa-stack">
               <i class="fa fa-circle fa-stack-2x"></i>
               <i class="fa fa-rocket fa-stack-1x fa-inverse"></i>
             </span>
-            {{ 'advancedWifi' | translate }}
+            <span translate>.headline</span>
           </h2>
 
           <div class="wizard-margin-bottom">
             <div class="checkbox">
               <label>
                 <input type="checkbox" id="wifiAdvanced" data-ng-model="state.wifi.advanced">
-                {{ 'showAdvanced' | translate }}
+                <span translate>.show</span>
               </label>
             </div>
           </div>
@@ -535,11 +579,11 @@
               <div class="panel-heading clearfix">
                 <div class="btn-group pull-right">
                   <button type="button" class="btn btn-primary btn-xs" data-ng-click="applyDefaults(device, config)">
-                    Reset to defaults
+                    <span translate>.reset</span>
                   </button>
                 </div>
-                <h3 class="panel-title">
-                  Wifi device {{name}}
+                <h3 class="panel-title" translate translate-values="{name: name}">
+                  .device
                   <span data-ng-if="config.capabilities['2.4GHz']" class="label label-success">2.4GHz</span>
                   <span data-ng-if="config.capabilities['5GHz']" class="label label-success">5GHz</span>
                 </h3>
@@ -551,27 +595,33 @@
                   <div class="col-md-6">
 
                     <!-- wifi mode -->
-                    <div class="form-group">
-                      <label for="wifi{{$index}}Mode" class="col-md-4 control-label">Mode</label>
-                      <div class="col-md-6">
+                    <div class="form-group" translate-namespace=".mode">
+                      <label for="wifi{{$index}}Mode" class="col-md-4 control-label" translate>
+                        .label
+                      </label>
+                      <div class="col-md-6" translate-namespace=".option">
                         <div class="radio">
                           <label>
-                            <input type="radio" name="wifi{{$index}}Mode" value="mesh" data-ng-model="config.mode"> mesh (802.11s)
+                            <input type="radio" name="wifi{{$index}}Mode" value="mesh" data-ng-model="config.mode">
+                            <span translate>.mesh.label</span>
                           </label>
                         </div>
                         <div class="radio">
                           <label>
-                            <input type="radio" name="wifi{{$index}}Mode" value="adhoc" data-ng-model="config.mode"> adhoc
+                            <input type="radio" name="wifi{{$index}}Mode" value="adhoc" data-ng-model="config.mode">
+                            <span translate>.adhoc.label</span>
                           </label>
                         </div>
                         <div class="radio">
                           <label>
-                            <input type="radio" name="wifi{{$index}}Mode" value="sta" data-ng-model="config.mode"> client (STA)
+                            <input type="radio" name="wifi{{$index}}Mode" value="sta" data-ng-model="config.mode">
+                            <span translate>.sta.label</span>
                           </label>
                         </div>
                         <div class="radio">
                           <label>
-                            <input type="radio" name="wifi{{$index}}Mode" value="ap" data-ng-model="config.mode"> master (AP)
+                            <input type="radio" name="wifi{{$index}}Mode" value="ap" data-ng-model="config.mode">
+                            <span translate>.ap.label</span>
                           </label>
                         </div>
                       </div>
@@ -580,7 +630,9 @@
 
                     <!-- wifi channel -->
                     <div class="form-group">
-                      <label for="wifi{{$index}}Channel" class="col-md-4 control-label">Channel</label>
+                      <label for="wifi{{$index}}Channel" class="col-md-4 control-label" translate>
+                        .channel.label
+                      </label>
                       <div class="col-md-6">
                         <input type="number" class="form-control" id="wifi{{$index}}Channel" data-ng-model="config.channel">
                       </div>
@@ -592,25 +644,35 @@
 
                     <!-- wifi name -->
                     <div class="form-group">
-                      <label for="wifi{{$index}}Ssid" class="col-md-4 control-label">Name (SSID)</label>
+                      <label for="wifi{{$index}}Ssid" class="col-md-4 control-label" translate>
+                        .ssid.label
+                      </label>
                       <div class="col-md-6">
-                        <input type="text" class="form-control" id="wifi{{$index}}Ssid" data-ng-model="config.ssid">
+                        <input type="text" class="form-control" id="wifi{{$index}}Ssid"
+                          placeholder="{{'advancedWifi.ssid.placeholder' | translate}}"
+                          data-ng-model="config.ssid">
                       </div>
                     </div>
                     <!-- / wifi name -->
 
                     <!-- wifi meshId -->
                     <div class="form-group" ng-if="config.mode==='mesh'">
-                      <label for="wifi{{$index}}MeshId" class="col-md-4 control-label">Mesh ID</label>
+                      <label for="wifi{{$index}}MeshId" class="col-md-4 control-label" translate>
+                        .meshid.label
+                      </label>
                       <div class="col-md-6">
-                        <input type="text" class="form-control" id="wifi{{$index}}MeshId" data-ng-model="config.meshId">
+                        <input type="text" class="form-control" id="wifi{{$index}}MeshId"
+                          placeholder="{{'advancedWifi.meshid.placeholder' | translate}}"
+                          data-ng-model="config.meshId">
                       </div>
                     </div>
                     <!-- / wifi meshId -->
 
                     <!-- wifi bssid -->
                     <div class="form-group" ng-if="config.mode==='adhoc'">
-                      <label for="wifi{{$index}}Bssid" class="col-md-4 control-label">BSSID</label>
+                      <label for="wifi{{$index}}Bssid" class="col-md-4 control-label" translate>
+                        .bssid.label
+                      </label>
                       <div class="col-md-6">
                         <input type="text" class="form-control" id="wifi{{$index}}Bssid" data-ng-model="config.bssid">
                       </div>
@@ -619,7 +681,9 @@
 
                     <!-- wifi batman vlan -->
                     <div class="form-group">
-                      <label for="wifi{{$index}}BatVlan" class="col-md-4 control-label">BATMAN-adv VLAN ID</label>
+                      <label for="wifi{{$index}}BatVlan" class="col-md-4 control-label" translate>
+                        .batvlan.label
+                      </label>
                       <div class="col-md-6">
                         <input type="number" class="form-control" id="wifi{{$index}}BatVlan" data-ng-model="config.batVlan">
                       </div>
@@ -631,22 +695,22 @@
 
                 <hr>
 
-                <div class="form-group has-feedback">
-                  <label class="col-md-2 control-label">Pick from wifi scan</label>
+                <div class="form-group has-feedback" translate-namespace=".pick">
+                  <label class="col-md-2 control-label" translate>.label</label>
                   <div class="col-md-9">
                     <div ng-if="device.scan.length">
                       <p class="form-inline clearfix">
-                        Filter SSID by
+                        <span translate>.filter.label</span>
                         <input type="text" class="form-control" data-ng-model="device.scanFilter">
-                        <button type="button" class="btn btn-primary pull-right">Rescan</button>
+                        <button type="button" class="btn btn-primary pull-right"><span translate>.rescan</span></button>
                       </p>
                       <table ng-show="filteredScan.length" class="table table-striped table-hover">
-                        <thead>
-                          <th>Mode</th>
-                          <th>Channel</th>
-                          <th>Name (SSID)</th>
-                          <th>BSSID/Mesh ID</th>
-                          <th>Signal</th>
+                        <thead translate-namespace=".column">
+                          <th translate>.mode</th>
+                          <th translate>.channel</th>
+                          <th translate>.ssid</th>
+                          <th translate>.bssidormeshid</th>
+                          <th transalte>.signal</th>
                         </thead>
                         <tbody>
                           <tr ng-repeat="scan in filteredScan = (device.scan | filter:{ssid: device.scanFilter} | orderBy:'-signal')" ng-click="applyScan(device, config, scan)" class="wizard-link">
@@ -659,13 +723,16 @@
                         </tbody>
                       </table>
                       <p ng-if="!filteredScan.length">
-                        No scan results match the filter
-                        <em>{{device.scanFilter}}</em>!
+                        <span translate translate-values="{filter: device.scanFilter}">
+                          .filter.noresult
+                        </span>
                       </p>
                     </div>
                     <p ng-if="!device.scan.length" class="form-control-static">
-                      No scan results!
-                      <button type="button" class="btn btn-primary pull-right">Rescan</button>
+                      <span translate>.noresult</span>
+                      <button type="button" class="btn btn-primary pull-right">
+                        <span translate>.rescan</span>
+                      </button>
                     </p>
                   </div>
                 </div>
