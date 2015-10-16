@@ -1,0 +1,31 @@
+<div class="modal-header">
+  <h3 class="modal-title">Proessing Data</h3>
+</div>
+<div class="modal-body">
+  <div class="container-fluid">
+    <div class="row" data-ng-show="state.ip.register">
+      <div class="col-md-12">
+        <h4>Register IPs</h4>
+        <uib-progressbar max="state.registerips.max" value="state.registerips.progress">
+          <span style="color:white; white-space:nowrap;">
+            {{state.registerips.progress}} / {{state.registerips.max}}
+          </span>
+        </uib-progressbar>
+      </div>
+    </div>
+    <div class="row" data-ng-show="{{wizard.internet.share && state.internet.vpn03.generate}}">
+      <div class="col-md-12">
+        <h4>Generate VPN Certificate and Key </h4>
+        <uib-progressbar max="state.generatevpn.max" value="state.generatevpn.progress">
+          <span style="color:white; white-space:nowrap;">
+            {{state.generatevpn.progress}} / {{state.generatevpn.max}}
+          </span>
+        </uib-progressbar>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+  <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

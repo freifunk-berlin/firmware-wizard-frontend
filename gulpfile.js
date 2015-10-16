@@ -3,7 +3,9 @@ var gulp = require('gulp');
 var buildDir = './gh-pages/';
 
 gulp.task('build', function() {
-  gulp.src('src/index.*').pipe(gulp.dest(buildDir));
+  gulp.src([
+    'src/**',
+  ]).pipe(gulp.dest(buildDir));
 });
 
 gulp.task('build:vendor', function() {

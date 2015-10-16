@@ -6,9 +6,9 @@ var wizard = angular.module('WizardApp', [
 
 wizard.controller('WizardCtrl', [
   '$scope', 'leafletData', '$http', '$filter', 'downloadFile', '$translate',
-  'jsonrpc',
+  'jsonrpc', '$uibModal',
   function($scope, leafletData, $http, $filter, downloadFile, $translate,
-           jsonrpc) {
+           jsonrpc, $uibModal) {
 
     $scope.changeLang = function() {
       $translate.use($scope.selectedLanguage);
@@ -281,6 +281,22 @@ wizard.controller('WizardCtrl', [
         true
       );
     };
+
+    //TODO open dialog on submit if there are no errors
+    $scope.open = function() {
+      var modalInstance = $uibModal.open({
+        templateUrl: 'partials/dialog/dialog.html',
+        controller: 'DialogController',
+        resolve: {
+          state: function () {
+            return $scope.state;
+          },
+          wizard: function() {
+            return $scope.wizard;
+          }
+        }
+      });
+    }
 
     $scope.pow = Math.pow;
 

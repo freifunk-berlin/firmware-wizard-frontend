@@ -23,6 +23,8 @@
     <!-- wizard assets -->
     <link rel="stylesheet" href="index.css">
     <script src="index.js"></script>
+    <script src="partials/dialog/dialog.js"></script>
+
   </head>
   <body data-ng-controller="WizardCtrl">
 
@@ -694,6 +696,8 @@
             <i class="fa fa-check"></i>
               {{ 'save' | translate }}
           </button>
+          <!-- TODO intercept submit and open dialog if there are no errors in form -->
+          <button type="button" class="btn" ng-click="open()">open</button>
         </div>
       </div>
     </form>
