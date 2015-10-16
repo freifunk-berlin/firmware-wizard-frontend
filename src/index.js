@@ -338,16 +338,16 @@ wizard.config(['$compileProvider', function($compileProvider) {
 
 wizard.config(function($translateProvider) {
   $translateProvider.useStaticFilesLoader({
-        prefix: 'nls/locale-',
-        suffix: '.json'
+    prefix: 'nls/locale-',
+    suffix: '.json'
   });
   $translateProvider.determinePreferredLanguage();
-	$translateProvider.registerAvailableLanguageKeys(['en', 'de'],
-      {
-        'de_*': 'de',
-        'en_*': 'en',
-        '*': 'en'
-      }
+  $translateProvider.registerAvailableLanguageKeys(['en', 'de'],
+    {
+      'de_*': 'de',
+      'en_*': 'en',
+      '*': 'en'
+    }
   );
 });
 
