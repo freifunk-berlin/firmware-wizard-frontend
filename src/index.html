@@ -50,6 +50,7 @@
           <i class="fa fa-star fa-stack-1x fa-inverse"></i>
         </span>
         {{'heading' | translate }}</h1>
+        <p>{{'intro' | translate}}</p>
       </div>
     </div>
 
@@ -180,6 +181,11 @@
             </span>
             <span translate>.headline</span>
           </h2>
+          <div class="alert alert-info" role="alert">
+            <span class="fa fa-circle fa-info" aria-hidden="true"></span>
+            <span class="sr-only">Help:</span>
+            <span translate>.help</span>
+          </div>
           <div class="row">
 
             <!-- map -->
@@ -322,7 +328,15 @@
           </div>
 
           <div data-collapse="!wizard.internet.share">
-
+            <div class="row">
+              <div class="col-md-12">
+                <div class="alert alert-info" role="alert">
+                  <span class="fa fa-circle fa-info" aria-hidden="true"></span>
+                  <span class="sr-only">Help:</span>
+                  <span translate>.help</span>
+                </div>
+              </div>
+            </div>
             <!-- anti-störerhaftungs-VPN -->
             <div class="row">
               <div class="col-md-5">
@@ -430,6 +444,15 @@
 
           <div data-collapse="state.ip.register">
             <div class="row">
+              <div class="col-md-12">
+                <div class="alert alert-info" role="alert">
+                  <span class="fa fa-circle fa-info" aria-hidden="true"></span>
+                  <span class="sr-only">Help:</span>
+                  <span translate>.help</span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
 
               <div class="col-md-5">
                 <div class="form-group">
@@ -477,12 +500,12 @@
           </div>
 
 
-          <div class="row">
+          <div class="row" translate-namespace=".meshViaLAN">
 
             <div class="col-md-5">
               <div class="form-group">
                 <label for="ipMeshLan" class="col-md-6 control-label" translate>
-                  .meshViaLAN.label
+                  .label
                 </label>
                 <div class="col-md-6">
                   <div class="checkbox">
@@ -495,11 +518,21 @@
             </div>
 
             <div class="col-md-offset-1 col-md-5">
+              <div class="alert alert-info" role="alert" data-ng-hide="!wizard.ip.meshLan || !state.ip.register">
+                  <span class="fa fa-circle fa-info" aria-hidden="true"></span>
+                  <span class="sr-only">Help:</span>
+                  <span translate>.help</span>
+                </div>
               <div data-collapse="state.ip.register || !wizard.ip.meshLan">
                 <!-- TODO: checkbox "Mesh on LAN" -->
+                <div class="alert alert-info" role="alert">
+                  <span class="fa fa-circle fa-info" aria-hidden="true"></span>
+                  <span class="sr-only">Help:</span>
+                  <span translate>.lanip.help</span>
+                </div>
                 <div class="form-group">
                   <label for="ipv4Lan" class="col-md-6 control-label" translate>
-                    .meshViaLAN.lanip.label
+                    .lanip.label
                   </label>
                   <div class="col-md-6">
                     <input type="text" class="form-control" id="ipv4Lan"
@@ -532,6 +565,11 @@
 
               <div data-collapse="!wizard.ip.distribute">
 
+                <div class="alert alert-info" role="alert">
+                  <span class="fa fa-circle fa-info" aria-hidden="true"></span>
+                  <span class="sr-only">Help:</span>
+                  <span translate>.distribute.help</span>
+                </div>
                 <div data-collapse="state.ip.register">
                   <div class="form-group">
                     <label for="ipv4ClientSubnet" class="col-md-6 control-label" translate>
@@ -592,6 +630,11 @@
 
           <!-- collapsable wifi advanced -->
           <div data-collapse="!state.wifi.advanced">
+            <div class="alert alert-info" role="alert">
+              <span class="fa fa-circle fa-info" aria-hidden="true"></span>
+              <span class="sr-only">Help:</span>
+              <span translate>.help</span>
+            </div>
             <div data-ng-repeat="(name, device) in state.wifi.devices" class="panel panel-default" ng-init="config = wizard.wifi[name]">
               <div class="panel-heading clearfix">
                 <div class="btn-group pull-right">

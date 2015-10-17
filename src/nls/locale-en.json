@@ -1,5 +1,6 @@
 {
 	"heading": "Router configuration wizard",
+  "intro": "This wizard helps to configure your Freifunk router.",
   "basicRouterSetup": {
     "headline":"Basic router setup",
     "routerName": {
@@ -31,6 +32,7 @@
   },
   "routerLocation": {
     "headline":"Router location",
+    "help": "If your provide the location data for your router it will be visible in our <a href='map.berlin.freifunk.net' target='blank'>Freifunk map</a>. You can either enter your address or drag the map pointer to the correct location.",
     "getLocation": "Get my location",
     "geolocation": {
       "label": "Geolocation",
@@ -53,6 +55,7 @@
   "internetSharing": {
     "headline": "Internet sharing",
     "shareInternet.label": "Share internet",
+    "help": "THANK YOU! You decided to share your internet connection. To protect yourself from Störerhaftung you should use VPN.",
     "transferSpeed": {
       "label": "Transfer speed limit in Mbps",
       "up": "Up",
@@ -71,6 +74,7 @@
   },
   "ip": {
     "headline":"IP addresses",
+    "help": "Enter the IPs you <a href='http://config.berlin.freifunk.net' target='blank'>registered before</a>. If you want the IPs registered automatically select the checkox above.",
     "register.label":"Register new IP addresses",
     "ipv6": {
       "label": "IPv6 prefix",
@@ -81,26 +85,30 @@
       "placeholder": ""
     },
     "meshViaLAN": {
+      "help": "Your selected Mesh via LAN. This means you can connect your router to other devices that are able to mesh. For more information on meshing <a href='http://wiki.freifunk.net/Meshing' target='blank'>see here</a>.",
       "label": "Mesh via LAN",
       "lanip": {
+        "help": "Enter the IP you want to use for Mesh on LAN. If you deselect the checkox the lan ports are handled as normal router clients",
         "label": "LAN Mesh-IPv4",
         "placeholder":""
       }
     },
     "distribute": {
       "label": "Distribute client IP addresses",
+      "help": "By default the router connects to other routers that provide IP addresses. So if you see no other router or want to distribute IPs keep in mind how many clients you expect.",
       "subnet": {
         "label": "Client IPv4 subnet",
         "placeholder" :""
       },
       "expectedClients": {
-        "label":"Expected number of concurrent clients"
+        "label": "Expected number of concurrent clients"
       }
     }
   },
   "advancedWifi": {
     "headline":"Advanced wifi options",
     "show": "Show advanced wifi options",
+    "help": "By default your router is configured to mesh automatically. But here you can configure to connect to an access point or be an access point yourself. You can scan for other wifi nodes and select them for connections.",
     "reset": "Reset to defaults",
     "device": "Wifi device {{name}}",
     "mode": {
