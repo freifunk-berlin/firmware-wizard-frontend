@@ -281,13 +281,13 @@ module.exports = function(app) {
 
       $scope.pow = Math.pow;
 
-			//TODO open dialog on submit if there are no errors
+      //TODO open dialog on submit if there are no errors
       $scope.open = function() {
         var modalInstance = $uibModal.open({
           templateUrl: '/view/partials/dialog/dialog.html',
           controller: 'DialogController',
           resolve: {
-            state: function () {
+            state: function() {
               return $scope.state;
             },
             wizard: function() {
@@ -295,7 +295,7 @@ module.exports = function(app) {
             }
           }
         });
-      }
+      };
     }
   ]);
 };
