@@ -523,7 +523,7 @@
                       placeholder="{{'ip.meshViaLAN.lanip.placeholder' | translate}}"
                       data-ng-model="wizard.ip.v4.lan"
                       data-ng-required="wizard.ip.meshLan && !state.ip.generate"
-                      data-ng-pattern="{{ipPattern}}">
+                      data-ipv4-address>
                       <!-- TODO use ip npm package for validation -->
                     <span class="fa form-control-feedback" data-ng-class="{
                         'fa-times': hasError('ipv4Lan'),
@@ -533,7 +533,7 @@
                       <div data-ng-show="wizardForm.ipv4Lan.$error.required" translate>
                         .error.required
                       </div>
-                      <div data-ng-show="wizardForm.ipv4Lan.$error.pattern" translate>
+                      <div data-ng-show="wizardForm.ipv4Lan.$error.ipv4Address" translate>
                         .error.ipPattern
                       </div>
                     </div>
