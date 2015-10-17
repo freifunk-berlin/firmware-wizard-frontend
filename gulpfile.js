@@ -1,11 +1,11 @@
 var gulp = require('gulp');
 
-var buildDir = './gh-pages/';
+var buildDir = './dist/';
 
-gulp.task('build', function() {
-  gulp.src([
-    'src/**',
-  ]).pipe(gulp.dest(buildDir));
+gulp.task('build:copy', function() {
+  gulp.src('src/index.*').pipe(gulp.dest(buildDir));
+  gulp.src('src/nls/locale-*.json').pipe(gulp.dest(buildDir + '/nls/'));
+  gulp.src('src/view/**').pipe(gulp.dest(buildDir + '/view/'));
 });
 
 gulp.task('build:vendor', function() {

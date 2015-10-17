@@ -25,7 +25,6 @@
     <!-- wizard assets -->
     <link rel="stylesheet" href="index.css">
     <script src="index.js"></script>
-    <script src="partials/dialog/dialog.js"></script>
 
   </head>
   <body data-ng-controller="WizardCtrl">
@@ -447,13 +446,30 @@
               </div>
 
               <div class="col-md-offset-1 col-md-5">
-                <div data-ng-repeat="(name, device) in state.wifi.devices" class="form-group">
+                <div data-ng-repeat="(name, device) in state.wifi.devices"
+                    class="form-group has-feedback"
+                    ng-class="{
+                      'has-error': hasError('ipv4Wifi_' + $index),
+                      'has-success': wizardForm['ipv4Wifi_' + $index].$valid
+                    }">
                   <label for="ipv4Wifi_{{$index}}" class="col-md-6 control-label"
                     translate translate-values="{name: name}">
                       .meship.label
                     </label>
                   <div class="col-md-6">
-                    <input type="text" class="form-control" id="ipv4Wifi_{{$index}}" data-ng-model="wizard.ip.v4[name]">
+                    <input type="text" class="form-control" id="ipv4Wifi_{{$index}}" name="ipv4Wifi_{{$index}}" data-ng-model="wizard.ip.v4[name]" data-ipv4-address>
+                    <span class="fa form-control-feedback" ng-class="{
+                          'fa-times': hasError('ipv4Wifi_' + $index),
+                          'fa-check': wizardForm['ipv4Wifi_' + $index].$valid
+                        }"></span>
+                    <div class="help-block" ng-show="hasError('ipv4Wifi_' + $index)">
+                      <div ng-show="wizardForm['ipv4Wifi_' + $index].$error.required" translate>
+                        Required!
+                      </div >
+                      <div ng-show="wizardForm['ipv4Wifi_' + $index].$error.ipv4Address" translate>
+                        Not an ipv4 address.
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

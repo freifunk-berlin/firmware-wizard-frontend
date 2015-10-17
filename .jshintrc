@@ -3,5 +3,6 @@
     "angular": false,
     "console": false
   },
-  "globalstrict": true
+  "globalstrict": true,
+  "node": true
 }
