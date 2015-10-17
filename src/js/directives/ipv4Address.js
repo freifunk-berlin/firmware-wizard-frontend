@@ -9,6 +9,12 @@ module.exports = function(app) {
       require: 'ngModel',
       link: function(scope, element, attributes, ngModel) {
         ngModel.$validators.ipv4Address = function(modelValue) {
+          //validation for required should be done via ng-required directive
+          //or the validation even fails if the field is not required
+          if (typeof modelValue == 'undefined' || modelValue === '') {
+            return true;
+          }
+
           // we run an additional regular expression against the model
           // because the 'ip' module does not catch all cases
           var ipRegex = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
