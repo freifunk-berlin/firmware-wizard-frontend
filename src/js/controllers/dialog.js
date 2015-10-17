@@ -2,7 +2,7 @@
 
 module.exports = function(app) {
   app.controller('DialogController',
-    function($scope, $modalInstance, state, wizard, $interval) {
+    function($scope, $modalInstance, state, wizard, $interval, $http) {
 
       console.log(state);
 
@@ -17,20 +17,62 @@ module.exports = function(app) {
         progress: 0
       };
 
-      $scope.registerIPs = function() {
+      $scope.reserveIPs = function() {
         //call register ips
-        //render confirmation code field
-        //check confirmation code
-        //write ips to wizard config
+        $http.get('/nls/locale-de.json').then(function(response) {
+          //success callback
+          //TODO handle error in response
+          //render confirmation code field
+          $scope.state.registerips.reserved = true;
+          $scope.state.registerips.message = {
+            type:'info',
+            value: 'success.reserveip'
+          }
+          $scope.state.registerips.progress++;
+        }, function(response){
+          //error callback
+          console.log(response);
+          $scope.state.registerips.message = {
+            type:'error',
+            value: 'error.reserveip'
+          }
+        });
 
         //just some testcode
-        $interval(function() {
+        /*$interval(function() {
           if ($scope.state.registerips.progress <
               $scope.state.registerips.max) {
             $scope.state.registerips.progress++;
           }
-        },1500,$scope.state.registerips.max);
+        },3500,$scope.state.registerips.max);*/
       };
+
+      //check confirmation code
+      $scope.confirmIPs = function() {
+        $scope.state.registerips.progress++;
+        $http.get('gibs/nich.html').then(
+          function(response) {
+            //succuess callback
+
+            //TODO check for error in response
+
+            $scope.state.registerips.progress++;
+
+            $scope.state.registerips.message = {
+              type:'success',
+              value: 'success.reserveip'
+            }
+            //write ips to wizard config
+          }, function(response) {
+            //error callback
+            console.log(response);
+            $scope.state.registerips.message = {
+              type:'error',
+              value: 'error.confirmip'
+            }
+          }
+        );
+      }
 
       $scope.generateVPN03CertAndKey = function() {
         /*
@@ -63,7 +105,7 @@ module.exports = function(app) {
       };
 
       if ($scope.state.ip.register) {
-        $scope.registerIPs();
+        $scope.reserveIPs();
       }
 
       if ($scope.wizard.internet.share &&

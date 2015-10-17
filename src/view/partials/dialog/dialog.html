@@ -11,6 +11,16 @@
             {{state.registerips.progress}} / {{state.registerips.max}}
           </span>
         </uib-progressbar>
+        <div class="alert"
+          data-ng-collapse="!state.registerips.message">
+          <span class="fa fa-circle fa-info" aria-hidden="true"></span>
+          <span class="sr-only">Message:</span>
+          <span translate>{{state.registerips.message.value}}</span>
+        </div>
+        <div data-ng-show="state.registerips.reserved">
+          <input type="text">
+          <button type="button" class="btn" data-ng-click="confirmIPs()">Confirm IPs</button>
+        </div>
       </div>
     </div>
     <div class="row" data-ng-show="{{wizard.internet.share && state.internet.vpn03.generate}}">
@@ -21,6 +31,13 @@
             {{state.generatevpn.progress}} / {{state.generatevpn.max}}
           </span>
         </uib-progressbar>
+        <div class="alert"
+          data-ng-collapse="!state.generatevpn.message"
+          role="alert">
+          <span class="fa fa-circle fa-info" aria-hidden="true"></span>
+          <span class="sr-only">Message:</span>
+          <span translate>{{state.generatevpn.message.value}}</span>
+        </div>
       </div>
     </div>
   </div>
