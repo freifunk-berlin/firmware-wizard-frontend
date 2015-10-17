@@ -66,7 +66,8 @@
       "label": "VPN03 Zertifikat und Schlüssel für diesen Router generieren. ",
       "certificate.label": "VPN Zertifikat",
       "key.label": "Schlüssel",
-      "browse": "Durchsuchen"
+      "browse": "Durchsuchen",
+      "error.required": "Diese Datei wird benötigt. Wenn du den Haken oben setzt, wird sie automatisch generiert"
     }
   },
   "ip": {

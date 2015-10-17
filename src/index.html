@@ -363,26 +363,39 @@
                   </div>
 
                   <div data-collapse="state.internet.vpn03.generate">
-                    <div class="form-group">
+                    <div class="form-group has-feedback" data-ng-class="{
+                        'has-error': hasError('vpn03Cert'),
+                        'has-success': wizardForm.vpn03Cert.$valid
+                      }">
                       <label for="vpn03Cert" class="col-md-6 control-label" translate>
-                        .certificate.label</label>
+                        .certificate.label</label><span></span>
                       <div class="col-md-6">
-                        <span class="btn btn-primary btn-file">
-                          <span translate>.browse</span>
-                          <input type="file" data-ng-model="wizard.internet.vpn03.cert">
-                        </span>
+                        <input type="file" name="vpn03Cert"
+                          data-ng-model="wizard.internet.vpn03.cert"
+                          data-file-valid data-ng-required="!state.internet.vpn03.generate && wizard.internet.vpn03.enabled && wizard.internet.share">
+                        <div class="help-block" ng-show="hasError('vpn03Cert')">
+                          <div ng-show="wizardForm.vpn03Cert.$error.required" translate>
+                            .error.required
+                          </div>
+                        </div>
                       </div>
                     </div>
-
-                    <div class="form-group">
+                    <div class="form-group has-feedback" data-ng-class="{
+                        'has-error': hasError('vpn03Key'),
+                        'has-success': wizardForm.vpn03Key.$valid
+                      }">
                       <label for="vpn03Key" class="col-md-6 control-label" translate>
                         .key.label
                       </label>
                       <div class="col-md-6">
-                        <span class="btn btn-primary btn-file">
-                          <span translate>.browse</span>
-                          <input type="file" data-ng-model="wizard.internet.vpn03.key">
-                        </span>
+                        <input type="file" name="vpn03Key"
+                          data-ng-model="wizard.internet.vpn03.key"
+                          data-file-valid data-ng-required="!state.internet.vpn03.generate && wizard.internet.vpn03.enabled && wizard.internet.share">
+                        <div class="help-block" ng-show="hasError('vpn03Key')">
+                          <div ng-show="wizardForm.vpn03Key.$error.required" translate>
+                            .error.required
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
