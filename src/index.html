@@ -470,7 +470,7 @@
                     name="ipv4Wifi_{{$index}}"
                     id="ipv4Wifi_{{$index}}" data-ng-model="wizard.ip.v4[name]"
                     data-ng-required="!state.ip.register"
-                    data-ng-pattern="{{ipPattern}}">
+                    data-ipv4-address>
                     <!-- TODO use ip npm package for validation -->
                   <span class="fa form-control-feedback" data-ng-class="{
                     'fa-times': hasError('ipv4Wifi_'+$index),
@@ -480,7 +480,7 @@
                     <div data-ng-show="wizardForm['ipv4Wifi_'+$index].$error.required" translate>
                       .error.required
                     </div>
-                    <div data-ng-show="wizardForm['ipv4Wifi_'+$index].$error.pattern" translate>
+                    <div data-ng-show="wizardForm['ipv4Wifi_'+$index].$error.ipv4Address" translate>
                       .error.ipPattern
                     </div>
                   </div>
