@@ -1,0 +1,151 @@
+{
+	"heading": "Router configuration wizard",
+  "basicRouterSetup": {
+    "headline":"Basic router setup",
+    "routerName": {
+      "label": "Router name",
+      "placeholder": "name of the router"
+    },
+    "password": {
+      "label": "New router password",
+      "placeholder": "password",
+      "error.required": "A password is required.",
+      "error.minLength": "A password must have at least 6 characters."
+    },
+    "passwordVerification": {
+      "label":"Router password verification",
+      "placeholder": "repeat password",
+      "error.match": "Passwords have to match."
+    }
+  },
+  "contactDetails": {
+    "headline": "Contact details",
+    "name": {
+      "label": "Your name",
+      "placeholder": "Funki Fine"
+    },
+    "email": {
+      "label":"Email",
+      "placeholder": "funki@fine.net"
+    }
+  },
+  "routerLocation": {
+    "headline":"Router location",
+    "getLocation": "Get my location",
+    "geolocation": {
+      "label": "Geolocation",
+      "latitude": "Latitude",
+      "longitude": "Longitude"
+    },
+    "street": {
+      "label":"Street and house no.",
+      "placeholder": "Panoramastraße"
+    },
+    "postalCode":{
+      "label": "Postal code",
+      "placeholder": "10178"
+    },
+    "city": {
+      "label": "City",
+      "placeholder": "Alt-Berlin"
+    }
+  },
+  "internetSharing": {
+    "headline": "Internet sharing",
+    "shareInternet.label": "Share internet",
+    "transferSpeed": {
+      "label": "Transfer speed limit in Mbps",
+      "up": "Up",
+      "down": "Down"
+    },
+    "antistoererhaftung": {
+      "label":"Anti-Störerhaftung via VPN03",
+      "operatedBy": "is operated by"
+    },
+    "generateCertificate": {
+      "label": "Generate new VPN03 certificate and key for this router",
+      "certificate.label": "VPN certificate",
+      "key.label": "VPN key",
+      "browse": "Browse"
+    }
+  },
+  "ip": {
+    "headline":"IP addresses",
+    "register.label":"Register new IP addresses",
+    "ipv6": {
+      "label": "IPv6 prefix",
+      "placeholder": ""
+    },
+    "meship": {
+      "label": "Wifi ({{name}}) Mesh-IPv4",
+      "placeholder": ""
+    },
+    "meshViaLAN": {
+      "label": "Mesh via LAN",
+      "lanip": {
+        "label": "LAN Mesh-IPv4",
+        "placeholder":""
+      }
+    },
+    "distribute": {
+      "label": "Distribute client IP addresses",
+      "subnet": {
+        "label": "Client IPv4 subnet",
+        "placeholder" :""
+      },
+      "expectedClients": {
+        "label":"Expected number of concurrent clients"
+      }
+    }
+  },
+  "advancedWifi": {
+    "headline":"Advanced wifi options",
+    "show": "Show advanced wifi options",
+    "reset": "Reset to defaults",
+    "device": "Wifi device {{name}}",
+    "mode": {
+      "label":"Mode",
+      "option": {
+        "mesh.label": "mesh (802.11s)",
+        "adhoc.label": "adhoc",
+        "sta.label": "client (STA)",
+        "ap.label": "master (AP)"
+      }
+    },
+    "channel.label":"Channel",
+    "ssid": {
+      "label": "Name (SSID)",
+      "placeholder": "intern-ch{{XX}}-bat{{X}}.freifunk.net"
+    },
+    "meshid": {
+      "label": "Mesh ID",
+      "placeholder": "freifunk"
+    },
+    "bssid": {
+      "label": "BSSID",
+      "placeholder": ""
+    },
+    "batvlan": {
+      "label": "BATMAN-adv VLAN ID"
+    },
+    "pick": {
+      "label": "Pick from wifi scan",
+      "filter": {
+        "label": "Filter SSID by",
+        "noresult": "No scan results match the filter <em>{{filter}}!</em> "
+      },
+      "rescan": "Rescan",
+      "column": {
+        "mode": "Mode",
+        "channel": "Channel",
+        "ssid": "Name (SSID)",
+        "bssidormeshid": "BSSID / Mesh ID",
+        "signal": "Signal"
+      },
+      "noresult": "No scan result!"
+    }
+  },
+  "configIncorrect": "The data you entered is invalid. Please correct them before saving.",
+  "save": "Save & Restart",
+  "download": "Download configuration"
+}
