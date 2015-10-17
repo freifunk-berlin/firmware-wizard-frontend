@@ -1,7 +1,7 @@
 'use strict';
 
-module.exports = function(module) {
-  module.factory('jsonrpc', ['$http', '$q', function($http, $q) {
+module.exports = function(app) {
+  app.factory('jsonrpc', ['$http', '$q', function($http, $q) {
     var jsonrpc = {};
     var call = function(session, object, method, args) {
       var deferred = $q.defer();
