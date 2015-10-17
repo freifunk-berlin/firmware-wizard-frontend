@@ -428,36 +428,67 @@
             </div>
           </div>
 
-          <div data-collapse="state.ip.register">
-            <div class="row">
+          <div class="row" data-collapse="state.ip.register">
 
-              <div class="col-md-5">
-                <div class="form-group">
-                  <label for="ipv6Prefix" class="col-md-6 control-label" translate>
-                    .ipv6.label
-                  </label>
-                  <div class="col-md-6">
-                    <input type="text" class="form-control" id="ipv6Prefix"
-                      placeholder="{{'ip.ipv6.placeholder' | translate}}"
-                      data-ng-model="wizard.ip.v6Prefix">
+            <div class="col-md-5">
+              <div class="form-group has-feedback" ng-class="{
+                'has-error': hasError('ipv6Prefix'),
+                'has-success': wizardForm.ipv6Prefix.$valid,
+              }">
+                <label for="ipv6Prefix" class="col-md-6 control-label" translate>
+                  .ipv6.label
+                </label>
+                <div class="col-md-6">
+                  <input type="text" class="form-control" name="ipv6Prefix" id="ipv6Prefix"
+                    placeholder="{{'ip.ipv6.placeholder' | translate}}"
+                    data-ng-model="wizard.ip.v6Prefix"
+                    data-ng-required="!state.ip.register">
+                  <span style="" class="fa form-control-feedback" ng-class="{
+                      'fa-times': hasError('ipv6Prefix'),
+                      'fa-check': wizardForm.ipv6Prefix.$valid
+                    }"></span>
+                  <div class="help-block" ng-show="hasError('ipv6Prefix')">
+                    <div ng-show="wizardForm.ipv6Prefix.$error.required" translate>
+                      .error.required
+                    </div>
                   </div>
                 </div>
               </div>
-
-              <div class="col-md-offset-1 col-md-5">
-                <div data-ng-repeat="(name, device) in state.wifi.devices" class="form-group">
-                  <label for="ipv4Wifi_{{$index}}" class="col-md-6 control-label"
-                    translate translate-values="{name: name}">
-                      .meship.label
-                    </label>
-                  <div class="col-md-6">
-                    <input type="text" class="form-control" id="ipv4Wifi_{{$index}}" data-ng-model="wizard.ip.v4[name]">
+						</div>
+            <div class="col-md-offset-1 col-md-5">
+              <div data-ng-repeat="(name, device) in state.wifi.devices"
+                class="form-group has-feedback" ng-class="{
+                  'has-error': hasError('ipv4Wifi_'+$index),
+                  'has-success': wizardForm['ipv4Wifi_'+$index].$valid
+                }">
+                <label for="ipv4Wifi_{{$index}}" class="col-md-6 control-label"
+                  translate translate-values="{name: name}">
+                    .meship.label
+                </label>
+                <div class="col-md-6">
+                  <input type="text" class="form-control"
+                    name="ipv4Wifi_{{$index}}"
+                    id="ipv4Wifi_{{$index}}" data-ng-model="wizard.ip.v4[name]"
+                    data-ng-required="!state.ip.register"
+                    data-ng-pattern="{{ipPattern}}">
+                    <!-- TODO use ip npm package for validation -->
+                  <span class="fa form-control-feedback" data-ng-class="{
+                    'fa-times': hasError('ipv4Wifi_'+$index),
+                    'fa-check': wizardForm['ipv4Wifi_'+$index].$valid
+                    }"></span>
+                  <div class="help-block" data-ng-show="hasError('ipv4Wifi_'+$index)">
+                    <div data-ng-show="wizardForm['ipv4Wifi_'+$index].$error.required" translate>
+                      .error.required
+                    </div>
+                    <div data-ng-show="wizardForm['ipv4Wifi_'+$index].$error.pattern" translate>
+                      .error.ipPattern
+                    </div>
                   </div>
                 </div>
               </div>
-
             </div>
-          </div>
+
+          </div> <!-- /row -->
 
 
           <div class="row">
@@ -480,14 +511,32 @@
             <div class="col-md-offset-1 col-md-5">
               <div data-collapse="state.ip.register || !wizard.ip.meshLan">
                 <!-- TODO: checkbox "Mesh on LAN" -->
-                <div class="form-group">
+                <div class="form-group has-feedback" data-ng-class="{
+                  'has-error': hasError('ipv4Lan'),
+                  'has-success': wizardForm.ipv4Lan.$valid
+                }">
                   <label for="ipv4Lan" class="col-md-6 control-label" translate>
                     .meshViaLAN.lanip.label
                   </label>
                   <div class="col-md-6">
-                    <input type="text" class="form-control" id="ipv4Lan"
+                    <input type="text" class="form-control" name="ipv4Lan" id="ipv4Lan"
                       placeholder="{{'ip.meshViaLAN.lanip.placeholder' | translate}}"
-                      data-ng-model="wizard.ip.v4.lan">
+                      data-ng-model="wizard.ip.v4.lan"
+                      data-ng-required="wizard.ip.meshLan && !state.ip.generate"
+                      data-ng-pattern="{{ipPattern}}">
+                      <!-- TODO use ip npm package for validation -->
+                    <span class="fa form-control-feedback" data-ng-class="{
+                        'fa-times': hasError('ipv4Lan'),
+                        'fa-check': wizardForm.ipv4Lan.$valid
+                        }"></span>
+                    <div class="help-block" data-ng-show="hasError('ipv4Lan')">
+                      <div data-ng-show="wizardForm.ipv4Lan.$error.required" translate>
+                        .error.required
+                      </div>
+                      <div data-ng-show="wizardForm.ipv4Lan.$error.pattern" translate>
+                        .error.ipPattern
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -516,14 +565,33 @@
               <div data-collapse="!wizard.ip.distribute">
 
                 <div data-collapse="state.ip.register">
-                  <div class="form-group">
+                <div class="form-group has-feedback" data-ng-class="{
+                  'has-error': hasError('ipv4ClientSubnet'),
+                  'has-success': wizardForm.ipv4ClientSubnet.$valid
+                  }">
                     <label for="ipv4ClientSubnet" class="col-md-6 control-label" translate>
                       .distribute.subnet.label
                     </label>
                     <div class="col-md-6">
-                      <input type="text" class="form-control" id="ipv4ClientSubnet"
+                      <input type="text" class="form-control" name="ipv4ClientSubnet"
+                        id="ipv4ClientSubnet"
                         placeholder="{{'ip.distribute.subnet.placeholder' | translate}}"
-                        data-ng-model="wizard.ip.v4ClientSubnet">
+                        data-ng-model="wizard.ip.v4ClientSubnet"
+                        data-ng-required="wizard.ip.distribute && !state.ip.register"
+                        data-ng-pattern="{{ipPattern + '/(25|26|27|28)'}}">
+                        <!-- TODO use ip npm package for validation -->
+                      <span class="fa form-control-feedback" data-ng-class="{
+                        'fa-times': hasError('ipv4ClientSubnet'),
+                        'fa-check': wizardForm.ipv4ClientSubnet.$valid
+                        }"></span>
+                      <div class="help-block" data-ng-show="hasError('ipv4ClientSubnet')">
+                        <div data-ng-show="wizardForm.ipv4ClientSubnet.$error.required" translate>
+                          .error.required
+                        </div>
+                        <div data-ng-show="wizardForm.ipv4ClientSubnet.$error.pattern" translate>
+                          .distribute.subnet.error.pattern
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

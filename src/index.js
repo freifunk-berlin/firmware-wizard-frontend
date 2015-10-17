@@ -268,6 +268,11 @@ wizard.controller('WizardCtrl', [
       });
     };
 
+    $scope.ipPattern = '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)' +
+      '\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)' +
+      '\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)' +
+      '\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)';
+
     $scope.hasError = function(field) {
       var form = $scope.wizardForm;
       return (form.$submitted || form[field].$dirty) && form[field].$invalid;

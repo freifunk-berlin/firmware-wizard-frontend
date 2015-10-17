@@ -91,11 +91,16 @@
       "label": "Distribute client IP addresses",
       "subnet": {
         "label": "Client IPv4 subnet",
-        "placeholder" :""
+        "placeholder" :"",
+        "error.pattern":"This is not a valid subnet."
       },
       "expectedClients": {
         "label":"Expected number of concurrent clients"
       }
+    },
+    "error": {
+      "required": "This field is required unless you register new IPs automatically.",
+      "ipPattern": "This is not a valid IP adress."
     }
   },
   "advancedWifi": {

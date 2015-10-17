@@ -91,11 +91,16 @@
       "label": "Client IP Addressen verteilen",
       "subnet": {
         "label": "Client IPv4 subnet",
-        "placeholder" :""
+        "placeholder" :"",
+        "error.pattern": "Das ist keine gültige Subnet Adresse"
       },
       "expectedClients": {
         "label":"Wieviele Benutzer erwartest du an deinem Freifunkknoten?"
       }
+    },
+    "error": {
+      "required": "Dieses Feld wird benötigt, es sei denn du registrierst die IPs autmomatisch.",
+      "ipPattern": "Das ist keine gültige IP Adresse."
     }
   },
   "advancedWifi": {
