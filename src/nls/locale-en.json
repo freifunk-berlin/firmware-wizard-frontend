@@ -2,7 +2,7 @@
 	"heading": "Router configuration wizard",
   "intro": "This wizard helps to configure your Freifunk router.",
   "basicRouterSetup": {
-    "headline":"Basic router setup",
+    "headline": "Basic router setup",
     "routerName": {
       "label": "Router name",
       "placeholder": "name of the router"
@@ -14,7 +14,7 @@
       "error.minLength": "A password must have at least 6 characters."
     },
     "passwordVerification": {
-      "label":"Router password verification",
+      "label": "Router password verification",
       "placeholder": "repeat password",
       "error.match": "Passwords have to match."
     }
@@ -31,8 +31,8 @@
     }
   },
   "routerLocation": {
-    "headline":"Router location",
-    "help": "If your provide the location data for your router it will be visible in our <a href='map.berlin.freifunk.net' target='blank'>Freifunk map</a>. You can either enter your address or drag the map pointer to the correct location.",
+    "headline": "Router location",
+    "help": "If you provide the location data for your router it will be visible in the <a href=\"http://map.berlin.freifunk.net\" target=\"_blank\">Freifunk map</a>. You can drag the map marker to the correct location or enter the location and address manually.",
     "getLocation": "Get my location",
     "geolocation": {
       "label": "Geolocation",
@@ -40,7 +40,7 @@
       "longitude": "Longitude"
     },
     "street": {
-      "label":"Street and house no.",
+      "label": "Street and house no.",
       "placeholder": "Panoramastraße"
     },
     "postalCode":{
@@ -55,14 +55,14 @@
   "internetSharing": {
     "headline": "Internet sharing",
     "shareInternet.label": "Share internet",
-    "help": "THANK YOU! You decided to share your internet connection. To protect yourself from Störerhaftung you should use VPN.",
+    "help": "THANK YOU! You decided to share your internet connection. To protect yourself from the <a href=\"https://de.wikipedia.org/wiki/St%C3%B6rerhaftung\" target=\"_blank\">Störerhaftung</a> you can use a VPN service.",
     "transferSpeed": {
       "label": "Transfer speed limit in Mbps",
       "up": "Up",
       "down": "Down"
     },
     "antistoererhaftung": {
-      "label":"Anti-Störerhaftung via VPN03",
+      "label": "Anti-Störerhaftung via VPN03",
       "operatedBy": "is operated by"
     },
     "generateCertificate": {
@@ -73,8 +73,8 @@
     }
   },
   "ip": {
-    "headline":"IP addresses",
-    "help": "Enter the IPs you <a href='http://config.berlin.freifunk.net' target='blank'>registered before</a>. If you want the IPs registered automatically select the checkox above.",
+    "headline": "IP addresses",
+    "help": "Enter the IPs you <a href=\"http://config.berlin.freifunk.net\" target=\"_blank\">registered before</a>. If you want automatically registered IPs select the checkox above.",
     "register.label":"Register new IP addresses",
     "ipv6": {
       "label": "IPv6 prefix",
@@ -85,17 +85,17 @@
       "placeholder": ""
     },
     "meshViaLAN": {
-      "help": "Your selected Mesh via LAN. This means you can connect your router to other devices that are able to mesh. For more information on meshing <a href='http://wiki.freifunk.net/Meshing' target='blank'>see here</a>.",
+      "help": "<p><em>Mesh via LAN</em> means that you can connect the LAN ports of your router via a cable to other devices that also have this setting enabled. If you only have one router, this setting can be turned off.</p><p>Without <em>Mesh via LAN</em>, the LAN ports can be used to connect normal clients with a cable.</p>",
       "label": "Mesh via LAN",
       "lanip": {
-        "help": "Enter the IP you want to use for Mesh on LAN. If you deselect the checkox the lan ports are handled as normal router clients",
+        "help": "Enter the IP you want to use for Mesh on LAN.",
         "label": "LAN Mesh-IPv4",
         "placeholder":""
       }
     },
     "distribute": {
       "label": "Distribute client IP addresses",
-      "help": "By default the router connects to other routers that provide IP addresses. So if you see no other router or want to distribute IPs keep in mind how many clients you expect.",
+      "help": "At least one router in your local mesh (specifically: the local <a href=\"https://en.wikipedia.org/wiki/B.A.T.M.A.N.\" target=\"_blank\">BATMAN-adv</a> mesh) should distribute IP addresses for clients. If you share your internet connection with this router or if are unsure if there is another router in your neighborhood that distributes IPs, you should enable this setting. Please estimate how many clients you expect at the same time.",
       "subnet": {
         "label": "Client IPv4 subnet",
         "placeholder" :""
@@ -106,13 +106,13 @@
     }
   },
   "advancedWifi": {
-    "headline":"Advanced wifi options",
+    "headline": "Advanced wifi options",
     "show": "Show advanced wifi options",
-    "help": "By default your router is configured to mesh automatically. But here you can configure to connect to an access point or be an access point yourself. You can scan for other wifi nodes and select them for connections.",
+    "help": "By default your router is configured to connect automatically with other Freifunk routers that also have default settings. If you want to connect to a router with a special configuration, you can pick this router from a wifi scan or you can enter the configuration manually.",
     "reset": "Reset to defaults",
     "device": "Wifi device {{name}}",
     "mode": {
-      "label":"Mode",
+      "label": "Mode",
       "option": {
         "mesh.label": "mesh (802.11s)",
         "adhoc.label": "adhoc",
@@ -120,7 +120,7 @@
         "ap.label": "master (AP)"
       }
     },
-    "channel.label":"Channel",
+    "channel.label": "Channel",
     "ssid": {
       "label": "Name (SSID)",
       "placeholder": "intern-ch{{XX}}-bat{{X}}.freifunk.net"
