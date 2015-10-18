@@ -516,7 +516,7 @@
                   <input type="text" class="form-control" id="ipv4Lan"
                     name="ipv4Lan"
                     translate translate-attr-placeholder=".v4.placeholder"
-                    translate-values="{index: state.wifi.devices.length + 1}"
+                    translate-values="{index: (state.wifi.devices | objectLength) + 1}"
                     data-ng-model="wizard.ip.v4.lan" data-ipv4-address required>
                   <span class="fa form-control-feedback" ng-class="{
                         'fa-times': hasError('ipv4Lan'),

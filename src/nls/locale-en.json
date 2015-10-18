@@ -84,7 +84,7 @@
       "placeholder": "looks like 2001:bf7:c4ff:3300::/56"
     },
     "v4": {
-      "placeholder": "looks like 10.31.133.4{{index}}",
+      "placeholder": "looks like 10.31.133.{{40+index}}",
       "error.required": "This field is required.",
       "error.ipv4Address": "Not a valid IPv4 address.",
       "wifi": {
