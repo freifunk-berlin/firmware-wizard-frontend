@@ -77,7 +77,7 @@
     "help": "Your router requires <a href=\"https://en.wikipedia.org/wiki/IP_address\" target=\"_blank\">IP addresses</a> for communicating with other routers and with clients that connect to the access point. Freifunk uses both IPv4 (legacy) and IPv6 (recent).",
     "register": {
       "label": "Register new IP addresses",
-      "help": "If this option is enabled, the wizard automatically registers new IP addresses for this router. Disable only if you already have IP addresses from the <a href=\"http://config.berlin.freifunk.net/\" target=\"_blank\">Freifunk Berlin IP registry</a>"
+      "help": "If this option is enabled, the wizard automatically registers new IP addresses for this router. Disable only if you already have IP addresses from the <a href=\"http://config.berlin.freifunk.net/\" target=\"_blank\">Freifunk Berlin IP registry</a>."
     },
     "v6Prefix": {
       "label": "IPv6 prefix",
