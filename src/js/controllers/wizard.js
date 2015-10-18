@@ -48,7 +48,7 @@ module.exports = function(app) {
             lan: undefined
           },
           v6Prefix: undefined,
-          distribute: false,
+          distribute: true,
           v4ClientSubnet: undefined
         },
         wifi: {

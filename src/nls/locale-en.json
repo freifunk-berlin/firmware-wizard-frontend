@@ -74,34 +74,41 @@
   },
   "ip": {
     "headline": "IP addresses",
-    "help": "Enter the IPs you <a href=\"http://config.berlin.freifunk.net\" target=\"_blank\">registered before</a>. If you want automatically registered IPs select the checkox above.",
-    "register.label":"Register new IP addresses",
-    "ipv6": {
+    "help": "Your router requires <a href=\"https://en.wikipedia.org/wiki/IP_address\" target=\"_blank\">IP addresses</a> for communicating with other routers and with clients that connect to the access point. Freifunk uses both IPv4 (legacy) and IPv6 (recent).",
+    "register": {
+      "label": "Register new IP addresses",
+      "help": "If this option is enabled, the wizard automatically registers new IP addresses for this router. Disable only if you already have IP addresses from the <a href=\"http://config.berlin.freifunk.net/\" target=\"_blank\">Freifunk Berlin IP registry</a>"
+    },
+    "v6Prefix": {
       "label": "IPv6 prefix",
-      "placeholder": ""
+      "placeholder": "looks like 2001:bf7:c4ff:3300::/56"
     },
-    "meship": {
-      "label": "Wifi ({{name}}) Mesh-IPv4",
-      "placeholder": ""
-    },
-    "meshViaLAN": {
-      "help": "<p><em>Mesh via LAN</em> means that you can connect the LAN ports of your router via a cable to other devices that also have this setting enabled. If you only have one router, this setting can be turned off.</p><p>Without <em>Mesh via LAN</em>, the LAN ports can be used to connect normal clients with a cable.</p>",
-      "label": "Mesh via LAN",
-      "lanip": {
-        "help": "Enter the IP you want to use for Mesh on LAN.",
-        "label": "LAN Mesh-IPv4",
-        "placeholder":""
+    "v4": {
+      "placeholder": "looks like 10.31.133.4{{index}}",
+      "error.required": "This field is required.",
+      "error.ipv4Address": "Not a valid IPv4 address.",
+      "wifi": {
+        "label": "Wifi ({{name}}) Mesh-IPv4"
+      },
+      "lan": {
+        "label": "LAN Mesh-IPv4"
       }
+    },
+    "meshLan": {
+      "help": "Allows you to connect the LAN ports of your router via a cable to other devices that also have this setting enabled. If you only have one router, this setting can be turned off. Then the LAN ports can be used to connect clients with a cable.",
+      "label": "Mesh via LAN"
     },
     "distribute": {
       "label": "Distribute client IP addresses",
-      "help": "At least one router in your local mesh (specifically: the local <a href=\"https://en.wikipedia.org/wiki/B.A.T.M.A.N.\" target=\"_blank\">BATMAN-adv</a> mesh) should distribute IP addresses for clients. If you share your internet connection with this router or if are unsure if there is another router in your neighborhood that distributes IPs, you should enable this setting. Please estimate how many clients you expect at the same time.",
+      "help": "At least one router in your local mesh (specifically: the local <a href=\"https://en.wikipedia.org/wiki/B.A.T.M.A.N.\" target=\"_blank\">BATMAN-adv</a> mesh) should distribute IP addresses for clients. If you share your internet connection with this router or if are unsure if there is another router in your neighborhood that distributes IPs, you should enable this setting.",
       "subnet": {
         "label": "Client IPv4 subnet",
-        "placeholder" :""
+        "placeholder" : "",
+        "help": "The IPv4 subnet from which IPs are distributed to clients that connect to your access point."
       },
       "expectedClients": {
-        "label": "Expected number of concurrent clients"
+        "label": "Expected number of concurrent clients",
+        "help": "Please estimate how many clients will be connected to your access point at the same time."
       }
     }
   },
