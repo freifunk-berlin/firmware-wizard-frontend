@@ -265,10 +265,20 @@ module.exports = function(app) {
         });
       };
 
-      $scope.ipPattern = '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)' +
+      $scope.ipv4Pattern = '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)' +
         '\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)' +
         '\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)' +
         '\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)';
+
+      //I really hate v6 regex patterns >:(
+
+      //http://home.deds.nl/~aeron/regex/
+      //$scope.ipv6Pattern = '((?=.*::)(?!.*::.+::)(::)?([\\dA-F]{1,4}:(:|ß\b)|){5}|([\\dA-F]{1,4}:){6})(((\[\dA-F]{1,4}((?!\\3)::|:\\b|$))|(?! \\2\\3)){2})';
+
+      //TODO more test and prefix addition
+      $scope.ipv6PrefixPattern = '((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4}))*::((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4}))*|((?:[0-9A-Fa-f]{1,4}))((?::[0-9A-Fa-f]{1,4})){7}';
+
+      //http://regexlib.com/Search.aspx?k=ipv6&AspxAutoDetectCookieSupport=1
 
       $scope.hasError = function(field) {
         var form = $scope.wizardForm;

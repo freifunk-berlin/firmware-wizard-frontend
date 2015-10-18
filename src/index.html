@@ -485,7 +485,8 @@
                   <input type="text" class="form-control" name="ipv6Prefix" id="ipv6Prefix"
                     placeholder="{{'ip.ipv6.placeholder' | translate}}"
                     data-ng-model="wizard.ip.v6Prefix"
-                    data-ng-required="!state.ip.register">
+                    data-ng-required="!state.ip.register"
+                    data-ng-pattern="ipv6PrefixPattern">
                   <span style="" class="fa form-control-feedback" ng-class="{
                       'fa-times': hasError('ipv6Prefix'),
                       'fa-check': wizardForm.ipv6Prefix.$valid
@@ -621,7 +622,7 @@
                         placeholder="{{'ip.distribute.subnet.placeholder' | translate}}"
                         data-ng-model="wizard.ip.v4ClientSubnet"
                         data-ng-required="wizard.ip.distribute && !state.ip.register"
-                        data-ng-pattern="{{ipPattern + '/(25|26|27|28)'}}">
+                        data-ng-pattern="ipv4Pattern+'\/(25|26|27|28)'">
                         <!-- TODO use ip npm package for validation -->
                       <span class="fa form-control-feedback" data-ng-class="{
                         'fa-times': hasError('ipv4ClientSubnet'),
