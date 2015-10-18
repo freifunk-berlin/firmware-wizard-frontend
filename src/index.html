@@ -430,10 +430,10 @@
           </p>
 
           <div class="form-group">
-            <label for="ipRegister" class="col-md-4 control-label" translate>
+            <label for="ipRegister" class="col-md-3 control-label" translate>
               .register.label
             </label>
-            <div class="col-md-8">
+            <div class="col-md-9">
               <div class="checkbox">
                 <label>
                   <input type="checkbox" id="ipRegister" data-ng-model="state.ip.register">
@@ -444,12 +444,12 @@
           </div>
 
           <div class="row" data-collapse="state.ip.register">
-            <div class="col-md-offset-4 col-md-8">
+            <div class="col-md-offset-3 col-md-9">
               <div class="form-group">
-                <label for="ipv6Prefix" class="col-md-4 control-label" translate>
+                <label for="ipv6Prefix" class="col-md-3 control-label" translate>
                   .v6Prefix.label
                 </label>
-                <div class="col-md-8">
+                <div class="col-md-9">
                   <input type="text" class="form-control" id="ipv6Prefix"
                     placeholder="{{'ip.v6Prefix.placeholder' | translate}}"
                     data-ng-model="wizard.ip.v6Prefix">
@@ -462,11 +462,11 @@
                     'has-error': hasError('ipv4Wifi_' + $index),
                     'has-success': wizardForm['ipv4Wifi_' + $index].$valid
                   }">
-                <label for="ipv4Wifi_{{$index}}" class="col-md-4 control-label"
+                <label for="ipv4Wifi_{{$index}}" class="col-md-3 control-label"
                   translate translate-values="{name: name}">
                     .v4.wifi.label
                   </label>
-                <div class="col-md-8">
+                <div class="col-md-9">
                   <input type="text" class="form-control" id="ipv4Wifi_{{$index}}" name="ipv4Wifi_{{$index}}"
                     translate translate-attr-placeholder=".v4.placeholder"
                     translate-values="{index: $index + 1}"
@@ -489,10 +489,10 @@
           </div>
 
           <div class="form-group">
-            <label for="ipMeshLan" class="col-md-4 control-label" translate>
+            <label for="ipMeshLan" class="col-md-3 control-label" translate>
               .meshLan.label
             </label>
-            <div class="col-md-8">
+            <div class="col-md-9">
               <div class="checkbox">
                 <label>
                   <input type="checkbox" id="ipMeshLan" data-ng-model="wizard.ip.meshLan">
@@ -503,16 +503,16 @@
           </div>
 
           <div class="row" data-collapse="state.ip.register || !wizard.ip.meshLan">
-            <div class="col-md-offset-4 col-md-8">
+            <div class="col-md-offset-3 col-md-9">
               <div class="form-group has-feedback"
                   ng-class="{
                     'has-error': hasError('ipv4Lan'),
                     'has-success': wizardForm.ipv4Lan.$valid
                   }">
-                <label for="ipv4Lan" class="col-md-4 control-label" translate>
+                <label for="ipv4Lan" class="col-md-3 control-label" translate>
                   .v4.lan.label
                 </label>
-                <div class="col-md-8">
+                <div class="col-md-9">
                   <input type="text" class="form-control" id="ipv4Lan"
                     name="ipv4Lan"
                     translate translate-attr-placeholder=".v4.placeholder"
@@ -536,10 +536,10 @@
           </div>
 
           <div class="form-group">
-            <label for="ipDistribute" class="col-md-4 control-label" translate>
+            <label for="ipDistribute" class="col-md-3 control-label" translate>
               .distribute.label
             </label>
-            <div class="col-md-8">
+            <div class="col-md-9">
               <div class="checkbox">
                 <label>
                   <input type="checkbox" id="ipDistribute" data-ng-model="wizard.ip.distribute">
@@ -550,14 +550,14 @@
           </div>
 
           <div class="row" data-collapse="!wizard.ip.distribute">
-            <div class="col-md-offset-4 col-md-8">
+            <div class="col-md-offset-3 col-md-9">
 
               <div data-collapse="state.ip.register">
                 <div class="form-group">
-                  <label for="ipv4ClientSubnet" class="col-md-4 control-label" translate>
+                  <label for="ipv4ClientSubnet" class="col-md-3 control-label" translate>
                     .distribute.subnet.label
                   </label>
-                  <div class="col-md-8">
+                  <div class="col-md-9">
                     <input type="text" class="form-control" id="ipv4ClientSubnet"
                       placeholder="{{'ip.distribute.subnet.placeholder' | translate}}"
                       data-ng-model="wizard.ip.v4ClientSubnet">
@@ -568,10 +568,10 @@
 
               <div data-collapse="!state.ip.register">
                 <div class="form-group">
-                  <label for="ipv4ClientCount" class="col-md-4 control-label" translate>
+                  <label for="ipv4ClientCount" class="col-md-3 control-label" translate>
                     .distribute.expectedClients.label
                   </label>
-                  <div class="col-md-8">
+                  <div class="col-md-9">
                     <select
                       data-ng-model="state.ip.v4ClientSubnetSize"
                       data-ng-options="n as ('max. ' + (pow(2, 32 - n) - 3) +' clients (IPv4 /' + n + ' subnet)') for n in [] | range:28:25"
