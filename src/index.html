@@ -71,10 +71,27 @@
               </h2>
 
               <!-- TODO: generate router name -->
-              <div class="form-group">
-                <label for="routerName" class="col-md-6 control-label" translate>.routerName.label</label>
+              <div class="form-group has-feedback" data-ng-class="{
+                  'has-error': hasError('routerName'),
+                  'has-success': wizardForm.routerName.$valid
+                }">
+                <label for="routerName" class="col-md-6 control-label" translate>
+                  .routerName.label
+                </label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="routerName" placeholder="{{'basicRouterSetup.routerName.placeholder' | translate }}" data-ng-model="wizard.router.name">
+                  <input type="text" class="form-control" name="routerName" id="routerName"
+                    placeholder="{{'basicRouterSetup.routerName.placeholder' | translate }}"
+                    data-ng-model="wizard.router.name"
+                    data-ng-required="(wizard.internet.share && wizard.internet.vpn03.enabled && state.internet.vpn03.generate) || state.ip.register">
+                  <span class="fa form-control-feedback" ng-class="{
+                    'fa-times': hasError('routerName'),
+                    'fa-check': wizardForm.routerName.$valid
+                  }"></span>
+                  <div class="help-block" ng-show="hasError('routerName')">
+                    <div ng-show="wizardForm.routerName.$error.required" translate>
+                      .routerName.error.required
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -97,7 +114,7 @@
                   <div class="help-block" ng-show="hasError('password')">
                     <div ng-show="wizardForm.password.$error.required" translate>
                       .error.required
-                    </div >
+                    </div>
                     <div ng-show="wizardForm.password.$error.minlength" translate>
                       .error.minLength
                     </div>
@@ -156,12 +173,25 @@
                 </div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group has-feedback" data-ng-class="{
+                  'has-error': hasError('email'),
+                  'has-success': wizardForm.email.$valid
+                }">
                 <label for="email" class="col-md-6 control-label" translate>.email.label</label>
                 <div class="col-md-6">
-                  <input type="email" class="form-control" id="email"
+                  <input type="email" class="form-control" name="email" id="email"
                     placeholder="{{'contactDetails.email.placeholder' | translate}}"
-                    data-ng-model="wizard.contact.email">
+                    data-ng-model="wizard.contact.email"
+                    data-ng-required="(wizard.internet.share && wizard.internet.vpn03.enabled && state.internet.vpn03.generate) || state.ip.register">
+                  <span class="fa form-control-feedback" ng-class="{
+                    'fa-times': hasError('email'),
+                    'fa-check': wizardForm.email.$valid
+                  }"></span>
+                  <div class="help-block" ng-show="hasError('email')">
+                    <div ng-show="wizardForm.email.$error.required" translate>
+                      .email.error.required
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

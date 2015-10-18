@@ -4,6 +4,7 @@
     "headline":"Basic router setup",
     "routerName": {
       "label": "Router name",
+      "error.required": "In order to register IPs or generate VPN connection files the router name is required.",
       "placeholder": "name of the router"
     },
     "password": {
@@ -26,6 +27,7 @@
     },
     "email": {
       "label":"Email",
+      "error.required": "In order to confirm IPs or generate VPN connections files your email address is required",
       "placeholder": "funki@fine.net"
     }
   },

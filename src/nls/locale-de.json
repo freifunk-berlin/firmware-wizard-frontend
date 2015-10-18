@@ -3,7 +3,8 @@
   "basicRouterSetup": {
     "headline":"Grundlegende Routereinstellungen",
     "routerName": {
-      "label": "Router name",
+      "label": "Router Name",
+      "error.required": "Der Router Name wird benötigt um IPs und VPN Dateien automatisch zu registrieren.",
       "placeholder": "Name des Routers"
     },
     "password": {
@@ -26,6 +27,7 @@
     },
     "email": {
       "label":"Email",
+      "error.required": "Deine EMail Addresse wird zur Bestätigung der automatisch generierten IPs und / oder VPN Dateien benötigt.",
       "placeholder": "funki@fine.net"
     }
   },
