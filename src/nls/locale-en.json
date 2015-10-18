@@ -54,8 +54,11 @@
   },
   "internetSharing": {
     "headline": "Internet sharing",
-    "shareInternet.label": "Share internet",
-    "help": "THANK YOU! You decided to share your internet connection. To protect yourself from the <a href=\"https://de.wikipedia.org/wiki/St%C3%B6rerhaftung\" target=\"_blank\">Störerhaftung</a> you can use a VPN service.",
+    "shareInternet": {
+      "label": "Share internet",
+      "notShared": "If you want to share your internet connections select the checkbox.",
+      "shared": "THANK YOU! You decided to share your internet connection. To protect yourself from the <a href=\"https://de.wikipedia.org/wiki/St%C3%B6rerhaftung\" target=\"_blank\">Störerhaftung</a> you can use a VPN service."
+    },
     "transferSpeed": {
       "label": "Transfer speed limit in Mbps",
       "up": "Up",
@@ -67,6 +70,7 @@
     },
     "generateCertificate": {
       "label": "Generate new VPN03 certificate and key for this router",
+      "help": "If this option is enabled, the wizard automatically generates a new certificate and key. Disable only if you want to upload already existing files manually.",
       "certificate.label": "VPN certificate",
       "key.label": "VPN key",
       "browse": "Browse"
