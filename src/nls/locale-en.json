@@ -5,6 +5,7 @@
     "headline": "Basic router setup",
     "routerName": {
       "label": "Router name",
+      "help": "The router name is needed for ip registration and VPN cert and key generation. Also this name is visible in the <a href=\"http://map.berlin.freifunk.net\">Freifunk map</a> if you decide to share your location.",
       "placeholder": "name of the router"
     },
     "password": {
@@ -27,6 +28,7 @@
     },
     "email": {
       "label":"Email",
+      "help": "Please enter your email address for IP registration and VPN cert and key generation. If you decide to share your location it is more easy for other Freifunkas to contact you.",
       "placeholder": "funki@fine.net"
     }
   },

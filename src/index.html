@@ -57,120 +57,125 @@
     <form novalidate name="wizardForm"
         class="form-horizontal wizard-categories">
 
+      <!-- basic router setup -->
       <div class="wizard-category">
-        <div class="container">
-          <div class="row">
+        <div class="container" translate-namespace="basicRouterSetup">
 
-            <!-- basic router setup -->
-            <div class="col-md-5" translate-namespace="basicRouterSetup">
-              <h2>
-                <span class="fa-stack">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-wifi fa-stack-1x fa-inverse"></i>
-                </span>
-                <span translate>.headline</span>
-              </h2>
+          <h2>
+            <span class="fa-stack">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-wifi fa-stack-1x fa-inverse"></i>
+            </span>
+            <span translate>.headline</span>
+          </h2>
 
-              <!-- TODO: generate router name -->
-              <div class="form-group">
-                <label for="routerName" class="col-md-6 control-label" translate>.routerName.label</label>
-                <div class="col-md-6">
-                  <input type="text" class="form-control" id="routerName" placeholder="{{'basicRouterSetup.routerName.placeholder' | translate }}" data-ng-model="wizard.router.name">
-                </div>
-              </div>
-
-              <div class="form-group has-feedback" ng-class="{
-                    'has-error': hasError('password'),
-                    'has-success': wizardForm.password.$valid,
-                  }" translate-namespace=".password">
-                <label for="password" class="col-md-6 control-label" translate>
-                  .label
-                </label>
-                <div class="col-md-6">
-                  <input data-ng-model="wizard.router.password"
-                      data-ng-minlength="6" required
-                      type="password" class="form-control" id="password" name="password"
-                      placeholder="{{'basicRouterSetup.password.placeholder' | translate }}">
-                  <span class="fa form-control-feedback" ng-class="{
-                        'fa-times': hasError('password'),
-                        'fa-check': wizardForm.password.$valid
-                      }"></span>
-                  <div class="help-block" ng-show="hasError('password')">
-                    <div ng-show="wizardForm.password.$error.required" translate>
-                      .error.required
-                    </div >
-                    <div ng-show="wizardForm.password.$error.minlength" translate>
-                      .error.minLength
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-group has-feedback" ng-class="{
-                    'has-error': hasError('passwordVerify'),
-                    'has-success': wizardForm.passwordVerify.$valid,
-                  }" translate-namespace=".passwordVerification">
-                <label for="passwordVerify" class="col-md-6 control-label" translate>
-                  .label
-                </label>
-                <div class="col-md-6">
-                  <input
-                      data-ng-model="wizard.router.passwordVerify"
-                      required
-                      data-compare-to="wizard.router.password"
-                      type="password" class="form-control" id="passwordVerify"
-                      name="passwordVerify"
-                      placeholder="{{'basicRouterSetup.passwordVerification.placeholder' | translate}}">
-                  <span class="fa form-control-feedback" ng-class="{
-                        'fa-times': hasError('passwordVerify'),
-                        'fa-check': wizardForm.passwordVerify.$valid
-                      }"></span>
-                  <div class="help-block" ng-show="hasError('passwordVerify')">
-                    <div ng-show="wizardForm.passwordVerify.$error.compareTo" translate>
-                      .error.match
-                    </div >
-                  </div>
-                </div>
-              </div>
-
+          <!-- TODO: generate router name -->
+          <div class="form-group">
+            <label for="routerName" class="col-md-3 control-label" translate>.routerName.label</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="routerName"
+                placeholder="{{'basicRouterSetup.routerName.placeholder' | translate }}"
+                data-ng-model="wizard.router.name">
+              <p class="text-muted" translate>
+                .routerName.help
+              </p>
             </div>
-            <!-- / basic router details -->
+          </div>
 
-            <!-- contact details -->
-            <div class="col-md-offset-1 col-md-5" translate-namespace="contactDetails">
-              <h2>
-                <span class="fa-stack">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-user fa-stack-1x fa-inverse"></i>
-                </span>
-                <span translate>.headline</span>
-              </h2>
-
-              <div class="form-group">
-                <label for="contactName" class="col-md-6 control-label" translate>
-                  .name.label
-                </label>
-                <div class="col-md-6">
-                  <input type="text" class="form-control" id="contactName"
-                    placeholder="{{'contactDetails.name.placeholder' | translate}}"
-                    data-ng-model="wizard.contact.name">
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="email" class="col-md-6 control-label" translate>.email.label</label>
-                <div class="col-md-6">
-                  <input type="email" class="form-control" id="email"
-                    placeholder="{{'contactDetails.email.placeholder' | translate}}"
-                    data-ng-model="wizard.contact.email">
+          <div class="form-group has-feedback" ng-class="{
+            'has-error': hasError('password'),
+            'has-success': wizardForm.password.$valid,
+          }" translate-namespace=".password">
+            <label for="password" class="col-md-3 control-label" translate>
+              .label
+            </label>
+            <div class="col-md-9">
+              <input data-ng-model="wizard.router.password"
+                data-ng-minlength="6" required
+                type="password" class="form-control" id="password" name="password"
+                placeholder="{{'basicRouterSetup.password.placeholder' | translate }}">
+              <span class="fa form-control-feedback" ng-class="{
+                'fa-times': hasError('password'),
+                'fa-check': wizardForm.password.$valid
+              }"></span>
+              <div class="help-block" ng-show="hasError('password')">
+                <div ng-show="wizardForm.password.$error.required" translate>
+                  .error.required
+                </div >
+                <div ng-show="wizardForm.password.$error.minlength" translate>
+                  .error.minLength
                 </div>
               </div>
             </div>
-            <!-- / contact details -->
+          </div>
 
+          <div class="form-group has-feedback" ng-class="{
+            'has-error': hasError('passwordVerify'),
+            'has-success': wizardForm.passwordVerify.$valid,
+          }" translate-namespace=".passwordVerification">
+            <label for="passwordVerify" class="col-md-3 control-label" translate>
+              .label
+            </label>
+            <div class="col-md-9">
+              <input
+                data-ng-model="wizard.router.passwordVerify"
+                required
+                data-compare-to="wizard.router.password"
+                type="password" class="form-control" id="passwordVerify"
+                name="passwordVerify"
+                placeholder="{{'basicRouterSetup.passwordVerification.placeholder' | translate}}">
+              <span class="fa form-control-feedback" ng-class="{
+                'fa-times': hasError('passwordVerify'),
+                'fa-check': wizardForm.passwordVerify.$valid
+              }"></span>
+              <div class="help-block" ng-show="hasError('passwordVerify')">
+                <div ng-show="wizardForm.passwordVerify.$error.compareTo" translate>
+                  .error.match
+                </div >
+               </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      <!-- / basic router details -->
+
+      <!-- contact details -->
+      <div class="wizard-category">
+        <div class="container" translate-namespace="contactDetails">
+          <h2>
+            <span class="fa-stack">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+            </span>
+            <span translate>.headline</span>
+          </h2>
+
+          <div class="form-group">
+            <label for="contactName" class="col-md-3 control-label" translate>
+              .name.label
+            </label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="contactName"
+                placeholder="{{'contactDetails.name.placeholder' | translate}}"
+                data-ng-model="wizard.contact.name">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="col-md-3 control-label" translate>.email.label</label>
+            <div class="col-md-9">
+              <input type="email" class="form-control" id="email"
+                placeholder="{{'contactDetails.email.placeholder' | translate}}"
+                data-ng-model="wizard.contact.email">
+              <p class="text-muted" translate>
+                .email.help
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- / contact details -->
 
       <div class="wizard-category">
         <div class="container" translate-namespace="routerLocation">
