@@ -767,8 +767,8 @@
       <!-- submission -->
       <div class="wizard-category">
         <div class="container text-right">
-          <span class="text-error" ng-show="wizardForm.$submitted && wizardForm.$invalid">
-           {{ 'configIncorrect' | translate }}
+          <span class="text-danger" ng-show="wizardForm.$submitted && wizardForm.$invalid">
+            {{ 'configIncorrect' | translate }}
           </span>
           <button type="button" class="btn btn-default" ng-click="downloadConfig()">
             <i class="fa fa-download"></i> {{ 'download' | translate }}

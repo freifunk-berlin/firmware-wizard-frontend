@@ -20,26 +20,21 @@ a:hover {
   padding-bottom: 30px;
 }
 
-.wizard-categories > .wizard-category:nth-child(even),
-.wizard-bg-highlight,
-.wizard-categories > .wizard-category:nth-child(odd) .panel-heading {
+.wizard-bg-highlight {
   background-color: #df3a6c;
   color: white;
 }
 
-.wizard-categories > .wizard-category:nth-child(even) a {
-  color: #88B5DD;
-}
-.wizard-categories > .wizard-category:nth-child(even) a:hover {
-  color: #B7D3EB;
+.wizard-bg-highlight .fa-inverse {
+  color: #df3a6c;
 }
 
-.wizard-categories > .wizard-category:nth-child(even) .text-muted {
-  color: #bfbfbf;
+.wizard-categories > .wizard-category:nth-child(even) {
+  background-color: #ebebeb;
 }
 
-.wizard-categories > .wizard-category:nth-child(even) .fa-inverse, .wizard-bg-highlight .fa-inverse {
-  color: #df3a6c;;
+.wizard-categories > .wizard-category:nth-child(even) .fa-inverse {
+  color: #ebebeb;
 }
 
 .leaflet-container {
