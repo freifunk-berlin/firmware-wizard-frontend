@@ -70,22 +70,25 @@
           </h2>
 
           <!-- TODO: generate router name -->
-          <div class="form-group">
+          <div class="form-group has-feedback" ng-class="formFeedback('routerName')">
             <label for="routerName" class="col-md-3 control-label" translate>.routerName.label</label>
             <div class="col-md-9">
               <input type="text" class="form-control" id="routerName"
+                name="routerName"
                 placeholder="{{'basicRouterSetup.routerName.placeholder' | translate }}"
-                data-ng-model="wizard.router.name">
+                data-ng-model="wizard.router.name"
+                required pattern="[A-Za-z0-9_\-]{0,16}"
+                >
+              <span class="fa form-control-feedback"
+                ng-class="formControlFeedback('routerName')"></span>
               <p class="text-muted" translate>
                 .routerName.help
               </p>
             </div>
           </div>
 
-          <div class="form-group has-feedback" ng-class="{
-            'has-error': hasError('password'),
-            'has-success': wizardForm.password.$valid,
-          }" translate-namespace=".password">
+          <div class="form-group has-feedback" ng-class="formFeedback('password')"
+            translate-namespace=".password">
             <label for="password" class="col-md-3 control-label" translate>
               .label
             </label>
@@ -94,10 +97,8 @@
                 data-ng-minlength="6" required
                 type="password" class="form-control" id="password" name="password"
                 placeholder="{{'basicRouterSetup.password.placeholder' | translate }}">
-              <span class="fa form-control-feedback" ng-class="{
-                'fa-times': hasError('password'),
-                'fa-check': wizardForm.password.$valid
-              }"></span>
+              <span class="fa form-control-feedback"
+                ng-class="formControlFeedback('password')"></span>
               <div class="help-block" ng-show="hasError('password')">
                 <div ng-show="wizardForm.password.$error.required" translate>
                   .error.required
@@ -109,10 +110,8 @@
             </div>
           </div>
 
-          <div class="form-group has-feedback" ng-class="{
-            'has-error': hasError('passwordVerify'),
-            'has-success': wizardForm.passwordVerify.$valid,
-          }" translate-namespace=".passwordVerification">
+          <div class="form-group has-feedback" ng-class="formFeedback('passwordVerify')"
+            translate-namespace=".passwordVerification">
             <label for="passwordVerify" class="col-md-3 control-label" translate>
               .label
             </label>
@@ -124,10 +123,8 @@
                 type="password" class="form-control" id="passwordVerify"
                 name="passwordVerify"
                 placeholder="{{'basicRouterSetup.passwordVerification.placeholder' | translate}}">
-              <span class="fa form-control-feedback" ng-class="{
-                'fa-times': hasError('passwordVerify'),
-                'fa-check': wizardForm.passwordVerify.$valid
-              }"></span>
+              <span class="fa form-control-feedback"
+                ng-class="formControlFeedback('passwordVerify')"></span>
               <div class="help-block" ng-show="hasError('passwordVerify')">
                 <div ng-show="wizardForm.passwordVerify.$error.compareTo" translate>
                   .error.match
@@ -162,12 +159,17 @@
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group has-feedback" ng-class="formFeedback('email')">
             <label for="email" class="col-md-3 control-label" translate>.email.label</label>
             <div class="col-md-9">
-              <input type="email" class="form-control" id="email"
+              <input type="email" class="form-control" id="email" name="email"
                 placeholder="{{'contactDetails.email.placeholder' | translate}}"
-                data-ng-model="wizard.contact.email">
+                data-ng-model="wizard.contact.email"
+                ng-required="(wizard.internet.share && wizard.internet.vpn03.enabled && state.internet.vpn03.generate) || state.ip.register"
+                pattern=".*@.+\..+"
+                >
+              <span class="fa form-control-feedback"
+                ng-class="formControlFeedback('email')"></span>
               <p class="text-muted" translate>
                 .email.help
               </p>
@@ -443,10 +445,7 @@
 
               <div data-ng-repeat="(name, device) in state.wifi.devices"
                   class="form-group has-feedback"
-                  ng-class="{
-                    'has-error': hasError('ipv4Wifi_' + $index),
-                    'has-success': wizardForm['ipv4Wifi_' + $index].$valid
-                  }">
+                  ng-class="formFeedback('ipv4Wifi_' + $index)">
                 <label for="ipv4Wifi_{{$index}}" class="col-md-3 control-label"
                   translate translate-values="{name: name}">
                     .v4.wifi.label
@@ -456,10 +455,8 @@
                     translate translate-attr-placeholder=".v4.placeholder"
                     translate-values="{index: $index + 1}"
                     data-ng-model="wizard.ip.v4[name]" data-ipv4-address required>
-                  <span class="fa form-control-feedback" ng-class="{
-                        'fa-times': hasError('ipv4Wifi_' + $index),
-                        'fa-check': wizardForm['ipv4Wifi_' + $index].$valid
-                      }"></span>
+                  <span class="fa form-control-feedback"
+                    ng-class="formControlFeedback('ipv4Wifi_' + $index)"></span>
                   <div class="help-block" ng-show="hasError('ipv4Wifi_' + $index)">
                     <div ng-show="wizardForm['ipv4Wifi_' + $index].$error.required" translate>
                       .v4.error.required
@@ -489,11 +486,7 @@
 
           <div class="row" data-collapse="state.ip.register || !wizard.ip.meshLan">
             <div class="col-md-offset-3 col-md-9">
-              <div class="form-group has-feedback"
-                  ng-class="{
-                    'has-error': hasError('ipv4Lan'),
-                    'has-success': wizardForm.ipv4Lan.$valid
-                  }">
+              <div class="form-group has-feedback" ng-class="formFeedback('ipv4Lan')">
                 <label for="ipv4Lan" class="col-md-3 control-label" translate>
                   .v4.lan.label
                 </label>
@@ -503,10 +496,8 @@
                     translate translate-attr-placeholder=".v4.placeholder"
                     translate-values="{index: (state.wifi.devices | objectLength) + 1}"
                     data-ng-model="wizard.ip.v4.lan" data-ipv4-address required>
-                  <span class="fa form-control-feedback" ng-class="{
-                        'fa-times': hasError('ipv4Lan'),
-                        'fa-check': wizardForm.ipv4Lan.$valid
-                      }"></span>
+                  <span class="fa form-control-feedback"
+                    ng-class="formControlFeedback('ipv4Lan')"></span>
                   <div class="help-block" ng-show="hasError('ipv4Lan')">
                     <div ng-show="wizardForm.ipv4Lan.$error.required" translate>
                       .v4.error.required
