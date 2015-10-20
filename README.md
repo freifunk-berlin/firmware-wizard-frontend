@@ -1,4 +1,4 @@
-# Frontend of the firmware wizard [![Build Status](https://travis-ci.org/freifunk-berlin/firmware-wizard-frontend.svg)](https://travis-ci.org/freifunk-berlin/firmware-wizard-frontend)
+# Frontend of the firmware wizard [![Build Status](https://travis-ci.org/freifunk-berlin/firmware-wizard-frontend.svg?branch=master)](https://travis-ci.org/freifunk-berlin/firmware-wizard-frontend)
 Currently, this is a prototype for an upcoming firmware wizard. Check it out [here](https://freifunk-berlin.github.io/firmware-wizard-frontend/)!
 
 ## Technical background
