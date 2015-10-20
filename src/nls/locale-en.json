@@ -60,8 +60,8 @@
     "help": "Freifunk is an independent and free network built by many different people that can be used for many different purposes. One purpose is to access the internet and this service is only possible because some Freifunkas decided to share their internet connections.",
     "shareInternet": {
       "label": "Share internet",
-      "notShared": "If you want to share your internet connections select the checkbox.",
-      "shared": "THANK YOU for sharing your internet connections!"
+      "help": "If you want to share your internet connection select the checkbox.",
+      "thanks": "Thank you for sharing your internet connection!"
     },
     "transferSpeed": {
       "label": "Transfer speed limit in Mbps",
