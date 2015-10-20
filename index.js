@@ -2248,11 +2248,11 @@ module.exports = function(app) {
 
 module.exports = function(app) {
   app.config(function($translateProvider) {
+    $translateProvider.fallbackLanguage(['en', 'de']);
     $translateProvider.useStaticFilesLoader({
       prefix: 'nls/locale-',
       suffix: '.json'
     });
-    $translateProvider.determinePreferredLanguage();
     $translateProvider.registerAvailableLanguageKeys(['en', 'de'],
       {
         'de_*': 'de',
@@ -2260,6 +2260,7 @@ module.exports = function(app) {
         '*': 'en'
       }
     );
+    $translateProvider.determinePreferredLanguage();
   });
 };
 
@@ -2280,12 +2281,10 @@ module.exports = function(app) {
     function($scope, leafletData, $http, $filter, downloadFile, $translate,
              jsonrpc) {
 
-      $scope.changeLang = function() {
-        $translate.use($scope.selectedLanguage);
-      };
-
-      var autoDetectedLanguage = $translate.proposedLanguage();
-      $scope.selectedLanguage =  autoDetectedLanguage;
+      $scope.selectedLanguage = $translate.use();
+      $scope.$watch('selectedLanguage', function(language) {
+        $translate.use(language);
+      });
 
       $scope.wizard = {
         router: {
