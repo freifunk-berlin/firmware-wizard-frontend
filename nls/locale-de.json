@@ -1,0 +1,159 @@
+{
+	"heading": "Router configuration wizard",
+  "intro": "Dieser Assitent hilft die beim Einrichten deines Freifunk Routers.",
+  "basicRouterSetup": {
+    "headline":"Grundlegende Routereinstellungen",
+    "routerName": {
+      "label": "Router name",
+      "placeholder": "Name des Routers"
+    },
+    "password": {
+      "label": "Neues Router Passwort",
+      "placeholder": "geheim123",
+      "error.required": "Ein Passwort wird benötigt.",
+      "error.minLength": "Das Passwort muss mindestens 6 Zeichen lang sein."
+    },
+    "passwordVerification": {
+      "label":"Router Password Bestätigung",
+      "placeholder": "wiederhole das passwort",
+      "error.match": "Passworte müssen übereinstimmen."
+    }
+  },
+  "contactDetails": {
+    "headline": "Kontaktdaten",
+    "name": {
+      "label": "Dein Name",
+      "placeholder": "Funki Fine"
+    },
+    "email": {
+      "label":"Email",
+      "placeholder": "funki@fine.net"
+    }
+  },
+  "routerLocation": {
+    "headline":"Router Standort",
+    "help": "Wenn du die Standortdaten für deinen Router angibst wird er in inerser <a href='http://map.berlin.freifunk.net' target='blank'>Freifunk Karte</a> angezeigt. Du kannst entweder die Adresse direkt angeben oder den Marker auf der Karte auf die korrekte Position ziehen.",
+    "getLocation": "Meinen Standort herausfinden",
+    "geolocation": {
+      "label": "Geolocation",
+      "latitude": "Latitude",
+      "longitude": "Longitude"
+    },
+    "street": {
+      "label":"Straße und Hausnummer",
+      "placeholder": "Panoramastraße"
+    },
+    "postalCode":{
+      "label": "Postleitzahl",
+      "placeholder": "10178"
+    },
+    "city": {
+      "label": "Stadt",
+      "placeholder": "Alt-Berlin"
+    }
+  },
+  "internetSharing": {
+    "headline": "Internet teilen",
+    "shareInternet.label": "Internet teilen",
+    "help": "DANKE! Du hast dich dafür entschieden dein Internet zu teilen. Um dich vor der Störerhaftung zu schützen, solltest du VPN benutzen.",
+    "transferSpeed": {
+      "label": "Geschwindigkeit in Mbps",
+      "up": "Up",
+      "down": "Down"
+    },
+    "antistoererhaftung": {
+      "label":"Anti-Störerhaftung via VPN03",
+      "operatedBy": "wird betrieben vom"
+    },
+    "generateCertificate": {
+      "label": "VPN03 Zertifikat und Schlüssel für diesen Router generieren. ",
+      "certificate.label": "VPN Zertifikat",
+      "key.label": "Schlüssel",
+      "browse": "Durchsuchen"
+    }
+  },
+  "ip": {
+    "headline":"IP Addressen",
+    "help": "Gib hier die IP Adressen ein, die du dir vorher <a href='http://config.berlin.freifunk.net' target='blank'>registriert hast</a>. Wenn du IPs automatisch registrieren möchtest, setzt den Haken oben.",
+    "register.label":"Neue IP Addressen registrieren",
+    "ipv6": {
+      "label": "IPv6 prefix",
+      "placeholder": ""
+    },
+    "meship": {
+      "label": "Wifi ({{name}}) Mesh-IPv4",
+      "placeholder": ""
+    },
+    "meshViaLAN": {
+      "label": "Mesh via LAN",
+      "help": "Du hast Mesh via LAN ausgewählt. Das beudeutet du kannst deinen Router mit anderen Geräten verbinden, die Meshen können. Mehr Information zu Meshing findest du <a href='http://wiki.freifunk.net/Meshing' target='blank'>hier</a>.",
+      "lanip": {
+        "help":"Gib hier die IP für das Meshing über LAN ein. Wenn du den Haken nicht setzt werden die Clients an den LAN Ports wie normale Router Clients behandelt.",
+        "label": "LAN Mesh-IPv4",
+        "placeholder":""
+      }
+    },
+    "distribute": {
+      "label": "Client IP Addressen verteilen",
+      "help": "Standartmäßig bekommen Clients deines Routers IPs von einem anderen verbundenen Router. Falls du keinen anderen Router in deiner nähe hast oder selbst IP Adressen verteilen möchtest, überlege wieviele Clients du an deinem Router erwartest.",
+      "subnet": {
+        "label": "Client IPv4 subnet",
+        "placeholder" :""
+      },
+      "expectedClients": {
+        "label": "Wieviele Benutzer erwartest du an deinem Freifunkknoten?"
+      }
+    }
+  },
+  "advancedWifi": {
+    "headline": "Erweiterte Wifi Optionen",
+    "show": "Anzeigen",
+    "help": "Eigentlich verbindet sich dein Router auotamatisch mit Routern in deiner Nähe. Hier kannst du jedoch mit einem Access Point verbinden oder selbst Access Point für sein. Außerdem kannst du hier ein WLANN auswählen, mit dem du dich verbinen möchtest.",
+    "reset": "Stanard wieder herstellen",
+    "device": "Wifi device {{name}}",
+    "mode": {
+      "label":"Mode",
+      "option": {
+        "mesh.label": "mesh (802.11s)",
+        "adhoc.label": "adhoc",
+        "sta.label": "client (STA)",
+        "ap.label": "master (AP)"
+      }
+    },
+    "channel.label":"Kanal",
+    "ssid": {
+      "label": "Name (SSID)",
+      "placeholder": "intern-ch{{XX}}-bat{{X}}.freifunk.net"
+    },
+    "meshid": {
+      "label": "Mesh ID",
+      "placeholder": "freifunk"
+    },
+    "bssid": {
+      "label": "BSSID",
+      "placeholder": ""
+    },
+    "batvlan": {
+      "label": "BATMAN-adv VLAN ID"
+    },
+    "pick": {
+      "label": "Auswählen",
+      "filter": {
+        "label": "SSIDs filtern nach",
+        "noresult": "Für den Filter <em>{{filter}}</em> gibt es keine Ergebnisse!"
+      },
+      "rescan": "Rescan",
+      "column": {
+        "mode": "Mode",
+        "channel": "Kanal",
+        "ssid": "Name (SSID)",
+        "bssidormeshid": "BSSID / Mesh ID",
+        "signal": "Signal"
+      },
+      "noresult": "Es gibt keine Ergebnisse für den Scan"
+    }
+  },
+  "configIncorrect": "Die Daten die du eingegeben hast sind nicht korrekt. Bitte korrigiere sie zuerst",
+  "save": "Speichern & Neustarten",
+  "download": "Konfiguration herunterladen"
+}
