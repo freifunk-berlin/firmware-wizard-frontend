@@ -282,7 +282,7 @@ module.exports = function(app) {
           'has-success': $scope.hasSuccess(field),
         };
       };
-      
+
       $scope.formControlFeedback = function(field) {
         return {
           'fa-times': $scope.hasError(field),
