@@ -731,7 +731,7 @@
                           <th translate>.channel</th>
                           <th translate>.ssid</th>
                           <th translate>.bssidormeshid</th>
-                          <th transalte>.signal</th>
+                          <th translate>.signal</th>
                         </thead>
                         <tbody>
                           <tr ng-repeat="scan in filteredScan = (device.scan | filter:{ssid: device.scanFilter} | orderBy:'-signal')" ng-click="applyScan(device, config, scan)" class="wizard-link">
