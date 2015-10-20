@@ -7,12 +7,10 @@ module.exports = function(app) {
     function($scope, leafletData, $http, $filter, downloadFile, $translate,
              jsonrpc) {
 
-      $scope.changeLang = function() {
-        $translate.use($scope.selectedLanguage);
-      };
-
-      var autoDetectedLanguage = $translate.proposedLanguage();
-      $scope.selectedLanguage =  autoDetectedLanguage;
+      $scope.selectedLanguage = $translate.use();
+      $scope.$watch('selectedLanguage', function(language) {
+        $translate.use(language);
+      });
 
       $scope.wizard = {
         router: {
