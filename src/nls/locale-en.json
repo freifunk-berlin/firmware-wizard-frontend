@@ -6,7 +6,7 @@
     "routerName": {
       "label": "Router name",
       "help": "The router name is needed for ip registration and VPN cert and key generation. Also this name is visible in the <a href=\"http://map.berlin.freifunk.net\">Freifunk map</a> if you decide to share your location.",
-      "placeholder": "name of the router"
+      "placeholder": "example: funkenpumpe3000"
     },
     "password": {
       "label": "New router password",
@@ -27,9 +27,10 @@
       "placeholder": "Funki Fine"
     },
     "email": {
-      "label":"Email",
-      "help": "Please enter your email address for IP registration and VPN cert and key generation. If you decide to share your location it is more easy for other Freifunkas to contact you.",
-      "placeholder": "funki@fine.net"
+      "label": "Email",
+      "help": "A valid email address is required if VPN cert/key generation or IP registration is activated below. By providing an email address, you also allow other Freifunkas to contact you.",
+      "placeholder": "funki@fine.net",
+      "error": "A valid email address is required for the current configuration."
     }
   },
   "routerLocation": {
