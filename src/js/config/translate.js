@@ -2,11 +2,11 @@
 
 module.exports = function(app) {
   app.config(function($translateProvider) {
+    $translateProvider.fallbackLanguage(['en', 'de']);
     $translateProvider.useStaticFilesLoader({
       prefix: 'nls/locale-',
       suffix: '.json'
     });
-    $translateProvider.determinePreferredLanguage();
     $translateProvider.registerAvailableLanguageKeys(['en', 'de'],
       {
         'de_*': 'de',
@@ -14,5 +14,6 @@ module.exports = function(app) {
         '*': 'en'
       }
     );
+    $translateProvider.determinePreferredLanguage();
   });
 };

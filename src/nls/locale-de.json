@@ -1,5 +1,6 @@
 {
 	"heading": "Router configuration wizard",
+  "intro": "Dieser Assitent hilft die beim Einrichten deines Freifunk Routers.",
   "basicRouterSetup": {
     "headline":"Grundlegende Routereinstellungen",
     "routerName": {
@@ -33,6 +34,7 @@
   },
   "routerLocation": {
     "headline":"Router Standort",
+    "help": "Wenn du die Standortdaten für deinen Router angibst wird er in inerser <a href='http://map.berlin.freifunk.net' target='blank'>Freifunk Karte</a> angezeigt. Du kannst entweder die Adresse direkt angeben oder den Marker auf der Karte auf die korrekte Position ziehen.",
     "getLocation": "Meinen Standort herausfinden",
     "geolocation": {
       "label": "Geolocation",
@@ -55,6 +57,7 @@
   "internetSharing": {
     "headline": "Internet teilen",
     "shareInternet.label": "Internet teilen",
+    "help": "DANKE! Du hast dich dafür entschieden dein Internet zu teilen. Um dich vor der Störerhaftung zu schützen, solltest du VPN benutzen.",
     "transferSpeed": {
       "label": "Geschwindigkeit in Mbps",
       "up": "Up",
@@ -74,6 +77,7 @@
   },
   "ip": {
     "headline":"IP Addressen",
+    "help": "Gib hier die IP Adressen ein, die du dir vorher <a href='http://config.berlin.freifunk.net' target='blank'>registriert hast</a>. Wenn du IPs automatisch registrieren möchtest, setzt den Haken oben.",
     "register.label":"Neue IP Addressen registrieren",
     "ipv6": {
       "label": "IPv6 prefix",
@@ -85,20 +89,23 @@
     },
     "meshViaLAN": {
       "label": "Mesh via LAN",
+      "help": "Du hast Mesh via LAN ausgewählt. Das beudeutet du kannst deinen Router mit anderen Geräten verbinden, die Meshen können. Mehr Information zu Meshing findest du <a href='http://wiki.freifunk.net/Meshing' target='blank'>hier</a>.",
       "lanip": {
+        "help":"Gib hier die IP für das Meshing über LAN ein. Wenn du den Haken nicht setzt werden die Clients an den LAN Ports wie normale Router Clients behandelt.",
         "label": "LAN Mesh-IPv4",
         "placeholder":""
       }
     },
     "distribute": {
       "label": "Client IP Addressen verteilen",
+      "help": "Standartmäßig bekommen Clients deines Routers IPs von einem anderen verbundenen Router. Falls du keinen anderen Router in deiner nähe hast oder selbst IP Adressen verteilen möchtest, überlege wieviele Clients du an deinem Router erwartest.",
       "subnet": {
         "label": "Client IPv4 subnet",
         "placeholder" :"",
         "error.pattern": "Das ist keine gültige Subnet Adresse"
       },
       "expectedClients": {
-        "label":"Wieviele Benutzer erwartest du an deinem Freifunkknoten?"
+        "label": "Wieviele Benutzer erwartest du an deinem Freifunkknoten?"
       }
     },
     "error": {
@@ -107,8 +114,9 @@
     }
   },
   "advancedWifi": {
-    "headline":"Erweiterte Wifi Optionen",
+    "headline": "Erweiterte Wifi Optionen",
     "show": "Anzeigen",
+    "help": "Eigentlich verbindet sich dein Router auotamatisch mit Routern in deiner Nähe. Hier kannst du jedoch mit einem Access Point verbinden oder selbst Access Point für sein. Außerdem kannst du hier ein WLANN auswählen, mit dem du dich verbinen möchtest.",
     "reset": "Stanard wieder herstellen",
     "device": "Wifi device {{name}}",
     "mode": {
