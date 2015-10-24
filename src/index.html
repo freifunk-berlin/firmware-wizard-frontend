@@ -459,14 +459,24 @@
 
           <div class="row" data-collapse="state.ip.register">
             <div class="col-md-offset-3 col-md-9">
-              <div class="form-group">
+              <div class="form-group hasFeedback" ng-class="formFeedback('ipv6Prefix')">
                 <label for="ipv6Prefix" class="col-md-3 control-label" translate>
                   .v6Prefix.label
                 </label>
                 <div class="col-md-9">
-                  <input type="text" class="form-control" id="ipv6Prefix"
+                  <input type="text" class="form-control" name="ipv6Prefix" id="ipv6Prefix"
                     placeholder="{{'ip.v6Prefix.placeholder' | translate}}"
-                    data-ng-model="wizard.ip.v6Prefix">
+                    data-ng-model="wizard.ip.v6Prefix"
+                    data-ng-required="!state.ip.register"
+                    data-ip-address data-ip-version="6" data-ip-type="subnet">
+                  <div class="help-block" ng-show="hasError('ipv6Prefix')">
+                    <div ng-show="wizardForm['ipv6Prefix'].$error.required" translate>
+                      .error.required
+                    </div>
+                    <div ng-show="wizardForm['ipv6Prefix'].$error.ipv6Subnet" translate>
+                      .v6Prefix.error.subnet
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -481,13 +491,14 @@
                   <input type="text" class="form-control" id="ipv4Wifi_{{$index}}" name="ipv4Wifi_{{$index}}"
                     translate translate-attr-placeholder=".v4.placeholder"
                     translate-values="{index: $index + 1}"
-                    data-ng-model="wizard.ip.v4[name]" data-ipv4-address
-                    data-ng-required="!state.ip.register">
+                    data-ng-model="wizard.ip.v4[name]"
+                    data-ng-required="!state.ip.register"
+                    data-ip-address data-ip-version="4">
                   <span class="fa form-control-feedback"
                     ng-class="formControlFeedback('ipv4Wifi_' + $index)"></span>
                   <div class="help-block" ng-show="hasError('ipv4Wifi_' + $index)">
                     <div ng-show="wizardForm['ipv4Wifi_' + $index].$error.required" translate>
-                      .v4.error.required
+                      .error.required
                     </div>
                     <div ng-show="wizardForm['ipv4Wifi_' + $index].$error.ipv4Address" translate>
                       .v4.error.ipv4Address
@@ -523,13 +534,15 @@
                     name="ipv4Lan"
                     translate translate-attr-placeholder=".v4.placeholder"
                     translate-values="{index: (state.wifi.devices | objectLength) + 1}"
-                    data-ng-model="wizard.ip.v4.lan" data-ipv4-address
-                    data-ng-required="wizard.ip.meshLan && !state.ip.generate">
+                    data-ng-model="wizard.ip.v4.lan"
+                    data-ng-required="wizard.ip.meshLan && !state.ip.generate"
+                    data-ip-address
+                    data-ip-version="4">
                   <span class="fa form-control-feedback"
                     ng-class="formControlFeedback('ipv4Lan')"></span>
                   <div class="help-block" ng-show="hasError('ipv4Lan')">
                     <div ng-show="wizardForm.ipv4Lan.$error.required" translate>
-                      .v4.error.required
+                      .error.required
                     </div>
                     <div ng-show="wizardForm.ipv4Lan.$error.ipv4Address" translate>
                       .v4.error.ipv4Address
@@ -568,7 +581,9 @@
                       placeholder="{{'ip.distribute.subnet.placeholder' | translate}}"
                       data-ng-model="wizard.ip.v4ClientSubnet"
 											data-ng-required="wizard.ip.distribute && !state.ip.register"
-                      data-ng-pattern="ipv4Pattern+'\/(25|26|27|28)'">
+                      data-ip-address
+                      data-ip-version="4"
+                      data-ip-type="subnet">
                     <p class="text-muted" data-ng-hide="hasError('ipv4ClientSubnet')" translate>
                       .distribute.subnet.help
                     </p>
@@ -576,7 +591,7 @@
                       <div data-ng-show="wizardForm.ipv4ClientSubnet.$error.required" translate>
                         .error.required
                       </div>
-                      <div data-ng-show="wizardForm.ipv4ClientSubnet.$error.pattern" translate>
+                      <div data-ng-show="wizardForm.ipv4ClientSubnet.$error.ipv4Subnet" translate>
                         .distribute.subnet.error.pattern
                       </div>
                     </div>
