@@ -263,7 +263,6 @@ module.exports = function(app) {
         });
       };
 
-      // helpers for validation
       $scope.hasError = function(field) {
         var form = $scope.wizardForm;
         return (form.$submitted || form[field].$dirty) && form[field].$invalid;

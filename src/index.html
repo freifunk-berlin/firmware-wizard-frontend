@@ -78,13 +78,23 @@
                 name="routerName"
                 placeholder="{{'basicRouterSetup.routerName.placeholder' | translate }}"
                 data-ng-model="wizard.router.name"
+                data-ng-required="(wizard.internet.share && wizard.internet.vpn03.enabled && state.internet.vpn03.generate) || state.ip.register"
                 required pattern="[A-Za-z0-9_\-]{0,16}"
                 >
               <span class="fa form-control-feedback"
                 ng-class="formControlFeedback('routerName')"></span>
-              <p class="text-muted" translate>
+              <p class="text-muted" ng-hide="hasError('routerName')" translate>
                 .routerName.help
               </p>
+							<span class="fa form-control-feedback" ng-class="{
+                'fa-times': hasError('routerName'),
+                'fa-check': wizardForm.routerName.$valid
+              }"></span>
+              <div class="help-block" ng-show="hasError('routerName')">
+                <div ng-show="wizardForm.routerName.$error.required" translate>
+                  .routerName.error.required
+                </div>
+              </div>
             </div>
           </div>
 
@@ -173,7 +183,7 @@
               <div class="help-block" ng-if="hasError('email')" translate>
                 .email.error
               </div>
-              <p class="text-muted" translate>
+              <p class="text-muted" ng-hide="hasError('email')" translate>
                 .email.help
               </p>
             </div>
@@ -377,26 +387,36 @@
 
               <div class="row" data-collapse="state.internet.vpn03.generate" translate-namespace=".generateCertificate">
                 <div class="col-md-offset-3 col-md-9">
-                  <div class="form-group">
+                  <div class="form-group has-feedback" data-ng-class="formFeedback('vpn03Cert')">
                     <label for="vpn03Cert" class="col-md-3 control-label" translate>
                       .certificate.label
                     </label>
                     <div class="col-md-9">
-                      <span class="btn btn-primary btn-file">
-                        <span translate>.browse</span>
-                        <input type="file" data-ng-model="wizard.internet.vpn03.cert">
-                      </span>
+                      <input type="file" name="vpn03Cert"
+											  data-ng-model="wizard.internet.vpn03.cert"
+											  data-file-valid
+											  data-ng-required="!state.internet.vpn03.generate && wizard.internet.vpn03.enabled && wizard.internet.share">
+                      <div class="help-block" ng-show="hasError('vpn03Cert')">
+                        <div ng-show="wizardForm.vpn03Cert.$error.required" translate>
+                          .error.required
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group has-feedback" data-ng-class="formFeedback('vpn03Key')">
                     <label for="vpn03Key" class="col-md-3 control-label" translate>
                       .key.label
                     </label>
                     <div class="col-md-9">
-                      <span class="btn btn-primary btn-file">
-                        <span translate>.browse</span>
-                        <input type="file" data-ng-model="wizard.internet.vpn03.key">
-                      </span>
+                      <input type="file" name="vpn03Key"
+                        data-ng-model="wizard.internet.vpn03.key"
+                        data-file-valid
+                        data-ng-required="!state.internet.vpn03.generate && wizard.internet.vpn03.enabled && wizard.internet.share">
+                      <div class="help-block" ng-show="hasError('vpn03Cert')">
+                        <div ng-show="wizardForm.vpn03Cert.$error.required" translate>
+                          .error.required
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -440,14 +460,24 @@
 
           <div class="row" data-collapse="state.ip.register">
             <div class="col-md-offset-3 col-md-9">
-              <div class="form-group">
+              <div class="form-group hasFeedback" ng-class="formFeedback('ipv6Prefix')">
                 <label for="ipv6Prefix" class="col-md-3 control-label" translate>
                   .v6Prefix.label
                 </label>
                 <div class="col-md-9">
-                  <input type="text" class="form-control" id="ipv6Prefix"
+                  <input type="text" class="form-control" name="ipv6Prefix" id="ipv6Prefix"
                     placeholder="{{'ip.v6Prefix.placeholder' | translate}}"
-                    data-ng-model="wizard.ip.v6Prefix">
+                    data-ng-model="wizard.ip.v6Prefix"
+                    data-ng-required="!state.ip.register"
+                    data-ip-address data-ip-version="6" data-ip-type="subnet">
+                  <div class="help-block" ng-show="hasError('ipv6Prefix')">
+                    <div ng-show="wizardForm['ipv6Prefix'].$error.required" translate>
+                      .error.required
+                    </div>
+                    <div ng-show="wizardForm['ipv6Prefix'].$error.ipv6Subnet" translate>
+                      .v6Prefix.error.subnet
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -462,12 +492,14 @@
                   <input type="text" class="form-control" id="ipv4Wifi_{{$index}}" name="ipv4Wifi_{{$index}}"
                     translate translate-attr-placeholder=".v4.placeholder"
                     translate-values="{index: $index + 1}"
-                    data-ng-model="wizard.ip.v4[name]" data-ipv4-address required>
+                    data-ng-model="wizard.ip.v4[name]"
+                    data-ng-required="!state.ip.register"
+                    data-ip-address data-ip-version="4">
                   <span class="fa form-control-feedback"
                     ng-class="formControlFeedback('ipv4Wifi_' + $index)"></span>
                   <div class="help-block" ng-show="hasError('ipv4Wifi_' + $index)">
                     <div ng-show="wizardForm['ipv4Wifi_' + $index].$error.required" translate>
-                      .v4.error.required
+                      .error.required
                     </div>
                     <div ng-show="wizardForm['ipv4Wifi_' + $index].$error.ipv4Address" translate>
                       .v4.error.ipv4Address
@@ -503,12 +535,15 @@
                     name="ipv4Lan"
                     translate translate-attr-placeholder=".v4.placeholder"
                     translate-values="{index: (state.wifi.devices | objectLength) + 1}"
-                    data-ng-model="wizard.ip.v4.lan" data-ipv4-address required>
+                    data-ng-model="wizard.ip.v4.lan"
+                    data-ng-required="wizard.ip.meshLan && !state.ip.generate"
+                    data-ip-address
+                    data-ip-version="4">
                   <span class="fa form-control-feedback"
                     ng-class="formControlFeedback('ipv4Lan')"></span>
                   <div class="help-block" ng-show="hasError('ipv4Lan')">
                     <div ng-show="wizardForm.ipv4Lan.$error.required" translate>
-                      .v4.error.required
+                      .error.required
                     </div>
                     <div ng-show="wizardForm.ipv4Lan.$error.ipv4Address" translate>
                       .v4.error.ipv4Address
@@ -537,15 +572,30 @@
             <div class="col-md-offset-3 col-md-9">
 
               <div data-collapse="state.ip.register">
-                <div class="form-group">
+                <div class="form-group has-feedback" data-ng-class="formFeedback('ipv4ClientSubnet')">
                   <label for="ipv4ClientSubnet" class="col-md-3 control-label" translate>
                     .distribute.subnet.label
                   </label>
                   <div class="col-md-9">
                     <input type="text" class="form-control" id="ipv4ClientSubnet"
+                      name="ipv4ClientSubnet"
                       placeholder="{{'ip.distribute.subnet.placeholder' | translate}}"
-                      data-ng-model="wizard.ip.v4ClientSubnet">
-                    <p class="text-muted" translate>.distribute.subnet.help</p>
+                      data-ng-model="wizard.ip.v4ClientSubnet"
+											data-ng-required="wizard.ip.distribute && !state.ip.register"
+                      data-ip-address
+                      data-ip-version="4"
+                      data-ip-type="subnet">
+                    <p class="text-muted" data-ng-hide="hasError('ipv4ClientSubnet')" translate>
+                      .distribute.subnet.help
+                    </p>
+                    <div class="help-block" data-ng-show="hasError('ipv4ClientSubnet')">
+                      <div data-ng-show="wizardForm.ipv4ClientSubnet.$error.required" translate>
+                        .error.required
+                      </div>
+                      <div data-ng-show="wizardForm.ipv4ClientSubnet.$error.ipv4Subnet" translate>
+                        .distribute.subnet.error.pattern
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

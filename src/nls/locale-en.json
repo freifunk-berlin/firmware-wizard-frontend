@@ -5,6 +5,7 @@
     "headline": "Basic router setup",
     "routerName": {
       "label": "Router name",
+      "error.required": "In order to register IPs or generate VPN connection files the router name is required.",
       "help": "The router name is needed for ip registration and VPN cert and key generation. Also this name is visible in the <a href=\"http://map.berlin.freifunk.net\">Freifunk map</a> if you decide to share your location.",
       "placeholder": "example: funkenpumpe3000"
     },
@@ -27,7 +28,7 @@
       "placeholder": "Funki Fine"
     },
     "email": {
-      "label": "Email",
+      "label":"Email",
       "help": "A valid email address is required if VPN cert/key generation or IP registration is activated below. By providing an email address, you also allow other Freifunkas to contact you.",
       "placeholder": "funki@fine.net",
       "error": "A valid email address is required for the current configuration."
@@ -77,7 +78,8 @@
       "help": "If this option is enabled, the wizard automatically generates a new certificate and key. Disable only if you want to upload already existing files manually.",
       "certificate.label": "VPN certificate",
       "key.label": "VPN key",
-      "browse": "Browse"
+      "browse": "Browse",
+      "error.required": "The file is required. It is generated automatically if you select the checkbox above."
     }
   },
   "ip": {
@@ -89,11 +91,11 @@
     },
     "v6Prefix": {
       "label": "IPv6 prefix",
+      "error.subnet": "This is not a valid IPv6 prefix.",
       "placeholder": "looks like 2001:bf7:c4ff:3300::/56"
     },
     "v4": {
       "placeholder": "looks like 10.31.133.{{40+index}}",
-      "error.required": "This field is required.",
       "error.ipv4Address": "Not a valid IPv4 address.",
       "wifi": {
         "label": "Wifi ({{name}}) Mesh-IPv4"
@@ -111,13 +113,18 @@
       "help": "At least one router in your local mesh (specifically: the local <a href=\"https://en.wikipedia.org/wiki/B.A.T.M.A.N.\" target=\"_blank\">BATMAN-adv</a> mesh) should distribute IP addresses for clients. If you share your internet connection with this router or if are unsure if there is another router in your neighborhood that distributes IPs, you should enable this setting.",
       "subnet": {
         "label": "Client IPv4 subnet",
-        "placeholder" : "",
+        "placeholder" :"",
+        "error.pattern":"This is not a valid subnet.",
         "help": "The IPv4 subnet from which IPs are distributed to clients that connect to your access point."
       },
       "expectedClients": {
         "label": "Expected number of concurrent clients",
         "help": "Please estimate how many clients will be connected to your access point at the same time."
       }
+    },
+    "error": {
+      "required": "This field is required unless you register new IPs automatically.",
+      "ipPattern": "This is not a valid IP adress."
     }
   },
   "advancedWifi": {
