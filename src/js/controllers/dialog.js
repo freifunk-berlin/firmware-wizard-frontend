@@ -2,74 +2,53 @@
 
 module.exports = function(app) {
   app.controller('DialogController',
-    function($scope, $modalInstance, state, wizard, $interval, $http) {
-
-      console.log(state);
-
+    function($scope, $modalInstance, state, wizard, $interval, $http, $translate, downloadFile, $filter) {
       $scope.state = state;
       $scope.wizard = wizard;
       $scope.state.registerips = {
-        max: 4,
-        progress: 0
+        progress: {
+          reserved: 'notStarted',
+          keyEntered: 'notStarted',
+          confirmed: 'notStarted',
+          configWritten: 'notStarted'
+        },
+        steps: 0,
       };
       $scope.state.generatevpn = {
         max: 4,
         progress: 0
       };
 
+      $scope.getObjectKeys = function(scopeObject) {
+        return Object.keys(scopeObject);
+      }
+
       $scope.reserveIPs = function() {
-        //call register ips
+        //TODO call register ips
         $http.get('/nls/locale-de.json').then(function(response) {
           //success callback
-          //TODO handle error in response
-          //render confirmation code field
-          $scope.state.registerips.reserved = true;
-          $scope.state.registerips.message = {
-            type:'info',
-            value: 'success.reserveip'
-          }
-          $scope.state.registerips.progress++;
+          $scope.state.registerips.progress.reserved = 'success';
+          $scope.state.registerips.steps++;
         }, function(response){
           //error callback
           console.log(response);
-          $scope.state.registerips.message = {
-            type:'error',
-            value: 'error.reserveip'
-          }
+          $scope.state.registerips.progress.reserved = 'error';
         });
-
-        //just some testcode
-        /*$interval(function() {
-          if ($scope.state.registerips.progress <
-              $scope.state.registerips.max) {
-            $scope.state.registerips.progress++;
-          }
-        },3500,$scope.state.registerips.max);*/
       };
 
       //check confirmation code
       $scope.confirmIPs = function() {
-        $scope.state.registerips.progress++;
+        $scope.state.registerips.steps++;
+        $scope.state.registerips.progress.keyEntered = 'success'
         $http.get('gibs/nich.html').then(
           function(response) {
             //succuess callback
-
-            //TODO check for error in response
-
-            $scope.state.registerips.progress++;
-
-            $scope.state.registerips.message = {
-              type:'success',
-              value: 'success.reserveip'
-            }
-            //write ips to wizard config
+            $scope.state.registerips.steps++;
+            $scope.state.registerips.progress.confirmed = 'success'
+            //TODO write ips to wizard config
           }, function(response) {
             //error callback
-            console.log(response);
-            $scope.state.registerips.message = {
-              type:'error',
-              value: 'error.confirmip'
-            }
+            $scope.state.registerips.progress.confirmed = 'error'
           }
         );
       }
@@ -96,18 +75,33 @@ module.exports = function(app) {
         // show download cert and key tar file button or but everything in the "Download Config"?
       };
 
+			$scope.downloadConfig = function() {
+        downloadFile(
+          'config.json',
+          $filter('json')($scope.wizard),
+          'application/json',
+          true
+        );
+      };
+
+      //return wizard and state back to parent controller
       $scope.ok = function() {
-        $modalInstance.close($scope.selected.item);
+        $modalInstance.close({
+          "wizard": $scope.wizard,
+          "state": $scope.state
+        });
       };
 
       $scope.cancel = function() {
         $modalInstance.dismiss('cancel');
       };
 
+      //show ip registration processing
       if ($scope.state.ip.register) {
         $scope.reserveIPs();
       }
 
+      //show vpn files generation process
       if ($scope.wizard.internet.share &&
           $scope.state.internet.vpn03.generate) {
         $scope.generateVPN03CertAndKey();

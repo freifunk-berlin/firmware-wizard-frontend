@@ -1,25 +1,41 @@
 <div class="modal-header">
-  <h3 class="modal-title">Proessing Data</h3>
+  <h3 class="modal-title" translate>processData.headline</h3>
 </div>
-<div class="modal-body">
+<div class="modal-body" translate-namespace="processData">
   <div class="container-fluid">
-    <div class="row" data-ng-show="state.ip.register">
+    <div class="row" data-ng-hide="state.ip.register || (wizard.internet.share && state.internet.vpn03.generate)">
       <div class="col-md-12">
-        <h4>Register IPs</h4>
-        <uib-progressbar max="state.registerips.max" value="state.registerips.progress">
+        <i class="fa fa-fw fa-info-circle"></i><span translate>.finished</span>
+      </div>
+    </div>
+    <div class="row" data-ng-show="state.ip.register" translate-namespace="processData.registerIPs">
+      <div class="col-md-12">
+        <h4 translate>.headline</h4>
+        <uib-progressbar max="getObjectKeys(state.registerips.progress).length" value="state.registerips.steps">
           <span style="color:white; white-space:nowrap;">
-            {{state.registerips.progress}} / {{state.registerips.max}}
+            {{state.registerips.steps}} / {{getObjectKeys(state.registerips.progress).length}}
           </span>
         </uib-progressbar>
-        <div class="alert"
-          data-ng-collapse="!state.registerips.message">
-          <span class="fa fa-circle fa-info" aria-hidden="true"></span>
-          <span class="sr-only">Message:</span>
-          <span translate>{{state.registerips.message.value}}</span>
+        <div class="form-group">
+          <div data-ng-repeat="progress in getObjectKeys(state.registerips.progress)">
+            <i class="fa" data-ng-class="{
+              'fa-spinner': state.registerips.progress[progress] == 'notStarted',
+              'fa-check text-success': state.registerips.progress[progress] == 'success',
+              'fa-warning text-warning' : state.registerips.progress[progress] == 'error'
+              }"></i> <span>{{ 'processData.registerIPs.'+progress | translate }}</span>
+          </div>
         </div>
-        <div data-ng-show="state.registerips.reserved">
-          <input type="text">
-          <button type="button" class="btn" data-ng-click="confirmIPs()">Confirm IPs</button>
+        <div class="form-group" data-ng-show="state.registerips.progress.reserved == 'success' && state.registerips.progress.keyEntered == 'notStarted'">
+          <label for="confirmKey" class="col-md-3 control-label" translate>
+            .confirmKey.label
+          </label>
+          <div class="col-md-7">
+            <input type="text" class="form-control" name="confirmKey" id="confirmKey">
+          </div>
+          <!-- TODO do not allow empty values-->
+          <div class="col-md-1">
+            <button type="button" class="btn" data-ng-click="confirmIPs()" translate>.confirmKey.submit</button>
+          </div>
         </div>
       </div>
     </div>
@@ -42,7 +58,8 @@
     </div>
   </div>
 </div>
-<div class="modal-footer">
-  <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-  <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+<div class="modal-footer" translate-namespace="processData">
+  <button class="btn btn-default" type="button" ng-click="downloadConfig()" translate><i class="fa fa-download"></i>.download</button>
+  <button class="btn btn-primary" type="button" ng-click="ok()" translate>.reboot</button>
+  <button class="btn btn-warning" type="button" ng-click="cancel()" translate>.cancel</button>
 </div>

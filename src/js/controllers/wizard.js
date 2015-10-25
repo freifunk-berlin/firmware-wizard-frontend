@@ -288,31 +288,29 @@ module.exports = function(app) {
         };
       };
 
-      $scope.downloadConfig = function() {
-        downloadFile(
-          'config.json',
-          $filter('json')($scope.wizard),
-          'application/json',
-          true
-        );
-      };
-
       $scope.pow = Math.pow;
 
-      //TODO open dialog on submit if there are no errors
-      $scope.open = function() {
-        var modalInstance = $uibModal.open({
-          templateUrl: '/view/partials/dialog/dialog.html',
-          controller: 'DialogController',
-          resolve: {
-            state: function() {
-              return $scope.state;
-            },
-            wizard: function() {
-              return $scope.wizard;
+      $scope.processForm = function() {
+        if(!$scope.wizardForm.$invalid) {
+          var modalInstance = $uibModal.open({
+            templateUrl: '/view/partials/dialog/dialog.html',
+            controller: 'DialogController',
+            resolve: {
+              state: function() {
+                return $scope.state;
+              },
+              wizard: function() {
+                return $scope.wizard;
+              }
             }
-          }
-        });
+          });
+
+          //handle wizard and state from dialog
+          modalInstance.result.then(function(returnData) {
+            console.log(returnData.wizard);
+            console.log(returnData.state);
+          });
+        }
       };
     }
   ]);

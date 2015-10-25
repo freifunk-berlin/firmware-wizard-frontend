@@ -169,6 +169,23 @@
     }
   },
   "configIncorrect": "The data you entered is invalid. Please correct them before saving.",
-  "save": "Save & Restart",
-  "download": "Download configuration"
+  "processData": {
+    "start": "Process data",
+    "finished": "Your data was process successfully. Click the reboot button to become a Freifunka.",
+    "headline": "Process Data",
+    "registerIPs": {
+      "headline": "Register IPs",
+      "reserved": "Reserve IPs",
+      "keyEntered": "Enter confirmation key",
+      "confirmed": "Confirm IPs",
+      "configWritten": "Write IPs to configuration",
+      "confirmKey": {
+        "label": "Confirmation Key",
+        "submit": "Enter"
+      }
+    },
+    "reboot": "Save & Reboot",
+    "cancel": "Cancel",
+    "download": "Download configuration"
+  }
 }

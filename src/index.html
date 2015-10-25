@@ -56,7 +56,7 @@
     </div>
 
     <form novalidate name="wizardForm"
-        class="form-horizontal wizard-categories">
+        class="form-horizontal wizard-categories" ng-submit="processForm()">
 
       <!-- basic router setup -->
       <div class="wizard-category">
@@ -776,15 +776,10 @@
           <span class="text-danger" ng-show="wizardForm.$submitted && wizardForm.$invalid">
             {{ 'configIncorrect' | translate }}
           </span>
-          <button type="button" class="btn btn-default" ng-click="downloadConfig()">
-            <i class="fa fa-download"></i> {{ 'download' | translate }}
-          </button>
-          <button type="submit" class="btn btn-primary" data-ng-click="submit()" data-ng-class="{disabled: wizardForm.$invalid}">
+          <button type="submit" class="btn btn-primary" data-ng-class="{disabled: wizardForm.$invalid}">
             <i class="fa fa-check"></i>
-              {{ 'save' | translate }}
+              {{ 'processData.start' | translate }}
           </button>
-          <!-- TODO intercept submit and open dialog if there are no errors in form -->
-          <button type="button" class="btn" ng-click="open()">open</button>
         </div>
       </div>
     </form>
