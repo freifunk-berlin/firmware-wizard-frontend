@@ -7,12 +7,10 @@ module.exports = function(app) {
     function($scope, leafletData, $http, $filter, downloadFile, $translate,
              jsonrpc, $uibModal) {
 
-      $scope.changeLang = function() {
-        $translate.use($scope.selectedLanguage);
-      };
-
-      var autoDetectedLanguage = $translate.proposedLanguage();
-      $scope.selectedLanguage =  autoDetectedLanguage;
+      $scope.selectedLanguage = $translate.use();
+      $scope.$watch('selectedLanguage', function(language) {
+        $translate.use(language);
+      });
 
       $scope.wizard = {
         router: {
@@ -48,7 +46,7 @@ module.exports = function(app) {
             lan: undefined
           },
           v6Prefix: undefined,
-          distribute: false,
+          distribute: true,
           v4ClientSubnet: undefined
         },
         wifi: {
@@ -265,9 +263,29 @@ module.exports = function(app) {
         });
       };
 
+      // helpers for validation
       $scope.hasError = function(field) {
         var form = $scope.wizardForm;
         return (form.$submitted || form[field].$dirty) && form[field].$invalid;
+      };
+
+      $scope.hasSuccess = function(field) {
+        var form = $scope.wizardForm;
+        return form[field].$dirty && form[field].$valid;
+      };
+
+      $scope.formFeedback = function(field) {
+        return {
+          'has-error': $scope.hasError(field),
+          'has-success': $scope.hasSuccess(field),
+        };
+      };
+
+      $scope.formControlFeedback = function(field) {
+        return {
+          'fa-times': $scope.hasError(field),
+          'fa-check': $scope.hasSuccess(field),
+        };
       };
 
       $scope.downloadConfig = function() {

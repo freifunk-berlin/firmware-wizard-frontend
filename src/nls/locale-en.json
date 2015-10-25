@@ -1,10 +1,12 @@
 {
 	"heading": "Router configuration wizard",
+  "intro": "This wizard helps to configure your Freifunk router.",
   "basicRouterSetup": {
-    "headline":"Basic router setup",
+    "headline": "Basic router setup",
     "routerName": {
       "label": "Router name",
-      "placeholder": "name of the router"
+      "help": "The router name is needed for ip registration and VPN cert and key generation. Also this name is visible in the <a href=\"http://map.berlin.freifunk.net\">Freifunk map</a> if you decide to share your location.",
+      "placeholder": "example: funkenpumpe3000"
     },
     "password": {
       "label": "New router password",
@@ -13,7 +15,7 @@
       "error.minLength": "A password must have at least 6 characters."
     },
     "passwordVerification": {
-      "label":"Router password verification",
+      "label": "Router password verification",
       "placeholder": "repeat password",
       "error.match": "Passwords have to match."
     }
@@ -25,12 +27,15 @@
       "placeholder": "Funki Fine"
     },
     "email": {
-      "label":"Email",
-      "placeholder": "funki@fine.net"
+      "label": "Email",
+      "help": "A valid email address is required if VPN cert/key generation or IP registration is activated below. By providing an email address, you also allow other Freifunkas to contact you.",
+      "placeholder": "funki@fine.net",
+      "error": "A valid email address is required for the current configuration."
     }
   },
   "routerLocation": {
-    "headline":"Router location",
+    "headline": "Router location",
+    "help": "If you provide the location data for your router it will be visible in the <a href=\"http://map.berlin.freifunk.net\" target=\"_blank\">Freifunk map</a>. You can drag the map marker to the correct location or enter the location and address manually.",
     "getLocation": "Get my location",
     "geolocation": {
       "label": "Geolocation",
@@ -38,7 +43,7 @@
       "longitude": "Longitude"
     },
     "street": {
-      "label":"Street and house no.",
+      "label": "Street and house no.",
       "placeholder": "Panoramastraße"
     },
     "postalCode":{
@@ -52,59 +57,77 @@
   },
   "internetSharing": {
     "headline": "Internet sharing",
-    "shareInternet.label": "Share internet",
+    "help": "Freifunk is an independent and free network built by many different people that can be used for many different purposes. One purpose is to access the internet and this service is only possible because some Freifunkas decided to share their internet connections.",
+    "shareInternet": {
+      "label": "Share internet",
+      "help": "If you want to share your internet connection select the checkbox.",
+      "thanks": "Thank you for sharing your internet connection!"
+    },
     "transferSpeed": {
       "label": "Transfer speed limit in Mbps",
       "up": "Up",
       "down": "Down"
     },
     "antistoererhaftung": {
-      "label":"Anti-Störerhaftung via VPN03",
-      "operatedBy": "is operated by"
+      "label": "Anti-Störerhaftung via VPN03",
+      "help": "To protect yourself from the <a href=\"https://de.wikipedia.org/wiki/St%C3%B6rerhaftung\" target=\"_blank\">Störerhaftung</a> you can use the <a href=\"http://wiki.freifunk.net/vpn03\" target=\"_blanl\">VPN03</a> service that is operated by <a href=\"http://foerderverein.freie-netzwerke.de/\" target=\"_blanl\">Förderverein Freie Netzwerke.</a>"
     },
     "generateCertificate": {
       "label": "Generate new VPN03 certificate and key for this router",
+      "help": "If this option is enabled, the wizard automatically generates a new certificate and key. Disable only if you want to upload already existing files manually.",
       "certificate.label": "VPN certificate",
       "key.label": "VPN key",
       "browse": "Browse"
     }
   },
   "ip": {
-    "headline":"IP addresses",
-    "register.label":"Register new IP addresses",
-    "ipv6": {
+    "headline": "IP addresses",
+    "help": "Your router requires <a href=\"https://en.wikipedia.org/wiki/IP_address\" target=\"_blank\">IP addresses</a> for communicating with other routers and with clients that connect to the access point. Freifunk uses both IPv4 (legacy) and IPv6 (recent).",
+    "register": {
+      "label": "Register new IP addresses",
+      "help": "If this option is enabled, the wizard automatically registers new IP addresses for this router. Disable only if you already have IP addresses from the <a href=\"http://config.berlin.freifunk.net/\" target=\"_blank\">Freifunk Berlin IP registry</a>."
+    },
+    "v6Prefix": {
       "label": "IPv6 prefix",
-      "placeholder": ""
+      "placeholder": "looks like 2001:bf7:c4ff:3300::/56"
     },
-    "meship": {
-      "label": "Wifi ({{name}}) Mesh-IPv4",
-      "placeholder": ""
-    },
-    "meshViaLAN": {
-      "label": "Mesh via LAN",
-      "lanip": {
-        "label": "LAN Mesh-IPv4",
-        "placeholder":""
+    "v4": {
+      "placeholder": "looks like 10.31.133.{{40+index}}",
+      "error.required": "This field is required.",
+      "error.ipv4Address": "Not a valid IPv4 address.",
+      "wifi": {
+        "label": "Wifi ({{name}}) Mesh-IPv4"
+      },
+      "lan": {
+        "label": "LAN Mesh-IPv4"
       }
+    },
+    "meshLan": {
+      "help": "Allows you to connect the LAN ports of your router via a cable to other devices that also have this setting enabled. If you only have one router, this setting can be turned off. Then the LAN ports can be used to connect clients with a cable.",
+      "label": "Mesh via LAN"
     },
     "distribute": {
       "label": "Distribute client IP addresses",
+      "help": "At least one router in your local mesh (specifically: the local <a href=\"https://en.wikipedia.org/wiki/B.A.T.M.A.N.\" target=\"_blank\">BATMAN-adv</a> mesh) should distribute IP addresses for clients. If you share your internet connection with this router or if are unsure if there is another router in your neighborhood that distributes IPs, you should enable this setting.",
       "subnet": {
         "label": "Client IPv4 subnet",
-        "placeholder" :""
+        "placeholder" : "",
+        "help": "The IPv4 subnet from which IPs are distributed to clients that connect to your access point."
       },
       "expectedClients": {
-        "label":"Expected number of concurrent clients"
+        "label": "Expected number of concurrent clients",
+        "help": "Please estimate how many clients will be connected to your access point at the same time."
       }
     }
   },
   "advancedWifi": {
-    "headline":"Advanced wifi options",
+    "headline": "Advanced wifi options",
     "show": "Show advanced wifi options",
+    "help": "By default your router is configured to connect automatically with other Freifunk routers that also have default settings. If you want to connect to a router with a special configuration, you can pick this router from a wifi scan or you can enter the configuration manually.",
     "reset": "Reset to defaults",
     "device": "Wifi device {{name}}",
     "mode": {
-      "label":"Mode",
+      "label": "Mode",
       "option": {
         "mesh.label": "mesh (802.11s)",
         "adhoc.label": "adhoc",
@@ -112,7 +135,7 @@
         "ap.label": "master (AP)"
       }
     },
-    "channel.label":"Channel",
+    "channel.label": "Channel",
     "ssid": {
       "label": "Name (SSID)",
       "placeholder": "intern-ch{{XX}}-bat{{X}}.freifunk.net"
