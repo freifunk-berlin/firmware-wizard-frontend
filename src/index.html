@@ -83,7 +83,7 @@
               <p class="text-muted" ng-hide="hasError('routerName')" translate>
                 .routerName.help
               </p>
-							<span class="fa form-control-feedback" ng-class="{
+              <span class="fa form-control-feedback" ng-class="{
                 'fa-times': hasError('routerName'),
                 'fa-check': wizardForm.routerName.$valid
               }"></span>
@@ -390,9 +390,9 @@
                     </label>
                     <div class="col-md-9">
                       <input type="file" name="vpn03Cert"
-											  data-ng-model="wizard.internet.vpn03.cert"
-											  data-file-valid
-											  data-ng-required="!state.internet.vpn03.generate && wizard.internet.vpn03.enabled && wizard.internet.share">
+                        data-ng-model="wizard.internet.vpn03.cert"
+                        data-file-valid
+                        data-ng-required="!state.internet.vpn03.generate && wizard.internet.vpn03.enabled && wizard.internet.share">
                       <div class="help-block" ng-show="hasError('vpn03Cert')">
                         <div ng-show="wizardForm.vpn03Cert.$error.required" translate>
                           .error.required
@@ -578,7 +578,7 @@
                       name="ipv4ClientSubnet"
                       placeholder="{{'ip.distribute.subnet.placeholder' | translate}}"
                       data-ng-model="wizard.ip.v4ClientSubnet"
-											data-ng-required="wizard.ip.distribute && !state.ip.register"
+                      data-ng-required="wizard.ip.distribute && !state.ip.register"
                       data-ip-address
                       data-ip-version="4"
                       data-ip-type="subnet">
