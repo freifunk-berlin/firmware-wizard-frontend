@@ -3,7 +3,7 @@
 module.exports = function(app) {
   app.controller('WizardCtrl', [
     '$scope', 'leafletData', '$http', '$filter', 'downloadFile', '$translate',
-    'jsonrpc','$uibModal',
+    'jsonrpc','$uibModal', 'REGISTER_IPS',
     function($scope, leafletData, $http, $filter, downloadFile, $translate,
              jsonrpc, $uibModal) {
 

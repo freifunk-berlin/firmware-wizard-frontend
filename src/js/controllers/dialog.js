@@ -2,7 +2,7 @@
 
 module.exports = function(app) {
   app.controller('DialogController',
-    function($scope, $modalInstance, state, wizard, $interval, $http, $translate, downloadFile, $filter) {
+    function($scope, $modalInstance, state, wizard, $interval, $http, $translate, downloadFile, $filter, REGISTER_IPS) {
       $scope.state = state;
       $scope.wizard = wizard;
       $scope.state.registerips = {
@@ -24,8 +24,16 @@ module.exports = function(app) {
       }
 
       $scope.reserveIPs = function() {
-        //TODO call register ips
-        $http.get('/nls/locale-de.json').then(function(response) {
+        var meshIpsSubnetSize = Object.keys(state.wifi.devices).length;
+        if (wizard.ip.meshLan) {
+          meshIpsSubnetSize++
+        }
+        $http.post(REGISTER_IPS.service+REGISTER_IPS.reserve, {
+          email: wizard.contact.email,
+          routerName: wizard.router.name,
+          v4subnet: [meshIpsSubnetSize, state.ip.v4ClientSubnetSize],
+          v6subnet: [56]
+        }).then(function(response) {
           //success callback
           $scope.state.registerips.progress.reserved = 'success';
           $scope.state.registerips.steps++;
@@ -40,7 +48,7 @@ module.exports = function(app) {
       $scope.confirmIPs = function() {
         $scope.state.registerips.steps++;
         $scope.state.registerips.progress.keyEntered = 'success'
-        $http.get('gibs/nich.html').then(
+        $http.get(REGISTER_IPS.service+REGISTER_IPS.confirm).then(
           function(response) {
             //succuess callback
             $scope.state.registerips.steps++;

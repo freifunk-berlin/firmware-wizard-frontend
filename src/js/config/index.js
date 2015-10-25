@@ -3,4 +3,5 @@
 module.exports = function(app) {
   require('./hrefWhitelist')(app);
   require('./translate')(app);
+  require('./constants')(app);
 };
