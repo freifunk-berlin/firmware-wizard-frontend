@@ -19,7 +19,13 @@ npm install
 bower install
 ```
 
-A build (to the subdirectory `gh-pages`) is triggered via
+A build (to the subdirectory `dist`) is triggered via
 ```
-npm run build
+env=test npm run build
 ```
+or
+
+```
+env=prod npm run build
+```
+which uses different configs from `src/env/` directory.

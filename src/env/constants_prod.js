@@ -2,7 +2,7 @@
 
 module.exports = function(app) {
   app.constant('REGISTER_IPS',{
-    service: 'http://localhost:8080/ipservice',
+    service: 'http://prod.com',
     reserve: '/reserve',
     confirm: '/confirm'
   });

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "exit 1",
     "lint": "jshint src/js && jscs src/js",
-    "build": "gulp build:copy && gulp build:vendor && npm run build:bundle",
+    "build": "gulp build:copy --env $env && gulp build:vendor && npm run build:bundle",
     "build:bundle": "browserify src/js/index.js -d | exorcist dist/index.js.map > dist/index.js"
   },
   "repository": {
@@ -23,7 +23,10 @@
     "browserify": "^11.2.0",
     "exorcist": "^0.4.0",
     "gulp": "^3.9.0",
-    "ip": "^1.0.1"
+    "gulp-debug": "^2.1.2",
+    "gulp-rename": "^1.2.2",
+    "ip": "^1.0.1",
+    "minimist": "^1.2.0"
   },
   "dependencies": {
     "jscs": "^2.2.0",
