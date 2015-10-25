@@ -69,7 +69,6 @@
             <span translate>.headline</span>
           </h2>
 
-          <!-- TODO: generate router name -->
           <div class="form-group has-feedback" ng-class="formFeedback('routerName')">
             <label for="routerName" class="col-md-3 control-label" translate>.routerName.label</label>
             <div class="col-md-9">
@@ -77,7 +76,6 @@
                 name="routerName"
                 placeholder="{{'basicRouterSetup.routerName.placeholder' | translate }}"
                 data-ng-model="wizard.router.name"
-                data-ng-required="(wizard.internet.share && wizard.internet.vpn03.enabled && state.internet.vpn03.generate) || state.ip.register"
                 required pattern="[A-Za-z0-9_\-]{0,16}"
                 >
               <span class="fa form-control-feedback"
