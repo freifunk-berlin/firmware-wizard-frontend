@@ -1,9 +1,9 @@
 var gulp = require('gulp');
 var minimist = require('minimist');
-var rename = require('gulp-rename');
 var debug = require('gulp-debug');
 
 var buildDir = './dist/';
+var buildPrepareDir = './build'
 
 var knownOptions = {
     string: 'env',
@@ -12,12 +12,18 @@ var knownOptions = {
 
 var options = minimist(process.argv.slice(2), knownOptions);
 
-gulp.task('build:copy', function() {
-  gulp.src('src/index.*').pipe(gulp.dest(buildDir));
-  gulp.src('src/nls/locale-*.json').pipe(gulp.dest(buildDir + '/nls/'));
-  gulp.src('src/view/**').pipe(gulp.dest(buildDir + '/view/'));
+gulp.task('build:prepare', function() {
   console.log('build for >'+options.env+'< environment');
-  gulp.src('src/env/constants_'+options.env+'.js').pipe(debug()).pipe(rename('constants.js')).pipe(gulp.dest('src/js/config'));
+  gulp.src('src/js/**').pipe(gulp.dest(buildPrepareDir + '/js/'));
+  gulp.src('src/index.*').pipe(gulp.dest(buildPrepareDir));
+  gulp.src('src/nls/locale-*.json').pipe(gulp.dest(buildPrepareDir + '/nls/'));
+  gulp.src('src/view/**').pipe(gulp.dest(buildPrepareDir + '/view/'));
+  gulp.src('src/env/'+options.env+'/js/**').pipe(gulp.dest(buildPrepareDir + '/js/'));
+  gulp.src(['src/env/'+options.env+'/**', '!src/env/'+options.env+'/js/**']).pipe(gulp.dest(buildPrepareDir));
+});
+
+gulp.task('build:copy', function() {
+  gulp.src([buildPrepareDir + '/**', '!' + buildPrepareDir+'/js/**', '!' + buildPrepareDir+'/js']).pipe(gulp.dest(buildDir));
 });
 
 gulp.task('build:vendor', function() {

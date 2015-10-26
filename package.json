@@ -6,8 +6,8 @@
   "scripts": {
     "test": "exit 1",
     "lint": "jshint src/js && jscs src/js",
-    "build": "gulp build:copy --env $env && gulp build:vendor && npm run build:bundle",
-    "build:bundle": "browserify src/js/index.js -d | exorcist dist/index.js.map > dist/index.js"
+    "build": "gulp build:prepare --env $env && gulp build:copy && gulp build:vendor && npm run build:bundle",
+    "build:bundle": "browserify build/js/index.js -d | exorcist dist/index.js.map > dist/index.js"
   },
   "repository": {
     "type": "git",

@@ -28,17 +28,22 @@ module.exports = function(app) {
         if (wizard.ip.meshLan) {
           meshIpsSubnetSize++
         }
-        $http.post(REGISTER_IPS.service+REGISTER_IPS.reserve, {
+        $http({
+          method: REGISTER_IPS.method,
+          url: REGISTER_IPS.service+REGISTER_IPS.reserve
+        },{
           email: wizard.contact.email,
           routerName: wizard.router.name,
           v4subnet: [meshIpsSubnetSize, state.ip.v4ClientSubnetSize],
           v6subnet: [56]
         }).then(function(response) {
           //success callback
+          //TODO handle error in response
           $scope.state.registerips.progress.reserved = 'success';
           $scope.state.registerips.steps++;
         }, function(response){
           //error callback
+          console.log('error');
           console.log(response);
           $scope.state.registerips.progress.reserved = 'error';
         });
@@ -48,12 +53,15 @@ module.exports = function(app) {
       $scope.confirmIPs = function() {
         $scope.state.registerips.steps++;
         $scope.state.registerips.progress.keyEntered = 'success'
-        $http.get(REGISTER_IPS.service+REGISTER_IPS.confirm).then(
+        $http({
+          method: REGISTER_IPS.method,
+          url: REGISTER_IPS.service+REGISTER_IPS.confirm
+        }).then(
           function(response) {
             //succuess callback
+            console.log(response.data)
             $scope.state.registerips.steps++;
             $scope.state.registerips.progress.confirmed = 'success'
-            //TODO write ips to wizard config
           }, function(response) {
             //error callback
             $scope.state.registerips.progress.confirmed = 'error'
