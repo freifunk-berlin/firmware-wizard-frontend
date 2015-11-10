@@ -92,6 +92,11 @@
                   .routerName.error.required
                 </div>
               </div>
+              <div class="help-block" ng-show="hasError('routerName')">
+                <div ng-show="wizardForm.routerName.$error.pattern" translate>
+                  .routerName.error.pattern
+                </div>
+              </div>
             </div>
           </div>
 

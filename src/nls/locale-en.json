@@ -5,7 +5,10 @@
     "headline": "Basic router setup",
     "routerName": {
       "label": "Router name",
-      "error.required": "In order to register IPs or generate VPN connection files the router name is required.",
+      "error": {
+        "required": "This field is required.",
+        "pattern":"Special Characters are not allowed."
+      },
       "help": "The router name is needed for ip registration and VPN cert and key generation. Also this name is visible in the <a href=\"http://map.berlin.freifunk.net\">Freifunk map</a> if you decide to share your location.",
       "placeholder": "example: funkenpumpe3000"
     },
