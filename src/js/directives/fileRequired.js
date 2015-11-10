@@ -12,10 +12,6 @@ module.exports = function(app) {
         required: '=ngRequired'
       },
       link: function(scope, element, attributes, ngModel) {
-        console.log(scope.required);
-        scope.$watch('required', function(newValue, oldValue) {
-          console.log('required changed');
-        });
 
         //handle element change
         element.bind('change',function() {
