@@ -36,7 +36,10 @@
       "label":"Email",
       "help": "A valid email address is required if VPN cert/key generation or IP registration is activated below. By providing an email address, you also allow other Freifunkas to contact you.",
       "placeholder": "funki@fine.net",
-      "error": "A valid email address is required for the current configuration."
+      "error": {
+        "required":"A valid email address is required for the current configuration.",
+        "pattern": "Please enter a valid email address."
+      }
     }
   },
   "routerLocation": {

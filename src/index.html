@@ -188,8 +188,13 @@
                 >
               <span class="fa form-control-feedback"
                 ng-class="formControlFeedback('email')"></span>
-              <div class="help-block" ng-if="hasError('email')" translate>
-                .email.error
+              <div class="help-block" ng-show="hasError('email')">
+                <div ng-show="wizardForm.email.$error.required" translate>
+                  .email.error.required
+                </div>
+                <div ng-show="wizardForm.email.$error.pattern" translate>
+                  .email.error.pattern
+                </div>
               </div>
               <p class="text-muted" ng-hide="hasError('email')" translate>
                 .email.help
