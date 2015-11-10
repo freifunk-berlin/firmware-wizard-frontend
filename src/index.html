@@ -76,7 +76,9 @@
                 name="routerName"
                 placeholder="{{'basicRouterSetup.routerName.placeholder' | translate }}"
                 data-ng-model="wizard.router.name"
-                required pattern="[A-Za-z0-9_\-]{0,16}"
+                required pattern="[A-Za-z0-9_\-]*"
+                data-ng-minlength="3"
+                data-ng-maxlength="32"
                 >
               <span class="fa form-control-feedback"
                 ng-class="formControlFeedback('routerName')"></span>
@@ -91,10 +93,14 @@
                 <div ng-show="wizardForm.routerName.$error.required" translate>
                   .routerName.error.required
                 </div>
-              </div>
-              <div class="help-block" ng-show="hasError('routerName')">
                 <div ng-show="wizardForm.routerName.$error.pattern" translate>
                   .routerName.error.pattern
+                </div>
+                <div ng-show="wizardForm.routerName.$error.maxlength" translate>
+                  .routerName.error.maxLength
+                </div>
+                <div ng-show="wizardForm.routerName.$error.minlength" translate>
+                  .routerName.error.minLength
                 </div>
               </div>
             </div>

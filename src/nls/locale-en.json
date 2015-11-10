@@ -7,7 +7,9 @@
       "label": "Router name",
       "error": {
         "required": "This field is required.",
-        "pattern":"Special Characters are not allowed."
+        "pattern": "Special Characters are not allowed.",
+        "maxLength": "Max Characters 36",
+        "minLength": "Min Characters 3"
       },
       "help": "The router name is needed for ip registration and VPN cert and key generation. Also this name is visible in the <a href=\"http://map.berlin.freifunk.net\">Freifunk map</a> if you decide to share your location.",
       "placeholder": "example: funkenpumpe3000"
