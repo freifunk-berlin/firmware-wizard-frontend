@@ -99,7 +99,10 @@
     },
     "v6Prefix": {
       "label": "IPv6 prefix",
-      "error.subnet": "This is not a valid IPv6 prefix.",
+      "help": "The provided IPv6 prefix is distributed across all interfaces of the router.",
+      "error.required": "The IPv6 prefix is required.",
+      "error.ipAddress": "Please enter a valid IPv6 prefix.",
+      "error.ipPrefixMaxLength": "The IPv6 prefix length must not be larger than /62.",
       "placeholder": "looks like 2001:bf7:c4ff:3300::/56"
     },
     "v4": {

@@ -14,6 +14,7 @@
 
     <script src="vendor/angular/angular.min.js"></script>
     <script src="vendor/angular/angular-animate.min.js"></script>
+    <script src="vendor/angular/angular-messages.min.js"></script>
     <script src="vendor/angular/angular-translate.min.js"></script>
     <script src="vendor/angular/angular-translate-loader-static-files.min.js"></script>
 
@@ -76,20 +77,14 @@
                 name="routerName"
                 placeholder="{{'basicRouterSetup.routerName.placeholder' | translate }}"
                 data-ng-model="wizard.router.name"
+                data-ng-model-options="{ debounce: 500 }"
                 required pattern="[A-Za-z0-9_\-]*"
                 data-ng-minlength="3"
                 data-ng-maxlength="32"
                 >
               <span class="fa form-control-feedback"
                 ng-class="formControlFeedback('routerName')"></span>
-              <p class="text-muted" ng-hide="hasError('routerName')" translate>
-                .routerName.help
-              </p>
-              <span class="fa form-control-feedback" ng-class="{
-                'fa-times': hasError('routerName'),
-                'fa-check': wizardForm.routerName.$valid
-              }"></span>
-              <div class="help-block" ng-show="hasError('routerName')">
+              <div class="help-block" ng-if="hasError('routerName')">
                 <div ng-show="wizardForm.routerName.$error.required" translate>
                   .routerName.error.required
                 </div>
@@ -103,6 +98,9 @@
                   .routerName.error.minLength
                 </div>
               </div>
+              <p class="text-muted" translate>
+                .routerName.help
+              </p>
             </div>
           </div>
 
@@ -481,16 +479,23 @@
                   <input type="text" class="form-control" name="ipv6Prefix" id="ipv6Prefix"
                     placeholder="{{'ip.v6Prefix.placeholder' | translate}}"
                     data-ng-model="wizard.ip.v6Prefix"
+                    data-ng-model-options="{ debounce: 500 }"
                     data-ng-required="!state.ip.register"
-                    data-ip-address data-ip-version="6" data-ip-type="subnet">
-                  <div class="help-block" ng-show="hasError('ipv6Prefix')">
-                    <div ng-show="wizardForm['ipv6Prefix'].$error.required" translate>
-                      .error.required
+                    data-ip-address data-ip-version="6"
+                    data-ip-prefix-max-length="62">
+                  <div class="help-block" ng-if="hasError('ipv6Prefix')"
+                      ng-messages="wizardForm.ipv6Prefix.$error">
+                    <div ng-message="required">
+                      <span translate>.error.required</span>
                     </div>
-                    <div ng-show="wizardForm['ipv6Prefix'].$error.ipv6Subnet" translate>
-                      .v6Prefix.error.subnet
+                    <div ng-message="ipAddress">
+                      <span translate>.v6Prefix.error.ipAddress</span>
+                    </div>
+                    <div ng-message="ipPrefixMaxLength">
+                      <span translate>.v6Prefix.error.ipPrefixMaxLength</span>
                     </div>
                   </div>
+                  <span class="text-muted" translate>.v6Prefix.help</span>
                 </div>
               </div>
 
@@ -498,9 +503,9 @@
                   class="form-group has-feedback"
                   ng-class="formFeedback('ipv4Wifi_' + $index)">
                 <label for="ipv4Wifi_{{$index}}" class="col-md-3 control-label"
-                  translate translate-values="{name: name}">
-                    .v4.wifi.label
-                  </label>
+                    translate translate-values="{name: name}">
+                  .v4.wifi.label
+                </label>
                 <div class="col-md-9">
                   <input type="text" class="form-control" id="ipv4Wifi_{{$index}}" name="ipv4Wifi_{{$index}}"
                     translate translate-attr-placeholder=".v4.placeholder"
