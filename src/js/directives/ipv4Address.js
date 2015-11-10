@@ -9,6 +9,26 @@ module.exports = function(app) {
       require: 'ngModel',
       link: function(scope, element, attributes, ngModel) {
 
+        var ipAddress = attributes.ipVersion === '4' ? ip.Address4 : ip.Address6;
+
+        ngModel.$validators.ipAddress = function(modelValue) {
+          var parsedIp = ipAddress(modelValue);
+          return parsedIp.valid;
+        }
+
+        if (attributes.ipPrefixMinLength !== undefined) {
+          var minLength = parseInt(attributes.ipPrefixMinLength);
+          ngModel.$validators.ipPrefixMinLength = function(modelValue) {
+            var parsedIp = ipAddress(modelValue);
+            return parsedIp.valid && parsedIp.subnetMask >= minLength;
+          }
+        }
+
+        ngModel.$validators.ipPrefixMaxLength = function(modelValue) {
+        }
+
+        return;
+
         var ipv4Pattern = '(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}' +
           '(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)';
         var ipv4SubnetPattern = ipv4Pattern + '\/(25|26|27|28)';
@@ -105,7 +125,6 @@ module.exports = function(app) {
           }
           return false;
         };
-
         //add validators
         if (typeof attributes.ipVersion == 'undefined' ||
             attributes.ipVersion == '4') {

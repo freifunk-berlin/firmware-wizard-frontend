@@ -26,6 +26,7 @@
     "ip": "^1.0.1"
   },
   "dependencies": {
+    "ip-address": "^5.0.2",
     "jscs": "^2.2.0",
     "jshint": "^2.8.0"
   }
