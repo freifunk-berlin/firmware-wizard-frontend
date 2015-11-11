@@ -70,37 +70,38 @@
             <span translate>.headline</span>
           </h2>
 
-          <div class="form-group has-feedback" ng-class="formFeedback('routerName')">
+          <div class="form-group has-feedback"
+            ng-class="formFeedback('routerName')">
             <label for="routerName" class="col-md-3 control-label" translate>.routerName.label</label>
             <div class="col-md-9">
               <input type="text" class="form-control" id="routerName"
                 name="routerName"
                 placeholder="{{'basicRouterSetup.routerName.placeholder' | translate }}"
                 data-ng-model="wizard.router.name"
-                data-ng-model-options="{ debounce: 500 }"
+                data-ng-model-options="{ debounce: 250 }"
                 required pattern="[A-Za-z0-9_\-]*"
                 data-ng-minlength="3"
                 data-ng-maxlength="32"
                 >
               <span class="fa form-control-feedback"
                 ng-class="formControlFeedback('routerName')"></span>
-              <div class="help-block" ng-if="hasError('routerName')">
-                <div ng-show="wizardForm.routerName.$error.required" translate>
-                  .routerName.error.required
+              <div class="help-block">
+                <div ng-messages="wizardForm.routerName.$error" ng-if="hasError('routerName')">
+                  <div ng-message="required">
+                    <span translate>.routerName.error.required</span>
+                  </div>
+                  <div ng-message="pattern">
+                    <span translate>.routerName.error.pattern</span>
+                  </div>
+                  <div ng-message="maxlength">
+                    <span translate>.routerName.error.maxLength</span>
+                  </div>
+                  <div ng-message="minlength">
+                    <span translate>.routerName.error.minLength</span>
+                  </div>
                 </div>
-                <div ng-show="wizardForm.routerName.$error.pattern" translate>
-                  .routerName.error.pattern
-                </div>
-                <div ng-show="wizardForm.routerName.$error.maxlength" translate>
-                  .routerName.error.maxLength
-                </div>
-                <div ng-show="wizardForm.routerName.$error.minlength" translate>
-                  .routerName.error.minLength
-                </div>
+                <div translate>.routerName.help</div>
               </div>
-              <p class="text-muted" translate>
-                .routerName.help
-              </p>
             </div>
           </div>
 
@@ -111,17 +112,20 @@
             </label>
             <div class="col-md-9">
               <input data-ng-model="wizard.router.password"
+                data-ng-model-options="{ debounce: 250 }"
                 data-ng-minlength="6" required
                 type="password" class="form-control" id="password" name="password"
                 placeholder="{{'basicRouterSetup.password.placeholder' | translate }}">
               <span class="fa form-control-feedback"
                 ng-class="formControlFeedback('password')"></span>
               <div class="help-block" ng-show="hasError('password')">
-                <div ng-show="wizardForm.password.$error.required" translate>
-                  .error.required
-                </div>
-                <div ng-show="wizardForm.password.$error.minlength" translate>
-                  .error.minLength
+                <div ng-messages="wizardForm.password.$error">
+                  <div ng-message="required">
+                    <span translate>.error.required</span>
+                  </div>
+                  <div ng-message="minlength">
+                    <span translate>.error.minLength</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -135,6 +139,7 @@
             <div class="col-md-9">
               <input
                 data-ng-model="wizard.router.passwordVerify"
+                data-ng-model-options="{ debounce: 250 }"
                 required
                 data-compare-to="wizard.router.password"
                 type="password" class="form-control" id="passwordVerify"
@@ -323,7 +328,7 @@
               <div class="checkbox">
                 <label class="text-muted">
                   <input type="checkbox" id="internetShare" data-ng-model="wizard.internet.share">
-                  <span translate>.help</p>
+                  <span translate>.help</span>
                 </label>
               </div>
             </div>
