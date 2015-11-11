@@ -5,6 +5,7 @@
     "headline": "Basic router setup",
     "routerName": {
       "label": "Router name",
+      "placeholder": "example: funkenpumpe-3000",
       "error": {
         "required": "This field is required.",
         "pattern": "Special characters are not allowed.",

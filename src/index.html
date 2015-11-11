@@ -35,10 +35,12 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="#">Freifunk Berlin</a>
         </div>
-        <select class="form-control form-inline" id="languageChooser" data-ng-model="selectedLanguage">
-          <option value="en">English</option>
-          <option value="de">Deutsch</option>
-        </select>
+        <div class="navbar-right">
+          <select class="form-control form-inline" data-ng-model="selectedLanguage">
+            <option value="en">English</option>
+            <option value="de">Deutsch</option>
+          </select>
+        </div>
       </div>
     </nav>
 
@@ -71,12 +73,15 @@
           </h2>
 
           <div class="form-group has-feedback"
-            ng-class="formFeedback('routerName')">
-            <label for="routerName" class="col-md-3 control-label" translate>.routerName.label</label>
+              ng-class="formFeedback('routerName')"
+              translate-namespace=".routerName">
+            <label for="routerName" class="col-md-3 control-label" translate>
+              .label
+            </label>
             <div class="col-md-9">
-              <input type="text" class="form-control" id="routerName"
+              <input type="text" class="form-control"
                 name="routerName"
-                placeholder="{{'basicRouterSetup.routerName.placeholder' | translate }}"
+                translate translate-attr-placeholder=".placeholder"
                 data-ng-model="wizard.router.name"
                 data-ng-model-options="{ debounce: 250 }"
                 required pattern="[A-Za-z0-9_\-]*"
@@ -88,19 +93,19 @@
               <div class="help-block">
                 <div ng-messages="wizardForm.routerName.$error" ng-if="hasError('routerName')">
                   <div ng-message="required">
-                    <span translate>.routerName.error.required</span>
+                    <span translate>.error.required</span>
                   </div>
                   <div ng-message="pattern">
-                    <span translate>.routerName.error.pattern</span>
+                    <span translate>.error.pattern</span>
                   </div>
                   <div ng-message="maxlength">
-                    <span translate>.routerName.error.maxLength</span>
+                    <span translate>.error.maxLength</span>
                   </div>
                   <div ng-message="minlength">
-                    <span translate>.routerName.error.minLength</span>
+                    <span translate>.error.minLength</span>
                   </div>
                 </div>
-                <div translate>.routerName.help</div>
+                <div translate>.help</div>
               </div>
             </div>
           </div>
@@ -114,8 +119,8 @@
               <input data-ng-model="wizard.router.password"
                 data-ng-model-options="{ debounce: 250 }"
                 data-ng-minlength="6" required
-                type="password" class="form-control" id="password" name="password"
-                placeholder="{{'basicRouterSetup.password.placeholder' | translate }}">
+                type="password" class="form-control" name="password"
+                translate translate-attr-placeholder=".placeholder">
               <span class="fa form-control-feedback"
                 ng-class="formControlFeedback('password')"></span>
               <div class="help-block" ng-show="hasError('password')">
@@ -142,7 +147,7 @@
                 data-ng-model-options="{ debounce: 250 }"
                 required
                 data-compare-to="wizard.router.password"
-                type="password" class="form-control" id="passwordVerify"
+                type="password" class="form-control"
                 name="passwordVerify"
                 placeholder="{{'basicRouterSetup.passwordVerification.placeholder' | translate}}">
               <span class="fa form-control-feedback"
@@ -174,7 +179,7 @@
               .name.label
             </label>
             <div class="col-md-9">
-              <input type="text" class="form-control" id="contactName"
+              <input type="text" class="form-control"
                 placeholder="{{'contactDetails.name.placeholder' | translate}}"
                 data-ng-model="wizard.contact.name">
             </div>
@@ -183,7 +188,7 @@
           <div class="form-group has-feedback" ng-class="formFeedback('email')">
             <label for="email" class="col-md-3 control-label" translate>.email.label</label>
             <div class="col-md-9">
-              <input type="email" class="form-control" id="email" name="email"
+              <input type="email" class="form-control" name="email"
                 placeholder="{{'contactDetails.email.placeholder' | translate}}"
                 data-ng-model="wizard.contact.email"
                 ng-required="(wizard.internet.share && wizard.internet.vpn03.enabled && state.internet.vpn03.generate) || state.ip.register"
@@ -250,12 +255,12 @@
                 <div class="col-md-6">
                   <div class="row">
                     <div class="col-md-6">
-                      <input type="number" class="form-control" id="routerLat"
+                      <input type="number" class="form-control"
                         placeholder="{{'routerLocation.geolocation.latitude' | translate}}"
                         data-ng-model="wizard.location.lat">
                     </div>
                     <div class="col-md-6">
-                      <input type="number" class="form-control" id="routerLon"
+                      <input type="number" class="form-control"
                         placeholder="{{'routerLocation.geolocation.longitude' | translate}}"
                         data-ng-model="wizard.location.lng">
                     </div>
@@ -268,7 +273,7 @@
                   .street.label
                 </label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="street"
+                  <input type="text" class="form-control"
                     placeholder="{{'routerLocation.street.placeholder' | translate}}"
                     data-ng-model="wizard.location.street">
                 </div>
@@ -279,7 +284,7 @@
                   .postalCode.label
                 </label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="postalCode"
+                  <input type="text" class="form-control"
                     placeholder="{{'routerLocation.postalCode.placeholder' | translate}}"
                     data-ng-model="wizard.location.postalCode">
                 </div>
@@ -290,7 +295,7 @@
                     .city.label
                 </label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="city"
+                  <input type="text" class="form-control"
                     placeholder="{{'routerLocation.city.placeholder' | translate}}"
                     data-ng-model="wizard.location.city">
                 </div>
@@ -327,7 +332,7 @@
             <div class="col-md-9">
               <div class="checkbox">
                 <label class="text-muted">
-                  <input type="checkbox" id="internetShare" data-ng-model="wizard.internet.share">
+                  <input type="checkbox" data-ng-model="wizard.internet.share">
                   <span translate>.help</span>
                 </label>
               </div>
@@ -353,12 +358,12 @@
                   <div class="col-md-9">
                     <div class="row">
                       <div class="col-md-6">
-                        <input type="number" class="form-control" id="internetDown"
+                        <input type="number" class="form-control"
                           placeholder="{{'internetSharing.transferSpeed.down' | translate }}"
                           data-ng-model="wizard.internet.limitDown">
                       </div>
                       <div class="col-md-6">
-                        <input type="number" class="form-control" id="internetUp"
+                        <input type="number" class="form-control"
                           placeholder="{{'internetSharing.transferSpeed.up' | translate}}"
                           data-ng-model="wizard.internet.limitUp"<>
                       </div>
@@ -378,7 +383,7 @@
               <div class="col-md-9">
                 <div class="checkbox">
                   <label class="text-muted">
-                    <input type="checkbox" id="vpn03" data-ng-model="wizard.internet.vpn03.enabled">
+                    <input type="checkbox" data-ng-model="wizard.internet.vpn03.enabled">
                     <span translate>.antistoererhaftung.help</span>
                   </label>
                 </div>
@@ -394,7 +399,7 @@
                 <div class="col-md-9">
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" id="vpn03generate" data-ng-model="state.internet.vpn03.generate">
+                      <input type="checkbox" data-ng-model="state.internet.vpn03.generate">
                       <span class="text-muted" translate>.help</span>
                     </label>
                   </div>
@@ -467,7 +472,7 @@
             <div class="col-md-9">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" id="ipRegister" data-ng-model="state.ip.register">
+                  <input type="checkbox" data-ng-model="state.ip.register">
                   <span class="text-muted" translate>.register.help</span>
                 </label>
               </div>
@@ -481,7 +486,7 @@
                   .v6Prefix.label
                 </label>
                 <div class="col-md-9">
-                  <input type="text" class="form-control" name="ipv6Prefix" id="ipv6Prefix"
+                  <input type="text" class="form-control" name="ipv6Prefix"
                     placeholder="{{'ip.v6Prefix.placeholder' | translate}}"
                     data-ng-model="wizard.ip.v6Prefix"
                     data-ng-model-options="{ debounce: 500 }"
@@ -512,7 +517,7 @@
                   .v4.wifi.label
                 </label>
                 <div class="col-md-9">
-                  <input type="text" class="form-control" id="ipv4Wifi_{{$index}}" name="ipv4Wifi_{{$index}}"
+                  <input type="text" class="form-control" name="ipv4Wifi_{{$index}}"
                     translate translate-attr-placeholder=".v4.placeholder"
                     translate-values="{index: $index + 1}"
                     data-ng-model="wizard.ip.v4[name]"
@@ -540,7 +545,7 @@
             <div class="col-md-9">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" id="ipMeshLan" data-ng-model="wizard.ip.meshLan">
+                  <input type="checkbox" data-ng-model="wizard.ip.meshLan">
                   <span class="text-muted" translate>.meshLan.help</span>
                 </label>
               </div>
@@ -554,7 +559,7 @@
                   .v4.lan.label
                 </label>
                 <div class="col-md-9">
-                  <input type="text" class="form-control" id="ipv4Lan"
+                  <input type="text" class="form-control"
                     name="ipv4Lan"
                     translate translate-attr-placeholder=".v4.placeholder"
                     translate-values="{index: (state.wifi.devices | objectLength) + 1}"
@@ -584,7 +589,7 @@
             <div class="col-md-9">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" id="ipDistribute" data-ng-model="wizard.ip.distribute">
+                  <input type="checkbox" data-ng-model="wizard.ip.distribute">
                   <span class="text-muted" translate>.distribute.help</span>
                 </label>
               </div>
@@ -600,7 +605,7 @@
                     .distribute.subnet.label
                   </label>
                   <div class="col-md-9">
-                    <input type="text" class="form-control" id="ipv4ClientSubnet"
+                    <input type="text" class="form-control"
                       name="ipv4ClientSubnet"
                       placeholder="{{'ip.distribute.subnet.placeholder' | translate}}"
                       data-ng-model="wizard.ip.v4ClientSubnet"
@@ -662,7 +667,7 @@
           <div class="wizard-margin-bottom">
             <div class="checkbox">
               <label>
-                <input type="checkbox" id="wifiAdvanced" data-ng-model="state.wifi.advanced">
+                <input type="checkbox" data-ng-model="state.wifi.advanced">
                 <span translate>.show</span>
               </label>
             </div>
@@ -729,7 +734,7 @@
                         .channel.label
                       </label>
                       <div class="col-md-6">
-                        <input type="number" class="form-control" id="wifi{{$index}}Channel" data-ng-model="config.channel">
+                        <input type="number" class="form-control" data-ng-model="config.channel">
                       </div>
                     </div>
                     <!-- / wifi channel -->
@@ -743,7 +748,7 @@
                         .ssid.label
                       </label>
                       <div class="col-md-6">
-                        <input type="text" class="form-control" id="wifi{{$index}}Ssid"
+                        <input type="text" class="form-control"
                           placeholder="{{'advancedWifi.ssid.placeholder' | translate}}"
                           data-ng-model="config.ssid">
                       </div>
@@ -756,7 +761,7 @@
                         .meshid.label
                       </label>
                       <div class="col-md-6">
-                        <input type="text" class="form-control" id="wifi{{$index}}MeshId"
+                        <input type="text" class="form-control"
                           placeholder="{{'advancedWifi.meshid.placeholder' | translate}}"
                           data-ng-model="config.meshId">
                       </div>
@@ -769,7 +774,7 @@
                         .bssid.label
                       </label>
                       <div class="col-md-6">
-                        <input type="text" class="form-control" id="wifi{{$index}}Bssid" data-ng-model="config.bssid">
+                        <input type="text" class="form-control" data-ng-model="config.bssid">
                       </div>
                     </div>
                     <!-- / wifi bssid -->
@@ -780,7 +785,7 @@
                         .batvlan.label
                       </label>
                       <div class="col-md-6">
-                        <input type="number" class="form-control" id="wifi{{$index}}BatVlan" data-ng-model="config.batVlan">
+                        <input type="number" class="form-control" data-ng-model="config.batVlan">
                       </div>
                     </div>
                     <!-- / wifi batman vlan -->
