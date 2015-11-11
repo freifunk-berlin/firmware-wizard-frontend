@@ -15,27 +15,28 @@ module.exports = function(app) {
       require: 'ngModel',
       link: function(scope, element, attributes, ngModel) {
 
-        var ipAddress = attributes.ipVersion === '4' ? ip.Address4 : ip.Address6;
+        var IpAddress = attributes.ipVersion === '4' ?
+          ip.Address4 : ip.Address6;
 
         ngModel.$validators.ipAddress = function(modelValue) {
-          var parsedIp = new ipAddress(modelValue || '');
+          var parsedIp = new IpAddress(modelValue || '');
           return parsedIp.valid;
-        }
+        };
 
         if (attributes.ipPrefixMinLength !== undefined) {
           var minLength = parseInt(attributes.ipPrefixMinLength);
           ngModel.$validators.ipPrefixMinLength = function(modelValue) {
-            var parsedIp = new ipAddress(modelValue || '');
+            var parsedIp = new IpAddress(modelValue || '');
             return parsedIp.valid && parsedIp.subnetMask >= minLength;
-          }
+          };
         }
 
-        ngModel.$validators.ipPrefixMaxLength = function(modelValue) {
+        if (attributes.ipPrefixMaxLength !== undefined) {
           var maxLength = parseInt(attributes.ipPrefixMaxLength);
           ngModel.$validators.ipPrefixMaxLength = function(modelValue) {
-            var parsedIp = new ipAddress(modelValue || '');
+            var parsedIp = new IpAddress(modelValue || '');
             return parsedIp.valid && parsedIp.subnetMask <= maxLength;
-          }
+          };
         }
       }
     };
