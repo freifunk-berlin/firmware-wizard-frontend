@@ -1,6 +1,6 @@
 'use strict';
 
-//var ip = require('ip-address');
+var ip = require('ip-address');
 
 module.exports = function(app) {
   // check if the provided value is a valid ipv4 or ipv6 address
