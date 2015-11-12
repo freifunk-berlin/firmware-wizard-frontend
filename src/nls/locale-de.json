@@ -14,7 +14,7 @@
       "error.required": "Ein Passwort wird benötigt.",
       "error.minLength": "Das Passwort muss mindestens 6 Zeichen lang sein."
     },
-    "passwordVerification": {
+    "passwordVerify": {
       "label":"Router Password Bestätigung",
       "placeholder": "wiederhole das passwort",
       "error.match": "Passworte müssen übereinstimmen."
@@ -64,7 +64,7 @@
       "down": "Down"
     },
     "antistoererhaftung": {
-      "label":"Anti-Störerhaftung via VPN03",
+      "label": "Anti-Störerhaftung via VPN03",
       "operatedBy": "wird betrieben vom"
     },
     "generateCertificate": {

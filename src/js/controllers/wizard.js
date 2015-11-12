@@ -33,8 +33,9 @@ module.exports = function(app) {
           share: false,
           limitDown: undefined,
           limitUp: undefined,
-          vpn03: {
-            enabled: true,
+          vpn: {
+            enabled: false,
+            vpn03generate: false,
             cert: undefined,
             key: undefined
           }

@@ -5,15 +5,14 @@
     "headline": "Basic router setup",
     "routerName": {
       "label": "Router name",
-      "placeholder": "example: funkenpumpe-3000",
+      "placeholder": "example: funkenpumpe3000",
       "error": {
         "required": "This field is required.",
         "pattern": "Special characters are not allowed.",
         "maxLength": "Maximum number of characters: 32.",
         "minLength": "Minimum number of characters: 3."
       },
-      "help": "The router name is a human-readable identifier for your router in the Freifunk network (OLSR, <a href=\"http://map.berlin.freifunk.net\">map</a>, IP registration, VPN cert/key generation).",
-      "placeholder": "example: funkenpumpe3000"
+      "help": "The router name is a human-readable identifier for your router in the Freifunk network (OLSR, <a href=\"http://map.berlin.freifunk.net\">map</a>, IP registration, VPN cert/key generation)."
     },
     "password": {
       "label": "New router password",
@@ -21,7 +20,7 @@
       "error.required": "A password is required.",
       "error.minLength": "A password must have at least 6 characters."
     },
-    "passwordVerification": {
+    "passwordVerify": {
       "label": "Router password verification",
       "placeholder": "repeat password",
       "error.match": "Passwords have to match."
@@ -70,7 +69,7 @@
     "help": "Freifunk is an independent and free network built by many different people that can be used for many different purposes. One purpose is to access the internet and this service is only possible because some Freifunkas decided to share their internet connections.",
     "shareInternet": {
       "label": "Share internet",
-      "help": "If you want to share your internet connection select the checkbox.",
+      "help": "If you want to share your internet connection select this checkbox.",
       "thanks": "Thank you for sharing your internet connection!"
     },
     "transferSpeed": {
@@ -79,12 +78,12 @@
       "down": "Down"
     },
     "antistoererhaftung": {
-      "label": "Anti-Störerhaftung via VPN03",
-      "help": "To protect yourself from the <a href=\"https://de.wikipedia.org/wiki/St%C3%B6rerhaftung\" target=\"_blank\">Störerhaftung</a> you can use the <a href=\"http://wiki.freifunk.net/vpn03\" target=\"_blanl\">VPN03</a> service that is operated by <a href=\"http://foerderverein.freie-netzwerke.de/\" target=\"_blanl\">Förderverein Freie Netzwerke.</a>"
+      "label": "VPN (Anti-Störerhaftung)",
+      "help": "You can use a VPN to protect yourself from the <a href=\"https://de.wikipedia.org/wiki/St%C3%B6rerhaftung\" target=\"_blank\">Störerhaftung</a>."
     },
     "generateCertificate": {
-      "label": "Generate new VPN03 certificate and key for this router",
-      "help": "If this option is enabled, the wizard automatically generates a new certificate and key. Disable only if you want to upload already existing files manually.",
+      "label": "Generate VPN03 certificate and key for this router",
+      "help": "The <a href=\"http://foerderverein.freie-netzwerke.de/\" target=\"_blanl\">Förderverein Freie Netzwerke</a> operates the <a href=\"http://wiki.freifunk.net/vpn03\" target=\"_blanl\">VPN03</a> servers for protecting yourself from the <a href=\"https://de.wikipedia.org/wiki/St%C3%B6rerhaftung\" target=\"_blank\">Störerhaftung</a>. If this option is enabled, the wizard automatically generates a new certificate and key for VPN03. Disable this option if you already have a certificate and key or if you want to use another VPN service.",
       "certificate.label": "VPN certificate",
       "key.label": "VPN key",
       "browse": "Browse",
