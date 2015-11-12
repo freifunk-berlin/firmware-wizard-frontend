@@ -33,8 +33,9 @@ module.exports = function(app) {
           share: false,
           limitDown: undefined,
           limitUp: undefined,
-          vpn03: {
-            enabled: true,
+          vpn: {
+            enabled: false,
+            vpn03generate: false,
             cert: undefined,
             key: undefined
           }
@@ -263,7 +264,6 @@ module.exports = function(app) {
         });
       };
 
-      // helpers for validation
       $scope.hasError = function(field) {
         var form = $scope.wizardForm;
         return (form.$submitted || form[field].$dirty) && form[field].$invalid;

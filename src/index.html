@@ -14,6 +14,7 @@
 
     <script src="vendor/angular/angular.min.js"></script>
     <script src="vendor/angular/angular-animate.min.js"></script>
+    <script src="vendor/angular/angular-messages.min.js"></script>
     <script src="vendor/angular/angular-translate.min.js"></script>
     <script src="vendor/angular/angular-translate-loader-static-files.min.js"></script>
 
@@ -34,10 +35,12 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="#">Freifunk Berlin</a>
         </div>
-        <select class="form-control form-inline" id="languageChooser" data-ng-model="selectedLanguage">
-          <option value="en">English</option>
-          <option value="de">Deutsch</option>
-        </select>
+        <div class="navbar-form navbar-right">
+          <select class="form-control form-inline" data-ng-model="selectedLanguage">
+            <option value="en">English</option>
+            <option value="de">Deutsch</option>
+          </select>
+        </div>
       </div>
     </nav>
 
@@ -69,65 +72,93 @@
             <span translate>.headline</span>
           </h2>
 
-          <!-- TODO: generate router name -->
-          <div class="form-group has-feedback" ng-class="formFeedback('routerName')">
-            <label for="routerName" class="col-md-3 control-label" translate>.routerName.label</label>
+          <div class="form-group has-feedback"
+              ng-class="formFeedback('routerName')"
+              translate-namespace=".routerName">
+            <label for="routerName" class="col-md-3 control-label" translate>
+              .label
+            </label>
             <div class="col-md-9">
-              <input type="text" class="form-control" id="routerName"
-                name="routerName"
-                placeholder="{{'basicRouterSetup.routerName.placeholder' | translate }}"
+              <input type="text" class="form-control"
+                name="routerName" id="routerName"
+                translate translate-attr-placeholder=".placeholder"
                 data-ng-model="wizard.router.name"
-                required pattern="[A-Za-z0-9_\-]{0,16}"
-                >
+                data-ng-model-options="{ debounce: 250 }"
+                required pattern="[A-Za-z0-9_\-]*"
+                data-ng-minlength="3"
+                data-ng-maxlength="32">
               <span class="fa form-control-feedback"
                 ng-class="formControlFeedback('routerName')"></span>
-              <p class="text-muted" translate>
-                .routerName.help
-              </p>
+              <div class="help-block">
+                <div ng-messages="wizardForm.routerName.$error"
+                    ng-if="hasError('routerName')">
+                  <div ng-message="required">
+                    <span translate>.error.required</span>
+                  </div>
+                  <div ng-message="pattern">
+                    <span translate>.error.pattern</span>
+                  </div>
+                  <div ng-message="maxlength">
+                    <span translate>.error.maxLength</span>
+                  </div>
+                  <div ng-message="minlength">
+                    <span translate>.error.minLength</span>
+                  </div>
+                </div>
+                <div translate>.help</div>
+              </div>
             </div>
           </div>
 
-          <div class="form-group has-feedback" ng-class="formFeedback('password')"
-            translate-namespace=".password">
+          <div class="form-group has-feedback"
+              ng-class="formFeedback('password')"
+              translate-namespace=".password">
             <label for="password" class="col-md-3 control-label" translate>
               .label
             </label>
             <div class="col-md-9">
-              <input data-ng-model="wizard.router.password"
-                data-ng-minlength="6" required
-                type="password" class="form-control" id="password" name="password"
-                placeholder="{{'basicRouterSetup.password.placeholder' | translate }}">
+              <input type="password" class="form-control"
+                name="password" id="password"
+                translate translate-attr-placeholder=".placeholder"
+                data-ng-model="wizard.router.password"
+                data-ng-model-options="{ debounce: 250 }"
+                required data-ng-minlength="6">
               <span class="fa form-control-feedback"
                 ng-class="formControlFeedback('password')"></span>
-              <div class="help-block" ng-show="hasError('password')">
-                <div ng-show="wizardForm.password.$error.required" translate>
-                  .error.required
-                </div>
-                <div ng-show="wizardForm.password.$error.minlength" translate>
-                  .error.minLength
+              <div class="help-block">
+                <div ng-messages="wizardForm.password.$error"
+                    ng-if="hasError('password')">
+                  <div ng-message="required">
+                    <span translate>.error.required</span>
+                  </div>
+                  <div ng-message="minlength">
+                    <span translate>.error.minLength</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="form-group has-feedback" ng-class="formFeedback('passwordVerify')"
-            translate-namespace=".passwordVerification">
+          <div class="form-group has-feedback"
+              ng-class="formFeedback('passwordVerify')"
+              translate-namespace=".passwordVerify">
             <label for="passwordVerify" class="col-md-3 control-label" translate>
               .label
             </label>
             <div class="col-md-9">
-              <input
+              <input type="password" class="form-control"
+                name="passwordVerify" id="passwordVerify"
+                placeholder="{{ 'basicRouterSetup.passwordVerify.placeholder' | translate }}"
                 data-ng-model="wizard.router.passwordVerify"
-                required
-                data-compare-to="wizard.router.password"
-                type="password" class="form-control" id="passwordVerify"
-                name="passwordVerify"
-                placeholder="{{'basicRouterSetup.passwordVerification.placeholder' | translate}}">
+                data-ng-model-options="{ debounce: 250 }"
+                required data-compare-to="wizard.router.password">
               <span class="fa form-control-feedback"
                 ng-class="formControlFeedback('passwordVerify')"></span>
-              <div class="help-block" ng-show="hasError('passwordVerify')">
-                <div ng-show="wizardForm.passwordVerify.$error.compareTo" translate>
-                  .error.match
+              <div class="help-block" ng-if="hasError('passwordVerify')">
+                <div ng-messages="wizardForm.passwordVerify.$error">
+                  <div ng-message="compareTo">
+                    <span translate>.error.match</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -147,34 +178,46 @@
             <span translate>.headline</span>
           </h2>
 
-          <div class="form-group">
-            <label for="contactName" class="col-md-3 control-label" translate>
-              .name.label
+          <div class="form-group" translate-namespace=".name">
+            <label for="name" class="col-md-3 control-label" translate>
+              .label
             </label>
             <div class="col-md-9">
-              <input type="text" class="form-control" id="contactName"
-                placeholder="{{'contactDetails.name.placeholder' | translate}}"
+              <input type="text" class="form-control"
+                name="name" id="name"
+                translate translate-attr-placeholder=".placeholder"
                 data-ng-model="wizard.contact.name">
             </div>
           </div>
 
-          <div class="form-group has-feedback" ng-class="formFeedback('email')">
-            <label for="email" class="col-md-3 control-label" translate>.email.label</label>
+          <div class="form-group has-feedback"
+              ng-class="formFeedback('email')"
+              translate-namespace=".email">
+            <label for="email" class="col-md-3 control-label" translate>
+              .label
+            </label>
             <div class="col-md-9">
-              <input type="email" class="form-control" id="email" name="email"
-                placeholder="{{'contactDetails.email.placeholder' | translate}}"
+              <input type="email" class="form-control"
+                name="email" id="email"
+                translate translate-attr-placeholder=".placeholder"
                 data-ng-model="wizard.contact.email"
-                ng-required="(wizard.internet.share && wizard.internet.vpn03.enabled && state.internet.vpn03.generate) || state.ip.register"
-                pattern=".*@.+\..+"
-                >
+                ng-required="(wizard.internet.share && wizard.internet.vpn.enabled && state.internet.vpn.vpn03generate) || state.ip.register"
+                pattern=".*@.+\..+">
               <span class="fa form-control-feedback"
                 ng-class="formControlFeedback('email')"></span>
-              <div class="help-block" ng-if="hasError('email')" translate>
-                .email.error
+              <div class="help-block">
+                <div ng-if="hasError('email')">
+                  <div ng-messages="wizardForm.email.$error">
+                    <div ng-message="required">
+                      <span translate>.error.required</span>
+                    </div>
+                    <div ng-message="pattern">
+                      <span translate>.error.pattern</span>
+                    </div>
+                  </div>
+                </div>
+                <div translate>.help</div>
               </div>
-              <p class="text-muted" translate>
-                .email.help
-              </p>
             </div>
           </div>
         </div>
@@ -216,55 +259,59 @@
                 </div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group"
+                  translate-namespace=".geolocation">
                 <label for="routerGeolocation" class="col-md-6 control-label" translate>
-                  .geolocation.label
+                  .label
                 </label>
                 <div class="col-md-6">
                   <div class="row">
                     <div class="col-md-6">
-                      <input type="number" class="form-control" id="routerLat"
-                        placeholder="{{'routerLocation.geolocation.latitude' | translate}}"
+                      <input type="number" class="form-control"
+                        translate translate-attr-placeholder=".latitude"
                         data-ng-model="wizard.location.lat">
                     </div>
                     <div class="col-md-6">
-                      <input type="number" class="form-control" id="routerLon"
-                        placeholder="{{'routerLocation.geolocation.longitude' | translate}}"
+                      <input type="number" class="form-control"
+                        translate translate-attr-placeholder=".longitude"
                         data-ng-model="wizard.location.lng">
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group" translate-namespace=".street">
                 <label for="street" class="col-md-6 control-label" translate>
-                  .street.label
+                  .label
                 </label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="street"
-                    placeholder="{{'routerLocation.street.placeholder' | translate}}"
+                  <input type="text" class="form-control"
+                    name="street" id="street"
+                    translate translate-attr-placeholder=".placeholder"
                     data-ng-model="wizard.location.street">
                 </div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group" translate-namespace=".postalCode">
                 <label for="postalCode" class="col-md-6 control-label" translate>
-                  .postalCode.label
+                 .label
                 </label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="postalCode"
-                    placeholder="{{'routerLocation.postalCode.placeholder' | translate}}"
+                  <input type="text" class="form-control"
+                    name="postalCode" id="postalCode"
+                    translate translate-attr-placeholder=".placeholder"
                     data-ng-model="wizard.location.postalCode">
                 </div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group" translate-namespace=".city">
                 <label for="city" class="col-md-6 control-label" translate>
-                    .city.label
+                  .label
                 </label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="city"
-                    placeholder="{{'routerLocation.city.placeholder' | translate}}"
+                  <input type="text" class="form-control"
+                    name="city" id="city"
+                    translate translate-attr-placeholder=".placeholder"
                     data-ng-model="wizard.location.city">
                 </div>
               </div>
@@ -293,15 +340,16 @@
 
           <!-- share internet row -->
           <div class="form-group" translate-namespace=".shareInternet">
-
             <label for="internetShare" class="col-md-3 control-label" translate>
               .label
             </label>
             <div class="col-md-9">
               <div class="checkbox">
                 <label class="text-muted">
-                  <input type="checkbox" id="internetShare" data-ng-model="wizard.internet.share">
-                  <span translate>.help</p>
+                  <input type="checkbox"
+                    name="internetShare" id="internetShare"
+                    data-ng-model="wizard.internet.share">
+                  <span translate>.help</span>
                 </label>
               </div>
             </div>
@@ -316,24 +364,35 @@
                   <span class="fa fa-fw fa-heart"></span>
                   <span translate>.shareInternet.thanks</span>
                 </p>
-                <div class="form-group">
 
+                <div class="form-group" translate-namespace=".transferSpeed">
                   <div class="col-md-3">
-                    <label for="internetDown" class="control-label" translate>
-                      .transferSpeed.label
+                    <label class="control-label" translate>
+                      .label
                     </label>
                   </div>
                   <div class="col-md-9">
                     <div class="row">
+                      <div class="col-md-12 help-block" translate>
+                        .help
+                      </div>
+                    </div>
+                    <div class="row">
                       <div class="col-md-6">
-                        <input type="number" class="form-control" id="internetDown"
-                          placeholder="{{'internetSharing.transferSpeed.down' | translate }}"
+                        <input type="number" class="form-control"
+                          name="limitDown" id="limitDown"
+                          translate
+                          translate-attr-placeholder=".down.placeholder"
                           data-ng-model="wizard.internet.limitDown">
+                        <div class="help-block" translate>.down.help</div>
                       </div>
                       <div class="col-md-6">
-                        <input type="number" class="form-control" id="internetUp"
-                          placeholder="{{'internetSharing.transferSpeed.up' | translate}}"
-                          data-ng-model="wizard.internet.limitUp"<>
+                        <input type="number" class="form-control"
+                          name="limitUp" id="limitUp"
+                          translate
+                          translate-attr-placeholder=".up.placeholder"
+                          data-ng-model="wizard.internet.limitUp">
+                        <div class="help-block" translate>.up.help</div>
                       </div>
                     </div>
                   </div>
@@ -345,20 +404,22 @@
 
             <!-- anti-störerhaftungs-VPN -->
             <div class="form-group">
-              <label for="vpn03" class="col-md-3 control-label" translate>
+              <label for="vpn" class="col-md-3 control-label" translate>
                 .antistoererhaftung.label
               </label>
               <div class="col-md-9">
                 <div class="checkbox">
                   <label class="text-muted">
-                    <input type="checkbox" id="vpn03" data-ng-model="wizard.internet.vpn03.enabled">
+                    <input type="checkbox"
+                      name="vpn" id="vpn"
+                      data-ng-model="wizard.internet.vpn.enabled">
                     <span translate>.antistoererhaftung.help</span>
                   </label>
                 </div>
               </div>
             </div>
 
-            <div data-collapse="!wizard.internet.vpn03.enabled">
+            <div data-collapse="!wizard.internet.vpn.enabled">
 
               <div class="form-group" translate-namespace=".generateCertificate">
                 <label for="vpn03generate" class="col-md-3 control-label" translate>
@@ -367,35 +428,49 @@
                 <div class="col-md-9">
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" id="vpn03generate" data-ng-model="state.internet.vpn03.generate">
+                      <input type="checkbox"
+                        name="vpn03generate" id="vpn03generate"
+                        data-ng-model="state.internet.vpn.vpn03generate">
                       <span class="text-muted" translate>.help</span>
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div class="row" data-collapse="state.internet.vpn03.generate" translate-namespace=".generateCertificate">
+              <div class="row" data-collapse="state.internet.vpn.vpn03generate" translate-namespace=".generateCertificate">
                 <div class="col-md-offset-3 col-md-9">
-                  <div class="form-group">
-                    <label for="vpn03Cert" class="col-md-3 control-label" translate>
+                  <div class="form-group has-feedback" data-ng-class="formFeedback('vpnCert')">
+                    <label for="vpnCert" class="col-md-3 control-label" translate>
                       .certificate.label
                     </label>
                     <div class="col-md-9">
-                      <span class="btn btn-primary btn-file">
-                        <span translate>.browse</span>
-                        <input type="file" data-ng-model="wizard.internet.vpn03.cert">
-                      </span>
+                      <input type="file"
+                        name="vpnCert" id="vpnCert"
+                        data-ng-model="wizard.internet.vpn.cert"
+                        data-file-valid
+                        data-ng-required="!state.internet.vpn.vpn03generate && wizard.internet.vpn.enabled && wizard.internet.share">
+                      <div class="help-block" ng-if="hasError('vpnCert')">
+                        <div ng-if="wizardForm.vpnCert.$error.required" translate>
+                          .error.required
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label for="vpn03Key" class="col-md-3 control-label" translate>
+                  <div class="form-group has-feedback" data-ng-class="formFeedback('vpnKey')">
+                    <label for="vpnKey" class="col-md-3 control-label" translate>
                       .key.label
                     </label>
                     <div class="col-md-9">
-                      <span class="btn btn-primary btn-file">
-                        <span translate>.browse</span>
-                        <input type="file" data-ng-model="wizard.internet.vpn03.key">
-                      </span>
+                      <input type="file"
+                        name="vpnKey" id="vpnKey"
+                        data-ng-model="wizard.internet.vpn.key"
+                        data-file-valid
+                        data-ng-required="!state.internet.vpn.vpn03generate && wizard.internet.vpn.enabled && wizard.internet.share">
+                      <div class="help-block" ng-if="hasError('vpnKey')">
+                        <div ng-if="wizardForm.vpnKey.$error.required" translate>
+                          .error.required
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -430,7 +505,9 @@
             <div class="col-md-9">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" id="ipRegister" data-ng-model="state.ip.register">
+                  <input type="checkbox"
+                    name="ipRegister" id="ipRegister"
+                    data-ng-model="state.ip.register">
                   <span class="text-muted" translate>.register.help</span>
                 </label>
               </div>
@@ -439,14 +516,36 @@
 
           <div class="row" data-collapse="state.ip.register">
             <div class="col-md-offset-3 col-md-9">
-              <div class="form-group">
+              <div class="form-group has-feedback" ng-class="formFeedback('ipv6Prefix')">
                 <label for="ipv6Prefix" class="col-md-3 control-label" translate>
                   .v6Prefix.label
                 </label>
                 <div class="col-md-9">
-                  <input type="text" class="form-control" id="ipv6Prefix"
+                  <input type="text" class="form-control"
+                    name="ipv6Prefix" id="ipv6Prefix"
                     placeholder="{{'ip.v6Prefix.placeholder' | translate}}"
-                    data-ng-model="wizard.ip.v6Prefix">
+                    data-ng-model="wizard.ip.v6Prefix"
+                    data-ng-model-options="{ debounce: 500 }"
+                    data-ng-required="!state.ip.register"
+                    data-ip-address data-ip-version="6"
+                    data-ip-prefix-max-length="62">
+                  <span class="fa form-control-feedback"
+                    ng-class="formControlFeedback('ipv6Prefix')"></span>
+                  <div class="help-block">
+                    <div ng-if="hasError('ipv6Prefix')"
+                        ng-messages="wizardForm.ipv6Prefix.$error">
+                      <div ng-message="required">
+                        <span translate>.error.required</span>
+                      </div>
+                      <div ng-message="ipAddress">
+                        <span translate>.v6Prefix.error.ipAddress</span>
+                      </div>
+                      <div ng-message="ipPrefixMaxLength">
+                        <span translate>.v6Prefix.error.ipPrefixMaxLength</span>
+                      </div>
+                    </div>
+                    <div translate>.v6Prefix.help</div>
+                  </div>
                 </div>
               </div>
 
@@ -454,22 +553,37 @@
                   class="form-group has-feedback"
                   ng-class="formFeedback('ipv4Wifi_' + $index)">
                 <label for="ipv4Wifi_{{$index}}" class="col-md-3 control-label"
-                  translate translate-values="{name: name}">
-                    .v4.wifi.label
-                  </label>
+                    translate translate-values="{name: name}">
+                  .v4.wifi.label
+                </label>
                 <div class="col-md-9">
-                  <input type="text" class="form-control" id="ipv4Wifi_{{$index}}" name="ipv4Wifi_{{$index}}"
+                  <input type="text" class="form-control"
+                    name="ipv4Wifi_{{$index}}" id="ipv4Wifi_{{$index}}"
                     translate translate-attr-placeholder=".v4.placeholder"
                     translate-values="{index: $index + 1}"
-                    data-ng-model="wizard.ip.v4[name]" data-ipv4-address required>
+                    data-ng-model="wizard.ip.v4[name]"
+                    data-ng-model-options="{ debounce: 500 }"
+                    data-ng-required="!state.ip.register"
+                    data-ip-address data-ip-version="4"
+                    data-ip-prefix-min-length="32">
                   <span class="fa form-control-feedback"
                     ng-class="formControlFeedback('ipv4Wifi_' + $index)"></span>
-                  <div class="help-block" ng-show="hasError('ipv4Wifi_' + $index)">
-                    <div ng-show="wizardForm['ipv4Wifi_' + $index].$error.required" translate>
-                      .v4.error.required
+                  <div class="help-block">
+                    <div ng-if="hasError('ipv4Wifi_' + $index)">
+                      <div ng-messages="wizardForm['ipv4Wifi_' + $index].$error">
+                        <div ng-message="required">
+                          <span translate>.error.required</span>
+                        </div>
+                        <div ng-message="ipAddress">
+                          <span translate>.v4.error.ipAddress</span>
+                        </div>
+                        <div ng-message="ipPrefixMinLength">
+                          <span translate>.v4.error.ipSingle</span>
+                        </div>
+                      </div>
                     </div>
-                    <div ng-show="wizardForm['ipv4Wifi_' + $index].$error.ipv4Address" translate>
-                      .v4.error.ipv4Address
+                    <div translate translate-values="{name: name}">
+                      .v4.wifi.help
                     </div>
                   </div>
                 </div>
@@ -484,7 +598,9 @@
             <div class="col-md-9">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" id="ipMeshLan" data-ng-model="wizard.ip.meshLan">
+                  <input type="checkbox"
+                    name="ipMeshLan" id="ipMeshLan"
+                    data-ng-model="wizard.ip.meshLan">
                   <span class="text-muted" translate>.meshLan.help</span>
                 </label>
               </div>
@@ -498,20 +614,31 @@
                   .v4.lan.label
                 </label>
                 <div class="col-md-9">
-                  <input type="text" class="form-control" id="ipv4Lan"
-                    name="ipv4Lan"
+                  <input type="text" class="form-control"
+                    name="ipv4Lan" id="ipv4Lan"
                     translate translate-attr-placeholder=".v4.placeholder"
                     translate-values="{index: (state.wifi.devices | objectLength) + 1}"
-                    data-ng-model="wizard.ip.v4.lan" data-ipv4-address required>
+                    data-ng-model="wizard.ip.v4.lan"
+                    data-ng-required="wizard.ip.meshLan && !state.ip.register"
+                    data-ip-address data-ip-version="4"
+                    data-ip-prefix-min-length="32">
                   <span class="fa form-control-feedback"
                     ng-class="formControlFeedback('ipv4Lan')"></span>
-                  <div class="help-block" ng-show="hasError('ipv4Lan')">
-                    <div ng-show="wizardForm.ipv4Lan.$error.required" translate>
-                      .v4.error.required
+                  <div class="help-block">
+                    <div ng-if="hasError('ipv4Lan')">
+                      <div ng-messages="wizardForm.ipv4Lan.$error">
+                        <div ng-message="required">
+                          <span translate>.error.required</span>
+                        </div>
+                        <div ng-message="ipAddress">
+                          <span translate>.v4.error.ipAddress</span>
+                        </div>
+                        <div ng-message="ipPrefixMinLength">
+                          <span translate>.v4.error.ipSingle</span>
+                        </div>
+                      </div>
                     </div>
-                    <div ng-show="wizardForm.ipv4Lan.$error.ipv4Address" translate>
-                      .v4.error.ipv4Address
-                    </div>
+                    <div translate>.v4.lan.help</div>
                   </div>
                 </div>
               </div>
@@ -525,7 +652,9 @@
             <div class="col-md-9">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" id="ipDistribute" data-ng-model="wizard.ip.distribute">
+                  <input type="checkbox"
+                    name="ipDistribute" id="ipDistribute"
+                    data-ng-model="wizard.ip.distribute">
                   <span class="text-muted" translate>.distribute.help</span>
                 </label>
               </div>
@@ -536,15 +665,36 @@
             <div class="col-md-offset-3 col-md-9">
 
               <div data-collapse="state.ip.register">
-                <div class="form-group">
+                <div class="form-group has-feedback" data-ng-class="formFeedback('ipv4ClientSubnet')">
                   <label for="ipv4ClientSubnet" class="col-md-3 control-label" translate>
                     .distribute.subnet.label
                   </label>
                   <div class="col-md-9">
-                    <input type="text" class="form-control" id="ipv4ClientSubnet"
+                    <input type="text" class="form-control"
+                      name="ipv4ClientSubnet" id="ipv4ClientSubnet"
                       placeholder="{{'ip.distribute.subnet.placeholder' | translate}}"
-                      data-ng-model="wizard.ip.v4ClientSubnet">
-                    <p class="text-muted" translate>.distribute.subnet.help</p>
+                      data-ng-model="wizard.ip.v4ClientSubnet"
+                      data-ng-required="wizard.ip.distribute && !state.ip.register"
+                      data-ip-address data-ip-version="4"
+                      data-ip-prefix-max-length="30">
+                    <span class="fa form-control-feedback"
+                      ng-class="formControlFeedback('ipv4ClientSubnet')"></span>
+                    <div class="help-block">
+                      <div ng-if="hasError('ipv4ClientSubnet')">
+                        <div ng-messages="wizardForm.ipv4ClientSubnet.$error">
+                          <div ng-message="required">
+                            <span translate>.error.required</span>
+                          </div>
+                          <div ng-message="ipAddress">
+                            <span translate>.v4.error.ipSubnet</span>
+                          </div>
+                          <div ng-message="ipPrefixMaxLength">
+                            <span translate>.v4.error.ipSubnetSmall</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div translate>.distribute.subnet.help</div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -556,11 +706,14 @@
                   </label>
                   <div class="col-md-9">
                     <select
+                      name="ipv4ClientCount" id="ipv4ClientCount"
                       data-ng-model="state.ip.v4ClientSubnetSize"
                       data-ng-options="n as ('max. ' + (pow(2, 32 - n) - 3) +' clients (IPv4 /' + n + ' subnet)') for n in [] | range:28:25"
                       data-convert-to-number class="form-control">
                     </select>
-                    <p class="text-muted" translate>.distribute.expectedClients.help</p>
+                    <div class="help-block" translate>
+                      .distribute.expectedClients.help
+                    </div>
                   </div>
                 </div>
               </div>
@@ -588,7 +741,7 @@
           <div class="wizard-margin-bottom">
             <div class="checkbox">
               <label>
-                <input type="checkbox" id="wifiAdvanced" data-ng-model="state.wifi.advanced">
+                <input type="checkbox" data-ng-model="state.wifi.advanced">
                 <span translate>.show</span>
               </label>
             </div>
@@ -655,7 +808,7 @@
                         .channel.label
                       </label>
                       <div class="col-md-6">
-                        <input type="number" class="form-control" id="wifi{{$index}}Channel" data-ng-model="config.channel">
+                        <input type="number" class="form-control" data-ng-model="config.channel">
                       </div>
                     </div>
                     <!-- / wifi channel -->
@@ -669,7 +822,7 @@
                         .ssid.label
                       </label>
                       <div class="col-md-6">
-                        <input type="text" class="form-control" id="wifi{{$index}}Ssid"
+                        <input type="text" class="form-control"
                           placeholder="{{'advancedWifi.ssid.placeholder' | translate}}"
                           data-ng-model="config.ssid">
                       </div>
@@ -682,7 +835,7 @@
                         .meshid.label
                       </label>
                       <div class="col-md-6">
-                        <input type="text" class="form-control" id="wifi{{$index}}MeshId"
+                        <input type="text" class="form-control"
                           placeholder="{{'advancedWifi.meshid.placeholder' | translate}}"
                           data-ng-model="config.meshId">
                       </div>
@@ -695,7 +848,7 @@
                         .bssid.label
                       </label>
                       <div class="col-md-6">
-                        <input type="text" class="form-control" id="wifi{{$index}}Bssid" data-ng-model="config.bssid">
+                        <input type="text" class="form-control" data-ng-model="config.bssid">
                       </div>
                     </div>
                     <!-- / wifi bssid -->
@@ -706,7 +859,7 @@
                         .batvlan.label
                       </label>
                       <div class="col-md-6">
-                        <input type="number" class="form-control" id="wifi{{$index}}BatVlan" data-ng-model="config.batVlan">
+                        <input type="number" class="form-control" data-ng-model="config.batVlan">
                       </div>
                     </div>
                     <!-- / wifi batman vlan -->
@@ -772,8 +925,9 @@
       <!-- submission -->
       <div class="wizard-category">
         <div class="container text-right">
-          <span class="text-danger" ng-show="wizardForm.$submitted && wizardForm.$invalid">
-            {{ 'configIncorrect' | translate }}
+          <span class="text-danger" translate
+              ng-if="wizardForm.$submitted && wizardForm.$invalid">
+            configIncorrect
           </span>
           <button type="button" class="btn btn-default" ng-click="downloadConfig()">
             <i class="fa fa-download"></i> {{ 'download' | translate }}

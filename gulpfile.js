@@ -11,6 +11,7 @@ gulp.task('build:vendor', function() {
   gulp.src([
     'bower_components/angular/angular.min.js',
     'bower_components/angular-animate/angular-animate.min.js',
+    'bower_components/angular-messages/angular-messages.min.js',
     'bower_components/angular-translate/angular-translate.min.js',
     'bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js',
     'bower_components/angular-leaflet-directive/dist/' +
