@@ -4,7 +4,8 @@
   "basicRouterSetup": {
     "headline":"Grundlegende Routereinstellungen",
     "routerName": {
-      "label": "Router name",
+      "label": "Router Name",
+      "error.required": "Der Router Name wird benötigt um IPs und VPN Dateien automatisch zu registrieren.",
       "placeholder": "Name des Routers"
     },
     "password": {
@@ -13,7 +14,7 @@
       "error.required": "Ein Passwort wird benötigt.",
       "error.minLength": "Das Passwort muss mindestens 6 Zeichen lang sein."
     },
-    "passwordVerification": {
+    "passwordVerify": {
       "label":"Router Password Bestätigung",
       "placeholder": "wiederhole das passwort",
       "error.match": "Passworte müssen übereinstimmen."
@@ -27,6 +28,7 @@
     },
     "email": {
       "label":"Email",
+      "error.required": "Deine EMail Addresse wird zur Bestätigung der automatisch generierten IPs und / oder VPN Dateien benötigt.",
       "placeholder": "funki@fine.net"
     }
   },
@@ -62,14 +64,15 @@
       "down": "Down"
     },
     "antistoererhaftung": {
-      "label":"Anti-Störerhaftung via VPN03",
+      "label": "Anti-Störerhaftung via VPN03",
       "operatedBy": "wird betrieben vom"
     },
     "generateCertificate": {
       "label": "VPN03 Zertifikat und Schlüssel für diesen Router generieren. ",
       "certificate.label": "VPN Zertifikat",
       "key.label": "Schlüssel",
-      "browse": "Durchsuchen"
+      "browse": "Durchsuchen",
+      "error.required": "Diese Datei wird benötigt. Wenn du den Haken oben setzt, wird sie automatisch generiert"
     }
   },
   "ip": {
@@ -98,11 +101,16 @@
       "help": "Standartmäßig bekommen Clients deines Routers IPs von einem anderen verbundenen Router. Falls du keinen anderen Router in deiner nähe hast oder selbst IP Adressen verteilen möchtest, überlege wieviele Clients du an deinem Router erwartest.",
       "subnet": {
         "label": "Client IPv4 subnet",
-        "placeholder" :""
+        "placeholder" :"",
+        "error.pattern": "Das ist keine gültige Subnet Adresse"
       },
       "expectedClients": {
         "label": "Wieviele Benutzer erwartest du an deinem Freifunkknoten?"
       }
+    },
+    "error": {
+      "required": "Dieses Feld wird benötigt, es sei denn du registrierst die IPs autmomatisch.",
+      "ipPattern": "Das ist keine gültige IP Adresse."
     }
   },
   "advancedWifi": {
