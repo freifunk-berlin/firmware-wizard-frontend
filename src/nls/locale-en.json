@@ -73,17 +73,24 @@
       "thanks": "Thank you for sharing your internet connection!"
     },
     "transferSpeed": {
-      "label": "Transfer speed limit in Mbps",
-      "up": "Up",
-      "down": "Down"
+      "label": "Transfer speed limit",
+      "help": "You can limit the transfer speed that the Freifunk network is able to use on your internet connection. You can determine your current transfer speed <a href=\"http://speedof.me/\" target=\"_blank\">here</a>. Leave the fields blank if you do not wish to limit the transfer speed.",
+      "down": {
+        "placeholder": "Down",
+        "help": "Download speed limit in <a href=\"https://en.wikipedia.org/wiki/Data_rate_units#Megabit_per_second\" target=\"_blank\">Mbit/s</a>."
+      },
+      "up": {
+        "placeholder": "Up",
+        "help": "Upload speed limit in <a href=\"https://en.wikipedia.org/wiki/Data_rate_units#Megabit_per_second\" target=\"_blank\">Mbit/s</a>."
+      }
     },
     "antistoererhaftung": {
       "label": "VPN (Anti-Störerhaftung)",
-      "help": "You can use a VPN to protect yourself from the <a href=\"https://de.wikipedia.org/wiki/St%C3%B6rerhaftung\" target=\"_blank\">Störerhaftung</a>."
+      "help": "You can use a VPN to protect yourself from the <a href=\"https://de.wikipedia.org/wiki/St%C3%B6rerhaftung\" target=\"_blank\">Störerhaftung</a>. If you agree that Störerhaftung is bad for free networks then you can <a href=\"http://freifunkstattangst.de/\" target=\"_blank\">help us to put an end to Störerhaftung</a>!"
     },
     "generateCertificate": {
       "label": "Generate VPN03 certificate and key for this router",
-      "help": "The <a href=\"http://foerderverein.freie-netzwerke.de/\" target=\"_blanl\">Förderverein Freie Netzwerke</a> operates the <a href=\"http://wiki.freifunk.net/vpn03\" target=\"_blanl\">VPN03</a> servers for protecting yourself from the <a href=\"https://de.wikipedia.org/wiki/St%C3%B6rerhaftung\" target=\"_blank\">Störerhaftung</a>. If this option is enabled, the wizard automatically generates a new certificate and key for VPN03. Disable this option if you already have a certificate and key or if you want to use another VPN service.",
+      "help": "The <a href=\"http://foerderverein.freie-netzwerke.de/\" target=\"_blanl\">Förderverein Freie Netzwerke</a> operates the <a href=\"http://wiki.freifunk.net/vpn03\" target=\"_blanl\">VPN03</a> servers for protecting yourself from the <a href=\"https://de.wikipedia.org/wiki/St%C3%B6rerhaftung\" target=\"_blank\">Störerhaftung</a>. If this option is enabled, the wizard automatically generates a new certificate and key for VPN03. Disable this option if you already have a VPN03 config or if you want to use another VPN service (OpenVPN).",
       "certificate.label": "VPN certificate",
       "key.label": "VPN key",
       "browse": "Browse",
@@ -92,27 +99,32 @@
   },
   "ip": {
     "headline": "IP addresses",
-    "help": "Your router requires <a href=\"https://en.wikipedia.org/wiki/IP_address\" target=\"_blank\">IP addresses</a> for communicating with other routers and with clients that connect to the access point. Freifunk uses both IPv4 (legacy) and IPv6 (recent).",
+    "help": "Your router requires <a href=\"https://en.wikipedia.org/wiki/IP_address\" target=\"_blank\">IP addresses</a> for communicating with other routers and with clients that connect to the access point. Freifunk uses both <a href=\"https://en.wikipedia.org/wiki/IPv4\" target=\"_blank\">IPv4</a> (legacy) and <a href=\"https://en.wikipedia.org/wiki/IPv6\" target=\"_blank\">IPv6</a> (recent).",
     "register": {
       "label": "Register new IP addresses",
       "help": "If this option is enabled, the wizard automatically registers new IP addresses for this router. Disable only if you already have IP addresses from the <a href=\"http://config.berlin.freifunk.net/\" target=\"_blank\">Freifunk Berlin IP registry</a>."
     },
     "v6Prefix": {
       "label": "IPv6 prefix",
-      "help": "The provided IPv6 prefix is distributed across all interfaces of the router.",
+      "help": "The IPv6 prefix is used to automatically configure all network interfaces of this router.",
       "error.required": "The IPv6 prefix is required.",
       "error.ipAddress": "Please enter a valid IPv6 prefix.",
       "error.ipPrefixMaxLength": "The IPv6 prefix length must not be larger than /62.",
-      "placeholder": "looks like 2001:bf7:c4ff:3300::/56"
+      "placeholder": "example: 2001:bf7:c4ff:3300::/60"
     },
     "v4": {
-      "placeholder": "looks like 10.31.133.{{40+index}}",
-      "error.ipv4Address": "Not a valid IPv4 address.",
+      "placeholder": "example: 10.31.133.{{40+index}}",
+      "error.ipAddress": "Not a valid IPv4 address.",
+      "error.ipSingle": "You must provide a single IPv4 address.",
+      "error.ipSubnet": "Not a valid IPv4 subnet.",
+      "error.ipSubnetSmall": "The IPv4 subnet must be larger than /30.",
       "wifi": {
-        "label": "Wifi ({{name}}) Mesh-IPv4"
+        "label": "Wifi ({{name}}) Mesh-IPv4",
+        "help": "A single IPv4 address for the wifi device {{name}}."
       },
       "lan": {
-        "label": "LAN Mesh-IPv4"
+        "label": "LAN Mesh-IPv4",
+        "help": "A single IPv4 address for the LAN interface."
       }
     },
     "meshLan": {
@@ -124,7 +136,7 @@
       "help": "At least one router in your local mesh (specifically: the local <a href=\"https://en.wikipedia.org/wiki/B.A.T.M.A.N.\" target=\"_blank\">BATMAN-adv</a> mesh) should distribute IP addresses for clients. If you share your internet connection with this router or if are unsure if there is another router in your neighborhood that distributes IPs, you should enable this setting.",
       "subnet": {
         "label": "Client IPv4 subnet",
-        "placeholder" :"",
+        "placeholder" :"example: 10.31.133.128/27",
         "error.pattern":"This is not a valid subnet.",
         "help": "The IPv4 subnet from which IPs are distributed to clients that connect to your access point."
       },
