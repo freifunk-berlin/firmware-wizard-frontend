@@ -205,13 +205,15 @@
                 pattern=".*@.+\..+">
               <span class="fa form-control-feedback"
                 ng-class="formControlFeedback('email')"></span>
-              <div class="help-block" ng-if="hasError('email')">
-                <div ng-messages="wizardForm.email.$error">
-                  <div ng-message="required">
-                    <span translate>.error.required</span>
-                  </div>
-                  <div ng-message="pattern">
-                    <span translate>.error.pattern</span>
+              <div class="help-block">
+                <div ng-if="hasError('email')">
+                  <div ng-messages="wizardForm.email.$error">
+                    <div ng-message="required">
+                      <span translate>.error.required</span>
+                    </div>
+                    <div ng-message="pattern">
+                      <span translate>.error.pattern</span>
+                    </div>
                   </div>
                 </div>
                 <div translate>.help</div>
