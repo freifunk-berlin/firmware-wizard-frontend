@@ -15,6 +15,7 @@
     <script src="vendor/angular/angular.min.js"></script>
     <script src="vendor/angular/angular-animate.min.js"></script>
     <script src="vendor/angular/angular-messages.min.js"></script>
+    <script src="vendor/angular/angular-sanitize.min.js"></script>
     <script src="vendor/angular/angular-translate.min.js"></script>
     <script src="vendor/angular/angular-translate-loader-static-files.min.js"></script>
 
@@ -356,7 +357,7 @@
           </div>
           <!-- share internet row -->
 
-          <div data-collapse="!wizard.internet.share">
+          <div uib-collapse="!wizard.internet.share">
             <!-- transfer rate -->
             <div class="row">
               <div class="col-md-offset-3 col-md-9">
@@ -419,7 +420,7 @@
               </div>
             </div>
 
-            <div data-collapse="!wizard.internet.vpn.enabled">
+            <div uib-collapse="!wizard.internet.vpn.enabled">
 
               <div class="form-group" translate-namespace=".generateCertificate">
                 <label for="vpn03generate" class="col-md-3 control-label" translate>
@@ -437,7 +438,7 @@
                 </div>
               </div>
 
-              <div class="row" data-collapse="state.internet.vpn.vpn03generate" translate-namespace=".generateCertificate">
+              <div class="row" uib-collapse="state.internet.vpn.vpn03generate" translate-namespace=".generateCertificate">
                 <div class="col-md-offset-3 col-md-9">
                   <div class="form-group has-feedback" data-ng-class="formFeedback('vpnCert')">
                     <label for="vpnCert" class="col-md-3 control-label" translate>
@@ -514,7 +515,7 @@
             </div>
           </div>
 
-          <div class="row" data-collapse="state.ip.register">
+          <div class="row" uib-collapse="state.ip.register">
             <div class="col-md-offset-3 col-md-9">
               <div class="form-group has-feedback" ng-class="formFeedback('ipv6Prefix')">
                 <label for="ipv6Prefix" class="col-md-3 control-label" translate>
@@ -607,7 +608,7 @@
             </div>
           </div>
 
-          <div class="row" data-collapse="state.ip.register || !wizard.ip.meshLan">
+          <div class="row" uib-collapse="state.ip.register || !wizard.ip.meshLan">
             <div class="col-md-offset-3 col-md-9">
               <div class="form-group has-feedback" ng-class="formFeedback('ipv4Lan')">
                 <label for="ipv4Lan" class="col-md-3 control-label" translate>
@@ -661,10 +662,10 @@
             </div>
           </div>
 
-          <div class="row" data-collapse="!wizard.ip.distribute">
+          <div class="row" uib-collapse="!wizard.ip.distribute">
             <div class="col-md-offset-3 col-md-9">
 
-              <div data-collapse="state.ip.register">
+              <div uib-collapse="state.ip.register">
                 <div class="form-group has-feedback" data-ng-class="formFeedback('ipv4ClientSubnet')">
                   <label for="ipv4ClientSubnet" class="col-md-3 control-label" translate>
                     .distribute.subnet.label
@@ -699,7 +700,7 @@
                 </div>
               </div>
 
-              <div data-collapse="!state.ip.register">
+              <div uib-collapse="!state.ip.register">
                 <div class="form-group">
                   <label for="ipv4ClientCount" class="col-md-3 control-label" translate>
                     .distribute.expectedClients.label
@@ -748,7 +749,7 @@
           </div>
 
           <!-- collapsable wifi advanced -->
-          <div data-collapse="!state.wifi.advanced">
+          <div uib-collapse="!state.wifi.advanced">
             <div data-ng-repeat="(name, device) in state.wifi.devices" class="panel panel-default" ng-init="config = wizard.wifi[name]">
               <div class="panel-heading clearfix">
                 <div class="btn-group pull-right">

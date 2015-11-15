@@ -1,7 +1,7 @@
 'use strict';
 
 var wizard = angular.module('WizardApp', [
-  'ui.bootstrap', 'ngAnimate', 'ngMessages', 'leaflet-directive',
+  'ui.bootstrap', 'ngAnimate', 'ngMessages', 'ngSanitize', 'leaflet-directive',
   'pascalprecht.translate'
 ]);
 
