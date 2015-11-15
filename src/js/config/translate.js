@@ -15,5 +15,8 @@ module.exports = function(app) {
       }
     );
     $translateProvider.determinePreferredLanguage();
+
+    // sanitize translations with $sanitize
+    $translateProvider.useSanitizeValueStrategy('sanitize');
   });
 };
