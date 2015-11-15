@@ -14,7 +14,7 @@
     "angular": "~1.4.7",
     "angular-animate": "~1.4.7",
     "angular-bootstrap": "~0.14.3",
-    "angular-jsonrpc-client": "~0.1.0",
+    "angular-jsonrpc-client": "~0.2.0",
     "angular-leaflet-directive": "~0.10.0",
     "angular-messages": "~1.4.7",
     "angular-translate": "~2.8.1",
