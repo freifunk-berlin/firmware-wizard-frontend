@@ -17,7 +17,6 @@ gulp.task('build:vendor', function() {
     'bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js',
     'bower_components/angular-leaflet-directive/dist/' +
       'angular-leaflet-directive.min.js',
-    'bower_components/angular-simple-logger/dist/angular-simple-logger.min.js',
     'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
   ]).pipe(gulp.dest(buildDir + 'vendor/angular'));
 
