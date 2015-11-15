@@ -6,12 +6,15 @@
   "scripts": {
     "test": "exit 1",
     "lint": "jshint src/js && jscs src/js",
-    "build": "gulp build:copy && gulp build:vendor && npm run build:css && npm run build:html && npm run build:js",
+    "build": "gulp build:locales && gulp build:vendor && npm run build:css && npm run build:html && npm run build:js",
     "build:css": "lessc --source-map --source-map-less-inline --clean-css=\"--skip-restructuring\" src/less/index.less dist/index.css",
     "build:html": "html-minifier -c .htmlminrc src/index.html > dist/index.html",
     "build:js": "npm run build:js:bundle && npm run build:js:minify",
     "build:js:bundle": "browserify src/js/index.js -d | exorcist tmp/index.js.map > tmp/index.js",
-    "build:js:minify": "uglifyjs tmp/index.js --in-source-map tmp/index.js.map -c -m --source-map-root tmp --source-map-url index.js.map --source-map dist/index.js.map -o dist/index.js"
+    "build:js:minify": "uglifyjs tmp/index.js --in-source-map tmp/index.js.map -c -m --source-map-root tmp --source-map-url index.js.map --source-map dist/index.js.map -o dist/index.js",
+    "watch:css": "nodemon -e less -w src -x \"npm run build:css\"",
+    "watch:html": "nodemon -e html -w src -x \"npm run build:html\"",
+    "watch:js": "watchify src/js/index.js -d -v -o \"exorcist dist/index.js.map > dist/index.js\""
   },
   "repository": {
     "type": "git",
@@ -30,7 +33,9 @@
     "ip": "^1.0.1",
     "less": "^2.5.3",
     "less-plugin-clean-css": "^1.5.1",
-    "uglify-js": "^2.6.0"
+    "nodemon": "^1.8.1",
+    "uglify-js": "^2.6.0",
+    "watchify": "^3.6.1"
   },
   "dependencies": {
     "html-minifier": "^1.0.0",
