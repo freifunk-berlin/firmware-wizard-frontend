@@ -266,7 +266,8 @@ module.exports = function(app) {
 
       $scope.hasError = function(field) {
         var form = $scope.wizardForm;
-        return (form.$submitted || form[field].$dirty) && form[field].$invalid;
+        return (form.$submitted || form[field].$dirty) &&
+          form[field].$invalid && form[field].$error;
       };
 
       $scope.hasSuccess = function(field) {

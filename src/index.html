@@ -90,8 +90,7 @@
               <span class="fa form-control-feedback"
                 ng-class="formControlFeedback('routerName')"></span>
               <div class="help-block">
-                <div ng-messages="wizardForm.routerName.$error"
-                    ng-if="hasError('routerName')">
+                <div ng-messages="hasError('routerName')">
                   <div ng-message="required">
                     <span translate>.error.required</span>
                   </div>
@@ -126,8 +125,7 @@
               <span class="fa form-control-feedback"
                 ng-class="formControlFeedback('password')"></span>
               <div class="help-block">
-                <div ng-messages="wizardForm.password.$error"
-                    ng-if="hasError('password')">
+                <div ng-messages="hasError('password')">
                   <div ng-message="required">
                     <span translate>.error.required</span>
                   </div>
@@ -154,8 +152,8 @@
                 required data-compare-to="wizard.router.password">
               <span class="fa form-control-feedback"
                 ng-class="formControlFeedback('passwordVerify')"></span>
-              <div class="help-block" ng-if="hasError('passwordVerify')">
-                <div ng-messages="wizardForm.passwordVerify.$error">
+              <div class="help-block">
+                <div ng-messages="hasError('passwordVerify')">
                   <div ng-message="compareTo">
                     <span translate>.error.match</span>
                   </div>
@@ -206,14 +204,12 @@
               <span class="fa form-control-feedback"
                 ng-class="formControlFeedback('email')"></span>
               <div class="help-block">
-                <div ng-if="hasError('email')">
-                  <div ng-messages="wizardForm.email.$error">
-                    <div ng-message="required">
-                      <span translate>.error.required</span>
-                    </div>
-                    <div ng-message="pattern">
-                      <span translate>.error.pattern</span>
-                    </div>
+                <div ng-messages="hasError('email')">
+                  <div ng-message="required">
+                    <span translate>.error.required</span>
+                  </div>
+                  <div ng-message="pattern">
+                    <span translate>.error.pattern</span>
                   </div>
                 </div>
                 <div translate>.help</div>
@@ -532,8 +528,7 @@
                   <span class="fa form-control-feedback"
                     ng-class="formControlFeedback('ipv6Prefix')"></span>
                   <div class="help-block">
-                    <div ng-if="hasError('ipv6Prefix')"
-                        ng-messages="wizardForm.ipv6Prefix.$error">
+                    <div ng-messages="hasError('ipv6Prefix')">
                       <div ng-message="required">
                         <span translate>.error.required</span>
                       </div>
@@ -569,17 +564,15 @@
                   <span class="fa form-control-feedback"
                     ng-class="formControlFeedback('ipv4Wifi_' + $index)"></span>
                   <div class="help-block">
-                    <div ng-if="hasError('ipv4Wifi_' + $index)">
-                      <div ng-messages="wizardForm['ipv4Wifi_' + $index].$error">
-                        <div ng-message="required">
-                          <span translate>.error.required</span>
-                        </div>
-                        <div ng-message="ipAddress">
-                          <span translate>.v4.error.ipAddress</span>
-                        </div>
-                        <div ng-message="ipPrefixMinLength">
-                          <span translate>.v4.error.ipSingle</span>
-                        </div>
+                    <div ng-messages="hasError('ipv4Wifi_' + $index)">
+                      <div ng-message="required">
+                        <span translate>.error.required</span>
+                      </div>
+                      <div ng-message="ipAddress">
+                        <span translate>.v4.error.ipAddress</span>
+                      </div>
+                      <div ng-message="ipPrefixMinLength">
+                        <span translate>.v4.error.ipSingle</span>
                       </div>
                     </div>
                     <div translate translate-values="{name: name}">
@@ -625,17 +618,15 @@
                   <span class="fa form-control-feedback"
                     ng-class="formControlFeedback('ipv4Lan')"></span>
                   <div class="help-block">
-                    <div ng-if="hasError('ipv4Lan')">
-                      <div ng-messages="wizardForm.ipv4Lan.$error">
-                        <div ng-message="required">
-                          <span translate>.error.required</span>
-                        </div>
-                        <div ng-message="ipAddress">
-                          <span translate>.v4.error.ipAddress</span>
-                        </div>
-                        <div ng-message="ipPrefixMinLength">
-                          <span translate>.v4.error.ipSingle</span>
-                        </div>
+                    <div ng-messages="hasError('ipv4Lan')">
+                      <div ng-message="required">
+                        <span translate>.error.required</span>
+                      </div>
+                      <div ng-message="ipAddress">
+                        <span translate>.v4.error.ipAddress</span>
+                      </div>
+                      <div ng-message="ipPrefixMinLength">
+                        <span translate>.v4.error.ipSingle</span>
                       </div>
                     </div>
                     <div translate>.v4.lan.help</div>
@@ -680,17 +671,15 @@
                     <span class="fa form-control-feedback"
                       ng-class="formControlFeedback('ipv4ClientSubnet')"></span>
                     <div class="help-block">
-                      <div ng-if="hasError('ipv4ClientSubnet')">
-                        <div ng-messages="wizardForm.ipv4ClientSubnet.$error">
-                          <div ng-message="required">
-                            <span translate>.error.required</span>
-                          </div>
-                          <div ng-message="ipAddress">
-                            <span translate>.v4.error.ipSubnet</span>
-                          </div>
-                          <div ng-message="ipPrefixMaxLength">
-                            <span translate>.v4.error.ipSubnetSmall</span>
-                          </div>
+                      <div ng-messages="hasError('ipv4ClientSubnet')">
+                        <div ng-message="required">
+                          <span translate>.error.required</span>
+                        </div>
+                        <div ng-message="ipAddress">
+                          <span translate>.v4.error.ipSubnet</span>
+                        </div>
+                        <div ng-message="ipPrefixMaxLength">
+                          <span translate>.v4.error.ipSubnetSmall</span>
                         </div>
                       </div>
                       <div translate>.distribute.subnet.help</div>
