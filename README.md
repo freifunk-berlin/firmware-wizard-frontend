@@ -20,7 +20,23 @@ npm install
 bower install
 ```
 
-A build (to the subdirectory `gh-pages`) is triggered via
+### Dev builds
+
+The following command builds the required files for development purposes
+in the subdirectory `dist` and spawns a web server on `http://localhost:8080`
+(with live reload when you change files in `src/`):
+```
+npm run watch
+```
+
+### Production builds
+
+A production build (with minification) is triggered via
 ```
 npm run build
 ```
+The resulting files are also placed in `dist/` so it may be worthwhile to run
+```
+npm run clean && npm run build
+```
+instead.
