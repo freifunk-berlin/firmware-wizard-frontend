@@ -2,8 +2,7 @@ var gulp = require('gulp');
 
 var buildDir = './dist/';
 
-gulp.task('build:copy', function() {
-  gulp.src('src/index.*').pipe(gulp.dest(buildDir));
+gulp.task('build:locales', function() {
   gulp.src('src/nls/locale-*.json').pipe(gulp.dest(buildDir + '/nls/'));
 });
 
@@ -19,11 +18,6 @@ gulp.task('build:vendor', function() {
       'angular-leaflet-directive.min.js',
     'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
   ]).pipe(gulp.dest(buildDir + 'vendor/angular'));
-
-  gulp.src([
-    'bower_components/bootstrap/dist/css/bootstrap.min.css'
-  ])
-    .pipe(gulp.dest(buildDir + 'vendor/bootstrap/css'));
 
   gulp.src([
     'bower_components/font-awesome/css/font-awesome.min.css',

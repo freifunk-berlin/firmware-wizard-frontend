@@ -199,6 +199,6 @@
     }
   },
   "configIncorrect": "The data you entered is invalid. Please correct the fields marked with <i class=\"fa fa-times\"></i> before you continue.",
-  "save": "Save & Restart",
+  "save": "Save &amp; Restart",
   "download": "Download configuration"
 }

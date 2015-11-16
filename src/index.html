@@ -9,7 +9,6 @@
 
     <!-- vendor assets -->
     <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/leaflet/leaflet.css" />
 
     <script src="vendor/angular/angular.min.js"></script>
@@ -919,11 +918,10 @@
             configIncorrect
           </span>
           <button type="button" class="btn btn-default" ng-click="downloadConfig()">
-            <i class="fa fa-download"></i> {{ 'download' | translate }}
+            <i class="fa fa-download"></i> <span translate>download</span>
           </button>
           <button type="submit" class="btn btn-primary" data-ng-click="submit()" data-ng-class="{disabled: wizardForm.$invalid}">
-            <i class="fa fa-check"></i>
-              {{ 'save' | translate }}
+            <i class="fa fa-check"></i> <span translate>save</span>
           </button>
         </div>
       </div>

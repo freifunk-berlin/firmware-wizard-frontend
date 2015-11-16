@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-  app.config(function($translateProvider) {
+  app.config(['$translateProvider', function($translateProvider) {
     $translateProvider.fallbackLanguage('en');
     $translateProvider.useStaticFilesLoader({
       prefix: 'nls/locale-',
@@ -24,5 +24,5 @@ module.exports = function(app) {
 
     // sanitize translations with $sanitize
     $translateProvider.useSanitizeValueStrategy('sanitize');
-  });
+  }]);
 };
