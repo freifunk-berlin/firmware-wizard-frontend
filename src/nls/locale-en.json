@@ -12,7 +12,7 @@
         "maxLength": "Maximum number of characters: 32.",
         "minLength": "Minimum number of characters: 3."
       },
-      "help": "The router name is a human-readable identifier for your router in the Freifunk network (OLSR, <a href=\"http://map.berlin.freifunk.net\">map</a>, IP registration, VPN cert/key generation)."
+      "help": "The router name is a human-readable identifier for your router. The router name is used by various services in the Freifunk network.  For example, if \"Monitoring\" is enabled, then the router name will be listed on <a href=\"http://monitor.berlin.freifunk.net\" target=\"_blank\">http://monitor.berlin.freifunk.net</a> along with many interesting statistics about your router. The router name is also used when other Freifunk routers in the area mesh with your router (<a href=\"http://wiki.freifunk.net/Glossar#OLSR\" target=\"_blank\">OLSR</a>).  The router name is also shown on the Freifunk <a href=\"http://map.berlin.freifunk.net\">map</a>."
     },
     "password": {
       "label": "New router password",
@@ -34,7 +34,7 @@
     },
     "email": {
       "label":"Email",
-      "help": "Your email address is required if VPN cert/key generation or IP registration is activated below. By providing an email address, you also allow other Freifunkas to contact you.",
+      "help": "Your email address will be shown on the contact page of your router. When people connect to the Freifunk network trough your router, they can then see the conact data on <a href=\"http://frei.funk/cgi-bin/luci/freifunk/conact\" target=\"_blank\">frei.funk</a>. Your email address is required if VPN cert/key generation or IP registration is activated below.",
       "placeholder": "funki@fine.net",
       "error": {
         "required":"A valid email address is required for the current configuration.",
@@ -44,7 +44,7 @@
   },
   "routerLocation": {
     "headline": "Router location",
-    "help": "If you provide the location data for your router it will be visible in the <a href=\"http://map.berlin.freifunk.net\" target=\"_blank\">Freifunk map</a>. You can drag the map marker to the correct location or enter the location and address manually.",
+    "help": "The geographic location of your router is used to place your router on the Freifunk <a href=\"http://map.berlin.freifunk.net\" target=\"_blank\">map</a>. You can drag the map marker to the correct location or enter the location and address manually.",
     "getLocation": "Get my location",
     "geolocation": {
       "label": "Geolocation",
@@ -53,7 +53,7 @@
     },
     "street": {
       "label": "Street and house no.",
-      "placeholder": "Panoramastraße"
+      "placeholder": "Panoramastr999a"
     },
     "postalCode":{
       "label": "Postal code",
@@ -66,7 +66,7 @@
   },
   "internetSharing": {
     "headline": "Internet sharing",
-    "help": "Freifunk is an independent and free network built by many different people that can be used for many different purposes. One purpose is to access the internet and this service is only possible because some Freifunkas decided to share their internet connections.",
+    "help": "Freifunk is an independent and free network built by many volunteers that can be used for many different purposes. One purpose is to access the internet and this service is only possible because some Freifunkas have decided to share their internet connections.",
     "shareInternet": {
       "label": "Share internet",
       "help": "If you want to share your internet connection select this checkbox.",
