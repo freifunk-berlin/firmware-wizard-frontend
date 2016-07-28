@@ -298,6 +298,10 @@ module.exports = function(app) {
         );
       };
 
+      $scope.isOnline = function () {
+        return navigator.onLine;
+      }
+
       $scope.pow = Math.pow;
 
     }
