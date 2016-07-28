@@ -72,6 +72,10 @@
       "help": "If you want to share your internet connection select this checkbox.",
       "thanks": "Thank you for sharing your internet connection!"
     },
+    "limitspeed": {
+      "label": "Limit speed",
+      "help": "If you encounter speed problems with your internet connection, you can limit the speed you share to freifunk here. Our advice: start without any limits, you can adjust that later"
+    },
     "transferSpeed": {
       "label": "Transfer speed limit",
       "help": "You can limit the transfer speed that the Freifunk network is able to use on your internet connection. You can determine your current transfer speed <a href=\"http://speedof.me/\" target=\"_blank\">here</a>. Leave the fields blank if you do not wish to limit the transfer speed.",
