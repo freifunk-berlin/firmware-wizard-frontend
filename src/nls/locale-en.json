@@ -66,7 +66,8 @@
     "city": {
       "label": "City",
       "placeholder": "Alt-Berlin"
-    }
+    },
+    "offlineMsg" : "Your internet connections seems offline. Using the map only works when you're online. You can add your location manually or do that later."
   },
   "internetSharing": {
     "headline": "Internet sharing",
