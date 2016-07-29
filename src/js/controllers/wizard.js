@@ -299,7 +299,7 @@ module.exports = function(app) {
       };
 
       $scope.isOnline = function () {
-        return window.navigator.onLine;
+        return $window.navigator.onLine;
       };
 
       $scope.pow = Math.pow;
