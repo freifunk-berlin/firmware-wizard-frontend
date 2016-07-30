@@ -59,9 +59,9 @@
     <form novalidate name="wizardForm"
         class="form-horizontal wizard-categories">
 
-      <!-- basic router setup -->
-      <div class="wizard-category">
-        <div ng-if="!isOnline()" class="container" translate-namespace="offlineWarning">
+      <!-- online/offline warning -->
+      <div ng-if="!isOnline()" class="wizard-category">
+        <div class="container" translate-namespace="offlineWarning">
           <div class="alert alert-danger" role="alert">
             <h2>
               <span class="fa-stack">
@@ -75,6 +75,10 @@
             </p>
           </div>
         </div>
+      </div>
+
+      <!-- basic router setup -->
+      <div class="wizard-category">
         <div class="container" translate-namespace="basicRouterSetup">
 
           <h2>
