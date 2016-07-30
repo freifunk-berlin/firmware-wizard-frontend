@@ -154,6 +154,12 @@
       "ipPattern": "This is not a valid IP adress."
     }
   },
+  "monitoring" : {
+    "headline" : "Monitoring",
+    "show" : "If you want your router to send data to the monitoring services, check that box! If your router is weak (slow CPU, low RAM, low flash memory, i.e. TP-Link 841n), you should not enable monitoring",
+    "label" : "Enable Monitoring",
+    "help" : "The Freifunk community of berlin provides a monitoring service. We collect information about transfer speeds, memory and CPU statistics, network connections. It is public available at <a href=\"http://monitoring.berlin.freifunk.net\" target=\"_blank\">http://monitoring.berlin.freifunk.net</a>. Monitoring helps community members to analyze network problems."
+  },
   "advancedWifi": {
     "headline": "Advanced wifi options",
     "show": "Show advanced wifi options",
