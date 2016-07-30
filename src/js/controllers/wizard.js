@@ -7,7 +7,7 @@ module.exports = function(app) {
     function($scope, leafletData, $http, $filter, downloadFile, $translate,
              jsonrpc) {
 
-      var onlineCheckUrl = `https://weimarnetz.de/health?callback=JSON_CALLBACK`;
+      var onlineCheckUrl = 'https://weimarnetz.de/health?callback=JSON_CALLBACK';
       $scope.selectedLanguage = $translate.use();
       $scope.$watch('selectedLanguage', function(language) {
         $translate.use(language);
