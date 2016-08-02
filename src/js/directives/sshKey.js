@@ -6,7 +6,7 @@ module.exports = function(app) {
   app.directive('verifysshkey', function() {
     return {
       require: 'ngModel',
-      link: function (scope, element, attr, ctrl) {
+      link: function(scope, element, attr, ctrl) {
         ctrl.$validators.verifysshkey = function(keys) {
           var validKeys = true;
           angular.forEach(keys, function(key) {
