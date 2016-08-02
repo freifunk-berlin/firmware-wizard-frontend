@@ -7,6 +7,8 @@ module.exports = function(app) {
     function($scope, leafletData, $http, $filter, downloadFile, $translate,
              jsonrpc) {
 
+      // jscs:disable maximumLineLength
+      var onlineCheckUrl = 'https://weimarnetz.de/health?callback=JSON_CALLBACK';
       $scope.selectedLanguage = $translate.use();
       $scope.$watch('selectedLanguage', function(language) {
         $translate.use(language);
@@ -296,6 +298,17 @@ module.exports = function(app) {
           'application/json',
           true
         );
+      };
+
+      var online = false;
+      $http.jsonp(onlineCheckUrl).then(function success(response) {
+          online = true;
+        }, function failure(response) {
+          online = false;
+        });
+
+      $scope.isOnline = function() {
+        return online;
       };
 
       $scope.pow = Math.pow;

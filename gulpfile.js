@@ -6,6 +6,10 @@ gulp.task('build:locales', function() {
   gulp.src('src/nls/locale-*.json').pipe(gulp.dest(buildDir + '/nls/'));
 });
 
+gulp.task('build:assets', function () {
+  gulp.src(['src/assets/**/*']).pipe(gulp.dest(buildDir + 'assets/'));
+});
+
 gulp.task('build:vendor', function() {
   gulp.src([
     'bower_components/angular/angular.min.js',
