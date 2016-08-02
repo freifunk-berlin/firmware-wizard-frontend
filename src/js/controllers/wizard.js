@@ -20,7 +20,7 @@ module.exports = function(app) {
           passwordVerify: undefined,
           name: undefined,
           sshkeys: {
-            enabled : undefined
+            enabled: undefined
           }
         },
         contact: {
