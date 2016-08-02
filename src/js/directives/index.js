@@ -5,4 +5,5 @@ module.exports = function(app) {
   require('./ipAddress')(app);
   require('./fileRequired')(app);
   require('./objectLength')(app);
+  require('./sshKey')(app);
 };

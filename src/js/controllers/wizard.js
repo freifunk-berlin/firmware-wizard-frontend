@@ -18,7 +18,10 @@ module.exports = function(app) {
         router: {
           password: undefined,
           passwordVerify: undefined,
-          name: undefined
+          name: undefined,
+          sshkeys: {
+            enabled: undefined
+          }
         },
         contact: {
           name: undefined,

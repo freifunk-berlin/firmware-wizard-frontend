@@ -178,6 +178,52 @@
               </div>
             </div>
           </div>
+
+          <div class="form-group"
+               translate-namespace=".sshkeys">
+            <label for="sshkeys" class="col-md-3 control-label" translate>
+              .label
+            </label>
+            <div class="col-md-9">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"
+                         name="sshkeys" id="sshkeys"
+                         data-ng-model="wizard.router.sshkeys.enabled">
+                  <span class="text-muted" translate>.help</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" uib-collapse="!wizard.router.sshkeys.enabled">
+            <div class="col-md-offset-3 col-md-9">
+              <div class="form-group has-feedback"
+              ng-class="formFeedback('sshkeys-text')">
+                <label for="sshkeys-text" class="col-md-3 control-label" translate>
+                  .sshkeys.keys.label
+                </label>
+                <div class="col-md-9">
+                  <textarea class="form-control" rows="6"
+                         name="sshkeys-text" id="sshkeys-text"
+                         data-ng-model="wizard.router.sshkeys.keys"
+                            data-verifysshkey
+                         ng-list="&#10;" ng-trim="false">
+                    </textarea>
+                  <span class="fa form-control-feedback"
+                          ng-class="formControlFeedback('sshkeys-text')"></span>
+                  <div class="help-block">
+                    <div ng-messages="hasError('sshkeys-text')">
+                      <div ng-message="verifysshkey">
+                        <span translate>.sshkeys.keys.invalidkey</span>
+                      </div>
+                    </div>
+                    <div translate>.sshkeys.keys.help</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <!-- / basic router details -->

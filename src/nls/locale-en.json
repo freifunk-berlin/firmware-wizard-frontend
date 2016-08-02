@@ -28,6 +28,15 @@
       "label": "Router password verification",
       "placeholder": "repeat password",
       "error.match": "Passwords have to match."
+    },
+    "sshkeys": {
+      "label": "SSH keys",
+      "help": "Enable this to add your ssh keys for passwordless root login to your router. SSH keys are helpful, if you maintain multiple routers or if you want to give access to a friend. If you don't know about ssh keys, simply ignore this setting",
+      "keys": {
+        "label": "Your keys",
+        "help": "Add your keys, each in a new line.",
+        "invalidkey": "One of your keys is invalid."
+      }
     }
   },
   "contactDetails": {
