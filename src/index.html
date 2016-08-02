@@ -59,6 +59,24 @@
     <form novalidate name="wizardForm"
         class="form-horizontal wizard-categories">
 
+      <!-- online/offline warning -->
+      <div ng-if="!isOnline()" class="wizard-category">
+        <div class="container" translate-namespace="offlineWarning">
+          <div class="alert alert-danger" role="alert">
+            <h2>
+              <span class="fa-stack">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa  fa-exclamation fa-stack-1x fa-inverse"></i>
+              </span>
+              <span translate>.headline</span>
+            </h2>
+            <p>
+              <span translate>.help</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
       <!-- basic router setup -->
       <div class="wizard-category">
         <div class="container" translate-namespace="basicRouterSetup">
@@ -281,8 +299,22 @@
           <div class="row">
 
             <!-- map -->
-            <div class="col-md-5">
-              <leaflet style="height: 300px;" markers="state.map.markers" center="state.map.center"></leaflet>
+            <div ng-if="isOnline()">
+              <div class="col-md-5">
+                <leaflet style="height: 300px;" markers="state.map.markers" center="state.map.center"></leaflet>
+              </div>
+            </div>
+            <div ng-if="!isOnline()">
+              <div class="col-md-5">
+                <div class="wizard-offline">
+                  <img src="assets/img/OSM_offlinemap.png">
+                  <strong>
+                    <span translate>
+                      .offlineMsg
+                    </span>
+                  </strong>
+                </div>
+              </div>
             </div>
             <!-- / map -->
 
@@ -780,6 +812,39 @@
         </div>
       </div>
       <!-- / ip addresses -->
+
+      <!-- enable/disable monitoring -->
+      <div class="wizard-category">
+        <div class="container" translate-namespace="monitoring">
+          <h2>
+            <span class="fa-stack">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-list fa-stack-1x fa-inverse"></i>
+            </span>
+            <span translate>.headline</span>
+          </h2>
+          <p>
+            <i class="fa fa-fw fa-info-circle"></i>
+            <span translate>.help</span>
+          </p>
+          <div class="wizard-margin-bottom">
+            <div class="form-group">
+              <label for="ipv4ClientCount" class="col-md-3 control-label" translate>
+                .label
+              </label>
+              <div class="col-md-9">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" data-ng-model="state.monitoring.enabled"
+                           name="enableMonitoring" id="enableMonitoring">
+                    <span translate>.show</span>
+                  </label>
+                </div>
+             </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- advanced wifi -->
       <div class="wizard-category">

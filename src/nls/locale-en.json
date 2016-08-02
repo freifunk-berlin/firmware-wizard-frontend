@@ -1,6 +1,10 @@
 {
 	"heading": "Router configuration wizard",
   "intro": "This wizard helps to configure your Freifunk router.",
+  "offlineWarning": {
+    "headline": "No internet connection",
+    "help" : "You don't seam to have an internet connection. Some features of this wizard need a connection. You could either connect your router to the internet or use the <a href=\"#\">online version of this wizard</a> with another connection, save the config file there and then apply it to your router"
+  },
   "basicRouterSetup": {
     "headline": "Basic router setup",
     "routerName": {
@@ -71,7 +75,8 @@
     "city": {
       "label": "City",
       "placeholder": "Alt-Berlin"
-    }
+    },
+    "offlineMsg" : "Your internet connections seems offline. Using the map only works when you're online. You can add your location manually or do that later."
   },
   "internetSharing": {
     "headline": "Internet sharing",
@@ -162,6 +167,12 @@
       "required": "This field is required unless you register new IPs automatically.",
       "ipPattern": "This is not a valid IP adress."
     }
+  },
+  "monitoring" : {
+    "headline" : "Monitoring",
+    "show" : "If you want your router to send data to the monitoring services, check that box! If your router is weak (slow CPU, low RAM, low flash memory, i.e. TP-Link 841n), you should not enable monitoring",
+    "label" : "Enable Monitoring",
+    "help" : "The Freifunk community of berlin provides a monitoring service. We collect information about transfer speeds, memory and CPU statistics, network connections. It is public available at <a href=\"http://monitoring.berlin.freifunk.net\" target=\"_blank\">http://monitoring.berlin.freifunk.net</a>. Monitoring helps community members to analyze network problems."
   },
   "advancedWifi": {
     "headline": "Advanced wifi options",
