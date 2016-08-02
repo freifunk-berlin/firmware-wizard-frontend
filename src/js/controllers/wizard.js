@@ -52,6 +52,9 @@ module.exports = function(app) {
           distribute: true,
           v4ClientSubnet: undefined
         },
+        monitoring: {
+          enabled: false
+        },
         wifi: {
           radio0: {
             mode: 'mesh',
@@ -93,6 +96,9 @@ module.exports = function(app) {
         ip: {
           register: true,
           v4ClientSubnetSize: 27
+        },
+        monitoring: {
+          enabled: false
         },
         wifi: {
           advanced: false,
