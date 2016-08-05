@@ -22,6 +22,8 @@
     <script src="vendor/leaflet/leaflet.js"></script>
     <script src="vendor/angular/angular-leaflet-directive.min.js"></script>
 
+    <script src="vendor/angular/ng-file-upload.min.js"></script>
+
     <!-- wizard assets -->
     <link rel="stylesheet" href="index.css">
     <script src="index.js"></script>
@@ -76,6 +78,9 @@
           </div>
         </div>
       </div>
+      <!-- online/offline warning -->
+
+      <ng-include src="'shared/loadConfig/loadConfig.html'"></ng-include>
 
       <!-- basic router setup -->
       <div class="wizard-category">
