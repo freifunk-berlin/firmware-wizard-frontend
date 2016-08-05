@@ -21,16 +21,16 @@ module.exports = function(app) {
       $scope.log = '';
 
       $scope.upload = function (files) {
+        var reader = new FileReader();
+        reader.onload = function(){
+          var myWizard = JSON.parse(reader.result);
+          console.log(myWizard);
+          $scope.wizard = myWizard;
+        };
         if (files && files.length) {
           for (var i = 0; i < files.length; i++) {
             var file = files[i];
             if (!file.$error) {
-              var reader = new FileReader();
-              reader.onload = function(){
-                var myWizard = JSON.parse(reader.result);
-                console.log(myWizard);
-                $scope.wizard = myWizard;
-              };
               reader.readAsText(file);
 
             }
