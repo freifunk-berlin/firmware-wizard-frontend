@@ -24,7 +24,6 @@ module.exports = function(app) {
         var reader = new FileReader();
         reader.onload = function() {
           var myWizard = JSON.parse(reader.result);
-          console.log(myWizard);
           $scope.wizard = myWizard;
         };
         if (files && files.length) {
