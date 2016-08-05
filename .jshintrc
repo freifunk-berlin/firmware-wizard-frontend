@@ -4,5 +4,6 @@
     "console": false
   },
   "globalstrict": true,
-  "node": true
+  "node": true,
+  "browser": true
 }

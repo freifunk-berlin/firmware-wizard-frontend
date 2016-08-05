@@ -8,6 +8,7 @@ gulp.task('build:locales', function() {
 
 gulp.task('build:assets', function () {
   gulp.src(['src/assets/**/*']).pipe(gulp.dest(buildDir + 'assets/'));
+  gulp.src(['src/shared/**/*']).pipe(gulp.dest(buildDir + 'shared/'));
 });
 
 gulp.task('build:vendor', function() {
@@ -21,6 +22,7 @@ gulp.task('build:vendor', function() {
     'bower_components/angular-leaflet-directive/dist/' +
       'angular-leaflet-directive.min.js',
     'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+    'node_modules/ng-file-upload/dist/ng-file-upload.min.js',
   ]).pipe(gulp.dest(buildDir + 'vendor/angular'));
 
   gulp.src([

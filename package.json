@@ -8,7 +8,7 @@
     "lint": "jshint src/js && jscs src/js",
     "build": "gulp build:locales && gulp build:assets && gulp build:vendor && npm run build:css && npm run build:html && npm run build:js",
     "build:css": "lessc --source-map --source-map-less-inline --clean-css=\"--skip-restructuring\" src/less/index.less dist/index.css",
-    "build:html": "html-minifier -c .htmlminrc src/index.html > dist/index.html",
+    "build:html": "html-minifier -c .htmlminrc src/index.html > dist/index.html && for file in src/shared/**/*.html; do  html-minifier -c .htmlminrc $file > dist/shared/$(basename $(dirname $file))/$(basename $file); done",
     "build:js": "npm run build:js:bundle && npm run build:js:minify",
     "build:js:bundle": "browserify src/js/index.js -d | exorcist tmp/index.js.map > tmp/index.js",
     "build:js:minify": "uglifyjs tmp/index.js --in-source-map tmp/index.js.map -c -m --source-map-root tmp --source-map-url index.js.map --source-map dist/index.js.map -o dist/index.js",
@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "ip-address": "^5.0.2",
-    "ssh-pub-key-validation": "^1.0.0"
+    "ssh-pub-key-validation": "^1.0.0",
+    "ng-file-upload": "^12.0.4"
   }
 }

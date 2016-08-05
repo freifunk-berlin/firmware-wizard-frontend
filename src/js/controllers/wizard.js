@@ -3,16 +3,39 @@
 module.exports = function(app) {
   app.controller('WizardCtrl', [
     '$scope', 'leafletData', '$http', '$filter', 'downloadFile', '$translate',
-    'jsonrpc',
+    'jsonrpc', 'Upload', '$timeout',
     function($scope, leafletData, $http, $filter, downloadFile, $translate,
-             jsonrpc) {
+             jsonrpc, Upload, $timeout) {
 
       // jscs:disable maximumLineLength
       var onlineCheckUrl = 'https://weimarnetz.de/health?callback=JSON_CALLBACK';
       $scope.selectedLanguage = $translate.use();
       $scope.$watch('selectedLanguage', function(language) {
         $translate.use(language);
-      });
+      }, true);
+
+      $scope.files = undefined;
+      $scope.$watch('files', function() {
+        $scope.upload($scope.files);
+      }, true);
+      $scope.log = '';
+
+      $scope.upload = function(files) {
+        var reader = new FileReader();
+        reader.onload = function() {
+          var myWizard = JSON.parse(reader.result);
+          $scope.wizard = myWizard;
+        };
+        if (files && files.length) {
+          for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            if (!file.$error) {
+              reader.readAsText(file);
+
+            }
+          }
+        }
+      };
 
       $scope.wizard = {
         router: {

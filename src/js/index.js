@@ -2,7 +2,7 @@
 
 var wizard = angular.module('WizardApp', [
   'ui.bootstrap', 'ngAnimate', 'ngMessages', 'ngSanitize', 'leaflet-directive',
-  'pascalprecht.translate'
+  'pascalprecht.translate', 'ngFileUpload'
 ]);
 
 require('./config')(wizard);
