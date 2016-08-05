@@ -15,14 +15,14 @@ module.exports = function(app) {
       }, true);
 
       $scope.files = undefined;
-      $scope.$watch('files', function () {
+      $scope.$watch('files', function() {
         $scope.upload($scope.files);
       }, true);
       $scope.log = '';
 
-      $scope.upload = function (files) {
+      $scope.upload = function(files) {
         var reader = new FileReader();
-        reader.onload = function(){
+        reader.onload = function() {
           var myWizard = JSON.parse(reader.result);
           console.log(myWizard);
           $scope.wizard = myWizard;
