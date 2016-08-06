@@ -1,0 +1,54 @@
+<!-- contact details -->
+<div class="wizard-category">
+  <div class="container" translate-namespace="contactDetails">
+    <h2>
+            <span class="fa-stack">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+            </span>
+      <span translate>.headline</span>
+    </h2>
+
+    <div class="form-group" translate-namespace=".name">
+      <label for="name" class="col-md-3 control-label" translate>
+        .label
+      </label>
+      <div class="col-md-9">
+        <input type="text" class="form-control"
+               name="name" id="name"
+               translate translate-attr-placeholder=".placeholder"
+               data-ng-model="wizard.contact.name">
+      </div>
+    </div>
+
+    <div class="form-group has-feedback"
+         ng-class="formFeedback('email')"
+         translate-namespace=".email">
+      <label for="email" class="col-md-3 control-label" translate>
+        .label
+      </label>
+      <div class="col-md-9">
+        <input type="email" class="form-control"
+               name="email" id="email"
+               translate translate-attr-placeholder=".placeholder"
+               data-ng-model="wizard.contact.email"
+               ng-required="(wizard.internet.share && wizard.internet.vpn.enabled && state.internet.vpn.vpn03generate) || state.ip.register"
+               pattern=".*@.+\..+">
+        <span class="fa form-control-feedback"
+              ng-class="formControlFeedback('email')"></span>
+        <div class="help-block">
+          <div ng-messages="hasError('email')">
+            <div ng-message="required">
+              <span translate>.error.required</span>
+            </div>
+            <div ng-message="pattern">
+              <span translate>.error.pattern</span>
+            </div>
+          </div>
+          <div translate>.help</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- / contact details -->
