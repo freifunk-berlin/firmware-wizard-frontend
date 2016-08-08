@@ -61,15 +61,33 @@
     <form novalidate name="wizardForm"
         class="form-horizontal wizard-categories">
 
-      <ng-include src="'shared/offlineWarning/offlineWarning.html'"></ng-include>
+      <div ng-if="!isOnline()" class="wizard-category">
+        <ng-include src="'shared/offlineWarning/offlineWarning.html'"></ng-include>
+      </div>
+      <div class="wizard-category">
       <ng-include src="'shared/loadConfig/loadConfig.html'"></ng-include>
-      <ng-include src="'shared/basicRouterSetup/basicRouterSetup.html'"></ng-include>
-      <ng-include src="'shared/contactDetails/contactDetails.html'"></ng-include>
-      <ng-include src="'shared/routerLocation/routerLocation.html'"></ng-include>
-      <ng-include src="'shared/internetSharing/internetSharing.html'"></ng-include>
-      <ng-include src="'shared/ipAddresses/ipAddresses.html'"></ng-include>
-      <ng-include src="'shared/monitoring/monitoring.html'"></ng-include>
-      <ng-include src="'shared/advancedWifi/advancedWifi.html'"></ng-include>
+      </div>
+        <div class="wizard-category">
+          <ng-include src="'shared/basicRouterSetup/basicRouterSetup.html'"></ng-include>
+        </div>
+      <div class="wizard-category">
+        <ng-include src="'shared/contactDetails/contactDetails.html'"></ng-include>
+      </div>
+      <div class="wizard-category">
+        <ng-include src="'shared/routerLocation/routerLocation.html'"></ng-include>
+      </div>
+      <div class="wizard-category">
+        <ng-include src="'shared/internetSharing/internetSharing.html'"></ng-include>
+      </div>
+      <div class="wizard-category">
+        <ng-include src="'shared/ipAddresses/ipAddresses.html'"></ng-include>
+      </div>
+      <div class="wizard-category">
+        <ng-include src="'shared/monitoring/monitoring.html'"></ng-include>
+      </div>
+      <div class="wizard-category">
+        <ng-include src="'shared/advancedWifi/advancedWifi.html'"></ng-include>
+      </div>
 
       <!-- submission -->
       <div class="wizard-category">
