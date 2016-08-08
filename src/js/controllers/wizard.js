@@ -48,7 +48,11 @@ module.exports = function(app) {
         },
         contact: {
           name: undefined,
-          email: undefined
+          email: undefined,
+          options: {
+            showOnContactPage: true,
+            sendToMap: undefined
+          }
         },
         location: {
           lat: undefined,
