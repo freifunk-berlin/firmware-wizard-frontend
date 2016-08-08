@@ -62,6 +62,23 @@
         "required":"A valid email address is required for the current configuration.",
         "pattern": "Please enter a valid email address."
       }
+    },
+    "options": {
+      "label": "Options",
+      "contactPage": {
+        "label": "Show email on Contact Page",
+        "help": "Disable if you don't want your email address to be shown on the contact page (only visible within freifunk)."
+      },
+      "sendToMap": {
+        "label": "Send email address to map",
+        "help": "Enable if you want your email address to be sent to the map (visible on the internet)."
+      },
+      "mailinglist": {
+        "label": "Mailing list",
+        "button": "Subscribe me",
+        "help": " to the mailing list of Berlin's freifunk community. You can find more information on <a href=\"https://lists.berlin.freifunk.net/cgi-bin/mailman/listinfo/berlin\" target=\"_blank\">the list homepage</a>.",
+        "helpoffline": "Please visit <a href=\"https://lists.berlin.freifunk.net/cgi-bin/mailman/listinfo/berlin\" target=\"_blank\">the mailing list page</a> of Berlin's freifunk community, when you're online again. There you can subscribe to that list."
+      }
     }
   },
   "routerLocation": {

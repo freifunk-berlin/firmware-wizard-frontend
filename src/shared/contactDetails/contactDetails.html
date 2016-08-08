@@ -48,5 +48,58 @@
         </div>
       </div>
     </div>
+    <div class="form-group" translate-namespace=".options">
+      <label for="name" class="col-md-3 control-label" translate>
+        .label
+      </label>
+      <div class="col-md-offset-3 col-md-9">
+        <div class="form-group" translate-namespace=".contactPage">
+          <label for="showOnContactPage" class="col-md-3 control-label" translate>
+            .label
+          </label>
+          <div class="col-md-9">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox"
+                       name="showOnContactPage" id="showOnContactPage"
+                       data-ng-model="wizard.contact.options.showOnContactPage">
+              <span translate>.help</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-offset-3 col-md-9">
+        <div class="form-group" translate-namespace=".sendToMap">
+          <label for="sendToMap" class="col-md-3 control-label" translate>
+            .label
+          </label>
+          <div class="col-md-9">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox"
+                       name="sendToMap" id="sendToMap"
+                       data-ng-model="wizard.contact.options.sendToMap">
+                <span translate>.help</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-offset-3 col-md-9">
+        <div class="form-group" translate-namespace=".mailinglist">
+          <label for="sendToMap" class="col-md-3 control-label" translate>
+            .label
+          </label>
+          <div ng-if="isOnline()" class="col-md-9">
+            <a data-ng-required="wizard.contact.email" href="https://lists.berlin.freifunk.net/cgi-bin/mailman/subscribe/berlin?email={{wizard.contact.email}}" class="btn btn-info" role="button" target="_blank" translate>.button</a><span translate>.help</span>
+          </div>
+          <div ng-if="!isOnline()" class="col-md-9">
+            <span translate>.helpoffline</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
   </div>
 <!-- / contact details -->
