@@ -137,6 +137,8 @@
       "help": "The <a href=\"http://foerderverein.freie-netzwerke.de/\" target=\"_blanl\">Förderverein Freie Netzwerke</a> operates the <a href=\"http://wiki.freifunk.net/vpn03\" target=\"_blanl\">VPN03</a> servers for protecting yourself from the <a href=\"https://de.wikipedia.org/wiki/St%C3%B6rerhaftung\" target=\"_blank\">Störerhaftung</a>. If this option is enabled, the wizard automatically generates a new certificate and key for VPN03. Disable this option if you already have a VPN03 config or if you want to use another VPN service (OpenVPN).",
       "certificate.label": "VPN certificate",
       "key.label": "VPN key",
+      "conf.label": "VPN configuration file",
+      "select": "Select your file",
       "browse": "Browse",
       "error.required": "The file is required. It is generated automatically if you select the checkbox above."
     }
