@@ -143,7 +143,7 @@
               <div class="col-md-9">
                 <div class="btn btn-info" role="button" id="vpnCert" name="vpnCert"
                      data-ng-model="vpnCert" data-ngf-select="uploadVpnFiles($files, cert)"
-                     data-ngf-multiple="false" ngf-pattern="text/*,.crt" ngf-accept="'text/*'"
+                     data-ngf-multiple="false" ngf-pattern="'text/*,.crt'" ngf-accept="'text/*'"
                      data-ng-required="!state.internet.vpn.vpn03generate
                      && wizard.internet.vpn.enabled
                      && wizard.internet.share" translate>
@@ -157,8 +157,8 @@
               </label>
               <div class="col-md-9">
                 <div class="btn btn-info" role="button" id="vpnKey" name="vpnKey"
-                     data-ng-model="vpnKey" data-ngf-select="uploadVpnFiles($files, key)"
-                     data-ngf-multiple="false" ngf-pattern="text/*,.key" ngf-accept="'text/*'"
+                     data-ng-model="vpnKey" data-ngf-select="uploadVpnFiles($files, 'key')"
+                     data-ngf-multiple="false" ngf-pattern="'text/*,.key'" ngf-accept="'text/*'"
                      data-ng-required="!state.internet.vpn.vpn03generate
                      && wizard.internet.vpn.enabled
                      && wizard.internet.share" translate>
@@ -172,8 +172,8 @@
               </label>
               <div class="col-md-9">
                 <div class="btn btn-info" role="button" id="vpnConf"
-                     data-ng-model="vpnConf" data-ngf-select="uploadVpnFiles($files, conf)"
-                     data-ngf-multiple="false" ngf-pattern="text/*,.conf,.cnf" nfg-accept="'text/*'"
+                     data-ng-model="vpnConf" data-ngf-select="uploadVpnFiles($files, 'conf')"
+                     data-ngf-multiple="false" ngf-pattern="'text/*,.conf,.cnf'" nfg-accept="'text/*'"
                      data-ng-required="!state.internet.vpn.vpn03generate
                      && wizard.internet.vpn.enabled
                      && wizard.internet.share" translate>
