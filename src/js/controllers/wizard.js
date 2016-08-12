@@ -51,18 +51,18 @@ module.exports = function(app) {
         $scope.pastConfigurationRestore = true;
       };
 
-      $scope.uploadVpnFiles = function (file, field) {
+      $scope.uploadVpnFiles = function(file, field) {
         var reader = new FileReader();
         reader.onload = function() {
           console.log(reader.result);
-          switch(field) {
-            case "cert":
+          switch (field) {
+            case 'cert':
               $scope.wizard.internet.vpn.cert = reader.result;
               break;
-            case "key":
+            case 'key':
               $scope.wizard.internet.vpn.key = reader.result;
               break;
-            case "conf":
+            case 'conf':
               $scope.wizard.internet.vpn.conf = reader.result;
               break;
           }
@@ -226,7 +226,7 @@ module.exports = function(app) {
 
       // copy router name to map marker
       $scope.$watch('wizard.router.name', function(name) {
-        $scope.state.map.markers.router.message =1032985929
+        $scope.state.map.markers.router.message =
           '<strong>' + (name || 'Your router') + '</strong><br>' +
           'Drag me to the correct location!';
       });
