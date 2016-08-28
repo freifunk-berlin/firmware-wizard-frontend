@@ -42,13 +42,16 @@ module.exports = function(app) {
         reader.onload = function() {
           switch (field) {
             case 'cert':
-              $scope.wizard.internet.vpn.cert = reader.result;
+              $scope.wizard.internet.vpn.cert.value = reader.result;
+              $scope.wizard.internet.vpn.cert.filename = file[0].name;
               break;
             case 'key':
-              $scope.wizard.internet.vpn.key = reader.result;
+              $scope.wizard.internet.vpn.key.value = reader.result;
+              $scope.wizard.internet.vpn.key.filename = file[0].name;
               break;
             case 'conf':
-              $scope.wizard.internet.vpn.conf = reader.result;
+              $scope.wizard.internet.vpn.conf.value = reader.result;
+              $scope.wizard.internet.vpn.conf.filename = file[0].name;
               break;
           }
         };
@@ -90,9 +93,9 @@ module.exports = function(app) {
           vpn: {
             enabled: false,
             vpn03generate: false,
-            cert: undefined,
-            key: undefined,
-            conf: undefined
+            cert: {},
+            key: {},
+            conf: {}
           }
         },
         ip: {

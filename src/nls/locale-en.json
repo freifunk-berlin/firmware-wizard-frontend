@@ -133,11 +133,27 @@
       "help": "You can use a VPN to protect yourself from the <a href=\"https://de.wikipedia.org/wiki/St%C3%B6rerhaftung\" target=\"_blank\">Störerhaftung</a>. If you agree that Störerhaftung is bad for free networks then you can <a href=\"http://freifunkstattangst.de/\" target=\"_blank\">help us to put an end to Störerhaftung</a>!"
     },
     "generateCertificate": {
-      "label": "Generate VPN03 certificate and key for this router",
+      "label": "VPN certificate and key for this router",
       "help": "The <a href=\"http://foerderverein.freie-netzwerke.de/\" target=\"_blanl\">Förderverein Freie Netzwerke</a> operates the <a href=\"http://wiki.freifunk.net/vpn03\" target=\"_blanl\">VPN03</a> servers for protecting yourself from the <a href=\"https://de.wikipedia.org/wiki/St%C3%B6rerhaftung\" target=\"_blank\">Störerhaftung</a>. If this option is enabled, the wizard automatically generates a new certificate and key for VPN03. Disable this option if you already have a VPN03 config or if you want to use another VPN service (OpenVPN).",
-      "certificate.label": "VPN certificate",
-      "key.label": "VPN key",
-      "conf.label": "VPN configuration file",
+      "certificate": {
+        "label": "VPN certificate",
+        "error": {
+          "pattern": "Wrong file format or name. Only text files are allowed."
+        }
+      },
+      "key": {
+        "label": "VPN key",
+        "error": {
+          "pattern": "Wrong file format or name. Only text files are allowed."
+        }
+      },
+      "conf": {
+        "label": "VPN configuration file",
+        "customvpn": "I want to use another VPN service. Then you need an opnVPN config file from your VPN provider.",
+        "error": {
+          "pattern": "Wrong file format or name. Only text files are allowed."
+        }
+      },
       "select": "Select your file",
       "browse": "Browse",
       "error.required": "The file is required. It is generated automatically if you select the checkbox above."
