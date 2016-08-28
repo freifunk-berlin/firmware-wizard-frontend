@@ -81,7 +81,7 @@
                            translate
                            translate-attr-placeholder=".down.placeholder"
                            data-ng-model="wizard.internet.limitDown">
-                    <div class="help-block" translate>.down.help</div>
+                              <div class="help-block" translate>.down.help</div>
                   </div>
                   <div class="col-md-6">
                     <input type="number" class="form-control"
@@ -136,7 +136,8 @@
 
         <div class="row" uib-collapse="state.internet.vpn.vpn03generate" translate-namespace=".generateCertificate">
           <div class="col-md-offset-3 col-md-9">
-            <div class="form-group">
+            <div class="form-group has-feedback"
+                 ng-class="formFeedback('vpnCert')">
               <label for="vpnCert" class="col-md-3 control-label" translate>
                 .certificate.label
               </label>
@@ -148,10 +149,20 @@
                      && wizard.internet.vpn.enabled
                      && wizard.internet.share" translate>
                   .select
-                </div>&nbsp;{{vpnCert[0].name}}
+                </div>&nbsp;{{wizard.internet.vpn.cert.filename}}
+                <span class="fa form-control-feedback"
+                      ng-class="formControlFeedback('vpnCert')"></span>
+                <div class="help-block">
+                  <div ng-messages="hasError('vpnCert')">
+                    <div ng-message="pattern">
+                      <span translate>.cert.error.pattern</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group has-feedback"
+                 ng-class="formFeedback('vpnKey')">
               <label for="vpnKey" class="col-md-3 control-label" translate>
                 .key.label
               </label>
@@ -163,22 +174,61 @@
                      && wizard.internet.vpn.enabled
                      && wizard.internet.share" translate>
                   .select
-                </div>&nbsp;{{vpnKey[0].name}}
+                </div>&nbsp;{{wizard.internet.vpn.key.filename}}
+                <span class="fa form-control-feedback"
+                      ng-class="formControlFeedback('vpnKey')"></span>
+                <div class="help-block">
+                  <div ng-messages="hasError('vpnKey')">
+                    <div ng-message="pattern">
+                      <span translate>.key.error.pattern</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="form-group">
+          </div>
+        </div>
+        <div class="form-group" translate-namespace=".generateCertificate">
+          <label for="customvpn" class="col-md-3 control-label" translate>
+          </label>
+          <div class="col-md-9">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox"
+                       name="customvpn" id="customvpn"
+                       data-ng-model="state.internet.vpn.customvpn">
+                <span class="text-muted" translate>.conf.customvpn</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" uib-collapse="!state.internet.vpn.customvpn" translate-namespace=".generateCertificate">
+          <div class="col-md-offset-3 col-md-9">
+            <div class="form-group has-feedback"
+                 ng-class="formFeedback('vpnConf')">
               <label for="vpnConf" class="col-md-3 control-label" translate>
                 .conf.label
               </label>
               <div class="col-md-9">
-                <div class="btn btn-info" role="button" id="vpnConf"
+                <div class="btn btn-info" role="button" id="vpnConf" name="vpnConf"
                      data-ng-model="vpnConf" data-ngf-select="uploadVpnFiles($files, 'conf')"
-                     data-ngf-multiple="false" ngf-pattern="'text/*,.conf,.cnf'" nfg-accept="'text/*'"
+                     data-ngf-multiple="false" ngf-pattern="'text/*,.cnf'" ngf-accept="'text/*'"
                      data-ng-required="!state.internet.vpn.vpn03generate
                      && wizard.internet.vpn.enabled
-                     && wizard.internet.share" translate>
+                     && wizard.internet.share
+                     && wizard.internet.vpn.customvpn" translate>
                   .select
-                </div>&nbsp;{{vpnConf.name}}
+                </div>&nbsp;{{wizard.internet.vpn.conf.filename}}
+                <span class="fa form-control-feedback"
+                      ng-class="formControlFeedback('vpnConf')"></span>
+                <div class="help-block">
+                  <div ng-messages="hasError('vpnConf')">
+                    <div ng-message="pattern">
+                      <span translate>.conf.error.pattern</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
