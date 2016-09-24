@@ -7,7 +7,6 @@
       <span translate>.headline</span>
     </h2>
     <p>
-      <i class="fa fa-fw fa-info-circle"></i>
       <span translate>.help</span>
     </p>
     <div class="row">
@@ -36,7 +35,7 @@
       <div class="col-md-offset-1 col-md-5">
 
         <div class="row">
-          <div class="col-md-offset-6 col-md-6">
+          <div ng-if="! getLocation().showError()" class="col-md-offset-6 col-md-6">
             <p>
               <button type="button" class="btn btn-primary" data-ng-click="getLocation()" data-ng-disabled="state.map.searchingGeolocation">
                 <i class="fa fa-fw fa-dot-circle-o"></i>

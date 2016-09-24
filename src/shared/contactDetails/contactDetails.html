@@ -92,8 +92,9 @@
           <label for="sendToMap" class="col-md-3 control-label" translate>
             .label
           </label>
-          <div ng-if="isOnline()" class="col-md-9">
-            <a data-ng-required="wizard.contact.email" href="https://lists.berlin.freifunk.net/cgi-bin/mailman/subscribe/berlin?email={{wizard.contact.email}}" class="btn btn-info" role="button" target="_blank" translate>.button</a><span translate>.help</span>
+          <div ng-if="isOnline()" class="col-md-9 help-text">
+            <span translate>.help</span>
+            <div><a data-ng-required="wizard.contact.email" href="https://lists.berlin.freifunk.net/cgi-bin/mailman/subscribe/berlin?email={{wizard.contact.email}}" class="btn btn-info" role="button" target="_blank" translate>.button</a></div>
           </div>
           <div ng-if="!isOnline()" class="col-md-9">
             <span translate>.helpoffline</span>

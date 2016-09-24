@@ -1,5 +1,5 @@
 {
-  "heading": "Configure your Freifunk Berlin Router",
+  "heading": "Configure your Router",
   "offlineWarning": {
     "headline": "No internet connection",
     "help" : "You don't seam to have an internet connection. Some features of this wizard need a connection. You could either connect your router to the internet or use the <a href=\"#\">online version of this wizard</a> with another connection, save the config file there and then apply it to your router"
@@ -53,12 +53,12 @@
     "headline": "Contact details",
     "name": {
       "label": "Your name",
-      "placeholder": "Funki Fine"
+      "placeholder": "Nickname"
     },
     "email": {
-      "label":"Email",
+      "label":"Your email address",
       "help": "Your email address is required if VPN cert/key generation or IP registration is activated below.",
-      "placeholder": "funki@fine.net",
+      "placeholder": "name@example.org",
       "error": {
         "required":"A valid email address is required for the current configuration.",
         "pattern": "Please enter a valid email address."
@@ -69,7 +69,7 @@
       "help": "Is it okay to be contacted by other Freifunkas?",
       "contactPage": {
         "label": "Show on Contact Page",
-        "help": "If people connect to the Freifunk network, they can then see the contact data on <a href=\"http://frei.funk/cgi-bin/luci/freifunk/conact\" target=\"_blank\">frei.funk</a> (only visible within freifunk)."
+        "help": "If people connect to the Freifunk network, they can then see the contact data on <a href=\"http://frei.funk/cgi-bin/luci/freifunk/contact\" target=\"_blank\">frei.funk</a> (only visible within freifunk)."
       },
       "sendToMap": {
         "label": "Send on Freifunk map",
@@ -78,14 +78,14 @@
       "mailinglist": {
         "label": "Mailing list",
         "button": "Subscribe me",
-        "help": " to the mailing list of Berlin's freifunk community. You can find more information on <a href=\"https://lists.berlin.freifunk.net/cgi-bin/mailman/listinfo/berlin\" target=\"_blank\">the list homepage</a>.",
+        "help": "We communitcate via the mailing list of Berlin's <a href=\"https://lists.berlin.freifunk.net/cgi-bin/mailman/listinfo/berlin\" target=\"_blank\">freifunk community</a>.",
         "helpoffline": "Please visit <a href=\"https://lists.berlin.freifunk.net/cgi-bin/mailman/listinfo/berlin\" target=\"_blank\">the mailing list page</a> of Berlin's freifunk community, when you're online again. There you can subscribe to that list."
       }
     }
   },
   "routerLocation": {
     "headline": "Router location",
-    "help": "The geographic location of your router is used to place your router on the Freifunk <a href=\"http://map.berlin.freifunk.net\" target=\"_blank\">map</a>. You can drag the map marker to the correct location or enter the location and address manually.",
+    "help": "The geographic location is used to place your router on the Freifunk <a href=\"http://map.berlin.freifunk.net\" target=\"_blank\">map</a>.",
     "getLocation": "Get my location",
     "geolocation": {
       "label": "Geolocation",
@@ -108,7 +108,7 @@
   },
   "internetSharing": {
     "headline": "Internet sharing",
-    "help": "Freifunk is an independent and free network built by many volunteers that can be used for many different purposes. One purpose is to access the internet and this service is only possible because some Freifunkas have decided to share their internet connections.",
+    "help": "Freifunk can be used for local services and grants access to the internet. This is possible because people within the network decide to share their internet connections.",
     "shareInternet": {
       "label": "Share internet",
       "help": "If you want to share your internet connection select this checkbox.",
