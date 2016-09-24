@@ -1,10 +1,23 @@
 language: node_js
 node_js:
-      - node
-before_script:
-      - npm install -g bower
-      - bower install
-script:
-      - npm run lint
-      - npm run build
+  - node
 sudo: false
+branches:
+  except:
+    - gh-pages
+before_install:
+  - openssl aes-256-cbc -K $encrypted_cd6bced8534a_key -iv $encrypted_cd6bced8534a_iv -in id_rsa_travis.enc -out id_rsa_travis -d
+  - ssh-add id_rsa_travis
+before_script:
+  - npm install -g bower
+  - bower install
+script:
+  - npm run lint
+  - npm run build
+after_success:
+  - git config user.name "Travis CI"
+  - git config user.email "travis@mailinator.com"
+  - ssh-keyscan github.com >> ~/.ssh/known_hosts
+  - git clone --depth 1 git@github.com:freifunk-berlin/firmware-wizard-frontend.git -b gh-pages gh-pages
+  - rsync -a --delete dist/ gh-pages/
+  - (cd gh-pages/ && git add -A && git commit -m "Deploy from travis build" && git push)
