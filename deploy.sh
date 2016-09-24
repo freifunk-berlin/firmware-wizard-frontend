@@ -1,8 +1,6 @@
 #!/bin/bash
 
-set -eu
-
-[ "$TRAVIS_BRANCH" -eq "master" ] || echo "not on master" && exit 0
+[[ "$TRAVIS_BRANCH" -eq "master" ]] || echo "not on master" && exit 0
 
 openssl aes-256-cbc -K $encrypted_cd6bced8534a_key -iv $encrypted_cd6bced8534a_iv -in id_rsa_travis.enc -out id_rsa_travis -d
 chmod 0600 id_rsa_travis
@@ -20,4 +18,5 @@ rsync -a --delete --exclude .git dist/ gh-pages/
   git config --global push.default simple && \
   git add -A . && \
   git commit -m "Deploy from travis build" && \
+  ( [[ -z "$TRAVIS_TAG" ]] || git tag "build:${TRAVIS_TAG}" ) && \
   git push)
