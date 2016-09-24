@@ -20,7 +20,7 @@
                translate translate-attr-placeholder=".placeholder"
                data-ng-model="wizard.router.name"
                data-ng-model-options="{ debounce: 250 }"
-               required pattern="[A-Za-z0-9_\-]*"
+               required pattern="[A-Za-z0-9_\-]*[A-Za-z0-9]$"
                data-ng-minlength="3"
                data-ng-maxlength="32">
         <span class="fa form-control-feedback"
@@ -109,14 +109,14 @@
           <label>
             <input type="checkbox"
                    name="sshkeys" id="sshkeys"
-                   data-ng-model="wizard.router.sshkeys.enabled">
+                   data-ng-model="state.sshkeys.enabled">
             <span class="text-muted" translate>.help</span>
           </label>
         </div>
       </div>
     </div>
 
-    <div class="row" uib-collapse="!wizard.router.sshkeys.enabled">
+    <div class="row" uib-collapse="!state.sshkeys.enabled">
       <div class="col-md-offset-3 col-md-9">
         <div class="form-group has-feedback"
              ng-class="formFeedback('sshkeys-text')">
@@ -126,7 +126,7 @@
           <div class="col-md-9">
                   <textarea class="form-control" rows="6"
                             name="sshkeys-text" id="sshkeys-text"
-                            data-ng-model="wizard.router.sshkeys.keys"
+                            data-ng-model="wizard.router.sshkeys"
                             data-verifysshkey
                             ng-list="&#10;" ng-trim="false">
                     </textarea>

@@ -30,22 +30,21 @@
   </head>
   <body data-ng-controller="WizardCtrl">
 
-    <!-- navbar -->
-    <nav class="navbar navbar-default navbar-inverse navbar-static-top">
+    <!-- content -->
+    <div class="wizard-bg-highlight">
       <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Freifunk Berlin</a>
-        </div>
-        <div class="navbar-form navbar-right">
-          <select class="form-control form-inline" data-ng-model="selectedLanguage">
-            <option value="en">English</option>
-            <option value="de">Deutsch</option>
-          </select>
+        <div class="row">
+          <div class="col-md-offset-9 col-md-3">
+            <div class="navbar-form navbar-right">
+              <select class="form-control form-inline" data-ng-model="selectedLanguage">
+                <option value="en">English</option>
+                <option value="de">Deutsch</option>
+              </select>
+            </div>
+          </div>
         </div>
       </div>
-    </nav>
-
-    <!-- content -->
+    </div>
     <div class="jumbotron wizard-bg-highlight">
       <div class="container">
         <h1>
@@ -54,42 +53,53 @@
           <i class="fa fa-star fa-stack-1x fa-inverse"></i>
         </span>
         {{'heading' | translate }}</h1>
+        <p class="intro" translate>intro</p>
       </div>
     </div>
 
     <form novalidate name="wizardForm"
         class="form-horizontal wizard-categories">
 
+      <div class="wizard-category">
+        <div class="container">
+          <div class="row">
+            <h4 class="text-center" translate>description</h4>
+            <p translate>
+              freifunk
+            </p>
+          </div>
+        </div>
+      </div>
       <div ng-if="!isOnline()" class="wizard-category">
         <ng-include src="'shared/offlineWarning/offlineWarning.html'"></ng-include>
       </div>
-      <div class="wizard-category" ng-hide='pastConfigurationRestore'>
+      <div class="wizard-category" ng-hide="configRestore()">
         <ng-include src="'shared/loadConfig/loadConfig.html'"></ng-include>
       </div>
-      <div class="wizard-category" ng-show="pastConfigurationRestore">
+      <div class="wizard-category" ng-show="configRestore()">
         <ng-include src="'shared/basicRouterSetup/basicRouterSetup.html'"></ng-include>
       </div>
-      <div class="wizard-category" ng-show="pastConfigurationRestore">
+      <div class="wizard-category" ng-show="configRestore()">
         <ng-include src="'shared/contactDetails/contactDetails.html'"></ng-include>
       </div>
-      <div class="wizard-category" ng-show="pastConfigurationRestore">
+      <div class="wizard-category" ng-show="configRestore()">
         <ng-include src="'shared/routerLocation/routerLocation.html'"></ng-include>
       </div>
-      <div class="wizard-category" ng-show="pastConfigurationRestore">
+      <div class="wizard-category" ng-show="configRestore()">
         <ng-include src="'shared/internetSharing/internetSharing.html'"></ng-include>
       </div>
-      <div class="wizard-category" ng-show="pastConfigurationRestore">
+      <div class="wizard-category" ng-show="configRestore()">
         <ng-include src="'shared/ipAddresses/ipAddresses.html'"></ng-include>
       </div>
-      <div class="wizard-category" ng-show="pastConfigurationRestore">
+      <div class="wizard-category" ng-show="configRestore()">
         <ng-include src="'shared/monitoring/monitoring.html'"></ng-include>
       </div>
-      <div class="wizard-category" ng-show="pastConfigurationRestore">
+      <div class="wizard-category" ng-show="configRestore()">
         <ng-include src="'shared/advancedWifi/advancedWifi.html'"></ng-include>
       </div>
 
       <!-- submission -->
-      <div class="wizard-category" ng-show="pastConfigurationRestore">
+      <div class="wizard-category">
         <div class="container text-right">
           <span class="text-danger" translate
               ng-if="wizardForm.$submitted && wizardForm.$invalid">

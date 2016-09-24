@@ -38,6 +38,9 @@ module.exports = function(app) {
         reader.onload = function() {
           var myWizard = JSON.parse(reader.result);
           $scope.wizard = myWizard;
+          if ($scope.wizard.router.sshkeys) {
+            $scope.state.sshkeys.enabled = true;
+          }
         };
         if (files && files.length) {
           for (var i = 0; i < files.length; i++) {
@@ -51,6 +54,10 @@ module.exports = function(app) {
         $scope.pastConfigurationRestore = true;
       };
 
+      $scope.configRestore = function() {
+        return $scope.pastConfigurationRestore;
+      }
+
       $scope.uploadVpnFiles = function(file, field) {
         var reader = new FileReader();
         reader.onload = function() {
@@ -62,6 +69,10 @@ module.exports = function(app) {
             case 'key':
               $scope.wizard.internet.vpn.key.value = reader.result;
               $scope.wizard.internet.vpn.key.filename = file[0].name;
+              break;
+            case 'takey':
+              $scope.wizard.internet.vpn.takey.value = reader.result;
+              $scope.wizard.internet.vpn.takey.filename = file[0].name;
               break;
             case 'conf':
               $scope.wizard.internet.vpn.conf.value = reader.result;
@@ -81,9 +92,7 @@ module.exports = function(app) {
           password: undefined,
           passwordVerify: undefined,
           name: undefined,
-          sshkeys: {
-            enabled: undefined
-          }
+          sshkeys: []
         },
         contact: {
           name: undefined,
@@ -109,6 +118,7 @@ module.exports = function(app) {
             vpn03generate: false,
             cert: {},
             key: {},
+            takey: {},
             conf: {}
           }
         },
