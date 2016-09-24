@@ -18,21 +18,20 @@ module.exports = function(app) {
       $scope.$watch('files', function() {
         $scope.upload($scope.files);
       }, true);
+
       $scope.log = '';
       $scope.pastConfigurationRestore = false;
       $scope.hasConfiguration = false;
-
-
-      $scope.showConfigRestore = function(){
+      $scope.showConfigRestore = function() {
         $scope.hasConfiguration = true;
-      }
+      };
 
-      $scope.skipAhead = function(){
+      $scope.skipAhead = function() {
         $scope.pastConfigurationRestore = true;
-      }
+      };
 
       $scope.upload = function(files) {
-        if (!files){
+        if (!files) {
           return;
         }
         var reader = new FileReader();
