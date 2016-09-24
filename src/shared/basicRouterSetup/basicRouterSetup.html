@@ -54,7 +54,7 @@
       <div class="col-md-9">
         <input type="password" class="form-control"
                name="password" id="password"
-               translate translate-attr-placeholder=".placeholder"
+               translate
                data-ng-model="wizard.router.password"
                data-ng-model-options="{ debounce: 250 }"
                required data-ng-minlength="6">
@@ -69,6 +69,7 @@
               <span translate>.error.minLength</span>
             </div>
           </div>
+          <div translate>.help</div>
         </div>
       </div>
     </div>
@@ -82,7 +83,6 @@
       <div class="col-md-9">
         <input type="password" class="form-control"
                name="passwordVerify" id="passwordVerify"
-               placeholder="{{ 'basicRouterSetup.passwordVerify.placeholder' | translate }}"
                data-ng-model="wizard.router.passwordVerify"
                data-ng-model-options="{ debounce: 250 }"
                required data-compare-to="wizard.router.password">
@@ -94,6 +94,7 @@
               <span translate>.error.match</span>
             </div>
           </div>
+          <div translate>.help</div>
         </div>
       </div>
     </div>

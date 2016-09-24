@@ -1,6 +1,5 @@
 {
-	"heading": "Router configuration wizard",
-  "intro": "This wizard helps to configure your Freifunk router.",
+  "heading": "Configure your Freifunk Berlin Router",
   "offlineWarning": {
     "headline": "No internet connection",
     "help" : "You don't seam to have an internet connection. Some features of this wizard need a connection. You could either connect your router to the internet or use the <a href=\"#\">online version of this wizard</a> with another connection, save the config file there and then apply it to your router"
@@ -20,29 +19,29 @@
     "headline": "Basic router setup",
     "routerName": {
       "label": "Router name",
-      "placeholder": "example: funkenpumpe3000",
+      "placeholder": "funkenpumpe3000",
       "error": {
         "required": "This field is required.",
         "pattern": "Special characters are not allowed.",
         "maxLength": "Maximum number of characters: 32.",
         "minLength": "Minimum number of characters: 3."
       },
-      "help": "The router name is a human-readable identifier for your router. The router name is used by various services in the Freifunk network.  For example, if \"Monitoring\" is enabled, then the router name will be listed on <a href=\"http://monitor.berlin.freifunk.net\" target=\"_blank\">http://monitor.berlin.freifunk.net</a> along with many interesting statistics about your router. The router name is also used when other Freifunk routers in the area mesh with your router (<a href=\"http://wiki.freifunk.net/Glossar#OLSR\" target=\"_blank\">OLSR</a>).  The router name is also shown on the Freifunk <a href=\"http://map.berlin.freifunk.net\">map</a>."
+      "help": "The router name is used by various services in the Freifunk network.  For example, if \"Monitoring\" is enabled, then the router name will be listed on <a href=\"http://monitor.berlin.freifunk.net\" target=\"_blank\">http://monitor.berlin.freifunk.net</a> along with many interesting statistics about your router. The router name is also used when other Freifunk routers in the area mesh with your router (<a href=\"http://wiki.freifunk.net/Glossar#OLSR\" target=\"_blank\">OLSR</a>).  The router name is also shown on the Freifunk <a href=\"http://map.berlin.freifunk.net\">map</a>."
     },
     "password": {
       "label": "New router password",
-      "placeholder": "password",
+      "help": "At least 6 characters",
       "error.required": "A password is required.",
       "error.minLength": "A password must have at least 6 characters."
     },
     "passwordVerify": {
-      "label": "Router password verification",
-      "placeholder": "repeat password",
+      "label": "Repeat router password",
+      "help": "Both passwords have to match",
       "error.match": "Passwords have to match."
     },
     "sshkeys": {
-      "label": "SSH keys",
-      "help": "Enable this to add your ssh keys for passwordless root login to your router. SSH keys are helpful, if you maintain multiple routers or if you want to give access to a friend. If you don't know about ssh keys, simply ignore this setting",
+      "label": "Enable SSH keys",
+      "help": "Passwordless root login to your router. SSH keys are helpful, if you maintain multiple routers or if you want to give access to a friend.",
       "keys": {
         "label": "Your keys",
         "help": "Add your keys, each in a new line.",
@@ -58,7 +57,7 @@
     },
     "email": {
       "label":"Email",
-      "help": "Your email address will be shown on the contact page of your router. When people connect to the Freifunk network trough your router, they can then see the conact data on <a href=\"http://frei.funk/cgi-bin/luci/freifunk/conact\" target=\"_blank\">frei.funk</a>. Your email address is required if VPN cert/key generation or IP registration is activated below.",
+      "help": "Your email address is required if VPN cert/key generation or IP registration is activated below.",
       "placeholder": "funki@fine.net",
       "error": {
         "required":"A valid email address is required for the current configuration.",
@@ -67,13 +66,14 @@
     },
     "options": {
       "label": "Options",
+      "help": "Is it okay to be contacted by other Freifunkas?",
       "contactPage": {
-        "label": "Show email on Contact Page",
-        "help": "Disable if you don't want your email address to be shown on the contact page (only visible within freifunk)."
+        "label": "Show on Contact Page",
+        "help": "If people connect to the Freifunk network, they can then see the contact data on <a href=\"http://frei.funk/cgi-bin/luci/freifunk/conact\" target=\"_blank\">frei.funk</a> (only visible within freifunk)."
       },
       "sendToMap": {
-        "label": "Send email address to map",
-        "help": "Enable if you want your email address to be sent to the map (visible on the internet)."
+        "label": "Send on Freifunk map",
+        "help": "Enable if you want your email address to be sent to the map (visible on <a href=\"http://openwifimap.net\" target=\"_blank\">http://openwifimap.net</a>)."
       },
       "mailinglist": {
         "label": "Mailing list",
