@@ -17,9 +17,7 @@ script:
   - npm run lint
   - npm run build
 after_success:
-  - git config user.name "Travis CI"
-  - git config user.email "travis@mailinator.com"
   - ssh-keyscan github.com >> ~/.ssh/known_hosts
   - git clone --depth 1 git@github.com:freifunk-berlin/firmware-wizard-frontend.git -b gh-pages gh-pages
   - rsync -a --delete --exclude .git dist/ gh-pages/
-  - (cd gh-pages/ && git add -A . && git commit -m "Deploy from travis build" && git push)
+  - (cd gh-pages/ && git config user.name "Travis CI" && git config user.email "travis@mailinator.com" && git add -A . && git commit -m "Deploy from travis build" && git push)
