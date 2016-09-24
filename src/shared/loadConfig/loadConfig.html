@@ -10,8 +10,13 @@
     <p>
       <span translate>.help</span>
     </p>
+    <div>
+      <a class="btn btn-info" ng-click='skipAhead()' translate>.hasnoconfiguration</a>
+      <a class="btn btn-info" ng-click='showConfigRestore()' translate>.hasconfiguration</a>
+    </div>
     <div class="form-group has-feedback"
-         translate-namespace=".upload">
+         translate-namespace=".upload"
+         ng-show='hasConfiguration'>
       <label class="col-md-3 control-label" translate>
         .label
       </label>

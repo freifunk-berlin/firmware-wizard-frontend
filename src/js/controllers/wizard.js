@@ -18,9 +18,22 @@ module.exports = function(app) {
       $scope.$watch('files', function() {
         $scope.upload($scope.files);
       }, true);
+
       $scope.log = '';
+      $scope.pastConfigurationRestore = false;
+      $scope.hasConfiguration = false;
+      $scope.showConfigRestore = function() {
+        $scope.hasConfiguration = true;
+      };
+
+      $scope.skipAhead = function() {
+        $scope.pastConfigurationRestore = true;
+      };
 
       $scope.upload = function(files) {
+        if (!files) {
+          return;
+        }
         var reader = new FileReader();
         reader.onload = function() {
           var myWizard = JSON.parse(reader.result);
@@ -35,6 +48,7 @@ module.exports = function(app) {
             }
           }
         }
+        $scope.pastConfigurationRestore = true;
       };
 
       $scope.wizard = {
