@@ -171,6 +171,10 @@
       "select": "Select your file",
       "browse": "Browse",
       "error.required": "The file is required. It is generated automatically if you select the checkbox above."
+    },
+    "vpninfo": {
+      "showlist": "List VPN Providers",
+      "list": "<li><a href=\"http://www.evernet-eg.de/kontakt.html\" target=\"_blank\">Evernet eG</a> is providing VPN for Freifunkas</li><li><a href=\"https://www.ipredator.se/\" target=\"_blank\">IPredator</a> provides you with an encrypted tunnel from your computer to the Internet.</li><li><a href=\"mailto:kontakt@freifunk-rheinland.net\">Freifunk Rheinland</a> acts as Community Provider</li><li>Förderverein Freie Netzwerke operates non encrypted <a href=\"https://wiki.freifunk.net/Vpn03\" target=\"_blank\">VPN03 servers</a>.</li><li>Or choose an OpenVPN for example from this comparision: <a href=\"http://www.vpnvergleich.net/\" target=\"_blank\">http://www.vpnvergleich.net/</a></li>"
     }
   },
   "ip": {
@@ -235,7 +239,7 @@
   "advancedWifi": {
     "headline": "Advanced wifi options",
     "show": "Show advanced wifi options",
-    "help": "By default your router is configured to connect automatically with other Freifunk routers that also have default settings. If you want to connect to a router with a special configuration, you can pick this router from a wifi scan or you can enter the configuration manually.",
+    "help": "By default your router is configured to connect automatically with other Freifunk routers that have default settings. If you want to connect to a router with a special configuration, you should use the following options.",
     "reset": "Reset to defaults",
     "device": "Wifi device {{name}}",
     "mode": {

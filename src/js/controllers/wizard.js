@@ -87,12 +87,16 @@ module.exports = function(app) {
         }
       };
 
+      $scope.toggleVpnList = function() {
+        $scope.state.internet.showVpnList = !$scope.state.internet.showVpnList;
+      };
+
       $scope.wizard = {
         router: {
           password: undefined,
           passwordVerify: undefined,
           name: undefined,
-          sshkeys: []
+          sshkeys: undefined
         },
         contact: {
           name: undefined,
@@ -168,10 +172,12 @@ module.exports = function(app) {
             zoom: 10
           }
         },
+        sshkeys: {},
         internet: {
           vpn03: {
             generate: true
-          }
+          },
+          showVpnList: false
         },
         ip: {
           register: true,

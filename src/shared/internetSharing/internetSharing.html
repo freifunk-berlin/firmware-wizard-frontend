@@ -230,6 +230,20 @@
             </div>
           </div>
         </div>
+        <div class="row" translate-namespace=".vpninfo">
+          <div class="col-md-offset-3 col-md-9">
+            <div ng-click="toggleVpnList()">
+              <span ng-show="!state.internet.showVpnList">&#9658;</span>
+              <span ng-show="state.internet.showVpnList">&#9660;</span>
+              <span translate>.showlist</span>
+            </div>
+            <div uib-collapse="!state.internet.showVpnList">
+              <ul translate>
+                .list
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
       <!-- / anti-störerhaftungs-VPN -->
     </div>
