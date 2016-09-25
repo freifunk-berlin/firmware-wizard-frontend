@@ -9,8 +9,8 @@
   },
   "loadconfig": {
     "headline": "Load configuration",
-		"hasconfiguration": "I have an exisiting config file",
-		"hasnoconfiguration": "I want to start fresh",
+		"hasconfiguration": "I have an existing config file, I want to use.",
+		"hasnoconfiguration": "I want to start a fresh configuration.",
     "help": "If you already have a config file, you can load it. So you're able to update it or adapt it for other routers you want to set up.",
     "upload": {
       "label": "Your file",

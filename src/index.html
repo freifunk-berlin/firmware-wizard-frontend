@@ -73,7 +73,7 @@
       <div ng-if="!isOnline()" class="wizard-category">
         <ng-include src="'shared/offlineWarning/offlineWarning.html'"></ng-include>
       </div>
-      <div class="wizard-category" ng-hide="configRestore()">
+      <div id="loadconfig" class="wizard-category" ng-hide="configRestore()">
         <ng-include src="'shared/loadConfig/loadConfig.html'"></ng-include>
       </div>
       <div class="wizard-category" ng-show="configRestore()">
@@ -99,7 +99,7 @@
       </div>
 
       <!-- submission -->
-      <div class="wizard-category">
+      <div class="wizard-category" ng-show="configRestore()">
         <div class="container text-right">
           <span class="text-danger" translate
               ng-if="wizardForm.$submitted && wizardForm.$invalid">

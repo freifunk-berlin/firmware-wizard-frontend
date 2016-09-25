@@ -27,6 +27,7 @@ module.exports = function(app) {
       };
 
       $scope.skipAhead = function() {
+        angular.element(document.querySelector('#loadconfig')).remove();
         $scope.pastConfigurationRestore = true;
       };
 
@@ -51,6 +52,7 @@ module.exports = function(app) {
             }
           }
         }
+        angular.element(document.querySelector('#loadconfig')).remove();
         $scope.pastConfigurationRestore = true;
       };
 
