@@ -1,14 +1,16 @@
 {
-	"heading": "Router configuration wizard",
-  "intro": "This wizard helps to configure your Freifunk router.",
+  "heading": "Configure your Router",
+  "intro": "Freifunk Berlin",
+  "description": "Freifunk is an independent, free and open network built by volunteers that admit the <a href=\"\" target=\"_blank\">pico peering agreement</a>.",
+  "freifunk": "What Does Free Wireless Network Mean To Us?<ul><li>publicly and anonymously accessible</li><li>non-commercial and uncensored</li><li>decentralized and in the possession of a community</li></ul>Read more about the <a href=\"https://freifunk.net/en/what-is-it-about/our-vision/\" target=\"_blank\">vision</a> and our <a href=\"http://blog.freifunk.net/2015/memorandum-understanding\" target=\"_blank\">memorandum of understanding</a>",
   "offlineWarning": {
     "headline": "No internet connection",
     "help" : "You don't seam to have an internet connection. Some features of this wizard need a connection. You could either connect your router to the internet or use the <a href=\"#\">online version of this wizard</a> with another connection, save the config file there and then apply it to your router"
   },
   "loadconfig": {
     "headline": "Load configuration",
-		"hasconfiguration": "I have an exisiting config file",
-		"hasnoconfiguration": "I want to start fresh",
+		"hasconfiguration": "I have an existing config file, I want to use.",
+		"hasnoconfiguration": "I want to start a fresh configuration.",
     "help": "If you already have a config file, you can load it. So you're able to update it or adapt it for other routers you want to set up.",
     "upload": {
       "label": "Your file",
@@ -20,29 +22,29 @@
     "headline": "Basic router setup",
     "routerName": {
       "label": "Router name",
-      "placeholder": "example: funkenpumpe3000",
+      "placeholder": "funkenpumpe3000",
       "error": {
         "required": "This field is required.",
         "pattern": "Special characters are not allowed.",
         "maxLength": "Maximum number of characters: 32.",
         "minLength": "Minimum number of characters: 3."
       },
-      "help": "The router name is a human-readable identifier for your router. The router name is used by various services in the Freifunk network.  For example, if \"Monitoring\" is enabled, then the router name will be listed on <a href=\"http://monitor.berlin.freifunk.net\" target=\"_blank\">http://monitor.berlin.freifunk.net</a> along with many interesting statistics about your router. The router name is also used when other Freifunk routers in the area mesh with your router (<a href=\"http://wiki.freifunk.net/Glossar#OLSR\" target=\"_blank\">OLSR</a>).  The router name is also shown on the Freifunk <a href=\"http://map.berlin.freifunk.net\">map</a>."
+      "help": "The router name is shown in the Mesh network and used by various services, in case you enable them (monitoring, Freifunk map, contact page)."
     },
     "password": {
       "label": "New router password",
-      "placeholder": "password",
+      "help": "At least 6 characters",
       "error.required": "A password is required.",
       "error.minLength": "A password must have at least 6 characters."
     },
     "passwordVerify": {
-      "label": "Router password verification",
-      "placeholder": "repeat password",
+      "label": "Repeat router password",
+      "help": "Both passwords have to match",
       "error.match": "Passwords have to match."
     },
     "sshkeys": {
-      "label": "SSH keys",
-      "help": "Enable this to add your ssh keys for passwordless root login to your router. SSH keys are helpful, if you maintain multiple routers or if you want to give access to a friend. If you don't know about ssh keys, simply ignore this setting",
+      "label": "Enable SSH keys",
+      "help": "Passwordless root login to your router. SSH keys are helpful, if you maintain multiple routers or if you want to give access to a friend.",
       "keys": {
         "label": "Your keys",
         "help": "Add your keys, each in a new line.",
@@ -54,38 +56,38 @@
     "headline": "Contact details",
     "name": {
       "label": "Your name",
-      "placeholder": "Funki Fine"
+      "placeholder": "Nickname"
     },
     "email": {
-      "label":"Email",
-      "help": "Your email address will be shown on the contact page of your router. When people connect to the Freifunk network trough your router, they can then see the conact data on <a href=\"http://frei.funk/cgi-bin/luci/freifunk/conact\" target=\"_blank\">frei.funk</a>. Your email address is required if VPN cert/key generation or IP registration is activated below.",
-      "placeholder": "funki@fine.net",
+      "label":"Your email address",
+      "help": "Your email address is required if VPN cert/key generation or IP registration is activated below.",
+      "placeholder": "name@example.org",
       "error": {
         "required":"A valid email address is required for the current configuration.",
         "pattern": "Please enter a valid email address."
       }
     },
     "options": {
-      "label": "Options",
+      "label": "Is it okay to be contacted by other Freifunkas?",
       "contactPage": {
-        "label": "Show email on Contact Page",
-        "help": "Disable if you don't want your email address to be shown on the contact page (only visible within freifunk)."
+        "label": "Show on Contact Page",
+        "help": "If people connect to the Freifunk network, they can then see the contact data on <a href=\"http://frei.funk/cgi-bin/luci/freifunk/contact\" target=\"_blank\">frei.funk</a> (only visible within freifunk)."
       },
       "sendToMap": {
-        "label": "Send email address to map",
-        "help": "Enable if you want your email address to be sent to the map (visible on the internet)."
+        "label": "Send on Freifunk map",
+        "help": "Enable if you want your email address to be sent to the map (visible on <a href=\"http://openwifimap.net\" target=\"_blank\">http://openwifimap.net</a>)."
       },
       "mailinglist": {
         "label": "Mailing list",
         "button": "Subscribe me",
-        "help": " to the mailing list of Berlin's freifunk community. You can find more information on <a href=\"https://lists.berlin.freifunk.net/cgi-bin/mailman/listinfo/berlin\" target=\"_blank\">the list homepage</a>.",
+        "help": "We communitcate via the mailing list of Berlin's <a href=\"https://lists.berlin.freifunk.net/cgi-bin/mailman/listinfo/berlin\" target=\"_blank\">freifunk community</a>.",
         "helpoffline": "Please visit <a href=\"https://lists.berlin.freifunk.net/cgi-bin/mailman/listinfo/berlin\" target=\"_blank\">the mailing list page</a> of Berlin's freifunk community, when you're online again. There you can subscribe to that list."
       }
     }
   },
   "routerLocation": {
     "headline": "Router location",
-    "help": "The geographic location of your router is used to place your router on the Freifunk <a href=\"http://map.berlin.freifunk.net\" target=\"_blank\">map</a>. You can drag the map marker to the correct location or enter the location and address manually.",
+    "help": "The geographic location is used to place your router on the Freifunk <a href=\"http://map.berlin.freifunk.net\" target=\"_blank\">map</a>.",
     "getLocation": "Get my location",
     "geolocation": {
       "label": "Geolocation",
@@ -108,47 +110,83 @@
   },
   "internetSharing": {
     "headline": "Internet sharing",
-    "help": "Freifunk is an independent and free network built by many volunteers that can be used for many different purposes. One purpose is to access the internet and this service is only possible because some Freifunkas have decided to share their internet connections.",
+    "help": "Freifunk can be used for local services and grants access to the internet. This is possible because people within the network decide to share their internet connections.",
     "shareInternet": {
       "label": "Share internet",
-      "help": "If you want to share your internet connection select this checkbox.",
+      "help": "Yes, I'd like to share my internet connection within the Freifunk network.",
       "thanks": "Thank you for sharing your internet connection!"
     },
     "limitspeed": {
       "label": "Limit speed",
-      "help": "If you encounter speed problems with your internet connection, you can limit the speed you share to freifunk here. Our advice: start without any limits, you can adjust that later"
+      "help": "If you encounter speed problems, you can limit the data transfer rate of your shared connection. Our advice: start without any limits, you can adjust that later."
     },
     "transferSpeed": {
-      "label": "Transfer speed limit",
-      "help": "You can limit the transfer speed that the Freifunk network is able to use on your internet connection. You can determine your current transfer speed <a href=\"http://speedof.me/\" target=\"_blank\">here</a>. Leave the fields blank if you do not wish to limit the transfer speed.",
+      "label": "Transfer limit",
+      "help": "You can determine your current transfer speed <a href=\"http://speedof.me/\" target=\"_blank\">here</a>. Leave the fields blank if you do not wish to limit the transfer speed.",
       "down": {
-        "placeholder": "Down",
-        "help": "Download speed limit in <a href=\"https://en.wikipedia.org/wiki/Data_rate_units#Megabit_per_second\" target=\"_blank\">Mbit/s</a>."
+        "placeholder": "",
+        "help": "Download transfer limit in <a href=\"https://en.wikipedia.org/wiki/Data_rate_units#Megabit_per_second\" target=\"_blank\">Mbit/s</a>."
       },
       "up": {
-        "placeholder": "Up",
-        "help": "Upload speed limit in <a href=\"https://en.wikipedia.org/wiki/Data_rate_units#Megabit_per_second\" target=\"_blank\">Mbit/s</a>."
+        "placeholder": "",
+        "help": "Upload transfer limit in <a href=\"https://en.wikipedia.org/wiki/Data_rate_units#Megabit_per_second\" target=\"_blank\">Mbit/s</a>."
       }
     },
     "antistoererhaftung": {
-      "label": "VPN (Anti-Störerhaftung)",
-      "help": "You can use a VPN to protect yourself from the <a href=\"https://de.wikipedia.org/wiki/St%C3%B6rerhaftung\" target=\"_blank\">Störerhaftung</a>. If you agree that Störerhaftung is bad for free networks then you can <a href=\"http://freifunkstattangst.de/\" target=\"_blank\">help us to put an end to Störerhaftung</a>!"
+      "label": "VPN",
+      "help": "Tunnels your internet traffic to a different server."
+    },
+    "meshvpn": {
+      "label": "Mesh VPN",
+      "help": "Connects mesh clouds via internet tunnel. (Use, if your router is not connected to the backbone via radio.)"
     },
     "generateCertificate": {
-      "label": "Generate VPN03 certificate and key for this router",
-      "help": "The <a href=\"http://foerderverein.freie-netzwerke.de/\" target=\"_blanl\">Förderverein Freie Netzwerke</a> operates the <a href=\"http://wiki.freifunk.net/vpn03\" target=\"_blanl\">VPN03</a> servers for protecting yourself from the <a href=\"https://de.wikipedia.org/wiki/St%C3%B6rerhaftung\" target=\"_blank\">Störerhaftung</a>. If this option is enabled, the wizard automatically generates a new certificate and key for VPN03. Disable this option if you already have a VPN03 config or if you want to use another VPN service (OpenVPN).",
-      "certificate.label": "VPN certificate",
-      "key.label": "VPN key",
+      "label": "VPN certificate and key for this router",
+      "help": "The <a href=\"http://foerderverein.freie-netzwerke.de/\" target=\"_blank\">Förderverein Freie Netzwerke</a> operates the <a href=\"http://wiki.freifunk.net/vpn03\" target=\"_blank\">VPN03</a> servers for protecting yourself from the <a href=\"https://de.wikipedia.org/wiki/St%C3%B6rerhaftung\" target=\"_blank\">Störerhaftung</a>. If this option is enabled, the wizard automatically generates a new certificate and key for VPN03. Disable this option if you already have a VPN03 config or if you want to use another VPN service (OpenVPN).",
+      "certificate": {
+        "label": "VPN certificate",
+        "select": ".cert file",
+        "error": {
+          "pattern": "Wrong file format or name. Only text files are allowed."
+        }
+      },
+      "key": {
+        "label": "VPN key",
+        "select": ".key file",
+        "error": {
+          "pattern": "Wrong file format or name. Only text files are allowed."
+        }
+      },
+      "takey": {
+        "label": "TLS Auth key",
+        "select": ".key file",
+        "error": {
+          "pattern": "Wrong file format or name. Only text files are allowed."
+        }
+      },
+      "conf": {
+        "label": "VPN configuration file",
+        "select": ".ovpn file",
+        "customvpn": "I want to use another VPN service. Then you need an opnVPN config file from your VPN provider.",
+        "error": {
+          "pattern": "Wrong file format or name. Only text files are allowed."
+        }
+      },
+      "select": "Select your file",
       "browse": "Browse",
       "error.required": "The file is required. It is generated automatically if you select the checkbox above."
+    },
+    "vpninfo": {
+      "showlist": "List VPN Providers",
+      "list": "<li><a href=\"http://www.evernet-eg.de/kontakt.html\" target=\"_blank\">Evernet eG</a> is providing VPN for Freifunkas</li><li><a href=\"https://www.ipredator.se/\" target=\"_blank\">IPredator</a> provides you with an encrypted tunnel from your computer to the Internet.</li><li><a href=\"mailto:kontakt@freifunk-rheinland.net\">Freifunk Rheinland</a> acts as Community Provider</li><li>Förderverein Freie Netzwerke operates non encrypted <a href=\"https://wiki.freifunk.net/Vpn03\" target=\"_blank\">VPN03 servers</a>.</li><li>Or choose an OpenVPN for example from this comparision: <a href=\"http://www.vpnvergleich.net/\" target=\"_blank\">http://www.vpnvergleich.net/</a></li>"
     }
   },
   "ip": {
     "headline": "IP addresses",
-    "help": "Your router requires <a href=\"https://en.wikipedia.org/wiki/IP_address\" target=\"_blank\">IP addresses</a> for communicating with other routers and with clients that connect to the access point. Freifunk uses both <a href=\"https://en.wikipedia.org/wiki/IPv4\" target=\"_blank\">IPv4</a> (legacy) and <a href=\"https://en.wikipedia.org/wiki/IPv6\" target=\"_blank\">IPv6</a> (recent).",
+    "help": "Your router requires IP addresses for communicating with other routers and with clients that connect to the access point. Freifunk uses both IPv4 (legacy) and IPv6 (recent).",
     "register": {
       "label": "Register new IP addresses",
-      "help": "If this option is enabled, the wizard automatically registers new IP addresses for this router. Disable only if you already have IP addresses from the <a href=\"http://config.berlin.freifunk.net/\" target=\"_blank\">Freifunk Berlin IP registry</a>."
+      "help": "This wizard automatically registers new IP addresses in the Freifunk Berlin IP registry. Disable only if you already have IP addresses."
     },
     "v6Prefix": {
       "label": "IPv6 prefix",
@@ -165,21 +203,21 @@
       "error.ipSubnet": "Not a valid IPv4 subnet.",
       "error.ipSubnetSmall": "The IPv4 subnet must be larger than /30.",
       "wifi": {
-        "label": "Wifi ({{name}}) Mesh-IPv4",
+        "label": "Mesh {{index}}",
         "help": "A single IPv4 address for the wifi device {{name}}."
       },
       "lan": {
-        "label": "LAN Mesh-IPv4",
+        "label": "Mesh 3",
         "help": "A single IPv4 address for the LAN interface."
       }
     },
     "meshLan": {
-      "help": "Allows you to connect the LAN ports of your router via a cable to other devices that also have this setting enabled. If you only have one router, this setting can be turned off. Then the LAN ports can be used to connect clients with a cable.",
+      "help": "Allows you to connect the LAN ports of your router via a cable to other devices that also have this setting enabled. If you only have one router, this setting can be turned off.",
       "label": "Mesh via LAN"
     },
     "distribute": {
       "label": "Distribute client IP addresses",
-      "help": "At least one router in your local mesh (specifically: the local <a href=\"https://en.wikipedia.org/wiki/B.A.T.M.A.N.\" target=\"_blank\">BATMAN-adv</a> mesh) should distribute IP addresses for clients. If you share your internet connection with this router or if are unsure if there is another router in your neighborhood that distributes IPs, you should enable this setting.",
+      "help": "You should enable this setting.",
       "subnet": {
         "label": "Client IPv4 subnet",
         "placeholder" :"example: 10.31.133.128/27",
@@ -188,7 +226,7 @@
       },
       "expectedClients": {
         "label": "Expected number of concurrent clients",
-        "help": "Please estimate how many clients will be connected to your access point at the same time."
+        "help": "Please estimate how many devices will be connected to your access point at the same time."
       }
     },
     "error": {
@@ -198,16 +236,17 @@
   },
   "monitoring" : {
     "headline" : "Monitoring",
-    "show" : "If you want your router to send data to the monitoring services, check that box! If your router is weak (slow CPU, low RAM, low flash memory, i.e. TP-Link 841n), you should not enable monitoring",
+    "show" : "Public monitoring - Enable it, so that Freifunkas are able to analyze network problems.",
     "label" : "Enable Monitoring",
-    "help" : "The Freifunk community of berlin provides a monitoring service. We collect information about transfer speeds, memory and CPU statistics, network connections. It is public available at <a href=\"http://monitoring.berlin.freifunk.net\" target=\"_blank\">http://monitoring.berlin.freifunk.net</a>. Monitoring helps community members to analyze network problems."
+    "help" : "Berlin community monitoring service is available to the public under <a href=\"http://monitor.berlin.freifunk.net\" target=\"_blank\">http://monitor.berlin.freifunk.net</a>. It collects information about transfer speeds, memory and CPU statistics and network connections."
   },
   "advancedWifi": {
     "headline": "Advanced wifi options",
     "show": "Show advanced wifi options",
-    "help": "By default your router is configured to connect automatically with other Freifunk routers that also have default settings. If you want to connect to a router with a special configuration, you can pick this router from a wifi scan or you can enter the configuration manually.",
+    "help": "By default your router is configured to connect automatically with other Freifunk routers that have default settings. If you want to connect to a router with a special configuration, you should use the following options.",
     "reset": "Reset to defaults",
     "device": "Wifi device {{name}}",
+    "description": "Pick the router from the list provided via the automated wifi scan or enter the configuration manually.",
     "mode": {
       "label": "Mode",
       "option": {

@@ -20,7 +20,7 @@
                translate translate-attr-placeholder=".placeholder"
                data-ng-model="wizard.router.name"
                data-ng-model-options="{ debounce: 250 }"
-               required pattern="[A-Za-z0-9_\-]*"
+               required pattern="[A-Za-z0-9_\-]*[A-Za-z0-9]$"
                data-ng-minlength="3"
                data-ng-maxlength="32">
         <span class="fa form-control-feedback"
@@ -54,7 +54,7 @@
       <div class="col-md-9">
         <input type="password" class="form-control"
                name="password" id="password"
-               translate translate-attr-placeholder=".placeholder"
+               translate
                data-ng-model="wizard.router.password"
                data-ng-model-options="{ debounce: 250 }"
                required data-ng-minlength="6">
@@ -69,6 +69,7 @@
               <span translate>.error.minLength</span>
             </div>
           </div>
+          <div translate>.help</div>
         </div>
       </div>
     </div>
@@ -82,7 +83,6 @@
       <div class="col-md-9">
         <input type="password" class="form-control"
                name="passwordVerify" id="passwordVerify"
-               placeholder="{{ 'basicRouterSetup.passwordVerify.placeholder' | translate }}"
                data-ng-model="wizard.router.passwordVerify"
                data-ng-model-options="{ debounce: 250 }"
                required data-compare-to="wizard.router.password">
@@ -94,6 +94,7 @@
               <span translate>.error.match</span>
             </div>
           </div>
+          <div translate>.help</div>
         </div>
       </div>
     </div>
@@ -108,14 +109,14 @@
           <label>
             <input type="checkbox"
                    name="sshkeys" id="sshkeys"
-                   data-ng-model="wizard.router.sshkeys.enabled">
+                   data-ng-model="state.sshkeys.enabled">
             <span class="text-muted" translate>.help</span>
           </label>
         </div>
       </div>
     </div>
 
-    <div class="row" uib-collapse="!wizard.router.sshkeys.enabled">
+    <div class="row" uib-collapse="!state.sshkeys.enabled">
       <div class="col-md-offset-3 col-md-9">
         <div class="form-group has-feedback"
              ng-class="formFeedback('sshkeys-text')">
@@ -125,7 +126,7 @@
           <div class="col-md-9">
                   <textarea class="form-control" rows="6"
                             name="sshkeys-text" id="sshkeys-text"
-                            data-ng-model="wizard.router.sshkeys.keys"
+                            data-ng-model="wizard.router.sshkeys"
                             data-verifysshkey
                             ng-list="&#10;" ng-trim="false">
                     </textarea>

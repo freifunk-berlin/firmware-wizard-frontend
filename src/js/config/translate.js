@@ -8,15 +8,11 @@ module.exports = function(app) {
       suffix: '.json'
     });
 
-    /*
-      TODO: re-enable 'de' (and possibly others) when texts are a bit more
-            stable.
-    */
     $translateProvider.registerAvailableLanguageKeys([
       'en',
       //'de'
     ],{
-      //'de_*': 'de',
+      // 'de_*': 'de',
       'en_*': 'en',
       '*': 'en'
     });

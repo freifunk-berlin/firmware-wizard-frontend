@@ -27,6 +27,7 @@ module.exports = function(app) {
       };
 
       $scope.skipAhead = function() {
+        angular.element(document.querySelector('#loadconfig')).remove();
         $scope.pastConfigurationRestore = true;
       };
 
@@ -38,6 +39,9 @@ module.exports = function(app) {
         reader.onload = function() {
           var myWizard = JSON.parse(reader.result);
           $scope.wizard = myWizard;
+          if ($scope.wizard.router.sshkeys) {
+            $scope.state.sshkeys.enabled = true;
+          }
         };
         if (files && files.length) {
           for (var i = 0; i < files.length; i++) {
@@ -48,7 +52,61 @@ module.exports = function(app) {
             }
           }
         }
+        angular.element(document.querySelector('#loadconfig')).remove();
         $scope.pastConfigurationRestore = true;
+      };
+
+      $scope.configRestore = function() {
+        return $scope.pastConfigurationRestore;
+      };
+
+      $scope.uploadVpnFiles = function(file, field) {
+        var reader = new FileReader();
+        reader.onload = function() {
+          switch (field) {
+            case 'cert':
+              $scope.wizard.internet.vpn.cert.value = reader.result;
+              $scope.wizard.internet.vpn.cert.filename = file[0].name;
+              break;
+            case 'key':
+              $scope.wizard.internet.vpn.key.value = reader.result;
+              $scope.wizard.internet.vpn.key.filename = file[0].name;
+              break;
+            case 'takey':
+              $scope.wizard.internet.vpn.takey.value = reader.result;
+              $scope.wizard.internet.vpn.takey.filename = file[0].name;
+              break;
+            case 'conf':
+              $scope.wizard.internet.vpn.conf.value = reader.result;
+              $scope.wizard.internet.vpn.conf.filename = file[0].name;
+              break;
+            case 'meshcert':
+              $scope.wizard.internet.meshvpn.cert.value = reader.result;
+              $scope.wizard.internet.meshvpn.cert.filename = file[0].name;
+              break;
+            case 'meshkey':
+              $scope.wizard.internet.meshvpn.key.value = reader.result;
+              $scope.wizard.internet.meshvpn.key.filename = file[0].name;
+              break;
+            case 'meshtakey':
+              $scope.wizard.internet.meshvpn.takey.value = reader.result;
+              $scope.wizard.internet.meshvpn.takey.filename = file[0].name;
+              break;
+            case 'meshconf':
+              $scope.wizard.internet.meshvpn.conf.value = reader.result;
+              $scope.wizard.internet.meshvpn.conf.filename = file[0].name;
+              break;
+          }
+        };
+        if (file && file.length == 1) {
+          if (!file[0].$error) {
+            reader.readAsDataURL(file[0]);
+          }
+        }
+      };
+
+      $scope.toggleVpnList = function() {
+        $scope.state.internet.showVpnList = !$scope.state.internet.showVpnList;
       };
 
       $scope.wizard = {
@@ -56,9 +114,7 @@ module.exports = function(app) {
           password: undefined,
           passwordVerify: undefined,
           name: undefined,
-          sshkeys: {
-            enabled: undefined
-          }
+          sshkeys: undefined
         },
         contact: {
           name: undefined,
@@ -82,8 +138,17 @@ module.exports = function(app) {
           vpn: {
             enabled: false,
             vpn03generate: false,
-            cert: undefined,
-            key: undefined
+            cert: {},
+            key: {},
+            takey: {},
+            conf: {}
+          },
+          meshvpn: {
+            enabled: false,
+            cert: {},
+            key: {},
+            takey: {},
+            conf: {}
           }
         },
         ip: {
@@ -132,10 +197,12 @@ module.exports = function(app) {
             zoom: 10
           }
         },
+        sshkeys: {},
         internet: {
           vpn03: {
             generate: true
-          }
+          },
+          showVpnList: false
         },
         ip: {
           register: true,
