@@ -1,8 +1,6 @@
 #!/bin/bash
 
-export TRAVIS_TAG=0.0.0
-
-[[ "${TRAVIS_BRANCH}" == "travis-deploy" ]] || (echo "not on master branch" && exit 0)
+[[ "${TRAVIS_BRANCH}" == "master" ]] || (echo "not on master branch" && exit 0)
 
 openssl aes-256-cbc -K $encrypted_cd6bced8534a_key -iv $encrypted_cd6bced8534a_iv -in id_rsa_travis.enc -out id_rsa_travis -d
 chmod 0600 id_rsa_travis
