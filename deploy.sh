@@ -20,5 +20,5 @@ rsync -a --delete --exclude .git dist/ gh-pages/
   git config --global push.default simple && \
   git add -A . && \
   git commit -m "Deploy from travis build" && \
-  ( [[ -z "$TRAVIS_TAG" ]] || git tag "build:${TRAVIS_TAG}" ) && \
+  ( [[ -z "$TRAVIS_TAG" ]] || git tag "build-${TRAVIS_TAG}" ) && \
   git push)
