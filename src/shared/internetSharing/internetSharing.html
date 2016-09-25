@@ -122,10 +122,10 @@
             <div class="col-md-6">
               <div class="form-group has-feedback"
                    ng-class="formFeedback('vpnConf')">
-                <label for="vpnConf" class="col-md-3 control-label" translate>
+                <label for="vpnConf" class="col-md-5 control-label" translate>
                   .conf.label
                 </label>
-                <div class="col-md-9">
+                <div class="col-md-7">
                   <div class="btn btn-info" role="button" id="vpnConf" name="vpnConf"
                        data-ng-model="vpnConf" data-ngf-select="uploadVpnFiles($files, 'conf')"
                        data-ngf-multiple="false" ngf-pattern="'text/*,.cnf,.ovpn'" ngf-accept="'text/*,.ovpn,.cnf'"
@@ -134,7 +134,7 @@
                        && wizard.internet.share
                        && wizard.internet.vpn.customvpn" translate>
                     .conf.select
-                  </div>&nbsp;{{wizard.internet.vpn.conf.filename}}
+                  </div><br/>&nbsp;{{wizard.internet.vpn.conf.filename}}
                   <span class="fa form-control-feedback"
                         ng-class="formControlFeedback('vpnConf')"></span>
                   <div class="help-block">
@@ -150,10 +150,10 @@
             <div class="col-md-6">
               <div class="form-group has-feedback"
                    ng-class="formFeedback('vpnCert')">
-                <label for="vpnCert" class="col-md-3 control-label" translate>
+                <label for="vpnCert" class="col-md-5 control-label" translate>
                   .certificate.label
                 </label>
-                <div class="col-md-9">
+                <div class="col-md-7">
                   <div class="btn btn-info" role="button" id="vpnCert" name="vpnCert"
                        data-ng-model="vpnCert" data-ngf-select="uploadVpnFiles($files, 'cert')"
                        data-ngf-multiple="false" ngf-pattern="'text/*,.crt'" ngf-accept="'text/*,.crt'"
@@ -161,7 +161,7 @@
                        && wizard.internet.vpn.enabled
                        && wizard.internet.share" translate>
                     .certificate.select
-                  </div>&nbsp;{{wizard.internet.vpn.cert.filename}}
+                  </div><br/>&nbsp;{{wizard.internet.vpn.cert.filename}}
                   <span class="fa form-control-feedback"
                         ng-class="formControlFeedback('vpnCert')"></span>
                   <div class="help-block">
@@ -177,10 +177,10 @@
             <div class="col-md-6">
               <div class="form-group has-feedback"
                    ng-class="formFeedback('vpnKey')">
-                <label for="vpnKey" class="col-md-3 control-label" translate>
+                <label for="vpnKey" class="col-md-5 control-label" translate>
                   .key.label
                 </label>
-                <div class="col-md-9">
+                <div class="col-md-7">
                   <div class="btn btn-info" role="button" id="vpnKey" name="vpnKey"
                        data-ng-model="vpnKey" data-ngf-select="uploadVpnFiles($files, 'key')"
                        data-ngf-multiple="false" ngf-pattern="'text/*,.key'" ngf-accept="'text/*,.key'"
@@ -188,7 +188,7 @@
                        && wizard.internet.vpn.enabled
                        && wizard.internet.share" translate>
                     .key.select
-                  </div>&nbsp;{{wizard.internet.vpn.key.filename}}
+                  </div><br/>&nbsp;{{wizard.internet.vpn.key.filename}}
                   <span class="fa form-control-feedback"
                         ng-class="formControlFeedback('vpnKey')"></span>
                   <div class="help-block">
@@ -204,10 +204,10 @@
             <div class="col-md-6">
               <div class="form-group has-feedback"
                    ng-class="formFeedback('taKey')">
-                <label for="taKey" class="col-md-3 control-label" translate>
+                <label for="taKey" class="col-md-5 control-label" translate>
                   .takey.label
                 </label>
-                <div class="col-md-9">
+                <div class="col-md-7">
                   <div class="btn btn-info" role="button" id="taKey" name="taKey"
                        data-ng-model="taKey" data-ngf-select="uploadVpnFiles($files, 'takey')"
                        data-ngf-multiple="false" ngf-pattern="'text/*,.key'" ngf-accept="'text/*,.key'"
@@ -215,7 +215,7 @@
                        && wizard.internet.vpn.enabled
                        && wizard.internet.share" translate>
                     .takey.select
-                  </div>&nbsp;{{wizard.internet.vpn.takey.filename}}
+                  </div><br/>&nbsp;{{wizard.internet.vpn.takey.filename}}
                   <span class="fa form-control-feedback"
                         ng-class="formControlFeedback('taKey')"></span>
                   <div class="help-block">
