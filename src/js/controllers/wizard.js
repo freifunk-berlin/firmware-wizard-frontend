@@ -56,7 +56,7 @@ module.exports = function(app) {
 
       $scope.configRestore = function() {
         return $scope.pastConfigurationRestore;
-      }
+      };
 
       $scope.uploadVpnFiles = function(file, field) {
         var reader = new FileReader();
