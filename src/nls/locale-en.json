@@ -246,6 +246,7 @@
     "help": "By default your router is configured to connect automatically with other Freifunk routers that have default settings. If you want to connect to a router with a special configuration, you should use the following options.",
     "reset": "Reset to defaults",
     "device": "Wifi device {{name}}",
+    "description": "Pick the router from the list provided via the automated wifi scan or enter the configuration manually.",
     "mode": {
       "label": "Mode",
       "option": {

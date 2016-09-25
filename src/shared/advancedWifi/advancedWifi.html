@@ -8,7 +8,6 @@
       <span translate>.headline</span>
     </h2>
     <p>
-      <i class="fa fa-fw fa-info-circle"></i>
       <span translate>.help</span>
     </p>
     <div class="wizard-margin-bottom">
@@ -22,6 +21,7 @@
 
     <!-- collapsable wifi advanced -->
     <div uib-collapse="!state.wifi.advanced">
+      <span translate>.description</span>
       <div data-ng-repeat="(name, device) in state.wifi.devices" class="panel panel-default" ng-init="config = wizard.wifi[name]">
         <div class="panel-heading clearfix">
           <div class="btn-group pull-right">
