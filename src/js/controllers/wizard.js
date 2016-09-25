@@ -80,6 +80,22 @@ module.exports = function(app) {
               $scope.wizard.internet.vpn.conf.value = reader.result;
               $scope.wizard.internet.vpn.conf.filename = file[0].name;
               break;
+            case 'meshcert':
+              $scope.wizard.internet.meshvpn.cert.value = reader.result;
+              $scope.wizard.internet.meshvpn.cert.filename = file[0].name;
+              break;
+            case 'meshkey':
+              $scope.wizard.internet.meshvpn.key.value = reader.result;
+              $scope.wizard.internet.meshvpn.key.filename = file[0].name;
+              break;
+            case 'meshtakey':
+              $scope.wizard.internet.meshvpn.takey.value = reader.result;
+              $scope.wizard.internet.meshvpn.takey.filename = file[0].name;
+              break;
+            case 'meshconf':
+              $scope.wizard.internet.meshvpn.conf.value = reader.result;
+              $scope.wizard.internet.meshvpn.conf.filename = file[0].name;
+              break;
           }
         };
         if (file && file.length == 1) {
@@ -122,6 +138,13 @@ module.exports = function(app) {
           vpn: {
             enabled: false,
             vpn03generate: false,
+            cert: {},
+            key: {},
+            takey: {},
+            conf: {}
+          },
+          meshvpn: {
+            enabled: false,
             cert: {},
             key: {},
             takey: {},

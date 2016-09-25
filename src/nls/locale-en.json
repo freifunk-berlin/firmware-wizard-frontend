@@ -136,6 +136,10 @@
       "label": "VPN",
       "help": "Tunnels your internet traffic to a different server."
     },
+    "meshvpn": {
+      "label": "Mesh VPN",
+      "help": "Connects mesh clouds via internet tunnel. (Use, if your router is not connected to the backbone via radio.)"
+    },
     "generateCertificate": {
       "label": "VPN certificate and key for this router",
       "help": "The <a href=\"http://foerderverein.freie-netzwerke.de/\" target=\"_blank\">Förderverein Freie Netzwerke</a> operates the <a href=\"http://wiki.freifunk.net/vpn03\" target=\"_blank\">VPN03</a> servers for protecting yourself from the <a href=\"https://de.wikipedia.org/wiki/St%C3%B6rerhaftung\" target=\"_blank\">Störerhaftung</a>. If this option is enabled, the wizard automatically generates a new certificate and key for VPN03. Disable this option if you already have a VPN03 config or if you want to use another VPN service (OpenVPN).",
