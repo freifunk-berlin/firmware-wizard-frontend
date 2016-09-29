@@ -63,7 +63,7 @@ module.exports = function(app) {
       $scope.uploadVpnFiles = function(file, field) {
         var reader = new FileReader();
         reader.onload = function() {
-          var content = reader.result.split(',')[1]
+          var content = reader.result.split(',')[1];
           switch (field) {
             case 'cert':
               $scope.wizard.internet.vpn.cert.value = content;
