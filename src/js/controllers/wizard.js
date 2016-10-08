@@ -63,37 +63,38 @@ module.exports = function(app) {
       $scope.uploadVpnFiles = function(file, field) {
         var reader = new FileReader();
         reader.onload = function() {
+          var content = reader.result.split(',')[1];
           switch (field) {
             case 'cert':
-              $scope.wizard.internet.vpn.cert.value = reader.result;
+              $scope.wizard.internet.vpn.cert.value = content;
               $scope.wizard.internet.vpn.cert.filename = file[0].name;
               break;
             case 'key':
-              $scope.wizard.internet.vpn.key.value = reader.result;
+              $scope.wizard.internet.vpn.key.value = content;
               $scope.wizard.internet.vpn.key.filename = file[0].name;
               break;
             case 'takey':
-              $scope.wizard.internet.vpn.takey.value = reader.result;
+              $scope.wizard.internet.vpn.takey.value = content;
               $scope.wizard.internet.vpn.takey.filename = file[0].name;
               break;
             case 'conf':
-              $scope.wizard.internet.vpn.conf.value = reader.result;
+              $scope.wizard.internet.vpn.conf.value = content;
               $scope.wizard.internet.vpn.conf.filename = file[0].name;
               break;
             case 'meshcert':
-              $scope.wizard.internet.meshvpn.cert.value = reader.result;
+              $scope.wizard.internet.meshvpn.cert.value = content;
               $scope.wizard.internet.meshvpn.cert.filename = file[0].name;
               break;
             case 'meshkey':
-              $scope.wizard.internet.meshvpn.key.value = reader.result;
+              $scope.wizard.internet.meshvpn.key.value = content;
               $scope.wizard.internet.meshvpn.key.filename = file[0].name;
               break;
             case 'meshtakey':
-              $scope.wizard.internet.meshvpn.takey.value = reader.result;
+              $scope.wizard.internet.meshvpn.takey.value = content;
               $scope.wizard.internet.meshvpn.takey.filename = file[0].name;
               break;
             case 'meshconf':
-              $scope.wizard.internet.meshvpn.conf.value = reader.result;
+              $scope.wizard.internet.meshvpn.conf.value = content;
               $scope.wizard.internet.meshvpn.conf.filename = file[0].name;
               break;
           }
