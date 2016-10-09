@@ -1,23 +1,18 @@
 <!-- load config from file -->
-  <div class="container" translate-namespace="loadconfig">
-    <div class="text-center" ng-hide="hasConfiguration">
-      <a class="btn btn-info" ng-click='skipAhead()' translate>.hasnoconfiguration</a>
-      <a class="btn btn-info" ng-click='showConfigRestore()' translate>.hasconfiguration</a>
-    </div>
-    <div class="form-group has-feedback"
-         translate-namespace=".upload"
-         ng-show='hasConfiguration'>
-      <label class="col-md-3 control-label" translate>
-        .label
-      </label>
-      <div class="col-md-9">
-        <div ngf-drop="upload($files)" ngf-select="upload($files)" data-ng-model="files" class="drop-box"
-             ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="false"
-             accept="application/json"
-             ngf-pattern="'application/json'" translate>.drop</div>
-        <div ngf-no-file-drop translate>.dropnotsupported</div>
-        <a ng-click='skipAhead()' translate>loadconfig.hasnoconfiguration</a>
-      </div>
-    </div>
+  <div ng-controller="LoadConfigInstanceCtrl">
+    <script type="text/ng-template" id="modal.html">
+        <div class="modal-header" translate-namespace="loadconfig">
+            <h3 class="modal-title" id="modal-title" translate>
+              .label
+            </h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+          <div ngf-drop="upload($files)" ngf-select="upload($files)" data-ng-model="files" class="drop-box"
+               ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="false"
+               accept="application/json"
+               ngf-pattern="'application/json'" translate>.drop</div>
+          <div ngf-no-file-drop translate>.dropnotsupported</div>
+        </div>
+    </script>
   </div>
 <!-- load config from file -->

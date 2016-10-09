@@ -36,6 +36,7 @@
         <div class="row">
           <div class="col-md-offset-9 col-md-3">
             <div class="navbar-form navbar-right">
+              <a href ng-click="showLoadConfigModal()" translate>loadconfiglink</a>
               <select class="form-control form-inline" data-ng-model="selectedLanguage">
                 <option value="en">English</option>
                 <option value="de">Deutsch</option>
@@ -53,53 +54,45 @@
           <i class="fa fa-star fa-stack-1x fa-inverse"></i>
         </span>
         {{'heading' | translate }}</h1>
-        <p class="intro" translate>intro</p>
+        <p class="intro" translate>description</p>
+      </div>
+      <div class="container">
+        <div>
+          <p class="description" translate>freifunk</p>
+        </div>
       </div>
     </div>
 
     <form novalidate name="wizardForm"
         class="form-horizontal wizard-categories">
-
-      <div class="wizard-category">
-        <div class="container">
-          <div class="row">
-            <h4 class="text-center" translate>description</h4>
-            <p translate>
-              freifunk
-            </p>
-          </div>
-        </div>
-      </div>
+      <ng-include src="'shared/loadConfig/loadConfig.html'"></ng-include>
       <div ng-if="!isOnline()" class="wizard-category">
         <ng-include src="'shared/offlineWarning/offlineWarning.html'"></ng-include>
       </div>
-      <div id="loadconfig" class="wizard-category" ng-hide="configRestore()">
-        <ng-include src="'shared/loadConfig/loadConfig.html'"></ng-include>
-      </div>
-      <div class="wizard-category" ng-show="configRestore()">
+      <div class="wizard-category">
         <ng-include src="'shared/basicRouterSetup/basicRouterSetup.html'"></ng-include>
       </div>
-      <div class="wizard-category" ng-show="configRestore()">
+      <div class="wizard-category">
         <ng-include src="'shared/contactDetails/contactDetails.html'"></ng-include>
       </div>
-      <div class="wizard-category" ng-show="configRestore()">
+      <div class="wizard-category">
         <ng-include src="'shared/routerLocation/routerLocation.html'"></ng-include>
       </div>
-      <div class="wizard-category" ng-show="configRestore()">
+      <div class="wizard-category">
         <ng-include src="'shared/internetSharing/internetSharing.html'"></ng-include>
       </div>
-      <div class="wizard-category" ng-show="configRestore()">
+      <div class="wizard-category">
         <ng-include src="'shared/ipAddresses/ipAddresses.html'"></ng-include>
       </div>
-      <div class="wizard-category" ng-show="configRestore()">
+      <div class="wizard-category">
         <ng-include src="'shared/monitoring/monitoring.html'"></ng-include>
       </div>
-      <div class="wizard-category" ng-show="configRestore()">
+      <div class="wizard-category">
         <ng-include src="'shared/advancedWifi/advancedWifi.html'"></ng-include>
       </div>
 
       <!-- submission -->
-      <div class="wizard-category" ng-show="configRestore()">
+      <div class="wizard-category">
         <div class="container text-right">
           <span class="text-danger" translate
               ng-if="wizardForm.$submitted && wizardForm.$invalid">
