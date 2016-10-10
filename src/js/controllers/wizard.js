@@ -3,9 +3,9 @@
 module.exports = function(app) {
   app.controller('WizardCtrl', [
     '$scope', 'leafletData', '$http', '$filter', 'downloadFile', '$translate',
-    'jsonrpc', 'Upload', '$timeout',
+    'jsonrpc', 'Upload', '$uibModal', '$timeout',
     function($scope, leafletData, $http, $filter, downloadFile, $translate,
-             jsonrpc, Upload, $timeout) {
+             jsonrpc, Upload, $uibModal, $timeout) {
 
       // jscs:disable maximumLineLength
       var onlineCheckUrl = 'https://weimarnetz.de/health?callback=JSON_CALLBACK';
@@ -14,51 +14,26 @@ module.exports = function(app) {
         $translate.use(language);
       }, true);
 
-      $scope.files = undefined;
-      $scope.$watch('files', function() {
-        $scope.upload($scope.files);
-      }, true);
+      $scope.showLoadConfigModal = function() {
+        var modalInstance = $uibModal.open({
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'modal.html',
+          controller: 'LoadConfigInstanceCtrl',
+          scope: $scope
+        });
+
+        $scope.modalInstance = modalInstance;
+
+        modalInstance.result.then(function(result) {
+          $scope.wizard = result.wizard;
+          $scope.state = result.state;
+        }, function() {
+          console.log('Modal dismissed at: ' + new Date());
+        });
+      };
 
       $scope.log = '';
-      $scope.pastConfigurationRestore = false;
-      $scope.hasConfiguration = false;
-      $scope.showConfigRestore = function() {
-        $scope.hasConfiguration = true;
-      };
-
-      $scope.skipAhead = function() {
-        angular.element(document.querySelector('#loadconfig')).remove();
-        $scope.pastConfigurationRestore = true;
-      };
-
-      $scope.upload = function(files) {
-        if (!files) {
-          return;
-        }
-        var reader = new FileReader();
-        reader.onload = function() {
-          var myWizard = JSON.parse(reader.result);
-          $scope.wizard = myWizard;
-          if ($scope.wizard.router.sshkeys) {
-            $scope.state.sshkeys.enabled = true;
-          }
-        };
-        if (files && files.length) {
-          for (var i = 0; i < files.length; i++) {
-            var file = files[i];
-            if (!file.$error) {
-              reader.readAsText(file);
-
-            }
-          }
-        }
-        angular.element(document.querySelector('#loadconfig')).remove();
-        $scope.pastConfigurationRestore = true;
-      };
-
-      $scope.configRestore = function() {
-        return $scope.pastConfigurationRestore;
-      };
 
       $scope.uploadVpnFiles = function(file, field) {
         var reader = new FileReader();
