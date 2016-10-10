@@ -15,17 +15,21 @@ module.exports = function(app) {
       }, true);
 
       $scope.showLoadConfigModal = function() {
-        $uibModal.open({
+        var modalInstance = $uibModal.open({
           ariaLabelledBy: 'modal-title',
           ariaDescribedBy: 'modal-body',
           templateUrl: 'modal.html',
-          controller: "LoadConfigInstanceCtrl as vm",
-          scope: $scope,
-          resolve: {
-            parent: function () {
-              return vm;
-            }
-          }
+          controller: 'LoadConfigInstanceCtrl',
+          scope: $scope
+        });
+
+        $scope.modalInstance = modalInstance;
+
+        modalInstance.result.then(function(result) {
+          $scope.wizard = result.wizard;
+          $scope.state = result.state;
+        }, function() {
+          console.log('Modal dismissed at: ' + new Date());
         });
       };
 

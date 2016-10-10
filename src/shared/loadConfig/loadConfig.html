@@ -3,15 +3,18 @@
     <script type="text/ng-template" id="modal.html">
         <div class="modal-header" translate-namespace="loadconfig">
             <h3 class="modal-title" id="modal-title" translate>
-              .label
+              .headline
             </h3>
         </div>
-        <div class="modal-body" id="modal-body">
+        <div class="modal-body" id="modal-body" translate-namespace="loadconfig.upload">
           <div ngf-drop="upload($files)" ngf-select="upload($files)" data-ng-model="files" class="drop-box"
                ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="false"
                accept="application/json"
                ngf-pattern="'application/json'" translate>.drop</div>
           <div ngf-no-file-drop translate>.dropnotsupported</div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
         </div>
     </script>
   </div>
