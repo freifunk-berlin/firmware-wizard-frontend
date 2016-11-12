@@ -10,9 +10,9 @@ module.exports = function(app) {
 
     $translateProvider.registerAvailableLanguageKeys([
       'en',
-      //'de'
+      'de'
     ],{
-      // 'de_*': 'de',
+      'de_*': 'de',
       'en_*': 'en',
       '*': 'en'
     });

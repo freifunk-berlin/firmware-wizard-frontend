@@ -9,7 +9,7 @@ module.exports = function(app) {
 
       // jscs:disable maximumLineLength
       var onlineCheckUrl = 'https://weimarnetz.de/health?callback=JSON_CALLBACK';
-      $scope.selectedLanguage = $translate.use();
+      $scope.selectedLanguage = $translate.proposedLanguage() || $translate.use();
       $scope.$watch('selectedLanguage', function(language) {
         $translate.use(language);
       }, true);
