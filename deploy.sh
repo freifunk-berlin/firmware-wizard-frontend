@@ -15,6 +15,8 @@ git clone --depth 1 git@github.com:freifunk-berlin/firmware-wizard-frontend.git 
 
 rsync -a --delete --exclude .git dist/ gh-pages/
 
+touch gh-pages/.nojekyll
+
 (cd gh-pages/ && \
   git config user.name "Travis CI" && \
   git config user.email "travis@mailinator.com" && \
