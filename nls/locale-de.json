@@ -1,103 +1,49 @@
 {
-  "heading": "Konfiguriere deinen Router",
-  "intro": "Freifunk Berlin",
-  "loadconfiglink": "Existierende Konfiguration laden",
-  "description": "Freifunk ist ein freies, unabhängiges und offen zugängliches Gemeinschaftsnetz, dass von Freiwilligen gebaut wird.",
-  "freifunk": "Wir unterstützen das <a href=\"\" target=\"_blank\">Pico Peering Agreement</a>. Bitte informier die dich auch über unsere <a href=\"https://freifunk.net/en/what-is-it-about/our-vision/\" target=\"_blank\">Vision</a> und unser <a href=\"http://blog.freifunk.net/2015/memorandum-understanding\" target=\"_blank\">Memorandum Of Understanding</a>.",
-  "offlineWarning": {
-    "headline": "Keine Internetverbindung",
-    "help" : "Einige Funktionen dieses Assistenten brauchen eine Internetverbindung. Du kannst entweder Deiner Router mit dem Internet verbinden oder diese <a href=\"#\">Online Version des Assistenten</a> nutzen"
-  },
-  "loadconfig": {
-    "headline": "Konfiguration laden",
-		"hasconfiguration": "Ich habe bereits eine Konfigurationsdatei und möchte diese nutzen.",
-		"hasnoconfiguration": "Ich möchte mit einer neuen Konfiguration beginnen.",
-    "help": "Für andere Router kannst eine bereits vorhandene Konfigurationsdatei anpassen und laden.",
-    "upload": {
-      "label": "Deine Datei",
-      "drop": "Datei hierher ziehen oder klicken.\n",
-      "dropnotsupported": "Dein Browser unterstützt leider kein Drag and Drop für Dateiupload :("
-    }
-  },
+	"heading": "Router configuration wizard",
+  "intro": "Dieser Assitent hilft die beim Einrichten deines Freifunk Routers.",
   "basicRouterSetup": {
-    "headline": "Basis Router Einrichtung ",
+    "headline":"Grundlegende Routereinstellungen",
     "routerName": {
       "label": "Router Name",
-      "placeholder": "funkenpumpe3000",
-      "error": {
-        "required": "Dies ist ein Pflichtfeld.",
-        "pattern": "Sonderzeichen sind nicht erlaubt.",
-        "maxLength": "Nicht mehr als 32 Zeichen.",
-        "minLength": "Mindestens 3 Zeichen."
-      },
-      "help": "Der Routername wird im Mesh-Netzwerk angezeigt und außerdem bei verschiedenen anderen Diensten (z.B. Monitoring, Freifunkkarte, Kontaktseite) benutzt, sobald du sie aktiviertst."
+      "error.required": "Der Router Name wird benötigt um IPs und VPN Dateien automatisch zu registrieren.",
+      "placeholder": "Name des Routers"
     },
     "password": {
       "label": "Neues Router Passwort",
-      "help": "Mindestens 6 Zeichen",
-      "error.required": "Es wird ein Passwort benötigt.",
-      "error.minLength": "Das Passwort muss mindestens 6 Zeichen haben."
+      "placeholder": "geheim123",
+      "error.required": "Ein Passwort wird benötigt.",
+      "error.minLength": "Das Passwort muss mindestens 6 Zeichen lang sein."
     },
     "passwordVerify": {
-      "label": "Router Passwort wiederholen",
-      "help": "Beide Passwörter müssen übereinstimmen",
-      "error.match": "Passwörter müssen übereinstimmen\n"
-    },
-    "sshkeys": {
-      "label": "SSH-Schlüssel aktivieren",
-      "help": "Passwortloser Root-Login für deinen Router. SSH-Schlüssel sind sinnvoll, wenn du mehere Router betreibst oder wenn du einem befreundeten Menschen Zugriff geben möchtest.",
-      "keys": {
-        "label": "Deine Schlüssel",
-        "help": "Füge deine Schlüssel hinzu, jeden in einer neuen Zeile",
-        "invalidkey": "Einer deiner Schlüssel ist ungültig"
-      }
+      "label":"Router Password Bestätigung",
+      "placeholder": "wiederhole das passwort",
+      "error.match": "Passworte müssen übereinstimmen."
     }
   },
   "contactDetails": {
-    "headline": "Kontaktdetails",
+    "headline": "Kontaktdaten",
     "name": {
       "label": "Dein Name",
-      "placeholder": "Spitzname"
+      "placeholder": "Funki Fine"
     },
     "email": {
-      "label":"Deine E-Mail Adresse",
-      "help": "Deine Email Adresse wird benötigt, wenn du VPN Zertifikat- und Schlüsselgenerierung bzw. die IP Registrierung aktivierst.",
-      "placeholder": "name@example.org",
-      "error": {
-        "required":"Für die aktuelle Konfiguration wird deine Email Adresse benötigt.",
-        "pattern": "Bitte gebe eine Email Adresse ein."
-      }
-    },
-    "options": {
-      "label": "Ist es ok für dich, wenn wir dich kontaktieren?",
-      "contactPage": {
-        "label": "Wird auf der Kontaktseite angezeigt.",
-        "help": "Sobald sich Menschen zum Freifunknetzwerk verbinden, können sie die Kontaktdaten unter <a href=\"http://frei.funk/cgi-bin/luci/freifunk/contact\" target=\"_blank\">frei.funk</a> sehen."
-      },
-      "sendToMap": {
-        "label": "Zur Freifunkkarte senden",
-        "help": "Ich möchte, dass meine Email Adresse auf der <a href=\"http://openwifimap.net\" target=\"_blank\">Freifunkkarte</a> angezeigt wird."
-      },
-      "mailinglist": {
-        "label": "Mailingliste",
-        "button": "Abonnieren",
-        "help": "Wir kommunizierenn über die <a href=\"https://lists.berlin.freifunk.net/cgi-bin/mailman/listinfo/berlin\" target=\"_blank\">Mailingliste der Berliner Community</a>.",
-        "helpoffline": "Du kannst dich auf der <a href=\"https://lists.berlin.freifunk.net/cgi-bin/mailman/listinfo/berlin\" target=\"_blank\">Mailinglistenseite der Berliner Freifunk Community</a> anmelden, sobald du wieder online bist."
-      }
+      "label":"Email",
+      "error.required": "Deine EMail Addresse wird zur Bestätigung der automatisch generierten IPs und / oder VPN Dateien benötigt.",
+      "placeholder": "funki@fine.net"
     }
   },
   "routerLocation": {
-    "headline": "Routerstandort",
-    "help": "Die Koordinaten werden benutzte um deinen Router in der <a href=\"http://map.berlin.freifunk.net\" target=\"_blank\">Freifunkkarte</a> zu platzieren.",
-    "getLocation": "Standort ermitteln",
+    "headline":"Router Standort",
+    "help": "Wenn du die Standortdaten für deinen Router angibst wird er in inerser <a href='http://map.berlin.freifunk.net' target='blank'>Freifunk Karte</a> angezeigt. Du kannst entweder die Adresse direkt angeben oder den Marker auf der Karte auf die korrekte Position ziehen.",
+    "getLocation": "Meinen Standort herausfinden",
     "geolocation": {
-      "label": "Standort",
-      "latitude": "Breitengrad",
-      "longitude": "Längengrad"
+      "label": "Geolocation",
+      "latitude": "Latitude",
+      "longitude": "Longitude"
     },
     "street": {
-      "label": "Straße und Hausnummer",
-      "placeholder": "Panoramastr. 999a"
+      "label":"Straße und Hausnummer",
+      "placeholder": "Panoramastraße"
     },
     "postalCode":{
       "label": "Postleitzahl",
@@ -106,156 +52,83 @@
     "city": {
       "label": "Stadt",
       "placeholder": "Alt-Berlin"
-    },
-    "offlineMsg" : "Du scheinst keine Verbindung zum Internet zu haben. Die Karte funktioniert nur, wenn du online bist. Du kansnt deinen Standort manuell setzen oder dies später tun."
+    }
   },
   "internetSharing": {
     "headline": "Internet teilen",
-    "help": "Freifunk kann für lokale Dienste und den Zugang zum Internet genutzt werden. Letzteres wird erst dadurch ermöglicht, dass Menschen, die Router betreiben, ihre Internetverbindung teilen.",
-    "shareInternet": {
-      "label": "Internet teilen",
-      "help": "Ja, ich möchte meine Internetverbindung mit dem Freiunknetz teilen.",
-      "thanks": "Danke fürs Teilen deine Internetverbindung &#10084;"
-    },
-    "limitspeed": {
-      "label": "Geschwindigkeit beschränken.",
-      "help": "Wir empfehlen keine Limits für den Datentransfer anzugeben. Solltest du später doch Probleme feststellen, kannst du immer noch die Übertragungsrate für deine geteilte Internetverbindung anpassen."
-    },
+    "shareInternet.label": "Internet teilen",
+    "help": "DANKE! Du hast dich dafür entschieden dein Internet zu teilen. Um dich vor der Störerhaftung zu schützen, solltest du VPN benutzen.",
     "transferSpeed": {
-      "label": "Übertragungslimit",
-      "help": "Du kannst die Schnelligkeit deiner aktuellen Verbindung  <a href=\"http://speedof.me/\" target=\"_blank\">hier</a> überprüfen. Lass die folgenden Felder leer, wenn die Datenübertragung nicht limitieren möchtest.",
-      "down": {
-        "help": "Download Transfer Limit in <a href=\"https://en.wikipedia.org/wiki/Data_rate_units#Megabit_per_second\" target=\"_blank\">Mbit/s</a>."
-      },
-      "up": {
-        "help": "Upload Transfer Limit in <a href=\"https://en.wikipedia.org/wiki/Data_rate_units#Megabit_per_second\" target=\"_blank\">Mbit/s</a>."
-      }
+      "label": "Geschwindigkeit in Mbps",
+      "up": "Up",
+      "down": "Down"
     },
     "antistoererhaftung": {
-      "label": "VPN",
-      "help": "Leitet deinen Internetverkehr über einen Tunnel zu einem anderen Server weiter."
-    },
-    "meshvpn": {
-      "label": "Mesh VPN",
-      "help": "Verbindet Mesh-Wolken über Internettunnel. (Du kannst das einschalten, wenn dein Router nicht zu anderen Routern per Funk verbunden ist.)"
+      "label": "Anti-Störerhaftung via VPN03",
+      "operatedBy": "wird betrieben vom"
     },
     "generateCertificate": {
-      "label": "VPN Zertifikat und Schlüssel für diesen Router.",
-      "help": "Der <a href=\"http://foerderverein.freie-netzwerke.de/\" target=\"_blank\">Förderverein Freie Netzwerke</a> betreibt den <a href=\"http://wiki.freifunk.net/vpn03\" target=\"_blank\">VPN03</a> um dich vor der <a href=\"https://de.wikipedia.org/wiki/St%C3%B6rerhaftung\" target=\"_blank\">Störerhaftung</a> zu schützen. Wenn du hier den Haken setzt, werden automatisch Zertifikat und Schlüssel für den VPN03 generiert. Setzte den Haken nicht, wenn du bereits eine VPN03 Konfiguration hast oder einen anderen VPN Service nutzen möchtest.\n",
-      "certificate": {
-        "label": "VPN Zertifikat",
-        "select": "Zertifikatsdatei",
-        "error": {
-          "pattern": "Falsches Dateiformat oder falscher Dateiname. Nur Textdateien sind erlaubt."
-        }
-      },
-      "key": {
-        "label": "VPN Schlüssel",
-        "select": "Schlüsseldatei",
-        "error": {
-          "pattern": "Falsches Dateiformat oder falscher Dateiname. Nur Textdateien sind erlaubt."
-        }
-      },
-      "takey": {
-        "label": "TLS Auth Schlüssel",
-        "select": "Schlüsseldatei",
-        "error": {
-          "pattern": "Falsches Dateiformat oder falscher Dateiname. Nur Textdateien sind erlaubt."
-        }
-      },
-      "conf": {
-        "label": "VPN Konfigurationsdatei",
-        "select": ".ovpn Datei",
-        "customvpn": "Ich möchte einen anderen VPN Service nutzen (Dann benötigst du eine opnVPN Konfigurationsdatei von deinem Provider)",
-        "error": {
-          "pattern": "Falsches Dateiformat oder falscher Dateiname. Nur Textdateien sind erlaubt."
-        }
-      },
-      "select": "Wähle eine Datei aus",
+      "label": "VPN03 Zertifikat und Schlüssel für diesen Router generieren. ",
+      "certificate.label": "VPN Zertifikat",
+      "key.label": "Schlüssel",
       "browse": "Durchsuchen",
-      "error.required": "Die Datei ist erforderlich. (Sie kann auch automatisch generiert werden, wenn du den Haken weiter oben setzt.)"
-    },
-    "vpninfo": {
-      "showlist": "VPN Provider Liste",
-      "list": "<li><a href=\"http://www.evernet-eg.de/kontakt.html\" target=\"_blank\">Evernet eG</a> stellt VPN für Freifunkas bereit</li><li><a href=\"https://www.ipredator.se/\" target=\"_blank\">IPredator</a> stellt einen verschlüsselten Tunnel von deinem Computer zum Internet bereit</li><li><a href=\"mailto:kontakt@freifunk-rheinland.net\">Freifunk Rheinland</a> ist Community Provider</li><li>Förderverein Freie Netzwerke betreibt unverschlüsselte <a href=\"https://wiki.freifunk.net/Vpn03\" target=\"_blank\">VPN03 Server</a>.</li><li>Oder wähle einen anderen VPN Provider z.B. aus dieser Liste: <a href=\"http://www.vpnvergleich.net/\" target=\"_blank\">http://www.vpnvergleich.net/</a></li>"
+      "error.required": "Diese Datei wird benötigt. Wenn du den Haken oben setzt, wird sie automatisch generiert"
     }
   },
   "ip": {
-    "headline": "IP Adressen",
-    "help": "Um mit anderen Routern und Clients, die sich zu deinem Router verbinden, kommunizieren zu können benötigt dein Router IP Adressen. Freifunk benutzt sowohl IPv4 (veraltet) und IPv6 (aktuell)",
-    "register": {
-      "label": "Neue IP Adressen registrieren",
-      "help": "Der Wizard registriert für dich automatisch IP Adressen im der Freifunk Berlin IP Registrierung. Du kannst das abwählen, wenn du bereits IP Adressen hast."
+    "headline":"IP Addressen",
+    "help": "Gib hier die IP Adressen ein, die du dir vorher <a href='http://config.berlin.freifunk.net' target='blank'>registriert hast</a>. Wenn du IPs automatisch registrieren möchtest, setzt den Haken oben.",
+    "register.label":"Neue IP Addressen registrieren",
+    "ipv6": {
+      "label": "IPv6 prefix",
+      "placeholder": ""
     },
-    "v6Prefix": {
-      "label": "IPv6 Prefix",
-      "help": "Das IPv6 Prefix wird genutzt um alle Netzwerk Interfaces deines Routers automatisch zu konfigurieren.",
-      "error.required": "Das IPv6 prefix ist erforderlich.",
-      "error.ipAddress": "Bitte gib ein IPv6 prefix ein.",
-      "error.ipPrefixMaxLength": "Das IPv6 Prefix darf nicht größer als /62 sein.",
-      "placeholder": "Beispiel: 2001:bf7:c4ff:3300::/60"
+    "meship": {
+      "label": "Wifi ({{name}}) Mesh-IPv4",
+      "placeholder": ""
     },
-    "v4": {
-      "placeholder": "Beispiel: 10.31.133.{{40+index}}\n",
-      "error.ipAddress": "Das ist keine valide IPv4 Adresse.",
-      "error.ipSingle": "Hier musst du eine einzelne IPv4 Adresse eingeben.",
-      "error.ipSubnet": "Das ist kein valides IPv4 Subnetz.",
-      "error.ipSubnetSmall": "Das IPv4 Subnetz darf nicht größer als /30 sein.",
-      "wifi": {
-        "label": "Mesh {{index}}",
-        "help": "Eine einzelne IPv4 Addresse für das WIfi Device {{name}}."
-      },
-      "lan": {
-        "label": "Mesh 3",
-        "help": "Eine einzelne IPv4 Adresse für das LAN Interface."
+    "meshViaLAN": {
+      "label": "Mesh via LAN",
+      "help": "Du hast Mesh via LAN ausgewählt. Das beudeutet du kannst deinen Router mit anderen Geräten verbinden, die Meshen können. Mehr Information zu Meshing findest du <a href='http://wiki.freifunk.net/Meshing' target='blank'>hier</a>.",
+      "lanip": {
+        "help":"Gib hier die IP für das Meshing über LAN ein. Wenn du den Haken nicht setzt werden die Clients an den LAN Ports wie normale Router Clients behandelt.",
+        "label": "LAN Mesh-IPv4",
+        "placeholder":""
       }
     },
-    "meshLan": {
-      "help": "Erlaubt eine Verbindung zu anderen Geräten mit gleichen Einstellungen über den LAN Port deines Routers. Wenn du nur einen Router hast, kannst du diese Einstellung abwählen.",
-      "label": "Mesh via LAN"
-    },
     "distribute": {
-      "label": "Client IP Adressen.",
-      "help": "Diese Einstellung solltest du einschalten.",
+      "label": "Client IP Addressen verteilen",
+      "help": "Standartmäßig bekommen Clients deines Routers IPs von einem anderen verbundenen Router. Falls du keinen anderen Router in deiner nähe hast oder selbst IP Adressen verteilen möchtest, überlege wieviele Clients du an deinem Router erwartest.",
       "subnet": {
-        "label": "Client IPv4 Subnetz",
-        "placeholder" :"Beispiel: 10.31.133.128/27",
-        "error.pattern":"Das ist kein valides IPv4 Subnetz.",
-        "help": "Das IPv4 Subnetz aus dem Clients eine IP Adresse erhalten, sobald sie sich mit deinem Router verbinden."
+        "label": "Client IPv4 subnet",
+        "placeholder" :"",
+        "error.pattern": "Das ist keine gültige Subnet Adresse"
       },
       "expectedClients": {
-        "label": "Geschätzte Anzahl gleichzeitiger Clients",
-        "help": "Wieviele Geräte verbinden sich zu deinem Router zur selben Zeit?"
+        "label": "Wieviele Benutzer erwartest du an deinem Freifunkknoten?"
       }
     },
     "error": {
-      "required": "Dieses Feld ist erforderlich, es sei denn du lässt IP Adressen automtisch registrieren.",
-      "ipPattern": "Das ist keine valide IPV4 Adresse."
+      "required": "Dieses Feld wird benötigt, es sei denn du registrierst die IPs autmomatisch.",
+      "ipPattern": "Das ist keine gültige IP Adresse."
     }
-  },
-  "monitoring" : {
-    "headline" : "Monitoring",
-    "show" : "Öffentliches Monitoring - Dadurch können Freifunkas Netzwerkprobleme besser analysieren.",
-    "label" : "Monitoring einschalten",
-    "help" : "Unter <a href=\"http://monitor.berlin.freifunk.net\" target=\"_blank\">http://monitor.berlin.freifunk.net</a> erreichst du den Monitoring Service der Berliner Community. Dort werden Daten über Übertragungsgeschwindigkeiten, Speicher, CPU und Netzwerkverbindungen gesammelt."
   },
   "advancedWifi": {
     "headline": "Erweiterte Wifi Optionen",
-    "show": "Erweiterte Wifi Optionen anzeigen",
-    "help": "Dein Router kann sich automatisch zu anderen Routern mit Standardkonfiguration verbinden. Du kannst allerdings die folgenden Optionen nutzen, wenn du eine Verbindung zu einem  Router mit spezieller Konfiguration herstellen möchtest.",
-    "reset": "Standard wieder herstellen",
-    "device": "Wifi Device {{name}}",
-    "description": "Wähle einen Router aus der Liste aus oder tippe die erforderlichen Werte ein.",
+    "show": "Anzeigen",
+    "help": "Eigentlich verbindet sich dein Router auotamatisch mit Routern in deiner Nähe. Hier kannst du jedoch mit einem Access Point verbinden oder selbst Access Point für sein. Außerdem kannst du hier ein WLANN auswählen, mit dem du dich verbinen möchtest.",
+    "reset": "Stanard wieder herstellen",
+    "device": "Wifi device {{name}}",
     "mode": {
-      "label": "Modus",
+      "label":"Mode",
       "option": {
-        "mesh.label": "Mesh (802.11s)\n",
-        "adhoc.label": "AdHoc",
-        "sta.label": "Client (STA)",
-        "ap.label": "Master (AP)"
+        "mesh.label": "mesh (802.11s)",
+        "adhoc.label": "adhoc",
+        "sta.label": "client (STA)",
+        "ap.label": "master (AP)"
       }
     },
-    "channel.label": "Kanal",
+    "channel.label":"Kanal",
     "ssid": {
       "label": "Name (SSID)",
       "placeholder": "intern-ch{{XX}}-bat{{X}}.freifunk.net"
@@ -265,28 +138,30 @@
       "placeholder": "freifunk"
     },
     "bssid": {
-      "label": "BSSID"},
+      "label": "BSSID",
+      "placeholder": ""
+    },
     "batvlan": {
       "label": "BATMAN-adv VLAN ID"
     },
     "pick": {
-      "label": "Nach Wifi Scan auswählen",
+      "label": "Auswählen",
       "filter": {
-        "label": "Nach SSID filtern",
-        "noresult": "Kein Ergebnis mit dem Filter <em>{{filter}}!</em> gefunden."
+        "label": "SSIDs filtern nach",
+        "noresult": "Für den Filter <em>{{filter}}</em> gibt es keine Ergebnisse!"
       },
-      "rescan": "Erneut Scannen",
+      "rescan": "Rescan",
       "column": {
-        "mode": "Modus",
+        "mode": "Mode",
         "channel": "Kanal",
         "ssid": "Name (SSID)",
-        "bssidormeshid": "BSSID / Mesh ID\n",
+        "bssidormeshid": "BSSID / Mesh ID",
         "signal": "Signal"
       },
-      "noresult": "Keine Ergebnisse!"
+      "noresult": "Es gibt keine Ergebnisse für den Scan"
     }
   },
-  "configIncorrect": "Die Daten sind nicht korrekt. Bitte überprüfe die Felder die mit <i class=\"fa fa-times\"></i>  markiert sind.",
-  "save": "Speichern &amp; Neustarten",
+  "configIncorrect": "Die Daten die du eingegeben hast sind nicht korrekt. Bitte korrigiere sie zuerst",
+  "save": "Speichern & Neustarten",
   "download": "Konfiguration herunterladen"
 }
