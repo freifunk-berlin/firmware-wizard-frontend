@@ -14,17 +14,36 @@ module.exports = function(app) {
         $translate.use(language);
       }, true);
 
-      var routerUbusUrl = $location.protocol() + '://' + $location.host() + '/ubus';
+      $scope.routerUbusUrl = $location.protocol() + '://' + $location.host() + '/ubus';
       $scope.currentPassword = '';
       $scope.submit = function() {
-        jsonrpc.login(routerUbusUrl, 'root', $scope.currentPassword)
+        jsonrpc.login($scope.routerUbusUrl, 'root', $scope.currentPassword)
           .then(function(data) {
-            connectionToRouter = true;
-            return jsonrpc.call('ffwizard', 'apply', $scope.wizard);
+            console.log('applying');
+            // due to an ubox bug we have to convert lat and lon to strings
+            var myWizard = angular.copy($scope.wizard);
+            myWizard.location.lat = $scope.wizard.location.lat && '' + $scope.wizard.location.lat;
+            myWizard.location.lng = $scope.wizard.location.lng && '' + $scope.wizard.location.lng;
+            return jsonrpc.call('ffwizard', 'apply', myWizard);
           })
           .then(function(data) {
-            console.log('upload done: ' + data);
+            console.log('upload done');
+            console.log(data);
+          })
+          .catch(function(data) {
+            console.log('error');
+            console.log(data);
           });
+      };
+
+      $scope.showCurrentPasswordModal = function() {
+        var modalInstance = $uibModal.open({
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'modal.html',
+          controller: 'CurrentPasswordCtrl',
+          scope: $scope
+        });
       };
 
       $scope.showLoadConfigModal = function() {
@@ -244,7 +263,7 @@ module.exports = function(app) {
       };
 
       var connectionToRouter = false;
-      jsonrpc.login(routerUbusUrl, 'root', $scope.currentPassword)
+      jsonrpc.login($scope.routerUbusUrl, 'root', $scope.currentPassword)
         .then(function(data) {
           connectionToRouter = true;
           return jsonrpc.call('iwinfo', 'scan', {'device': 'wlan0-dhcp-2'});
