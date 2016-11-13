@@ -194,7 +194,7 @@ module.exports = function(app) {
           showVpnList: false
         },
         ip: {
-          register: true,
+          register: false,
           v4ClientSubnetSize: 27
         },
         monitoring: {

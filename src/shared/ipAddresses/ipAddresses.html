@@ -21,7 +21,8 @@
           <label>
             <input type="checkbox"
                    name="ipRegister" id="ipRegister"
-                   data-ng-model="state.ip.register">
+                   data-ng-model="state.ip.register"
+                   data-ng-disabled="true">
             <span class="text-muted" translate>.register.help</span>
           </label>
         </div>
@@ -40,9 +41,10 @@
                    placeholder="{{'ip.v6Prefix.placeholder' | translate}}"
                    data-ng-model="wizard.ip.v6Prefix"
                    data-ng-model-options="{ debounce: 500 }"
-                   data-ng-required="!state.ip.register"
+                   data-ng-required="!state.ip.register && false"
                    data-ip-address data-ip-version="6"
-                   data-ip-prefix-max-length="62">
+                   data-ip-prefix-max-length="62"
+                   >
             <span class="fa form-control-feedback"
                   ng-class="formControlFeedback('ipv6Prefix')"></span>
             <div class="help-block">
@@ -76,7 +78,7 @@
                    translate-values="{index: $index + 1}"
                    data-ng-model="wizard.ip.v4[name]"
                    data-ng-model-options="{ debounce: 500 }"
-                   data-ng-required="!state.ip.register"
+                   data-ng-required="!state.ip.register && $index==0"
                    data-ip-address data-ip-version="4"
                    data-ip-prefix-min-length="32">
             <span class="fa form-control-feedback"

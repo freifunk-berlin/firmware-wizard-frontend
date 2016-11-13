@@ -19,6 +19,9 @@ module.exports = function(app) {
           ip.Address4 : ip.Address6;
 
         ngModel.$validators.ipAddress = function(modelValue) {
+          if (modelValue == undefined) {
+            return true;
+          }
           var parsedIp = new IpAddress(modelValue || '');
           return parsedIp.valid;
         };
@@ -26,6 +29,9 @@ module.exports = function(app) {
         if (attributes.ipPrefixMinLength !== undefined) {
           var minLength = parseInt(attributes.ipPrefixMinLength);
           ngModel.$validators.ipPrefixMinLength = function(modelValue) {
+            if (modelValue == undefined) {
+              return true;
+            }
             var parsedIp = new IpAddress(modelValue || '');
             return parsedIp.valid && parsedIp.subnetMask >= minLength;
           };
@@ -34,6 +40,9 @@ module.exports = function(app) {
         if (attributes.ipPrefixMaxLength !== undefined) {
           var maxLength = parseInt(attributes.ipPrefixMaxLength);
           ngModel.$validators.ipPrefixMaxLength = function(modelValue) {
+            if (modelValue == undefined) {
+              return true;
+            }
             var parsedIp = new IpAddress(modelValue || '');
             return parsedIp.valid && parsedIp.subnetMask <= maxLength;
           };
