@@ -63,7 +63,7 @@
       </div>
     </div>
 
-    <form novalidate name="wizardForm"
+    <form novalidate name="wizardForm" ng-submit="submit()"
         class="form-horizontal wizard-categories">
       <ng-include src="'shared/loadConfig/loadConfig.html'"></ng-include>
       <div ng-if="!isOnline()" class="wizard-category">
@@ -101,7 +101,7 @@
           <button type="button" class="btn btn-default" ng-click="downloadConfig()">
             <i class="fa fa-download"></i> <span translate>download</span>
           </button>
-          <button type="submit" class="btn btn-primary" data-ng-click="submit()" data-ng-class="{disabled: wizardForm.$invalid}">
+          <button type="submit" class="btn btn-primary" data-ng-class="{disabled: wizardForm.$invalid}">
             <i class="fa fa-check"></i> <span translate>save</span>
           </button>
         </div>

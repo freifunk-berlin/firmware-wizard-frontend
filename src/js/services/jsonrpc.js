@@ -12,7 +12,7 @@ module.exports = function(app) {
         method: 'call',
         params: [session, object, method, args]
       }, {
-        timeout: 1000
+        timeout: 10000
       })
         .success(function(data) {
           if (data.error) {

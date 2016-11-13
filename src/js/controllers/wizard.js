@@ -3,9 +3,9 @@
 module.exports = function(app) {
   app.controller('WizardCtrl', [
     '$scope', 'leafletData', '$http', '$filter', 'downloadFile', '$translate',
-    'jsonrpc', 'Upload', '$uibModal', '$timeout',
+    'jsonrpc', 'Upload', '$uibModal', '$timeout', '$location',
     function($scope, leafletData, $http, $filter, downloadFile, $translate,
-             jsonrpc, Upload, $uibModal, $timeout) {
+             jsonrpc, Upload, $uibModal, $timeout, $location) {
 
       // jscs:disable maximumLineLength
       var onlineCheckUrl = 'https://weimarnetz.de/health?callback=JSON_CALLBACK';
@@ -13,6 +13,19 @@ module.exports = function(app) {
       $scope.$watch('selectedLanguage', function(language) {
         $translate.use(language);
       }, true);
+
+      var routerUbusUrl = $location.protocol() + '://' + $location.host() + '/ubus';
+      $scope.currentPassword = '';
+      $scope.submit = function() {
+        jsonrpc.login(routerUbusUrl, 'root', $scope.currentPassword)
+          .then(function(data) {
+            connectionToRouter = true;
+            return jsonrpc.call('ffwizard', 'apply', $scope.wizard);
+          })
+          .then(function(data) {
+            console.log('upload done: ' + data);
+          });
+      };
 
       $scope.showLoadConfigModal = function() {
         var modalInstance = $uibModal.open({
@@ -230,9 +243,11 @@ module.exports = function(app) {
         }
       };
 
-      jsonrpc.login('http://192.168.1.1/ubus', 'root', 'doener')
+      var connectionToRouter = false;
+      jsonrpc.login(routerUbusUrl, 'root', $scope.currentPassword)
         .then(function(data) {
-          return jsonrpc.call('iwinfo', 'scan', {device: 'wlan1'});
+          connectionToRouter = true;
+          return jsonrpc.call('iwinfo', 'scan', {'device': 'wlan0-dhcp-2'});
         })
         .then(function(data) {
           $scope.state.wifi.devices.radio0.scan = data.results;
