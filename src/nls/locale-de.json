@@ -196,7 +196,7 @@
       "placeholder": "Beispiel: 2001:bf7:c4ff:3300::/60"
     },
     "v4": {
-      "placeholder": "Beispiel: 10.31.133.{{40+index}}\n",
+      "placeholder": "Beispiel: 10.31.133.{{40+index}}",
       "error.ipAddress": "Das ist keine valide IPv4 Adresse.",
       "error.ipSingle": "Hier musst du eine einzelne IPv4 Adresse eingeben.",
       "error.ipSubnet": "Das ist kein valides IPv4 Subnetz.",
@@ -287,6 +287,9 @@
     }
   },
   "configIncorrect": "Die Daten sind nicht korrekt. Bitte überprüfe die Felder die mit <i class=\"fa fa-times\"></i>  markiert sind.",
+  "applysuccesful": "Die Konfiguration wurde erfolgreich auf dem Router angewandt. Yeah!",
+  "applyerror": "Die Konfiguration konnte nicht angewandt werden. Bitte schau in den Logs auf deinem Router nach den Details.",
+  "uploaderror": "Die Konfiguration konnte nicht auf den Router geladen werden. Überprüfe deinen Router und die Verbindung.",
   "save": "Speichern &amp; Neustarten",
   "download": "Konfiguration herunterladen"
 }

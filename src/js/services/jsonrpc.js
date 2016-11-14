@@ -11,6 +11,8 @@ module.exports = function(app) {
         id: 1,
         method: 'call',
         params: [session, object, method, args]
+      }, {
+        timeout: 10000
       })
         .success(function(data) {
           if (data.error) {
@@ -29,7 +31,7 @@ module.exports = function(app) {
     jsonrpc.login = function(apiUrl, username, password) {
       jsonrpc.apiUrl = apiUrl;
       return call('00000000000000000000000000000000', 'session', 'login',
-           {'username': 'root', 'password': 'doener', 'timeout': 3600})
+           {'username': 'root', 'password': password, 'timeout': 3600})
         .then(function(data) {
           jsonrpc.session = data.ubus_rpc_session;
         });

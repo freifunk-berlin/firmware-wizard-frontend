@@ -3,9 +3,9 @@
 module.exports = function(app) {
   app.controller('WizardCtrl', [
     '$scope', 'leafletData', '$http', '$filter', 'downloadFile', '$translate',
-    'jsonrpc', 'Upload', '$uibModal', '$timeout',
+    'jsonrpc', 'Upload', '$uibModal', '$timeout', '$location',
     function($scope, leafletData, $http, $filter, downloadFile, $translate,
-             jsonrpc, Upload, $uibModal, $timeout) {
+             jsonrpc, Upload, $uibModal, $timeout, $location) {
 
       // jscs:disable maximumLineLength
       var onlineCheckUrl = 'https://weimarnetz.de/health?callback=JSON_CALLBACK';
@@ -13,6 +13,49 @@ module.exports = function(app) {
       $scope.$watch('selectedLanguage', function(language) {
         $translate.use(language);
       }, true);
+
+      $scope.routerUbusUrl = $location.protocol() + '://' + $location.host() + '/ubus';
+      $scope.currentPassword = '';
+      $scope.submit = function() {
+        if ($scope.wizardForm.$invalid) {
+          return;
+        }
+        jsonrpc.login($scope.routerUbusUrl, 'root', $scope.currentPassword)
+          .then(function(data) {
+            console.log('applying');
+            // due to an ubox bug we have to convert lat and lon to strings
+            var myWizard = angular.copy($scope.wizard);
+            myWizard.location.lat = $scope.wizard.location.lat && '' + $scope.wizard.location.lat;
+            myWizard.location.lng = $scope.wizard.location.lng && '' + $scope.wizard.location.lng;
+            return jsonrpc.call('ffwizard', 'apply', {'config': myWizard});
+          })
+          .then(function(data) {
+            console.log('upload done');
+            $scope.state.apply.uploaded = true;
+            if (data.status == 'success') {
+              $scope.state.apply.success = true;
+            } else {
+              $scope.state.apply.success = false;
+            }
+            console.log(data);
+          })
+          .catch(function(data) {
+            $scope.state.apply.error = true;
+            $scope.state.apply.uploaded = false;
+            console.log('error');
+            console.log(data);
+          });
+      };
+
+      $scope.showCurrentPasswordModal = function() {
+        var modalInstance = $uibModal.open({
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'modal.html',
+          controller: 'CurrentPasswordCtrl',
+          scope: $scope
+        });
+      };
 
       $scope.showLoadConfigModal = function() {
         var modalInstance = $uibModal.open({
@@ -158,6 +201,11 @@ module.exports = function(app) {
       };
 
       $scope.state = {
+        apply: {
+          uploaded: undefined,
+          success: undefined,
+          error: undefined
+        },
         map: {
           markers: {
             router: {
@@ -181,7 +229,7 @@ module.exports = function(app) {
           showVpnList: false
         },
         ip: {
-          register: true,
+          register: false,
           v4ClientSubnetSize: 27
         },
         monitoring: {
@@ -230,9 +278,11 @@ module.exports = function(app) {
         }
       };
 
-      jsonrpc.login('http://192.168.1.1/ubus', 'root', 'doener')
+      var connectionToRouter = false;
+      jsonrpc.login($scope.routerUbusUrl, 'root', $scope.currentPassword)
         .then(function(data) {
-          return jsonrpc.call('iwinfo', 'scan', {device: 'wlan1'});
+          connectionToRouter = true;
+          return jsonrpc.call('iwinfo', 'scan', {'device': 'wlan0-dhcp-2'});
         })
         .then(function(data) {
           $scope.state.wifi.devices.radio0.scan = data.results;
