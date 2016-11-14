@@ -17,6 +17,9 @@ module.exports = function(app) {
       $scope.routerUbusUrl = $location.protocol() + '://' + $location.host() + '/ubus';
       $scope.currentPassword = '';
       $scope.submit = function() {
+        if ($scope.wizardForm.$invalid) {
+          return;
+        }
         jsonrpc.login($scope.routerUbusUrl, 'root', $scope.currentPassword)
           .then(function(data) {
             console.log('applying');
@@ -28,9 +31,17 @@ module.exports = function(app) {
           })
           .then(function(data) {
             console.log('upload done');
+            $scope.state.apply.uploaded = true;
+            if (data.status == 'success') {
+              $scope.state.apply.success = true;
+            } else {
+              $scope.state.apply.success = false;
+            }
             console.log(data);
           })
           .catch(function(data) {
+            $scope.state.apply.error = true;
+            $scope.state.apply.uploaded = false;
             console.log('error');
             console.log(data);
           });
@@ -190,6 +201,11 @@ module.exports = function(app) {
       };
 
       $scope.state = {
+        apply: {
+          uploaded: undefined,
+          success: undefined,
+          error: undefined
+        },
         map: {
           markers: {
             router: {

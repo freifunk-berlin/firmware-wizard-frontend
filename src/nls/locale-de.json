@@ -287,6 +287,9 @@
     }
   },
   "configIncorrect": "Die Daten sind nicht korrekt. Bitte überprüfe die Felder die mit <i class=\"fa fa-times\"></i>  markiert sind.",
+  "applysuccesful": "Die Konfiguration wurde erfolgreich auf dem Router angewandt. Yeah!",
+  "applyerror": "Die Konfiguration konnte nicht angewandt werden. Bitte schau in den Logs auf deinem Router nach den Details.",
+  "uploaderror": "Die Konfiguration konnte nicht auf den Router geladen werden. Überprüfe deinen Router und die Verbindung.",
   "save": "Speichern &amp; Neustarten",
   "download": "Konfiguration herunterladen"
 }

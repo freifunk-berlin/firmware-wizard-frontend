@@ -98,6 +98,18 @@
               ng-if="wizardForm.$submitted && wizardForm.$invalid">
               configIncorrect
           </span>
+          <span class="text-success" translate
+                ng-show="state.apply.uploaded && state.apply.success">
+            applysuccesful
+          </span>
+          <span class="text-danger" translate
+                ng-show="state.apply.uploaded && ! state.apply.success">
+            applyerror
+          </span>
+          <span class="text-danger" translate
+                ng-show="state.apply.error && ! state.apply.success">
+            uploaderror
+          </span>
           <button type="button" class="btn btn-default" ng-click="downloadConfig()">
             <i class="fa fa-download"></i> <span translate>download</span>
           </button>
