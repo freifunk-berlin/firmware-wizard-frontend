@@ -3,9 +3,9 @@
 module.exports = function(app) {
   app.controller('WizardCtrl', [
     '$scope', 'leafletData', '$http', '$filter', 'downloadFile', '$translate',
-    'jsonrpc', 'Upload', '$uibModal', '$timeout', '$location',
+    'jsonrpc', 'Upload', '$uibModal', '$timeout', '$location', 'authentication',
     function($scope, leafletData, $http, $filter, downloadFile, $translate,
-             jsonrpc, Upload, $uibModal, $timeout, $location) {
+             jsonrpc, Upload, $uibModal, $timeout, $location, authentication) {
 
       // jscs:disable maximumLineLength
       var onlineCheckUrl = 'https://weimarnetz.de/health?callback=JSON_CALLBACK';
@@ -13,6 +13,8 @@ module.exports = function(app) {
       $scope.$watch('selectedLanguage', function(language) {
         $translate.use(language);
       }, true);
+
+      console.log(authentication.isAuthenticated());
 
       $scope.routerUbusUrl = $location.protocol() + '://' + $location.host() + '/ubus';
       $scope.currentPassword = '';
@@ -47,14 +49,21 @@ module.exports = function(app) {
           });
       };
 
-      $scope.showCurrentPasswordModal = function() {
+      $scope.showAuthenticationModal = function() {
         var modalInstance = $uibModal.open({
-          ariaLabelledBy: 'modal-title',
-          ariaDescribedBy: 'modal-body',
-          templateUrl: 'modal.html',
-          controller: 'CurrentPasswordCtrl',
+          ariaLabelledBy: 'auth-modal-title',
+          ariaDescribedBy: 'auth-modal-body',
+          templateUrl: 'shared/passwordModal/passwordModal.html',
+          controller: 'AuthenticationCtrl',
           scope: $scope
         });
+
+        $scope.modalInstance = modalInstance;
+
+        modalInstance.result.then(function(result) {
+          console.log(authentication.isAuthenticated());
+        });
+
       };
 
       $scope.showLoadConfigModal = function() {
@@ -278,12 +287,10 @@ module.exports = function(app) {
         }
       };
 
-      var connectionToRouter = false;
-      jsonrpc.login($scope.routerUbusUrl, 'root', $scope.currentPassword)
-        .then(function(data) {
-          connectionToRouter = true;
-          return jsonrpc.call('iwinfo', 'scan', {'device': 'wlan0-dhcp-2'});
-        })
+      if (! authentication.isAuthenticated()) {
+        $scope.showAuthenticationModal();
+      }
+      jsonrpc.call(authentication.getSessionId(), authentication.getApiUrl(), 'iwinfo', 'scan', {'device': 'wlan0-dhcp-2'})
         .then(function(data) {
           $scope.state.wifi.devices.radio0.scan = data.results;
         });
