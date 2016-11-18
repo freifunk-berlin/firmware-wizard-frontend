@@ -34,6 +34,7 @@ module.exports = function(app) {
       jsonrpc.call(apiUrl, INITIAL_SESSION_ID, 'session', 'login', args)
         .then(function(data) {
           sessionId = data.ubus_rpc_session;
+          this.sessionStartTimeStamp = Math.floor(Date.now() / 1000);
           deferred.resolve(data);
         })
         .catch(function(data) {
