@@ -14,7 +14,7 @@
       <!-- map -->
       <div ng-if="isOnline()">
         <div class="col-md-5">
-          <leaflet style="height: 300px;" markers="state.map.markers" center="state.map.center"></leaflet>
+          <leaflet defaults="defaults" style="height: 300px;" markers="state.map.markers" center="state.map.center"></leaflet>
         </div>
       </div>
       <div ng-if="!isOnline()">
