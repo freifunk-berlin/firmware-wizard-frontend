@@ -353,34 +353,36 @@ module.exports = function(app) {
 
       // get address from geolocation
       $scope.getAddress = function(lat, lng) {
-        $scope.searchingAddress = true;
-        $http.get('//nominatim.openstreetmap.org/reverse', {
-          params: {
-            format: 'json',
-            lat: lat,
-            lon: lng
-          }
-        }).success(function(data) {
-          $scope.searchingAddress = false;
-          var address = data && data.address;
-          if (!address) {return;}
+        $scope.searchingAddress = false;
+        if ($scope.isOnline()) {
+          $scope.searchingAddress = true;
+          $http.get('//nominatim.openstreetmap.org/reverse', {
+            params: {
+              format: 'json',
+              lat: lat,
+              lon: lng
+            }
+          }).success(function(data) {
+            $scope.searchingAddress = false;
+            var address = data && data.address;
+            if (!address) {return;}
 
-          var street = data.address.road;
-          var streetNo = data.address.house_number;
-          var postalCode = data.address.postcode;
-          // Addresses in Berlin have no city but only a state field
-          var city = data.address.city || data.address.state;
+            var street = data.address.road;
+            var streetNo = data.address.house_number;
+            var postalCode = data.address.postcode;
+            // Addresses in Berlin have no city but only a state field
+            var city = data.address.city || data.address.state;
 
-          angular.extend($scope.wizard.location, {
-            street: street && streetNo ? street + ' ' + streetNo : street,
-            postalCode: data.address.postcode,
-            city: city
+            angular.extend($scope.wizard.location, {
+              street: street && streetNo ? street + ' ' + streetNo : street,
+              postalCode: data.address.postcode,
+              city: city
+            });
+
+          }).error(function(data) {
+            $scope.searchingAddress = false;
           });
-
-        }).error(function(data) {
-          $scope.searchingAddress = false;
-        });
-
+        }
       };
 
       $scope.applyDefaults = function(device, config) {
@@ -454,7 +456,8 @@ module.exports = function(app) {
       };
 
       var online = false;
-      $http.jsonp(onlineCheckUrl).then(function success(response) {
+      $http.jsonp(onlineCheckUrl, {'timeout': 50})
+        .then(function success(response) {
           online = true;
         }, function failure(response) {
           online = false;
