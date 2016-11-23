@@ -22,15 +22,15 @@ module.exports = function(app) {
         if ($scope.wizardForm.$invalid) {
           return;
         }
-        jsonrpc.login($scope.routerUbusUrl, 'root', $scope.currentPassword)
-          .then(function(data) {
-            console.log('applying');
-            // due to an ubox bug we have to convert lat and lon to strings
-            var myWizard = angular.copy($scope.wizard);
-            myWizard.location.lat = $scope.wizard.location.lat && '' + $scope.wizard.location.lat;
-            myWizard.location.lng = $scope.wizard.location.lng && '' + $scope.wizard.location.lng;
-            return jsonrpc.call('ffwizard', 'apply', {'config': myWizard});
-          })
+        if (!authentication.isAuthenticated()) {
+          $scope.showAuthenticationModal();
+        }
+        console.log('applying');
+        // due to an ubox bug we have to convert lat and lon to strings
+        var myWizard = angular.copy($scope.wizard);
+        myWizard.location.lat = $scope.wizard.location.lat && '' + $scope.wizard.location.lat;
+        myWizard.location.lng = $scope.wizard.location.lng && '' + $scope.wizard.location.lng;
+        jsonrpc.call('ffwizard', 'apply', {'config': myWizard})
           .then(function(data) {
             console.log('upload done');
             $scope.state.apply.uploaded = true;
