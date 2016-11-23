@@ -5,14 +5,21 @@
 
 module.exports = function(app) {
   app.controller('AuthenticationCtrl', [
-    '$scope',
-    function($scope) {
-      $scope.ok = function() {
-        $scope.modalInstance.close($scope);
+    '$scope', '$location', 'authentication',
+    function($scope, $location, authentication) {
+      $scope.auth = {};
+      $scope.auth.url = $location.protocol() +
+        '://' + $location.host() +
+        '/ubus';
+      $scope.authenticate = function() {
+        authentication.authenticate($scope.auth.url,
+          'root',
+          $scope.auth.currentPassword);
+        $scope.authModalInstance.close($scope);
       };
 
       $scope.cancel = function() {
-        $scope.modalInstance.dismiss('cancel');
+        $scope.authModalInstance.dismiss('cancel');
       };
     }
   ]);
