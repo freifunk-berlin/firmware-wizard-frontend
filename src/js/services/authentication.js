@@ -32,14 +32,14 @@ module.exports = function(app) {
 
     factory.authenticate = function(apiUrl, username, password) {
       var deferred = $q.defer();
-      this.apiUrl = apiUrl;
+      apiUrl = apiUrl;
       var args = {'username': username,
         'password': password,
         'timeout': SESSION_TIMEOUT_IN_SECONDS};
       jsonrpc.call(apiUrl, INITIAL_SESSION_ID, 'session', 'login', args)
         .then(function(data) {
           sessionId = data.ubus_rpc_session;
-          this.sessionStartTimestamp = Math.floor(Date.now() / 1000);
+          sessionStartTimestamp = Math.floor(Date.now() / 1000);
           deferred.resolve(data);
         })
         .catch(function(data) {
