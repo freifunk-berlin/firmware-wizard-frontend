@@ -50,17 +50,17 @@ module.exports = function(app) {
       };
 
       $scope.showAuthenticationModal = function() {
-        var modalInstance = $uibModal.open({
-          ariaLabelledBy: 'auth-modal-title',
-          ariaDescribedBy: 'auth-modal-body',
-          templateUrl: 'shared/passwordModal/passwordModal.html',
+        var authModalInstance = $uibModal.open({
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'passwordModal.html',
           controller: 'AuthenticationCtrl',
           scope: $scope
         });
 
-        $scope.modalInstance = modalInstance;
+        $scope.authModalInstance = authModalInstance;
 
-        modalInstance.result.then(function(result) {
+        authModalInstance.result.then(function(result) {
           console.log(authentication.isAuthenticated());
         });
 
@@ -287,13 +287,16 @@ module.exports = function(app) {
         }
       };
 
-      if (! authentication.isAuthenticated()) {
-        $scope.showAuthenticationModal();
-      }
-      jsonrpc.call(authentication.getSessionId(), authentication.getApiUrl(), 'iwinfo', 'scan', {'device': 'wlan0-dhcp-2'})
-        .then(function(data) {
-          $scope.state.wifi.devices.radio0.scan = data.results;
-        });
+      angular.element(document).ready(function() {
+        if (!authentication.isAuthenticated()) {
+          $scope.showAuthenticationModal();
+        }
+        jsonrpc.call(authentication.getSessionId(), authentication.getApiUrl(), 'iwinfo', 'scan', {'device': 'wlan0-dhcp-2'})
+          .then(function(data) {
+            $scope.state.wifi.devices.radio0.scan = data.results;
+          });
+
+      });
 
       $scope.$on('leafletDirectiveMarker.dragend', function(event, args) {
         $scope.state.map.markers.router.lat = args.model.lat;
