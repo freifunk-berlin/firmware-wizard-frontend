@@ -298,6 +298,26 @@ module.exports = function(app) {
 
       });
 
+      //make map not scrollable
+      angular.extend($scope, {
+        defaults: {
+          scrollWheelZoom: false,
+          doubleClickZoom: false,
+        },
+        events: {
+          map: {
+            enable: ['dblclick'],
+            logic: 'emit'
+          }
+        }
+      });
+
+      // listen on double click event to set marker
+      $scope.$on('leafletDirectiveMap.dblclick', function(event, args) {
+        $scope.state.map.markers.router.lat = args.leafletEvent.latlng.lat;
+        $scope.state.map.markers.router.lng = args.leafletEvent.latlng.lng;
+      });
+
       $scope.$on('leafletDirectiveMarker.dragend', function(event, args) {
         $scope.state.map.markers.router.lat = args.model.lat;
         $scope.state.map.markers.router.lng = args.model.lng;
