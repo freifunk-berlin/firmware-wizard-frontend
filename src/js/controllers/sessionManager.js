@@ -17,7 +17,7 @@ module.exports = function(app) {
           $scope.auth.currentPassword)
           .then(function(result) {
             $scope.authModalInstance.close($scope);
-          })
+          });
       };
 
       $scope.cancel = function() {

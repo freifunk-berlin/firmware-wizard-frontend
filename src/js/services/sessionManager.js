@@ -35,7 +35,8 @@ module.exports = function(app) {
       var args = {'username': username,
         'password': password,
         'timeout': SESSION_TIMEOUT_IN_SECONDS};
-      return jsonrpc.call(factory.apiUrl, INITIAL_SESSION_ID, 'session', 'login', args)
+      return jsonrpc.call(factory.apiUrl,
+        INITIAL_SESSION_ID, 'session', 'login', args)
         .then(function(data) {
           factory.sessionId = data.ubus_rpc_session;
           factory.sessionStartTimestamp = Math.floor(Date.now() / 1000);

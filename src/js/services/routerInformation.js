@@ -4,22 +4,25 @@
 'use strict';
 
 module.exports = function(app) {
-  app.factory('routerInformation', ['jsonrpc', 'sessionManager', function(jsonrpc, sessionManager) {
+  app.factory('routerInformation', ['jsonrpc', 'sessionManager',
+    function(jsonrpc, sessionManager) {
     var factory = {};
     factory.routerInformation = {
       system: {},
-      wireless:{}
+      wireless: {}
     };
 
     factory.gatherRouterInformation = function() {
       if (sessionManager.isAuthenticated) {
-        jsonrpc.call(sessionManager.getApiUrl(), sessionManager.getSessionId(), 'system', 'board', {})
+        jsonrpc.call(sessionManager.getApiUrl(),
+          sessionManager.getSessionId(), 'system', 'board', {})
           .then(function(data) {
             console.log(data);
             factory.routerInformation.system = data;
             return data;
           });
-        return jsonrpc.call(sessionManager.getApiUrl(), sessionManager.getSessionId(), 'network.wireless', 'status', {})
+        return jsonrpc.call(sessionManager.getApiUrl(),
+          sessionManager.getSessionId(), 'network.wireless', 'status', {})
           .then(function(data) {
             factory.routerInformation.wireless = data;
             return data;
