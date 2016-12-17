@@ -24,6 +24,7 @@ module.exports = function(app) {
         }
         if (!authentication.isAuthenticated()) {
           $scope.showAuthenticationModal();
+          return;
         }
         console.log('applying');
         // due to an ubox bug we have to convert lat and lon to strings

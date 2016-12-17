@@ -32,7 +32,7 @@ module.exports = function(app) {
 
     factory.authenticate = function(apiUrl, username, password) {
       var deferred = $q.defer();
-      apiUrl = apiUrl;
+      this.apiUrl = apiUrl;
       var args = {'username': username,
         'password': password,
         'timeout': SESSION_TIMEOUT_IN_SECONDS};
