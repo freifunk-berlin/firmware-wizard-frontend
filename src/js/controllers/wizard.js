@@ -478,10 +478,11 @@ module.exports = function(app) {
       };
 
       var online = false;
-      $http.jsonp(onlineCheckUrl, {'timeout': 50})
+      $http.jsonp(onlineCheckUrl, {'timeout': 1000})
         .then(function success(response) {
           online = true;
         }, function failure(response) {
+          console.log(response);
           online = false;
         });
 
