@@ -14,8 +14,10 @@ module.exports = function(app) {
       $scope.authenticate = function() {
         sessionManager.authenticate($scope.auth.url,
           'root',
-          $scope.auth.currentPassword);
-        $scope.authModalInstance.close($scope);
+          $scope.auth.currentPassword)
+          .then(function(result) {
+            $scope.authModalInstance.close($scope);
+          })
       };
 
       $scope.cancel = function() {

@@ -4,8 +4,10 @@ module.exports = function(app) {
   app.controller('WizardCtrl', [
     '$scope', 'leafletData', '$http', '$filter', 'downloadFile', '$translate',
     'jsonrpc', 'Upload', '$uibModal', '$timeout', '$location', 'sessionManager',
+    'routerInformation',
     function($scope, leafletData, $http, $filter, downloadFile, $translate,
-             jsonrpc, Upload, $uibModal, $timeout, $location, sessionManager) {
+             jsonrpc, Upload, $uibModal, $timeout, $location, sessionManager,
+             routerInformation) {
 
       // jscs:disable maximumLineLength
       var onlineCheckUrl = 'https://weimarnetz.de/health?callback=JSON_CALLBACK';
@@ -13,8 +15,6 @@ module.exports = function(app) {
       $scope.$watch('selectedLanguage', function(language) {
         $translate.use(language);
       }, true);
-
-      console.log(sessionManager.isAuthenticated());
 
       $scope.routerUbusUrl = $location.protocol() + '://' + $location.host() + '/ubus';
       $scope.currentPassword = '';
@@ -62,7 +62,10 @@ module.exports = function(app) {
         $scope.authModalInstance = authModalInstance;
 
         authModalInstance.result.then(function(result) {
-          console.log(sessionManager.isAuthenticated());
+          routerInformation.gatherRouterInformation()
+            .then(function(result) {
+              console.log(routerInformation.getRouterInformation());
+            });
         });
 
       };
