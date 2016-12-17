@@ -2,6 +2,6 @@
 
 module.exports = function(app) {
   require('./loadconfig')(app);
-  require('./authentication')(app);
+  require('./sessionManager')(app);
   require('./wizard')(app);
 };

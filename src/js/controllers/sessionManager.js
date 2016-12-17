@@ -4,15 +4,15 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('AuthenticationCtrl', [
-    '$scope', '$location', 'authentication',
-    function($scope, $location, authentication) {
+  app.controller('SessionManagerCtrl', [
+    '$scope', '$location', 'sessionManager',
+    function($scope, $location, sessionManager) {
       $scope.auth = {};
       $scope.auth.url = $location.protocol() +
         '://' + $location.host() +
         '/ubus';
       $scope.authenticate = function() {
-        authentication.authenticate($scope.auth.url,
+        sessionManager.authenticate($scope.auth.url,
           'root',
           $scope.auth.currentPassword);
         $scope.authModalInstance.close($scope);

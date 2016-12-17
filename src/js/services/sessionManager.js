@@ -4,7 +4,7 @@
 'use strict';
 
 module.exports = function(app) {
-  app.factory('authentication', ['$q', 'jsonrpc', function($q, jsonrpc) {
+  app.factory('sessionManager', ['jsonrpc', function(jsonrpc) {
     var INITIAL_SESSION_ID = '00000000000000000000000000000000';
     var SESSION_TIMEOUT_IN_SECONDS = 3600;
     var factory = {};
@@ -31,21 +31,16 @@ module.exports = function(app) {
     };
 
     factory.authenticate = function(apiUrl, username, password) {
-      var deferred = $q.defer();
       this.apiUrl = apiUrl;
       var args = {'username': username,
         'password': password,
         'timeout': SESSION_TIMEOUT_IN_SECONDS};
-      jsonrpc.call(apiUrl, INITIAL_SESSION_ID, 'session', 'login', args)
+      return jsonrpc.call(apiUrl, INITIAL_SESSION_ID, 'session', 'login', args)
         .then(function(data) {
           sessionId = data.ubus_rpc_session;
           sessionStartTimestamp = Math.floor(Date.now() / 1000);
-          deferred.resolve(data);
-        })
-        .catch(function(data) {
-          deferred.reject(data);
+          return data;
         });
-      return deferred.promise;
     };
 
     return factory;
