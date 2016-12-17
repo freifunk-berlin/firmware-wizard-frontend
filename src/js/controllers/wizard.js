@@ -291,6 +291,7 @@ module.exports = function(app) {
       angular.element(document).ready(function() {
         if (!sessionManager.isAuthenticated()) {
           $scope.showAuthenticationModal();
+          return;
         }
         jsonrpc.call(sessionManager.getSessionId(), sessionManager.getApiUrl(), 'iwinfo', 'scan', {'device': 'wlan0-dhcp-2'})
           .then(function(data) {
