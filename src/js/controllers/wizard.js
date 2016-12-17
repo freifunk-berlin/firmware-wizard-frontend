@@ -470,7 +470,7 @@ module.exports = function(app) {
 
       $scope.downloadConfig = function() {
         downloadFile(
-          'config.json',
+          'config-' + $scope.wizard.router.name + '.json',
           $filter('json')($scope.wizard),
           'application/json',
           true
@@ -482,7 +482,6 @@ module.exports = function(app) {
         .then(function success(response) {
           online = true;
         }, function failure(response) {
-          console.log(response);
           online = false;
         });
 
