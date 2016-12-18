@@ -8,14 +8,14 @@ module.exports = function(app) {
     var INITIAL_SESSION_ID = '00000000000000000000000000000000';
     var SESSION_TIMEOUT_IN_SECONDS = 3600;
     var factory = {};
-    var sessionId = INITIAL_SESSION_ID;
-    var apiUrl = '';
-    var sessionStartTimestamp = 0;
+    factory.sessionId = INITIAL_SESSION_ID;
+    factory.apiUrl = '';
+    factory.sessionStartTimestamp = 0;
 
     factory.isAuthenticated = function() {
-      if (sessionId === INITIAL_SESSION_ID ||
-        apiUrl === '' ||
-        Math.floor(Date.now() / 1000) - sessionStartTimestamp >
+      if (factory.sessionId === INITIAL_SESSION_ID ||
+        factory.apiUrl === '' ||
+        Math.floor(Date.now() / 1000) - factory.sessionStartTimestamp >
         SESSION_TIMEOUT_IN_SECONDS) {
         return false;
       }
@@ -23,22 +23,23 @@ module.exports = function(app) {
     };
 
     factory.getSessionId = function() {
-      return sessionId;
+      return factory.sessionId;
     };
 
     factory.getApiUrl = function() {
-      return apiUrl;
+      return factory.apiUrl;
     };
 
-    factory.authenticate = function(apiUrl, username, password) {
-      this.apiUrl = apiUrl;
+    factory.authenticate = function(myApiUrl, username, password) {
+      factory.apiUrl = myApiUrl;
       var args = {'username': username,
         'password': password,
         'timeout': SESSION_TIMEOUT_IN_SECONDS};
-      return jsonrpc.call(apiUrl, INITIAL_SESSION_ID, 'session', 'login', args)
+      return jsonrpc.call(factory.apiUrl,
+        INITIAL_SESSION_ID, 'session', 'login', args)
         .then(function(data) {
-          sessionId = data.ubus_rpc_session;
-          sessionStartTimestamp = Math.floor(Date.now() / 1000);
+          factory.sessionId = data.ubus_rpc_session;
+          factory.sessionStartTimestamp = Math.floor(Date.now() / 1000);
           return data;
         });
     };

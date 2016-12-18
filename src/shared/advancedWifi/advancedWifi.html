@@ -13,7 +13,7 @@
     <div class="wizard-margin-bottom">
       <div class="checkbox">
         <label>
-          <input type="checkbox" data-ng-model="state.wifi.advanced" disabled>
+          <input type="checkbox" data-ng-model="state.wifi.advanced">
           <span translate>.show</span>
         </label>
       </div>
@@ -31,8 +31,8 @@
           </div>
           <h3 class="panel-title" translate translate-values="{name: name}">
             .device
-            <span data-ng-if="config.capabilities['2.4GHz']" class="label label-success">2.4GHz</span>
-            <span data-ng-if="config.capabilities['5GHz']" class="label label-success">5GHz</span>
+            <span data-ng-if="device.mode === 'legacy'" class="label label-success">2.4GHz</span>
+            <span data-ng-if="device.mode === '11a'" class="label label-success">5GHz</span>
           </h3>
         </div>
 

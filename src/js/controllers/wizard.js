@@ -4,8 +4,10 @@ module.exports = function(app) {
   app.controller('WizardCtrl', [
     '$scope', 'leafletData', '$http', '$filter', 'downloadFile', '$translate',
     'jsonrpc', 'Upload', '$uibModal', '$timeout', '$location', 'sessionManager',
+    'routerInformation',
     function($scope, leafletData, $http, $filter, downloadFile, $translate,
-             jsonrpc, Upload, $uibModal, $timeout, $location, sessionManager) {
+             jsonrpc, Upload, $uibModal, $timeout, $location, sessionManager,
+             routerInformation) {
 
       // jscs:disable maximumLineLength
       var onlineCheckUrl = 'https://weimarnetz.de/health?callback=JSON_CALLBACK';
@@ -13,8 +15,6 @@ module.exports = function(app) {
       $scope.$watch('selectedLanguage', function(language) {
         $translate.use(language);
       }, true);
-
-      console.log(sessionManager.isAuthenticated());
 
       $scope.routerUbusUrl = $location.protocol() + '://' + $location.host() + '/ubus';
       $scope.currentPassword = '';
@@ -61,9 +61,7 @@ module.exports = function(app) {
 
         $scope.authModalInstance = authModalInstance;
 
-        authModalInstance.result.then(function(result) {
-          console.log(sessionManager.isAuthenticated());
-        });
+        return authModalInstance.result;
 
       };
 
@@ -193,21 +191,7 @@ module.exports = function(app) {
         monitoring: {
           enabled: false
         },
-        wifi: {
-          radio0: {
-            mode: 'mesh',
-            channel: 36,
-            ssid: 'intern-ch36-bat1.freifunk.net',
-            meshId: 'freifunk',
-            batVlan: 1
-          },
-          radio1: {
-            mode: 'sta',
-            channel: 1,
-            ssid: 'rhxb-so-5.freifunk.net',
-            batVlan: 1
-          }
-        }
+        wifi: {}
       };
 
       $scope.state = {
@@ -245,60 +229,72 @@ module.exports = function(app) {
         monitoring: {
           enabled: false
         },
+        system: {},
         wifi: {
           advanced: false,
-          devices: {
-            radio0: {
-              '5GHz': true,
-              scanFilter: 'freifunk',
-              scan: [
-                {
-                  mode: 'Master',
-                  ssid: 'freifunk-rhxb-zwingli',
-                  channel: 108,
-                  signal: -50
-                },
-                {
-                  mode: 'Mesh Point',
-                  ssid: 'intern-ch36-bat5.freifunk.net',
-                  meshId: 'freifunk',
-                  channel: 36,
-                  signal: -60
-                },
-                {
-                  mode: 'Master',
-                  ssid: 'doener3000',
-                  channel: 48,
-                  signal: -53
-                },
-                {
-                  mode: 'Ad-Hoc',
-                  ssid: 'intern-ch136.freifunk.net',
-                  channel: 136,
-                  bssid: '12:36:ca:ff:ee:ba:be',
-                  signal: -70
-                }
-              ]
-            },
-            radio1: {
-              '2.4GHz': true,
-              scanFilter: 'freifunk'
-            }
-          }
+          devices: {}
         }
       };
 
       angular.element(document).ready(function() {
         if (!sessionManager.isAuthenticated()) {
-          $scope.showAuthenticationModal();
-          return;
+          $scope.showAuthenticationModal()
+            .then(function() {
+              $scope.saveRouterInformation();
+            });
+        } else {
+          $scope.saveRouterInformation();
         }
-        jsonrpc.call(sessionManager.getSessionId(), sessionManager.getApiUrl(), 'iwinfo', 'scan', {'device': 'wlan0-dhcp-2'})
-          .then(function(data) {
-            $scope.state.wifi.devices.radio0.scan = data.results;
-          });
-
       });
+
+      $scope.loadRouterInformation = function() {
+        if (!sessionManager.isAuthenticated()) {
+          $scope.showAuthenticationModal()
+            .then(function() {
+              $scope.saveRouterInformation();
+            });
+        } else {
+          $scope.saveRouterInformation();
+        }
+      };
+
+      $scope.saveRouterInformation = function() {
+        routerInformation.gatherRouterInformation()
+          .then(function() {
+            $scope.state.system = routerInformation.getSystemInformation();
+            var wirelessInfo = routerInformation.getWirelessInformation();
+            Object.keys(wirelessInfo).map(function(key, index) {
+              $scope.state.wifi.devices[key] = {
+                scanFilter: 'freifunk'
+              };
+              if (wirelessInfo[key].up && Object.keys(wirelessInfo[key].interfaces).length > 0) {
+                routerInformation.scanForWifi(wirelessInfo[key].interfaces[0].ifname)
+                  .then(function(data) {
+                    $scope.state.wifi.devices[key].scan = data.results;
+                  });
+              }
+              if (wirelessInfo[key].config.hwmode.includes('11a')) {
+                $scope.state.wifi.devices[key].mode = '11a';
+                $scope.wizard.wifi[key] = {
+                  mode: 'adhoc',
+                  channel: 36,
+                  ssid: 'intern-ch36-bat1.freifunk.net',
+                  bssid: '02:ca:ff:ee:ba:36',
+                  batVlan: 1
+                };
+              } else {
+                $scope.state.wifi.devices[key].mode = 'legacy';
+                $scope.wizard.wifi[key] = {
+                  mode: 'adhoc',
+                  channel: 13,
+                  ssid: 'intern-ch13-berlin.freifunk.net',
+                  bssid: '02:ca:ff:ee:ba:be',
+                  batVlan: 1
+                };
+              }
+            });
+          });
+      };
 
       //make map not scrollable
       angular.extend($scope, {
@@ -409,9 +405,9 @@ module.exports = function(app) {
 
       $scope.applyDefaults = function(device, config) {
         var channel;
-        if (config.capabilities['5GHz']) {
+        if (device.mode === '11a') {
           channel = 36;
-        } else if (config.capabilities['2.4GHz']) {
+        } else if (device.mode === 'legacy') {
           channel = 13;
         }
         if (!channel) {
@@ -419,12 +415,12 @@ module.exports = function(app) {
           return;
         }
         angular.extend(config, {
-          mode: 'Mesh Point',
+          mode: 'adhoc',
           channel: channel,
-          ssid: 'intern-ch' + channel + '-bat1.freifunk.net',
+          ssid: 'intern-ch' + channel + '.freifunk.net',
           meshId: 'freifunk',
           batVlan: 1,
-          bssid: undefined
+          bssid: '02:ca:ff:ee:ba:be'
         });
       };
 
