@@ -3,10 +3,11 @@
 module.exports = function(app) {
   app.factory('jsonrpc', ['$http', '$q', function($http, $q) {
     var jsonrpc = {};
-    var call = function(session, object, method, args) {
+
+    jsonrpc.call = function(apiUrl, session, object, method, args) {
       var deferred = $q.defer();
 
-      $http.post(jsonrpc.apiUrl, {
+      $http.post(apiUrl, {
         jsonrpc: '2.0',
         id: 1,
         method: 'call',
@@ -26,19 +27,6 @@ module.exports = function(app) {
         });
 
       return deferred.promise;
-    };
-
-    jsonrpc.login = function(apiUrl, username, password) {
-      jsonrpc.apiUrl = apiUrl;
-      return call('00000000000000000000000000000000', 'session', 'login',
-           {'username': 'root', 'password': password, 'timeout': 3600})
-        .then(function(data) {
-          jsonrpc.session = data.ubus_rpc_session;
-        });
-    };
-
-    jsonrpc.call = function(object, method, args) {
-      return call(jsonrpc.session, object, method, args);
     };
 
     return jsonrpc;

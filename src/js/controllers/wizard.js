@@ -3,9 +3,9 @@
 module.exports = function(app) {
   app.controller('WizardCtrl', [
     '$scope', 'leafletData', '$http', '$filter', 'downloadFile', '$translate',
-    'jsonrpc', 'Upload', '$uibModal', '$timeout', '$location',
+    'jsonrpc', 'Upload', '$uibModal', '$timeout', '$location', 'sessionManager',
     function($scope, leafletData, $http, $filter, downloadFile, $translate,
-             jsonrpc, Upload, $uibModal, $timeout, $location) {
+             jsonrpc, Upload, $uibModal, $timeout, $location, sessionManager) {
 
       // jscs:disable maximumLineLength
       var onlineCheckUrl = 'https://weimarnetz.de/health?callback=JSON_CALLBACK';
@@ -14,21 +14,24 @@ module.exports = function(app) {
         $translate.use(language);
       }, true);
 
+      console.log(sessionManager.isAuthenticated());
+
       $scope.routerUbusUrl = $location.protocol() + '://' + $location.host() + '/ubus';
       $scope.currentPassword = '';
       $scope.submit = function() {
         if ($scope.wizardForm.$invalid) {
           return;
         }
-        jsonrpc.login($scope.routerUbusUrl, 'root', $scope.currentPassword)
-          .then(function(data) {
-            console.log('applying');
-            // due to an ubox bug we have to convert lat and lon to strings
-            var myWizard = angular.copy($scope.wizard);
-            myWizard.location.lat = $scope.wizard.location.lat && '' + $scope.wizard.location.lat;
-            myWizard.location.lng = $scope.wizard.location.lng && '' + $scope.wizard.location.lng;
-            return jsonrpc.call('ffwizard', 'apply', {'config': myWizard});
-          })
+        if (!sessionManager.isAuthenticated()) {
+          $scope.showAuthenticationModal();
+          return;
+        }
+        console.log('applying');
+        // due to an ubox bug we have to convert lat and lon to strings
+        var myWizard = angular.copy($scope.wizard);
+        myWizard.location.lat = $scope.wizard.location.lat && '' + $scope.wizard.location.lat;
+        myWizard.location.lng = $scope.wizard.location.lng && '' + $scope.wizard.location.lng;
+        jsonrpc.call('ffwizard', 'apply', {'config': myWizard})
           .then(function(data) {
             console.log('upload done');
             $scope.state.apply.uploaded = true;
@@ -47,14 +50,21 @@ module.exports = function(app) {
           });
       };
 
-      $scope.showCurrentPasswordModal = function() {
-        var modalInstance = $uibModal.open({
+      $scope.showAuthenticationModal = function() {
+        var authModalInstance = $uibModal.open({
           ariaLabelledBy: 'modal-title',
           ariaDescribedBy: 'modal-body',
-          templateUrl: 'modal.html',
-          controller: 'CurrentPasswordCtrl',
+          templateUrl: 'passwordModal.html',
+          controller: 'SessionManagerCtrl',
           scope: $scope
         });
+
+        $scope.authModalInstance = authModalInstance;
+
+        authModalInstance.result.then(function(result) {
+          console.log(sessionManager.isAuthenticated());
+        });
+
       };
 
       $scope.showLoadConfigModal = function() {
@@ -278,15 +288,37 @@ module.exports = function(app) {
         }
       };
 
-      var connectionToRouter = false;
-      jsonrpc.login($scope.routerUbusUrl, 'root', $scope.currentPassword)
-        .then(function(data) {
-          connectionToRouter = true;
-          return jsonrpc.call('iwinfo', 'scan', {'device': 'wlan0-dhcp-2'});
-        })
-        .then(function(data) {
-          $scope.state.wifi.devices.radio0.scan = data.results;
-        });
+      angular.element(document).ready(function() {
+        if (!sessionManager.isAuthenticated()) {
+          $scope.showAuthenticationModal();
+          return;
+        }
+        jsonrpc.call(sessionManager.getSessionId(), sessionManager.getApiUrl(), 'iwinfo', 'scan', {'device': 'wlan0-dhcp-2'})
+          .then(function(data) {
+            $scope.state.wifi.devices.radio0.scan = data.results;
+          });
+
+      });
+
+      //make map not scrollable
+      angular.extend($scope, {
+        defaults: {
+          scrollWheelZoom: false,
+          doubleClickZoom: false,
+        },
+        events: {
+          map: {
+            enable: ['dblclick'],
+            logic: 'emit'
+          }
+        }
+      });
+
+      // listen on double click event to set marker
+      $scope.$on('leafletDirectiveMap.dblclick', function(event, args) {
+        $scope.state.map.markers.router.lat = args.leafletEvent.latlng.lat;
+        $scope.state.map.markers.router.lng = args.leafletEvent.latlng.lng;
+      });
 
       $scope.$on('leafletDirectiveMarker.dragend', function(event, args) {
         $scope.state.map.markers.router.lat = args.model.lat;
@@ -343,34 +375,36 @@ module.exports = function(app) {
 
       // get address from geolocation
       $scope.getAddress = function(lat, lng) {
-        $scope.searchingAddress = true;
-        $http.get('//nominatim.openstreetmap.org/reverse', {
-          params: {
-            format: 'json',
-            lat: lat,
-            lon: lng
-          }
-        }).success(function(data) {
-          $scope.searchingAddress = false;
-          var address = data && data.address;
-          if (!address) {return;}
+        $scope.searchingAddress = false;
+        if ($scope.isOnline()) {
+          $scope.searchingAddress = true;
+          $http.get('//nominatim.openstreetmap.org/reverse', {
+            params: {
+              format: 'json',
+              lat: lat,
+              lon: lng
+            }
+          }).success(function(data) {
+            $scope.searchingAddress = false;
+            var address = data && data.address;
+            if (!address) {return;}
 
-          var street = data.address.road;
-          var streetNo = data.address.house_number;
-          var postalCode = data.address.postcode;
-          // Addresses in Berlin have no city but only a state field
-          var city = data.address.city || data.address.state;
+            var street = data.address.road;
+            var streetNo = data.address.house_number;
+            var postalCode = data.address.postcode;
+            // Addresses in Berlin have no city but only a state field
+            var city = data.address.city || data.address.state;
 
-          angular.extend($scope.wizard.location, {
-            street: street && streetNo ? street + ' ' + streetNo : street,
-            postalCode: data.address.postcode,
-            city: city
+            angular.extend($scope.wizard.location, {
+              street: street && streetNo ? street + ' ' + streetNo : street,
+              postalCode: data.address.postcode,
+              city: city
+            });
+
+          }).error(function(data) {
+            $scope.searchingAddress = false;
           });
-
-        }).error(function(data) {
-          $scope.searchingAddress = false;
-        });
-
+        }
       };
 
       $scope.applyDefaults = function(device, config) {
@@ -436,7 +470,7 @@ module.exports = function(app) {
 
       $scope.downloadConfig = function() {
         downloadFile(
-          'config.json',
+          'config-' + $scope.wizard.router.name + '.json',
           $filter('json')($scope.wizard),
           'application/json',
           true
@@ -444,7 +478,8 @@ module.exports = function(app) {
       };
 
       var online = false;
-      $http.jsonp(onlineCheckUrl).then(function success(response) {
+      $http.jsonp(onlineCheckUrl, {'timeout': 1000})
+        .then(function success(response) {
           online = true;
         }, function failure(response) {
           online = false;

@@ -2,6 +2,6 @@
 
 module.exports = function(app) {
   require('./downloadFile')(app);
-  require('./authentication')(app);
+  require('./sessionManager')(app);
   require('./jsonrpc')(app);
 };

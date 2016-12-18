@@ -8,6 +8,14 @@
     "headline": "No internet connection",
     "help" : "You don't seam to have an internet connection. Some features of this wizard need a connection. You could either connect your router to the internet or use the <a href=\"#\">online version of this wizard</a> with another connection, save the config file there and then apply it to your router"
   },
+  "authentication": {
+    "headline": "Authentication",
+    "description": "To read data from the router and save the configuration you need to enter a URL and your root password.",
+    "urllabel": "URL",
+    "passwordlabel": "Password",
+    "login": "Login",
+    "cancel": "Cancel"
+  },
   "loadconfig": {
     "headline": "Load configuration",
     "help": "If you already have a config file, you can load it. So you're able to update it or adapt it for other routers you want to set up.",
