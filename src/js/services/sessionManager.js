@@ -13,7 +13,7 @@ module.exports = function(app) {
     factory.sessionStartTimestamp = 0;
 
     factory.isAuthenticated = function() {
-      if (factory.sessionId === INITIAL_SESSION_ID ||
+      if (factory.sessionId === factory.INITIAL_SESSION_ID ||
         factory.apiUrl === '' ||
         Math.floor(Date.now() / 1000) - factory.sessionStartTimestamp >
         SESSION_TIMEOUT_IN_SECONDS) {
@@ -36,7 +36,7 @@ module.exports = function(app) {
         'password': password,
         'timeout': SESSION_TIMEOUT_IN_SECONDS};
       return jsonrpc.call(factory.apiUrl,
-        INITIAL_SESSION_ID, 'session', 'login', args)
+        factory.INITIAL_SESSION_ID, 'session', 'login', args)
         .then(function(data) {
           factory.sessionId = data.ubus_rpc_session;
           factory.sessionStartTimestamp = Math.floor(Date.now() / 1000);

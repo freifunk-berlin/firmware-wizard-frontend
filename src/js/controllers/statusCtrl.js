@@ -13,7 +13,8 @@ module.exports = function(app) {
         '/ubus',
         olsr: {}
       };
-      $scope.selectedLanguage = $translate.proposedLanguage() || $translate.use();
+      $scope.selectedLanguage = $translate.proposedLanguage() ||
+        $translate.use();
       $scope.$watch('selectedLanguage', function(language) {
         $translate.use(language);
       }, true);
@@ -22,7 +23,7 @@ module.exports = function(app) {
         routerInformation.queryOlsrLinks(url)
           .then(function(result) {
             $scope.status.olsr = result;
-          })
+          });
       };
 
       $scope.refreshLinks($scope.status.url);
