@@ -2,25 +2,32 @@
   "heading": "Konfiguriere deinen Router",
   "intro": "Freifunk Berlin",
   "loadconfiglink": "Existierende Konfiguration laden",
-  "description": "Freifunk ist ein freies, unabhängiges und offen zugängliches Gemeinschaftsnetz, dass von Freiwilligen gebaut wird.",
+  "loadrouterinfolink": "Routerinfos aktualisieren",
+  "description": "Freifunk ist ein unabhängiges, freies und offenes Communitynetzwerk, aufgebaut von Freiwilligen.",
   "freifunk": "Wir unterstützen das <a href=\"\" target=\"_blank\">Pico Peering Agreement</a>. Bitte informier die dich auch über unsere <a href=\"https://freifunk.net/en/what-is-it-about/our-vision/\" target=\"_blank\">Vision</a> und unser <a href=\"http://blog.freifunk.net/2015/memorandum-understanding\" target=\"_blank\">Memorandum Of Understanding</a>.",
   "offlineWarning": {
     "headline": "Keine Internetverbindung",
     "help" : "Einige Funktionen dieses Assistenten brauchen eine Internetverbindung. Du kannst entweder Deiner Router mit dem Internet verbinden oder diese <a href=\"#\">Online Version des Assistenten</a> nutzen"
   },
+  "authentication": {
+    "headline": "Anmeldung",
+    "description": "Gib bitte die URL zu deinem Router und das root-Passwort ein, um Informationen  lesen und die Konfiguration zu speichern zu können.",
+    "urllabel": "URL",
+    "passwordlabel": "Passwort",
+    "login": "Anmelden",
+    "cancel": "Abbrechen"
+  },
   "loadconfig": {
     "headline": "Konfiguration laden",
-		"hasconfiguration": "Ich habe bereits eine Konfigurationsdatei und möchte diese nutzen.",
-		"hasnoconfiguration": "Ich möchte mit einer neuen Konfiguration beginnen.",
     "help": "Für andere Router kannst eine bereits vorhandene Konfigurationsdatei anpassen und laden.",
     "upload": {
-      "label": "Deine Datei",
       "drop": "Datei hierher ziehen oder klicken.\n",
       "dropnotsupported": "Dein Browser unterstützt leider kein Drag and Drop für Dateiupload :("
     }
   },
   "basicRouterSetup": {
     "headline": "Basis Router Einrichtung ",
+    "model": "für {{model}}",
     "routerName": {
       "label": "Router Name",
       "placeholder": "funkenpumpe3000",
@@ -196,7 +203,7 @@
       "placeholder": "Beispiel: 2001:bf7:c4ff:3300::/60"
     },
     "v4": {
-      "placeholder": "Beispiel: 10.31.133.{{40+index}}",
+      "placeholder": "Beispiel: 10.31.133.{{40+index}}\n",
       "error.ipAddress": "Das ist keine valide IPv4 Adresse.",
       "error.ipSingle": "Hier musst du eine einzelne IPv4 Adresse eingeben.",
       "error.ipSubnet": "Das ist kein valides IPv4 Subnetz.",
@@ -287,9 +294,9 @@
     }
   },
   "configIncorrect": "Die Daten sind nicht korrekt. Bitte überprüfe die Felder die mit <i class=\"fa fa-times\"></i>  markiert sind.",
-  "applysuccesful": "Die Konfiguration wurde erfolgreich auf dem Router angewandt. Yeah!",
-  "applyerror": "Die Konfiguration konnte nicht angewandt werden. Bitte schau in den Logs auf deinem Router nach den Details.",
-  "uploaderror": "Die Konfiguration konnte nicht auf den Router geladen werden. Überprüfe deinen Router und die Verbindung.",
+  "applysuccesful": "Deine Konfiguration wurde erfolgreich gespeichert! Yeah!",
+  "applyerror": "Deine Konfiguration konnte nicht gespeichert werden. Bitte schau in den Logs auf dem Router nach Details.",
+  "uploaderror": "Deine Konfiguration konnte nicht zum Router geladen werden. Prüfe bitte deine Verbindung und deinen Router.",
   "save": "Speichern &amp; Neustarten",
   "download": "Konfiguration herunterladen"
 }
