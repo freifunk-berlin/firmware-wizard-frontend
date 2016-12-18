@@ -13,21 +13,25 @@ module.exports = function(app) {
     };
 
     factory.gatherRouterInformation = function() {
-      if (sessionManager.isAuthenticated) {
-        jsonrpc.call(sessionManager.getApiUrl(),
-          sessionManager.getSessionId(), 'system', 'board', {})
-          .then(function(data) {
-            console.log(data);
-            factory.routerInformation.system = data;
-            return data;
-          });
-        return jsonrpc.call(sessionManager.getApiUrl(),
-          sessionManager.getSessionId(), 'network.wireless', 'status', {})
-          .then(function(data) {
-            factory.routerInformation.wireless = data;
-            return data;
-          });
-      }
+      return jsonrpc.call(sessionManager.getApiUrl(),
+        sessionManager.getSessionId(), 'system', 'board', {})
+        .then(function(data) {
+          factory.routerInformation.system = data;
+          return data;
+        })
+        .then(function() {
+          return jsonrpc.call(sessionManager.getApiUrl(),
+            sessionManager.getSessionId(), 'network.wireless', 'status', {})
+            .then(function(data) {
+              factory.routerInformation.wireless = data;
+              return data;
+            });
+        });
+    };
+
+    factory.scanForWifi = function(device) {
+      return jsonrpc.call(sessionManager.getApiUrl(),
+          sessionManager.getSessionId(), 'iwinfo', 'scan', {'device': device});
     };
 
     factory.getRouterInformation = function() {

@@ -26,6 +26,7 @@
   },
   "basicRouterSetup": {
     "headline": "Basic router setup",
+    "model": " for {{model}}",
     "routerName": {
       "label": "Router name",
       "placeholder": "funkenpumpe3000",
