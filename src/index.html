@@ -31,11 +31,12 @@
   <body data-ng-controller="WizardCtrl">
 
     <!-- content -->
-    <div class="wizard-bg-highlight">
+    <div class="wizard-bg-highlight navbar navbar-fixed-top">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="navbar-form navbar-right">
+              <a href ng-click="loadRouterInformation" translate>loadrouterinfolink</a>
               <a href ng-click="showLoadConfigModal()" translate>loadconfiglink</a>
               <select class="form-control form-inline" data-ng-model="selectedLanguage">
                 <option value="en">English</option>

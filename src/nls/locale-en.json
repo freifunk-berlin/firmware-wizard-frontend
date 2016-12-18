@@ -2,6 +2,7 @@
   "heading": "Configure your Router",
   "intro": "Freifunk Berlin",
   "loadconfiglink": "Load existing config",
+  "loadrouterinfolink": "Refresh information from router",
   "description": "Freifunk is an independent, free and open community network built by volunteers.",
   "freifunk": "We agree to the <a href=\"\" target=\"_blank\">pico peering agreement</a>, please read more about the <a href=\"https://freifunk.net/en/what-is-it-about/our-vision/\" target=\"_blank\">vision</a> and our <a href=\"http://blog.freifunk.net/2015/memorandum-understanding\" target=\"_blank\">memorandum of understanding</a>",
   "offlineWarning": {
