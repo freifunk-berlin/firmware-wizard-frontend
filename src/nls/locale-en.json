@@ -302,5 +302,19 @@
   "applyerror": "Your config could not be applied. See logs on your router for details.",
   "uploaderror": "Your config could not be uploaded. Check your connection and your router.",
   "save": "Save &amp; Restart",
-  "download": "Download configuration"
+  "download": "Download configuration",
+  "olsrinfo": {
+    "headline": "OLSR Status Information",
+    "help": "This table shows your OLSR neighbors.",
+    "label": "Neighbors",
+    "urllabel": "URL to your Router",
+    "refresh": "Refresh table",
+    "column": {
+      "localip": "Local IP",
+      "remoteip": "Remote IP",
+      "lq": "Link Quality",
+      "nlq": "Neighbor Link Quality",
+      "etx" : "Link Cost"
+    }
+  }
 }
