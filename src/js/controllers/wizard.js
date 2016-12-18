@@ -247,6 +247,17 @@ module.exports = function(app) {
         }
       });
 
+      $scope.loadRouterInformation = function() {
+        if (!sessionManager.isAuthenticated()) {
+          $scope.showAuthenticationModal()
+            .then(function() {
+              $scope.saveRouterInformation();
+            });
+        } else {
+          $scope.saveRouterInformation();
+        }
+      };
+
       $scope.saveRouterInformation = function() {
         routerInformation.gatherRouterInformation()
           .then(function() {
