@@ -31,7 +31,7 @@ module.exports = function(app) {
         var myWizard = angular.copy($scope.wizard);
         myWizard.location.lat = $scope.wizard.location.lat && '' + $scope.wizard.location.lat;
         myWizard.location.lng = $scope.wizard.location.lng && '' + $scope.wizard.location.lng;
-        jsonrpc.call('ffwizard', 'apply', {'config': myWizard})
+        jsonrpc.call(sessionManager.getApiUrl(), sessionManager.getSessionId(), 'ffwizard', 'apply', {'config': myWizard})
           .then(function(data) {
             console.log('upload done');
             $scope.state.apply.uploaded = true;
