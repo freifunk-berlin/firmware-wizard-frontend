@@ -34,6 +34,11 @@ module.exports = function(app) {
           sessionManager.getSessionId(), 'iwinfo', 'scan', {'device': device});
     };
 
+    factory.queryOlsrLinks = function(url) {
+      return jsonrpc.call(url,
+          sessionManager.INITIAL_SESSION_ID, 'olsrd', 'links', {});
+    };
+
     factory.getRouterInformation = function() {
       return factory.routerInformation;
     };
