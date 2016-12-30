@@ -7,7 +7,7 @@
     "test": "exit 1",
     "lint": "jshint src/js && jscs src/js",
     "build": "npm run clean && npm run build:webpack",
-    "build:webpack": "webpack",
+    "build:webpack": "webpack --optimize-minimize",
     "clean": "rm -rf dist/*",
     "watch": "npm run clean && npm run watch:webpack",
     "watch:webpack": "webpack-dev-server --inline"
