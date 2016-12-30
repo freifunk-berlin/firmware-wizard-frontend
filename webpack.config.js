@@ -69,6 +69,7 @@ module.exports = {
     ],
   },
   plugins: [
+    // TODO: require() this in translation config?
     new CopyWebpackPlugin([
       {from: {glob: 'nls/*.json'}, context: 'src', to: './'},
     ]),
