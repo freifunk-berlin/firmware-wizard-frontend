@@ -6,8 +6,7 @@ branches:
   except:
     - gh-pages
 before_script:
-  - npm install -g bower
-  - bower install
+  - npm install
 script:
   - npm run lint
   - npm run build
