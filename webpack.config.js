@@ -55,7 +55,10 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-            query: {name: '[path][name].[md5:hash:hex:8].[ext]'},
+            query: {
+              context: 'src',
+              name: '[path][name].[md5:hash:hex:8].[ext]'
+            },
           },
           'image-webpack-loader',
         ],
