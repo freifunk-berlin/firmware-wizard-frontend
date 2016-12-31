@@ -3,7 +3,6 @@
     "angular": false,
     "console": false
   },
-  "globalstrict": true,
   "node": true,
   "browser": true
 }

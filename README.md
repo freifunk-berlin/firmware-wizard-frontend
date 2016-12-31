@@ -12,12 +12,9 @@ This wizards follows a few principles:
 5. Migrations to new versions of the firmware can regenerate the actual config from the JSON config.
 
 ## Development
-You need `npm` (included in NodeJS) and `bower` (`npm install -g bower`).
-
-The dependencies are fetched via
+You need `npm` (included in NodeJS). The dependencies are fetched via
 ```
 npm install
-bower install
 ```
 
 ### Dev builds
@@ -35,8 +32,3 @@ A production build (with minification) is triggered via
 ```
 npm run build
 ```
-The resulting files are also placed in `dist/` so it may be worthwhile to run
-```
-npm run clean && npm run build
-```
-instead.
