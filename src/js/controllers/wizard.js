@@ -2,19 +2,15 @@
 
 module.exports = function(app) {
   app.controller('WizardCtrl', [
-    '$scope', 'leafletData', '$http', '$filter', 'downloadFile', '$translate',
+    '$scope', 'leafletData', '$http', '$filter', 'downloadFile',
     'jsonrpc', 'Upload', '$uibModal', '$timeout', '$location', 'sessionManager',
     'routerInformation',
-    function($scope, leafletData, $http, $filter, downloadFile, $translate,
+    function($scope, leafletData, $http, $filter, downloadFile,
              jsonrpc, Upload, $uibModal, $timeout, $location, sessionManager,
              routerInformation) {
 
       // jscs:disable maximumLineLength
       var onlineCheckUrl = 'https://weimarnetz.de/health?callback=JSON_CALLBACK';
-      $scope.selectedLanguage = $translate.proposedLanguage() || $translate.use();
-      $scope.$watch('selectedLanguage', function(language) {
-        $translate.use(language);
-      }, true);
 
       $scope.routerUbusUrl = $location.protocol() + '://' + $location.host() + '/ubus';
       $scope.currentPassword = '';

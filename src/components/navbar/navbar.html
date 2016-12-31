@@ -3,13 +3,11 @@
     <div class="row">
       <div class="col-md-12">
         <div class="navbar-form navbar-right">
-          <select class="form-control form-inline" data-ng-model="selectedLanguage">
-            <option value="en">English</option>
-            <option value="de">Deutsch</option>
-          </select>
+          <a href ng-click="loadRouterInformation()" translate>loadrouterinfolink</a>
+          <a href ng-click="showLoadConfigModal()" translate>loadconfiglink</a>
+          <language-dropdown></language-dropdown>
         </div>
       </div>
     </div>
   </div>
 </div>
-{{$ctrl.test}}

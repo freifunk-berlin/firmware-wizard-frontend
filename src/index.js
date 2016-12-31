@@ -26,7 +26,6 @@ require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/contactDetails
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/internetSharing/internetSharing.html');
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/ipAddresses/ipAddresses.html');
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/monitoring/monitoring.html');
-require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/navbar/navbar.html');
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/offlineWarning/offlineWarning.html');
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/olsrInfo/olsrInfo.html');
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/passwordModal/passwordModal.html');
