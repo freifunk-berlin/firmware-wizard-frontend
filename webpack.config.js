@@ -75,8 +75,10 @@ module.exports = {
         // es6 to es5
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {presets: ['es2015']},
+        use: [
+          {loader: 'ng-annotate-loader'},
+          {loader: 'babel-loader', query: {presets: ['es2015']}},
+        ],
       },
     ],
   },
