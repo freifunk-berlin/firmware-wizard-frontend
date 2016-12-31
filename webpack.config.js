@@ -41,6 +41,7 @@ module.exports = {
         ],
       },
       {
+        // html templates
         test: /\.html$/,
         exclude: [path.resolve(__dirname, 'src/index.html')],
         loader: 'html-loader',
@@ -64,10 +65,18 @@ module.exports = {
         ],
       },
       {
+        // less to css
         test: /\.less$/,
         loader: extractCss.extract({
           loader: ['css-loader?sourceMap', 'less-loader?sourceMap'],
         }),
+      },
+      {
+        // es6 to es5
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        query: {presets: ['es2015']},
       },
     ],
   },
