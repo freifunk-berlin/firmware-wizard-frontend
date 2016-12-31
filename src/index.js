@@ -17,6 +17,7 @@ import 'angular-simple-logger';             // nemLogger (dependency of ui-leafl
 import 'ui-leaflet';                        // ui-leaflet
 
 import components from './components';
+import services from './services';
 
 // TODO: move to components
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/loadConfig/loadConfig.html');
@@ -26,7 +27,6 @@ require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/contactDetails
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/internetSharing/internetSharing.html');
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/ipAddresses/ipAddresses.html');
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/monitoring/monitoring.html');
-require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/offlineWarning/offlineWarning.html');
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/olsrInfo/olsrInfo.html');
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/passwordModal/passwordModal.html');
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/routerLocation/routerLocation.html');
@@ -42,6 +42,7 @@ var wizard = module('WizardApp', [
   'nemLogging',
   'ui-leaflet',
   components.name,
+  services.name,
 ]);
 
 

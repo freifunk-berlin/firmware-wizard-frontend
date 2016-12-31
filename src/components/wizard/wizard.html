@@ -1,0 +1,31 @@
+<div class="jumbotron wizard-bg-highlight">
+  <div class="container">
+    <h1>
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fa fa-star fa-stack-1x fa-inverse"></i>
+    </span>
+    {{'heading' | translate }}</h1>
+    <p class="intro" translate>description</p>
+  </div>
+  <div class="container">
+    <div>
+      <p class="description" translate>freifunk</p>
+    </div>
+  </div>
+</div>
+
+<div ng-if="!$ctrl.online.isOnline" class="container" translate-namespace="offlineWarning">
+  <div class="alert alert-danger" role="alert">
+    <h2>
+      <span class="fa-stack">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa  fa-exclamation fa-stack-1x fa-inverse"></i>
+      </span>
+      <span translate>.headline</span>
+    </h2>
+    <p>
+      <span translate>.help</span>
+    </p>
+  </div>
+</div>
