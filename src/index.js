@@ -16,6 +16,8 @@ import 'ng-file-upload';                    // ngFileUpload
 import 'angular-simple-logger';             // nemLogger (dependency of ui-leaflet)
 import 'ui-leaflet';                        // ui-leaflet
 
+import components from './components';
+
 // TODO: move to components
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/loadConfig/loadConfig.html');
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/advancedWifi/advancedWifi.html');
@@ -30,6 +32,7 @@ require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/olsrInfo/olsrI
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/passwordModal/passwordModal.html');
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/routerLocation/routerLocation.html');
 
+
 var wizard = module('WizardApp', [
   'ui.bootstrap',
   'ngAnimate',
@@ -39,7 +42,9 @@ var wizard = module('WizardApp', [
   'ngFileUpload',
   'nemLogging',
   'ui-leaflet',
+  components.name,
 ]);
+
 
 require('./js/config')(wizard);
 require('./js/controllers')(wizard);
