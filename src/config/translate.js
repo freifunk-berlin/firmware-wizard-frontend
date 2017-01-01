@@ -1,7 +1,8 @@
-'use strict';
+import { module } from 'angular';
 
-module.exports = function(app) {
-  app.config(['$translateProvider', function($translateProvider) {
+export default module('app.config.translate', [])
+  .config($translateProvider => {
+    'ngInject';
     $translateProvider.fallbackLanguage('en');
     $translateProvider.useStaticFilesLoader({
       prefix: 'nls/locale-',
@@ -20,5 +21,4 @@ module.exports = function(app) {
 
     // sanitize translations with $sanitize
     $translateProvider.useSanitizeValueStrategy('sanitize');
-  }]);
-};
+  });

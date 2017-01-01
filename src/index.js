@@ -17,6 +17,7 @@ import 'angular-simple-logger';             // nemLogger (dependency of ui-leafl
 import 'ui-leaflet';                        // ui-leaflet
 
 import components from './components';
+import config from './config';
 import services from './services';
 
 // TODO: move to components
@@ -42,11 +43,11 @@ var wizard = module('WizardApp', [
   'nemLogging',
   'ui-leaflet',
   components.name,
+  config.name,
   services.name,
 ]);
 
 
-require('./js/config')(wizard);
 require('./js/controllers')(wizard);
 require('./js/directives')(wizard);
 require('./js/filters')(wizard);
