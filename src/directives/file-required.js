@@ -2,10 +2,10 @@
 //see: https://github.com/angular/angular.js/issues/1375
 //see: https://github.com/angular/angular.js/pull/8987
 
-'use strict';
+import { module } from 'angular';
 
-module.exports = function(app) {
-  app.directive('fileValid', function() {
+export default module('app.directives.file-required', [])
+  .directive('fileValid', () => {
     return {
       require: 'ngModel',
       scope: {
@@ -24,4 +24,3 @@ module.exports = function(app) {
       }
     };
   });
-};

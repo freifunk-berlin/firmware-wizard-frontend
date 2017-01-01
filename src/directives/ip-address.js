@@ -1,16 +1,15 @@
-'use strict';
+import { module } from 'angular';
+import ip from 'ip-address';
 
-var ip = require('ip-address');
-
-module.exports = function(app) {
-  // check if the provided value is a valid ipv4 or ipv6 address
-  //
-  // Usage example:
-  // <input type="text" ng-model="v6Prefix"
-  //   ip-address ip-version="6"
-  //   ip-prefix-min-length="48"
-  //   ip-prefix-max-length="62">
-  app.directive('ipAddress', function() {
+export default module('app.directives.ip-address', [])
+  .directive('ipAddress', () => {
+    // check if the provided value is a valid ipv4 or ipv6 address
+    //
+    // Usage example:
+    // <input type="text" ng-model="v6Prefix"
+    //   ip-address ip-version="6"
+    //   ip-prefix-min-length="48"
+    //   ip-prefix-max-length="62">
     return {
       require: 'ngModel',
       link: function(scope, element, attributes, ngModel) {
@@ -50,4 +49,3 @@ module.exports = function(app) {
       }
     };
   });
-};

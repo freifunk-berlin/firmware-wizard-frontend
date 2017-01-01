@@ -1,9 +1,8 @@
-'use strict';
+import { module } from 'angular';
+import verifySshKey from 'ssh-pub-key-validation';
 
-var verifySshKey = require('ssh-pub-key-validation');
-
-module.exports = function(app) {
-  app.directive('verifysshkey', function() {
+export default module('app.directives.ssh-key', [])
+  .directive('verifysshkey', () => {
     return {
       require: 'ngModel',
       link: function(scope, element, attr, ctrl) {
@@ -19,4 +18,3 @@ module.exports = function(app) {
       }
     };
   });
-};

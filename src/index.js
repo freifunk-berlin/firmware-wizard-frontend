@@ -18,6 +18,7 @@ import 'ui-leaflet';                        // ui-leaflet
 
 import components from './components';
 import config from './config';
+import directives from './directives';
 import filters from './filters';
 import services from './services';
 
@@ -51,4 +52,3 @@ var wizard = module('WizardApp', [
 
 
 require('./js/controllers')(wizard);
-require('./js/directives')(wizard);

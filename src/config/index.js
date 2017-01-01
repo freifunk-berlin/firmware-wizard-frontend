@@ -1,6 +1,6 @@
 import { module } from 'angular';
 
-import hrefWhitelist from './hrefWhitelist';
+import hrefWhitelist from './href-whitelist';
 import log from './log';
 import translate from './translate';
 

@@ -1,8 +1,8 @@
-'use strict';
+import { module } from 'angular';
 
-module.exports = function(app) {
-  // http://odetocode.com/blogs/scott/archive/2014/10/13/confirm-password-validation-in-angularjs.aspx
-  app.directive('compareTo', function() {
+export default module('app.directives.compare-to', [])
+  .directive('compareTo', () => {
+    // http://odetocode.com/blogs/scott/archive/2014/10/13/confirm-password-validation-in-angularjs.aspx
     return {
       require: 'ngModel',
       scope: {
@@ -20,4 +20,3 @@ module.exports = function(app) {
       }
     };
   });
-};
