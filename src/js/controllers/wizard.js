@@ -3,11 +3,11 @@
 module.exports = function(app) {
   app.controller('WizardCtrl', [
     '$scope', 'leafletData', '$http', '$filter', 'downloadFile',
-    'jsonrpc', 'Upload', '$uibModal', '$timeout', '$location', 'sessionManager',
-    'routerInformation',
+    'jsonrpc', 'Upload', '$uibModal', '$timeout', '$location', 'session',
+    'router',
     function($scope, leafletData, $http, $filter, downloadFile,
-             jsonrpc, Upload, $uibModal, $timeout, $location, sessionManager,
-             routerInformation) {
+             jsonrpc, Upload, $uibModal, $timeout, $location, session,
+             router) {
 
       // jscs:disable maximumLineLength
       var onlineCheckUrl = 'https://weimarnetz.de/health?callback=JSON_CALLBACK';
@@ -18,7 +18,7 @@ module.exports = function(app) {
         if ($scope.wizardForm.$invalid) {
           return;
         }
-        if (!sessionManager.isAuthenticated()) {
+        if (!session.activeSession()) {
           $scope.showAuthenticationModal();
           return;
         }
@@ -27,7 +27,7 @@ module.exports = function(app) {
         var myWizard = angular.copy($scope.wizard);
         myWizard.location.lat = $scope.wizard.location.lat && '' + $scope.wizard.location.lat;
         myWizard.location.lng = $scope.wizard.location.lng && '' + $scope.wizard.location.lng;
-        jsonrpc.call(sessionManager.getApiUrl(), sessionManager.getSessionId(), 'ffwizard', 'apply', {'config': myWizard})
+        jsonrpc.call(session.getApiUrl(), sessionManager.getSessionId(), 'ffwizard', 'apply', {'config': myWizard})
           .then(function(data) {
             console.log('upload done');
             $scope.state.apply.uploaded = true;
@@ -461,7 +461,7 @@ module.exports = function(app) {
       };
 
       $scope.downloadConfig = function() {
-        downloadFile(
+        downloadFile.download(
           'config-' + $scope.wizard.router.name + '.json',
           $filter('json')($scope.wizard),
           'application/json',

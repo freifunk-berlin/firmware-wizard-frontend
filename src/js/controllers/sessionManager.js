@@ -5,14 +5,14 @@
 
 module.exports = function(app) {
   app.controller('SessionManagerCtrl', [
-    '$scope', '$location', 'sessionManager',
-    function($scope, $location, sessionManager) {
+    '$scope', '$location', 'session',
+    function($scope, $location, session) {
       $scope.auth = {};
       $scope.auth.url = $location.protocol() +
         '://' + $location.host() +
         '/ubus';
       $scope.authenticate = function() {
-        sessionManager.authenticate($scope.auth.url,
+        session.authenticate($scope.auth.url,
           'root',
           $scope.auth.currentPassword)
           .then(function(result) {

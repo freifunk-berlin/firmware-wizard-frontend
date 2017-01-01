@@ -50,4 +50,3 @@ require('./js/config')(wizard);
 require('./js/controllers')(wizard);
 require('./js/directives')(wizard);
 require('./js/filters')(wizard);
-require('./js/services')(wizard);
