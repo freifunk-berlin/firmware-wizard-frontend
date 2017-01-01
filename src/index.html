@@ -24,7 +24,11 @@
         <ng-include src="'shared/contactDetails/contactDetails.html'"></ng-include>
       </div>
       <div class="wizard-category">
-        <ng-include src="'shared/routerLocation/routerLocation.html'"></ng-include>
+        <router-location
+          name="wizard.router.name"
+          location="wizard.location"
+          on-location-update="wizard.location = location"
+        ></router-location>
       </div>
       <div class="wizard-category">
         <ng-include src="'shared/internetSharing/internetSharing.html'"></ng-include>

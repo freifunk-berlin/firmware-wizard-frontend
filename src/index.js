@@ -8,6 +8,9 @@ import ngMessages from 'angular-messages';  // ngAnimate module
 import ngRoute from 'angular-route';        // ngRoute module
 import ngSanitize from 'angular-sanitize';  // ngSanitize module
 
+// dependency of ui-leaflet (global variable *facepalm*)
+import 'leaflet';
+
 // other modules
 import 'angular-translate';                 // pascalprecht.translate module
 import 'angular-translate-loader-static-files';
@@ -32,8 +35,6 @@ require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/ipAddresses/ip
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/monitoring/monitoring.html');
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/olsrInfo/olsrInfo.html');
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/passwordModal/passwordModal.html');
-require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/routerLocation/routerLocation.html');
-
 
 var wizard = module('WizardApp', [
   'ui.bootstrap',
@@ -49,6 +50,5 @@ var wizard = module('WizardApp', [
   filters.name,
   services.name,
 ]);
-
 
 require('./js/controllers')(wizard);

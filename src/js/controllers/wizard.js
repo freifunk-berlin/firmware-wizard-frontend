@@ -190,26 +190,15 @@ module.exports = function(app) {
         wifi: {}
       };
 
+      $scope.onLocationUpdate = function(location) {
+        angular.extend($scope.wizard.location, location);
+      }
+
       $scope.state = {
         apply: {
           uploaded: undefined,
           success: undefined,
           error: undefined
-        },
-        map: {
-          markers: {
-            router: {
-              lat: 52.52080,
-              lng: 13.40942,
-              focus: true,
-              draggable: true
-            }
-          },
-          center: {
-            lat: 52.52080,
-            lng: 13.40942,
-            zoom: 10
-          }
         },
         sshkeys: {},
         internet: {
@@ -290,113 +279,6 @@ module.exports = function(app) {
               }
             });
           });
-      };
-
-      //make map not scrollable
-      angular.extend($scope, {
-        defaults: {
-          scrollWheelZoom: false,
-          doubleClickZoom: false,
-        },
-        events: {
-          map: {
-            enable: ['dblclick'],
-            logic: 'emit'
-          }
-        }
-      });
-
-      // listen on double click event to set marker
-      $scope.$on('leafletDirectiveMap.dblclick', function(event, args) {
-        $scope.state.map.markers.router.lat = args.leafletEvent.latlng.lat;
-        $scope.state.map.markers.router.lng = args.leafletEvent.latlng.lng;
-      });
-
-      $scope.$on('leafletDirectiveMarker.dragend', function(event, args) {
-        $scope.state.map.markers.router.lat = args.model.lat;
-        $scope.state.map.markers.router.lng = args.model.lng;
-      });
-
-      // copy router name to map marker
-      $scope.$watch('wizard.router.name', function(name) {
-        $scope.state.map.markers.router.message =
-          '<strong>' + (name || 'Your router') + '</strong><br>' +
-          'Drag me to the correct location!';
-      });
-
-      // update wizard scope var and keep map centered on marker
-      $scope.$watch('state.map.markers.router', function(router) {
-        $scope.wizard.location.lat = router.lat;
-        $scope.wizard.location.lng = router.lng;
-
-        $scope.state.map.center.lat = router.lat;
-        $scope.state.map.center.lng = router.lng;
-
-        // search address
-        $scope.getAddress(router.lat, router.lng);
-      }, true);
-
-      $scope.$watch('wizard.location', function(location) {
-        $scope.state.map.markers.router.lat = location.lat;
-        $scope.state.map.markers.router.lng = location.lng;
-      }, true);
-
-      // set marker to current location
-      var mapRegistered = false;
-      $scope.getLocation = function() {
-        $scope.state.map.searchingGeolocation = true;
-        leafletData.getMap().then(function(map) {
-          map.locate({setView: true, maxZoom: 16, enableHighAccuracy: true});
-          if (!mapRegistered) {
-            mapRegistered = true;
-            map.on('locationfound', function(e) {
-              // set marker position
-              $scope.state.map.markers.router.lat = e.latitude;
-              $scope.state.map.markers.router.lng = e.longitude;
-
-              $scope.state.map.searchingGeolocation = false;
-            });
-            map.on('locationerror', function onLocationFound(e) {
-              $scope.state.map.searchingGeolocation = false;
-            });
-          }
-        });
-      };
-      // get location at init time
-      $scope.getLocation();
-
-      // get address from geolocation
-      $scope.getAddress = function(lat, lng) {
-        $scope.searchingAddress = false;
-        if ($scope.isOnline()) {
-          $scope.searchingAddress = true;
-          $http.get('//nominatim.openstreetmap.org/reverse', {
-            params: {
-              format: 'json',
-              lat: lat,
-              lon: lng
-            }
-          }).success(function(data) {
-            $scope.searchingAddress = false;
-            var address = data && data.address;
-            if (!address) {return;}
-
-            var street = data.address.road;
-            var streetNo = data.address.house_number;
-            var postalCode = data.address.postcode;
-            // Addresses in Berlin have no city but only a state field
-            var city = data.address.city || data.address.state;
-
-            angular.extend($scope.wizard.location, {
-              street: street && streetNo ? street + ' ' + streetNo : street,
-              postalCode: data.address.postcode,
-              city: city
-            });
-
-          }).error(function(data) {
-            $scope.searchingAddress = false;
-          });
-        }
       };
 
       $scope.applyDefaults = function(device, config) {
