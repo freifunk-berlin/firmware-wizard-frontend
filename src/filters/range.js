@@ -1,7 +1,7 @@
-'use strict';
+import { module } from 'angular';
 
-module.exports = function(app) {
-  app.filter('range', function() {
+export default module('app.filters.range', [])
+  .filter('range', () => {
     return function(input, a, b) {
       var res = [];
       var i;
@@ -18,4 +18,3 @@ module.exports = function(app) {
       return res;
     };
   });
-};
