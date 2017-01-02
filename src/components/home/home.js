@@ -7,7 +7,7 @@ export default module('app.components.home', [uiRouter])
     $stateProvider.state({
       component: 'home',
       name: 'home',
-      url: '',
+      url: '/',
     });
   })
   .component('home', {
