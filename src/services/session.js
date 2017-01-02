@@ -15,8 +15,8 @@ export default module('app.services.session', [])
       this.pending = false;
 
       // try to connect current url as apiUrl
-      // const apiUrl = `${$location.protocol()}://${$location.host()}:${$location.path()}/ubus`;
-      // this.initiate(apiUrl);
+      const apiUrl = `${$location.protocol()}://${$location.host()}:${$location.port()}/ubus`;
+      this.connect(apiUrl);
     }
 
     probeSystemBoard(apiUrl) {
@@ -24,7 +24,6 @@ export default module('app.services.session', [])
     }
 
     connect(apiUrl) {
-      this.connection = undefined;
       this.connecting = true;
       return this.probeSystemBoard(apiUrl).then(
         data => {
@@ -34,6 +33,7 @@ export default module('app.services.session', [])
         },
         data => {
           this.connecting = false;
+          this.connection = undefined;
           return this.$q.reject(data);
         }
       );
