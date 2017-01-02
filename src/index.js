@@ -1,11 +1,10 @@
 // include less
-require('./less/index.less');
+import './less/index.less';
 
 // official angular modules
 import { module } from 'angular';
 import ngAnimate from 'angular-animate';    // ngAnimate module
 import ngMessages from 'angular-messages';  // ngAnimate module
-import ngRoute from 'angular-route';        // ngRoute module
 import ngSanitize from 'angular-sanitize';  // ngSanitize module
 
 // dependency of ui-leaflet (global variable *facepalm*)
