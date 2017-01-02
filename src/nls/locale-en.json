@@ -7,7 +7,7 @@
   "freifunk": "We agree to the <a href=\"\" target=\"_blank\">pico peering agreement</a>, please read more about the <a href=\"https://freifunk.net/en/what-is-it-about/our-vision/\" target=\"_blank\">vision</a> and our <a href=\"http://blog.freifunk.net/2015/memorandum-understanding\" target=\"_blank\">memorandum of understanding</a>",
   "offlineWarning": {
     "headline": "No internet connection",
-    "help" : "You don't seam to have an internet connection. Some features of this wizard need a connection. You could either connect your router to the internet or use the <a href=\"#\">online version of this wizard</a> with another connection, save the config file there and then apply it to your router"
+    "help" : "You don't seem to have an internet connection. Some features of this wizard need a connection. You could either connect your router to the internet or use the <a href=\"#\">online version of this wizard</a> with another connection, save the config file there and then apply it to your router"
   },
   "authentication": {
     "headline": "Authentication",
