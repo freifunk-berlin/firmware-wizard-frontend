@@ -2,24 +2,35 @@ import { module } from 'angular';
 
 export default module('app.services.online', [])
   .service('online', class OnlineService {
-    constructor($http, $timeout, $window) {
+    constructor($http, $q, $timeout, $window) {
       'ngInject';
       this.$http = $http;
+      this.$q = $q;
       this.$timeout = $timeout;
-      this.check();
+      this.currentProbe = this.probe();
 
       // update when browser detects online/offline changes
-      const boundCheck = this.check.bind(this);
-      $window.addEventListener('online', boundCheck);
-      $window.addEventListener('offline', boundCheck);
+      const boundProbeLater = this.probeLater.bind(this);
+      $window.addEventListener('online', boundProbeLater);
+      $window.addEventListener('offline', boundProbeLater);
     }
 
-    check() {
-      // wait a bit before actually checking (network may not be fully initialized)
+    probe() {
       // TODO: use a freifunk url with enabled CORS
-      this.$timeout(() => this.$http.head('https://paperhive.org/api/').then(
+      const probePromise = this.$http.head('https://paperhive.org/api/');
+      probePromise.then(
         () => this.isOnline = true,
-        () => this.isOnline = false
-      ), 100);
+        () => this.isOnline = false,
+      );
+      return probePromise;
+    }
+
+    probeLater() {
+      // wait a bit before actually checking (network may not be fully initialized)
+      const probePromise = this.$q(
+        (resolve, reject) => this.$timeout(() => this.probe().then(resolve, reject), 100)
+      );
+      this.currentProbe = probePromise;
+      return probePromise;
     }
   });

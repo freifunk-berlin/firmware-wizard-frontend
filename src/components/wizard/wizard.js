@@ -9,6 +9,12 @@ export default module('app.components.wizard', [uiRouter])
       component: 'wizard',
       resolve: {
         config: () => Promise.resolve({}),
+        // André: 'ngInject' does not work for some reason,
+        //         so let's make it explicit here
+        online: ['$q', 'online', ($q, online) => {
+          // catch error (we only want to wait for the check to finish)
+          return $q(resolve => online.currentProbe.then(resolve, resolve));
+        }],
       },
       url: '/wizard',
     });
