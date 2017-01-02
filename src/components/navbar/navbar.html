@@ -1,13 +1,25 @@
-<div class="wizard-bg-highlight navbar navbar-fixed-top">
+<div class="navbar navbar-default navbar-fixed-top">
   <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="navbar-form navbar-right">
+    <div class="navbar-header">
+      <!-- toggle nav -->
+      <button ng-click="$ctrl.collapsed =! $ctrl.collapsed" type="button" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- home -->
+      <a class="navbar-brand" ui-sref="home">Freifunk Router XYZ</a>
+    </div>
+    <div class="collapse navbar-collapse" uib-collapse="$ctrl.collapsed">
+      <ul class="nav navbar-nav">
+        <li ui-sref-active="active"><a ui-sref="wizard">Wizard</a></li>
+        <!--div class="navbar-form navbar-right">
           <a href ng-click="loadRouterInformation()" translate>loadrouterinfolink</a>
           <a href ng-click="showLoadConfigModal()" translate>loadconfiglink</a>
           <language-dropdown></language-dropdown>
-        </div>
-      </div>
+        </div-->
+      </ul>
     </div>
   </div>
 </div>
