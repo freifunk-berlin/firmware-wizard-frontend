@@ -18,6 +18,11 @@ export default module('app.services.session', [])
       this.currentConnect = this.connect(apiUrl);
     }
 
+    getSessionId() {
+      if (!this.authentication) return this.initialSessionId;
+      return this.authentication.sessionId;
+    }
+
     probeSystemBoard(apiUrl) {
       return this.jsonrpc.call(apiUrl, this.initialSessionId, 'system', 'board', {});
     }

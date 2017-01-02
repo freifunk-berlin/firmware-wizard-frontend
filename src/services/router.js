@@ -13,11 +13,9 @@ export default module('app.services.router', [])
       if (!this.session.connection) {
         return this.$q.reject(new Error('not connected'));
       }
-      const sessionId = this.session.authentication &&
-        this.session.authentication.sessionId || this.session.initialSessionId;
       return jsonrpc.call(
         this.session.connection.apiUrl,
-        sessionId,
+        this.session.getSessionId(),
         object,
         methods,
         args
