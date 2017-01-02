@@ -9,7 +9,27 @@
         <span class="icon-bar"></span>
       </button>
       <!-- home -->
-      <a class="navbar-brand" ui-sref="home">Freifunk Router XYZ</a>
+      <a class="navbar-brand" ui-sref="home">
+        Freifunk Router XYZ
+      </a>
+      <div ng-if="$ctrl.session.pending" class="navbar-brand">
+        <i class="fa fa-fw fa-spin fa-circle-o-notch"></i>
+      </div>
+      <a href class="navbar-brand"
+        ng-if="!$ctrl.session.pending"
+        ng-click="$ctrl.showConnectModal()"
+      >
+        <i ng-if="$ctrl.session.activeSession"
+          class="fa fa-fw fa-bolt text-success"
+          uib-tooltip="Connected to {{$ctrl.session.activeSession.apiUrl}}. Click to connect to another router."
+          tooltip-placement="bottom"
+        ></i>
+        <i ng-if="!$ctrl.session.activeSession"
+          class="fa fa-fw fa-warning text-danger"
+          uib-tooltip="Not connected to a router! Click to connect."
+          tooltip-placement="bottom"
+        ></i>
+      </a>
     </div>
     <div class="collapse navbar-collapse" uib-collapse="$ctrl.collapsed">
       <ul class="nav navbar-nav">
