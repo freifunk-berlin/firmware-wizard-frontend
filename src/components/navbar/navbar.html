@@ -10,7 +10,11 @@
       </button>
       <!-- home -->
       <a class="navbar-brand" ui-sref="home">
-        {{$ctrl.session.connection.board.hostname || '(disconnected)'}}
+        <span ng-if="$ctrl.session.connection"
+          uib-tooltip="{{$ctrl.session.connection.board.model}}"
+          tooltip-placement="bottom"
+        >{{$ctrl.session.connection.board.hostname}}</span>
+        <span ng-if="!$ctrl.session.connection">disconnected</span>
       </a>
       <div ng-if="$ctrl.session.connecting" class="navbar-brand">
         <i class="fa fa-fw fa-spin fa-circle-o-notch"></i>
