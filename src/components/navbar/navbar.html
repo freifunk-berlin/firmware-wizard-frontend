@@ -10,21 +10,21 @@
       </button>
       <!-- home -->
       <a class="navbar-brand" ui-sref="home">
-        Freifunk Router XYZ
+        {{$ctrl.session.connection.board.hostname || '(disconnected)'}}
       </a>
-      <div ng-if="$ctrl.session.pending" class="navbar-brand">
+      <div ng-if="$ctrl.session.connecting" class="navbar-brand">
         <i class="fa fa-fw fa-spin fa-circle-o-notch"></i>
       </div>
       <a href class="navbar-brand"
-        ng-if="!$ctrl.session.pending"
+        ng-if="!$ctrl.session.connecting"
         ng-click="$ctrl.showConnectModal()"
       >
-        <i ng-if="$ctrl.session.activeSession"
+        <i ng-if="$ctrl.session.connection"
           class="fa fa-fw fa-bolt text-success"
-          uib-tooltip="Connected to {{$ctrl.session.activeSession.apiUrl}}. Click to connect to another router."
+          uib-tooltip="Connected to {{$ctrl.session.connection.apiUrl}}. Click to connect to another router."
           tooltip-placement="bottom"
         ></i>
-        <i ng-if="!$ctrl.session.activeSession"
+        <i ng-if="!$ctrl.session.connection"
           class="fa fa-fw fa-warning text-danger"
           uib-tooltip="Not connected to a router! Click to connect."
           tooltip-placement="bottom"

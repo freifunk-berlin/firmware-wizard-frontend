@@ -19,6 +19,26 @@ export default module('app.services.session', [])
       // this.initiate(apiUrl);
     }
 
+    probeSystemBoard(apiUrl) {
+      return this.jsonrpc.call(apiUrl, this.initialSessionId, 'system', 'board', {});
+    }
+
+    connect(apiUrl) {
+      this.connection = undefined;
+      this.connecting = true;
+      return this.probeSystemBoard(apiUrl).then(
+        data => {
+          this.connecting = false;
+          this.connection = {apiUrl, board: data};
+          return this.connection;
+        },
+        data => {
+          this.connecting = false;
+          return this.$q.reject(data);
+        }
+      );
+    }
+
     connectWithCredentials(apiUrl, username, password) {
       if (this.pending) {
         return this.$q.reject(new Error('another operation is pending'));
