@@ -1,5 +1,6 @@
 import { module } from 'angular';
 
+import connectModal from './connect-modal/connect-modal';
 import home from './home/home';
 import languageDropdown from './language-dropdown/language-dropdown';
 import navbar from './navbar/navbar';
@@ -7,6 +8,7 @@ import routerLocation from './router-location/router-location';
 import wizard from './wizard/wizard';
 
 export default module('app.components', [
+  connectModal.name,
   home.name,
   languageDropdown.name,
   navbar.name,
