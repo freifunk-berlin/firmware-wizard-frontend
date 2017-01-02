@@ -40,23 +40,16 @@ export default module('app.services.session', [])
           data => {
             this.pending = false;
 
-            // fail on ubus/rpc level?
-            const error = data.error || data.result[0] !== 0 && data.result;
-            if (error) {
-              this.error = error;
-              return this.$q.reject(new Error('Authentication failed: ${error}'));
-            }
-
             // set expiry date
-            expires.setSeconds(expires.getSeconds() + data.result.expires);
+            expires.setSeconds(expires.getSeconds() + data.expires);
 
             // set active session
             this.activeSession = {
               apiUrl,
               expires,
-              timeout: data.result.timeout,
-              sessionId: data.result[1].ubus_rpc_session,
-              data: data.result[1],
+              timeout: data.timeout,
+              sessionId: data.ubus_rpc_session,
+              data,
             };
 
             return this.activeSession;
@@ -86,19 +79,15 @@ export default module('app.services.session', [])
           data => {
             this.pending = false;
 
-            // fail on ubus/rpc level?
-            const error = data.error || data.result[0] !== 0 && data.result;
-            if (error) {
-              this.error = error;
-              return this.$q.reject(new Error('Authentication failed: ${error}'));
-            }
-
-            // set expiry date
-            expires.setSeconds(expires.getSeconds() + session.timeout);
-
             // set new session
             this.activeSession = copy(session);
-            this.activeSession.expires = expires;
+            // set expiry date
+            if (session.timeout) {
+              expires.setSeconds(expires.getSeconds() + session.timeout);
+              this.activeSession.expires = expires;
+            } else {
+              this.activeSession.expires = undefined;
+            }
 
             return this.activeSession;
           },
