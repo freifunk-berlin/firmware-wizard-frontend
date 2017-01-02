@@ -3,16 +3,14 @@
 <html data-ng-app="WizardApp" ng-strict-di>
   <head>
     <title>Freifunk Berlin · Router configuration wizard</title>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
-  <body data-ng-controller="WizardCtrl">
-
-    <!-- content -->
+  <body>
     <navbar></navbar>
-    <wizard></wizard>
+    <ui-view></ui-view>
 
+    <!--
     <form novalidate name="wizardForm" ng-submit="submit()"
         class="form-horizontal wizard-categories">
       <ng-include src="'shared/loadConfig/loadConfig.html'"></ng-include>
@@ -43,7 +41,6 @@
         <ng-include src="'shared/advancedWifi/advancedWifi.html'"></ng-include>
       </div>
 
-      <!-- submission -->
       <div class="wizard-category">
         <div class="container text-right">
           <span class="text-danger" translate
@@ -71,5 +68,6 @@
         </div>
       </div>
     </form>
+  -->
   </body>
 </html>
