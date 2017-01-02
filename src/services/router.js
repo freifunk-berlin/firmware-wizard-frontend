@@ -2,16 +2,22 @@ import { module } from 'angular';
 
 export default module('app.services.router', [])
   .service('router', class RouterService {
-    constructor(jsonrpc, session) {
+    constructor($q, jsonrpc, session) {
       'ngInject';
+      this.$q = $q;
       this.jsonrpc = jsonrpc;
       this.session = session;
     }
 
     _call(object, method, args) {
+      if (!this.session.connection) {
+        return this.$q.reject(new Error('not connected'));
+      }
+      const sessionId = this.session.authentication &&
+        this.session.authentication.sessionId || this.session.initialSessionId;
       return jsonrpc.call(
-        this.session.apiUrl,
-        this.session.sessionId,
+        this.session.connection.apiUrl,
+        sessionId,
         object,
         methods,
         args

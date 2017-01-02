@@ -12,11 +12,10 @@ export default module('app.services.session', [])
 
       this.timeout = 3600; // seconds
       this.initialSessionId = '00000000000000000000000000000000';
-      this.pending = false;
 
       // try to connect current url as apiUrl
       const apiUrl = `${$location.protocol()}://${$location.host()}:${$location.port()}/ubus`;
-      this.connect(apiUrl);
+      this.currentConnect = this.connect(apiUrl);
     }
 
     probeSystemBoard(apiUrl) {
@@ -24,63 +23,77 @@ export default module('app.services.session', [])
     }
 
     connect(apiUrl) {
+      if (this.connecting) {
+        return this.$q.reject(new Error('already connecting.'));
+      }
       this.connecting = true;
-      return this.probeSystemBoard(apiUrl).then(
+      this.currentConnect = this.probeSystemBoard(apiUrl).then(
         data => {
           this.connecting = false;
           this.connection = {apiUrl, board: data};
-          return this.connection;
+          this.authentication = undefined;
+          // try to authenticate with default credentials (for lede factory default)
+          return this.$q(resolve => this.authenticate().finally(() => resolve(this.connection)));
         },
         data => {
           this.connecting = false;
           this.connection = undefined;
+          this.authentication = undefined;
           return this.$q.reject(data);
         }
       );
+      return this.currentConnect;
     }
 
-    connectWithCredentials(apiUrl, username, password) {
-      if (this.pending) {
-        return this.$q.reject(new Error('another operation is pending'));
+    authenticate(username, password) {
+      if (!this.connection) {
+        return this.$q.reject(new Error('not connected.'));
       }
-      this.pending = true;
+      const apiUrl = this.connection.apiUrl;
 
-      this.error = undefined;
-      this.activeSession = undefined;
+      if (this.authenticating) {
+        return this.$q.reject(new Error('already authenticating.'));
+      }
+      this.authenticating = true;
+      this.authentication = undefined;
+
       const expires = new Date();
 
       const args = {
-        username,
-        password: password || 'brains',
+        username: username || 'root',
+        password: password || 'brains', // factory lede accepts any password
         timeout: this.timeout,
       };
       return this.jsonrpc.call(apiUrl, this.initialSessionId, 'session', 'login', args)
         .then(
-          // successful http request
           data => {
-            this.pending = false;
+            this.authenticating = false;
 
             // set expiry date
             expires.setSeconds(expires.getSeconds() + data.expires);
 
             // set active session
-            this.activeSession = {
+            this.authentication = {
+              sessionId: data.ubus_rpc_session,
+              username: args.username,
               apiUrl,
               expires,
               timeout: data.timeout,
-              sessionId: data.ubus_rpc_session,
               data,
             };
-
-            return this.activeSession;
+            return this.authentication;
           },
           // failed http request
           data => {
-            this.pending = false;
+            this.authenticating = false;
             this.error = data;
             return this.$q.reject(data);
           }
         );
+    }
+
+    unauthenticate() {
+      this.authentication = undefined;
     }
 
     connectWithSession(session) {
