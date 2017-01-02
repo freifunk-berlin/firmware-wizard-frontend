@@ -16,6 +16,7 @@ export default module('app.services.online', [])
 
     check() {
       // wait a bit before actually checking (network may not be fully initialized)
+      // TODO: use a freifunk url with enabled CORS
       this.$timeout(() => this.$http.head('https://paperhive.org/api/').then(
         () => this.isOnline = true,
         () => this.isOnline = false
