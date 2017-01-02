@@ -33,7 +33,6 @@ require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/internetSharin
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/ipAddresses/ipAddresses.html');
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/monitoring/monitoring.html');
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/olsrInfo/olsrInfo.html');
-require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/passwordModal/passwordModal.html');
 
 var wizard = module('WizardApp', [
   'ui.bootstrap',
