@@ -95,41 +95,4 @@ export default module('app.services.session', [])
     unauthenticate() {
       this.authentication = undefined;
     }
-
-    connectWithSession(session) {
-      if (this.pending) {
-        return this.$q.reject(new Error('another operation is pending'));
-      }
-      this.pending = true;
-
-      this.error = undefined;
-      this.activeSession = undefined;
-      const expires = new Date();
-
-      return this.jsonrpc.call(session.apiUrl, session.sessionId, 'session', 'access', {})
-        .then(
-          // successful http request
-          data => {
-            this.pending = false;
-
-            // set new session
-            this.activeSession = copy(session);
-            // set expiry date
-            if (session.timeout) {
-              expires.setSeconds(expires.getSeconds() + session.timeout);
-              this.activeSession.expires = expires;
-            } else {
-              this.activeSession.expires = undefined;
-            }
-
-            return this.activeSession;
-          },
-          // failed http request
-          data => {
-            this.pending = false;
-            this.error = data;
-            return this.$q.reject(data);
-          }
-        );
-    }
   });
