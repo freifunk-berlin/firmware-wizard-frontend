@@ -2,9 +2,10 @@ import { module } from 'angular';
 
 export default module('app.services.online', [])
   .service('online', class OnlineService {
-    constructor($http, $window) {
+    constructor($http, $timeout, $window) {
       'ngInject';
       this.$http = $http;
+      this.$timeout = $timeout;
       this.check();
 
       // update when browser detects online/offline changes
@@ -14,10 +15,10 @@ export default module('app.services.online', [])
     }
 
     check() {
-      this.isOnline = undefined;
-      this.$http.head('https://paperhive.org/api/').then(
+      // wait a bit before actually checking (network may not be fully initialized)
+      this.$timeout(() => this.$http.head('https://paperhive.org/api/').then(
         () => this.isOnline = true,
         () => this.isOnline = false
-      );
+      ), 100);
     }
   });
