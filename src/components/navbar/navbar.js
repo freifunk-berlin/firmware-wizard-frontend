@@ -12,6 +12,12 @@ export default module('app.components.navbar', []).component('navbar', {
       this.collapsed = true;
     }
 
+    showAuthenticateModal() {
+      this.$uibModal.open({
+        component: 'authenticateModal',
+      });
+    }
+
     showConnectModal() {
       this.$uibModal.open({
         component: 'connectModal',

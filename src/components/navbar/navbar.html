@@ -39,13 +39,24 @@
       <ul class="nav navbar-nav">
         <li ui-sref-active="active"><a ui-sref="home">Home</a></li>
         <li ui-sref-active="active"><a ui-sref="wizard">Wizard</a></li>
-        <!--div class="navbar-form navbar-right">
-          <a href ng-click="loadRouterInformation()" translate>loadrouterinfolink</a>
-          <a href ng-click="showLoadConfigModal()" translate>loadconfiglink</a>
-        </div-->
       </ul>
+
       <div class="navbar-form navbar-right">
         <language-dropdown></language-dropdown>
+        <button type="button" class="btn btn-primary"
+          ng-if="!$ctrl.session.authentication"
+          ng-disabled="!$ctrl.session.connection"
+          ng-click="$ctrl.showAuthenticateModal()"
+        >
+          <i class="fa fa-fw fa-sign-in"></i> Sign in
+        </button>
+        <span class="text-muted" ng-if="$ctrl.session.authentication">
+          Signed in as <em>{{$ctrl.session.authentication.username}}</em>
+        </span>
+        <a href
+          ng-if="$ctrl.session.authentication"
+          ng-click="$ctrl.session.unauthenticate()"
+        >sign out</a>
       </div>
     </div>
   </div>
