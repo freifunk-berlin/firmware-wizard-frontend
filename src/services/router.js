@@ -22,6 +22,10 @@ export default module('app.services.router', [])
       );
     }
 
+    applyConfig(config) {
+      return this.call('ffwizard', 'apply', {config});
+    }
+
     getNetworkWireless() {
       return this.call('network.wireless', 'status', {});
     }

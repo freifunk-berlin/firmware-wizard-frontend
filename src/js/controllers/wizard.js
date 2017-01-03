@@ -9,57 +9,7 @@ module.exports = function(app) {
              jsonrpc, Upload, $uibModal, $timeout, $location, session,
              router) {
 
-      // jscs:disable maximumLineLength
-      var onlineCheckUrl = 'https://weimarnetz.de/health?callback=JSON_CALLBACK';
-
-      $scope.routerUbusUrl = $location.protocol() + '://' + $location.host() + '/ubus';
       $scope.currentPassword = '';
-      $scope.submit = function() {
-        if ($scope.wizardForm.$invalid) {
-          return;
-        }
-        if (!session.activeSession()) {
-          $scope.showAuthenticationModal();
-          return;
-        }
-        console.log('applying');
-        // due to an ubox bug we have to convert lat and lon to strings
-        var myWizard = angular.copy($scope.wizard);
-        myWizard.location.lat = $scope.wizard.location.lat && '' + $scope.wizard.location.lat;
-        myWizard.location.lng = $scope.wizard.location.lng && '' + $scope.wizard.location.lng;
-        jsonrpc.call(session.getApiUrl(), sessionManager.getSessionId(), 'ffwizard', 'apply', {'config': myWizard})
-          .then(function(data) {
-            console.log('upload done');
-            $scope.state.apply.uploaded = true;
-            if (data.status == 'success') {
-              $scope.state.apply.success = true;
-            } else {
-              $scope.state.apply.success = false;
-            }
-            console.log(data);
-          })
-          .catch(function(data) {
-            $scope.state.apply.error = true;
-            $scope.state.apply.uploaded = false;
-            console.log('error');
-            console.log(data);
-          });
-      };
-
-      $scope.showAuthenticationModal = function() {
-        var authModalInstance = $uibModal.open({
-          ariaLabelledBy: 'modal-title',
-          ariaDescribedBy: 'modal-body',
-          templateUrl: 'passwordModal.html',
-          controller: 'SessionManagerCtrl',
-          scope: $scope
-        });
-
-        $scope.authModalInstance = authModalInstance;
-
-        return authModalInstance.result;
-
-      };
 
       $scope.showLoadConfigModal = function() {
         var modalInstance = $uibModal.open({
@@ -340,27 +290,6 @@ module.exports = function(app) {
           'fa-times': $scope.hasError(field),
           'fa-check': $scope.hasSuccess(field),
         };
-      };
-
-      $scope.downloadConfig = function() {
-        downloadFile.download(
-          'config-' + $scope.wizard.router.name + '.json',
-          $filter('json')($scope.wizard),
-          'application/json',
-          true
-        );
-      };
-
-      var online = false;
-      $http.jsonp(onlineCheckUrl, {'timeout': 1000})
-        .then(function success(response) {
-          online = true;
-        }, function failure(response) {
-          online = false;
-        });
-
-      $scope.isOnline = function() {
-        return online;
       };
 
       $scope.pow = Math.pow;

@@ -70,10 +70,11 @@
             ng-show="state.apply.error && ! state.apply.success">
         uploaderror
       </span>
-      <button type="button" class="btn btn-default" ng-click="downloadConfig()">
+      <button type="button" class="btn btn-default" ng-click="$ctrl.download()">
         <i class="fa fa-fw fa-download"></i> <span translate>download</span>
       </button>
-      <button type="submit" class="btn btn-primary" data-ng-class="{disabled: wizardForm.$invalid}">
+      <button type="submit" class="btn btn-primary"
+        ng-disabled="wizardForm.$invalid || !$ctrl.session.connection || !$ctrl.session.authentication">
         <i class="fa fa-fw fa-check"></i> <span translate>save</span>
       </button>
     </div>
