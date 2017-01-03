@@ -6,6 +6,7 @@ import home from './home/home';
 import languageDropdown from './language-dropdown/language-dropdown';
 import loadFileButton from './load-file-button/load-file-button';
 import navbar from './navbar/navbar';
+import statusOlsr from './status-olsr/status-olsr';
 import wizard from './wizard/wizard';
 import wizardContact from './wizard-contact/wizard-contact';
 import wizardInternet from './wizard-internet/wizard-internet';
@@ -20,6 +21,7 @@ export default module('app.components', [
   languageDropdown.name,
   loadFileButton.name,
   navbar.name,
+  statusOlsr.name,
   wizard.name,
   wizardContact.name,
   wizardInternet.name,

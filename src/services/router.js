@@ -23,23 +23,23 @@ export default module('app.services.router', [])
     }
 
     applyConfig(config) {
-      return this.call('ffwizard', 'apply', {config});
+      return this._call('ffwizard', 'apply', {config});
     }
 
     getNetworkWireless() {
-      return this.call('network.wireless', 'status', {});
+      return this._call('network.wireless', 'status', {});
     }
 
     getOlsrLinks() {
-      return this.call('olsrd', 'links', {});
+      return this._call('olsrd', 'links', {});
     }
 
     getSystemBoard() {
-      return this.call('system', 'board', {});
+      return this._call('system', 'board', {});
     }
 
     scanWifi(device) {
-      return this.call('iwinfo', 'scan', {'device': device});
+      return this._call('iwinfo', 'scan', {'device': device});
     }
 
     updateInfo() {

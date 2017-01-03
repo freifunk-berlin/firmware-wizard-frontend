@@ -39,6 +39,15 @@
       <ul class="nav navbar-nav">
         <li ui-sref-active="active"><a ui-sref="home">Home</a></li>
         <li ui-sref-active="active"><a ui-sref="wizard">Wizard</a></li>
+        <li ui-sref-active="active" class="dropdown" uib-dropdown>
+          <a href uib-dropdown-toggle>
+            Status <i class="fa fa-fw fa-caret-down"></i>
+          </a>
+          <ul class="dropdown-menu" uib-dropdown-menu>
+            <li ui-sref-active="active"><a ui-sref="statusOlsr">OLSR</a></li>
+            <li ui-sref-active="active"><a href>System</a></li>
+          </ul>
+        </li>
       </ul>
 
       <div class="navbar-form navbar-right">

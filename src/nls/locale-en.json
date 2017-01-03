@@ -303,18 +303,21 @@
   "uploaderror": "Your config could not be uploaded. Check your connection and your router.",
   "save": "Save &amp; Restart",
   "download": "Download configuration",
-  "olsrinfo": {
-    "headline": "OLSR Status Information",
-    "help": "This table shows your OLSR neighbors.",
-    "label": "Neighbors",
-    "urllabel": "URL to your Router",
+  "statusOlsr": {
+    "headline": "OLSR status information",
+    "help": "This page shows OLSR neighbors, routes and interfaces",
     "refresh": "Refresh table",
-    "column": {
-      "localip": "Local IP",
-      "remoteip": "Remote IP",
-      "lq": "Link Quality",
-      "nlq": "Neighbor Link Quality",
-      "etx" : "Link Cost"
+    "neighbors": {
+      "title": "Neighbors",
+      "noData": "Currently there is no data from OLSR.",
+      "noNeighbors": "Currently there are no neighbors.",
+      "columns": {
+        "localip": "Local IP",
+        "remoteip": "Remote IP",
+        "lq": "Link Quality",
+        "nlq": "Neighbor Link Quality",
+        "etx" : "Link Cost"
+      }
     }
   }
 }

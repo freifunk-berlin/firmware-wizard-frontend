@@ -1,0 +1,51 @@
+<div class="jumbotron wizard-bg-highlight" translate-namespace="statusOlsr">
+  <div class="container">
+    <div class="ff-icon-container">
+      <div>
+        <span class="fa-stack fa-6x">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-signal fa-stack-1x fa-inverse"></i>
+        </span>
+      </div>
+      <div class="ff-icon-body">
+        <h1 translate>.headline</h1>
+        <p translate>.help</p>
+        <button class="btn btn-primary" ng-click="$ctrl.refresh()"
+          ng-disabled="$ctrl.refreshing"
+        >
+          <i class="fa fa-fw" ng-class="{
+            'fa-refresh': !$ctrl.refreshing,
+            'fa-spin fa-circle-o-notch': $ctrl.refreshing,
+          }"></i>
+          Refresh OLSR data
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" translate-namespace="statusOlsr">
+  <div translate-namespace=".neighbors">
+    <h2 translate>.title</h2>
+    <p ng-if="$ctrl.links === undefined" translate>.noData</p>
+    <p ng-if="!$ctrl.links.length === 0" translate>.noNeighbors</p>
+    <table class="table table-striped table-hover" ng-if="$ctrl.links.length > 0">
+      <thead translate-namespace=".columns">
+        <th translate>.localip</th>
+        <th translate>.remoteip</th>
+        <th translate>.lq</th>
+        <th translate>.nlq</th>
+        <th translate>.etx</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="link in $ctrl.links" class="wizard-link">
+          <td>{{link.localIP}}</td>
+          <td><a href="http://{{link.remoteIP}}/">{{link.remoteIP}}</a></td>
+          <td>{{link.linkQuality}}</td>
+          <td>{{link.neighborLinkQuality}}</td>
+          <td>{{link.linkCost}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
