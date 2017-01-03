@@ -11,22 +11,11 @@
     <ui-view></ui-view>
 
     <!--
-    <form novalidate name="wizardForm" ng-submit="submit()"
-        class="form-horizontal wizard-categories">
       <ng-include src="'shared/loadConfig/loadConfig.html'"></ng-include>
-      <div class="wizard-category">
-        <ng-include src="'shared/basicRouterSetup/basicRouterSetup.html'"></ng-include>
-      </div>
       <div class="wizard-category">
         <ng-include src="'shared/contactDetails/contactDetails.html'"></ng-include>
       </div>
-      <div class="wizard-category">
-        <router-location
-          name="wizard.router.name"
-          location="wizard.location"
-          on-location-update="wizard.location = location"
-        ></router-location>
-      </div>
+
       <div class="wizard-category">
         <ng-include src="'shared/internetSharing/internetSharing.html'"></ng-include>
       </div>
@@ -39,7 +28,6 @@
       <div class="wizard-category">
         <ng-include src="'shared/advancedWifi/advancedWifi.html'"></ng-include>
       </div>
-    </form>
   -->
   </body>
 </html>

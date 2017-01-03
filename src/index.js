@@ -27,7 +27,6 @@ import services from './services';
 // TODO: move to components
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/loadConfig/loadConfig.html');
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/advancedWifi/advancedWifi.html');
-require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/basicRouterSetup/basicRouterSetup.html');
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/contactDetails/contactDetails.html');
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/internetSharing/internetSharing.html');
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/ipAddresses/ipAddresses.html');

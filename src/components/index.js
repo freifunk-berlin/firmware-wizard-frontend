@@ -7,6 +7,7 @@ import languageDropdown from './language-dropdown/language-dropdown';
 import navbar from './navbar/navbar';
 import routerLocation from './router-location/router-location';
 import wizard from './wizard/wizard';
+import wizardRouter from './wizard-router/wizard-router';
 
 export default module('app.components', [
   authenticateModal.name,
@@ -16,4 +17,5 @@ export default module('app.components', [
   navbar.name,
   routerLocation.name,
   wizard.name,
+  wizardRouter.name,
 ]);
