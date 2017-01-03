@@ -44,6 +44,7 @@ var wizard = module('WizardApp', [
   'ui-leaflet',
   components.name,
   config.name,
+  directives.name,
   filters.name,
   services.name,
 ]);
