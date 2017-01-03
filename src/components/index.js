@@ -10,6 +10,7 @@ import wizard from './wizard/wizard';
 import wizardContact from './wizard-contact/wizard-contact';
 import wizardInternet from './wizard-internet/wizard-internet';
 import wizardLocation from './wizard-location/wizard-location';
+import wizardMonitoring from './wizard-monitoring/wizard-monitoring';
 import wizardRouter from './wizard-router/wizard-router';
 
 export default module('app.components', [
@@ -23,5 +24,6 @@ export default module('app.components', [
   wizardContact.name,
   wizardInternet.name,
   wizardLocation.name,
+  wizardMonitoring.name,
   wizardRouter.name,
 ]);

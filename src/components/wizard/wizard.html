@@ -70,6 +70,13 @@
     ></wizard-internet>
   </div>
 
+  <div class="wizard-category">
+    <wizard-monitoring
+      contact="$ctrl.config.monitoring"
+      on-update="$ctrl.config.monitoring = monitoring"
+    ></wizard-monitoring>
+  </div>
+
 <pre>
 {{$ctrl.config | json}}
 </pre>
