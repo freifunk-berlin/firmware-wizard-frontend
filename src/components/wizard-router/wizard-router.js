@@ -1,4 +1,5 @@
 import { module } from 'angular';
+import { crypt } from 'nano-md5';
 
 export default module('app.components.wizard-router', [])
   .component('wizardRouter', {
@@ -13,19 +14,34 @@ export default module('app.components.wizard-router', [])
         $scope.$watchGroup(
           [
             '$ctrl.name',
-            '$ctrl.password',
-            '$ctrl.passwordVerify',
+            '$ctrl.newPasswordHash',
             '$ctrl.sshkeysEnabled',
             '$ctrl.sshkeys',
           ],
           this.updateRouterOutput.bind(this)
         );
+        $scope.$watchGroup(
+          ['$ctrl.password', '$ctrl.passwordVerify'],
+          this.updatePasswordHash.bind(this)
+        );
+      }
+
+      updatePasswordHash() {
+        if (this.password !== this.passwordVerify) {
+          this.newPasswordHash = undefined;
+          return;
+        }
+        if (!this.password) {
+          this.newPasswordHash = this.router && this.router.passwordHash;
+          return;
+        }
+        this.newPasswordHash = crypt(this.password);
       }
 
       updateRouterOutput() {
         const router = {
           name: this.name,
-          password: this.password === this.passwordVerify ? this.password : undefined,
+          passwordHash: this.newPasswordHash,
           sshkeys: this.sshkeysEnabled ? this.sshkeys : undefined,
         };
         this.onRouterUpdate({router});

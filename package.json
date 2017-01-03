@@ -57,6 +57,7 @@
     "bootstrap": "^3.3.7",
     "font-awesome": "^4.7.0",
     "ip-address": "^5.0.2",
+    "nano-md5": "^1.0.3",
     "ng-file-upload": "^12.0.4",
     "ssh-pub-key-validation": "^1.0.0",
     "ui-leaflet": "^2.0.0"
