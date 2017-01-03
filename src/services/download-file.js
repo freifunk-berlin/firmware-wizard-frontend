@@ -10,7 +10,7 @@ export default module('app.services.download-file', [])
 
     download(filename, data, mimeType, base64, charset) {
       const href = 'data:' + mimeType +
-        (charset ? ';charset:' + charset : '') +
+        (charset ? ';charset=' + charset : '') +
         (base64 ? ';base64' : '') +
         ',' + (base64 ? this.base64encodeFilter(data) : data);
 
