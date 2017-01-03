@@ -7,6 +7,7 @@ import languageDropdown from './language-dropdown/language-dropdown';
 import loadFileButton from './load-file-button/load-file-button';
 import navbar from './navbar/navbar';
 import wizard from './wizard/wizard';
+import wizardContact from './wizard-contact/wizard-contact';
 import wizardLocation from './wizard-location/wizard-location';
 import wizardRouter from './wizard-router/wizard-router';
 
@@ -18,6 +19,7 @@ export default module('app.components', [
   loadFileButton.name,
   navbar.name,
   wizard.name,
+  wizardContact.name,
   wizardLocation.name,
   wizardRouter.name,
 ]);
