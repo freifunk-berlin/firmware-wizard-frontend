@@ -25,7 +25,8 @@
           translate translate-attr-placeholder=".placeholder"
           data-ng-model="$ctrl.name"
           data-ng-model-options="{ debounce: 250 }"
-          required pattern="[A-Za-z0-9_\-]*[A-Za-z0-9]$"
+          required
+          pattern="[A-Za-z0-9_\-]*[A-Za-z0-9]$"
           data-ng-minlength="3"
           data-ng-maxlength="32">
         <span class="fa form-control-feedback"
@@ -70,7 +71,8 @@
           translate
           data-ng-model="$ctrl.password"
           data-ng-model-options="{ debounce: 250 }"
-          required data-ng-minlength="6">
+          ng-required="!$ctrl.router.passwordHash"
+          data-ng-minlength="6">
         <span class="fa form-control-feedback"
           ng-class="{
             'fa-check': (routerForm.password | fieldSuccess),
@@ -106,7 +108,8 @@
           name="passwordVerify" id="passwordVerify"
           data-ng-model="$ctrl.passwordVerify"
           data-ng-model-options="{ debounce: 250 }"
-          required data-compare-to="$ctrl.password">
+          ng-required="!$ctrl.router.passwordHash"
+          data-compare-to="$ctrl.password">
         <span class="fa form-control-feedback"
           ng-class="{
             'fa-check': (routerForm.passwordVerify | fieldSuccess),
