@@ -14,7 +14,6 @@ import 'leaflet';
 import 'angular-translate';                 // pascalprecht.translate module
 import 'angular-translate-loader-static-files';
 import 'angular-ui-bootstrap';              // ui.bootstrap
-import 'ng-file-upload';                    // ngFileUpload
 import 'angular-simple-logger';             // nemLogger (dependency of ui-leaflet)
 import 'ui-leaflet';                        // ui-leaflet
 
@@ -25,7 +24,6 @@ import filters from './filters';
 import services from './services';
 
 // TODO: move to components
-require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/loadConfig/loadConfig.html');
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/advancedWifi/advancedWifi.html');
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/contactDetails/contactDetails.html');
 require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/internetSharing/internetSharing.html');
@@ -39,7 +37,6 @@ var wizard = module('WizardApp', [
   'ngMessages',
   'ngSanitize',
   'pascalprecht.translate',
-  'ngFileUpload',
   'nemLogging',
   'ui-leaflet',
   components.name,
