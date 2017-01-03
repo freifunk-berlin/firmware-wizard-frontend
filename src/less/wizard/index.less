@@ -122,3 +122,14 @@ p.description {
 .dragover {
   border: 5px dashed blue;
 }
+
+@media (min-width: @screen-sm-min) {
+  .ff-icon-container {
+    display: flex;
+    > .ff-icon-body {
+      flex-grow: 1;
+      margin-top: 2em;
+      margin-left: 2em;
+    }
+  }
+}
