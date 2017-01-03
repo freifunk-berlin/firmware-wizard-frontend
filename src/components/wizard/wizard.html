@@ -63,6 +63,13 @@
     ></wizard-location>
   </div>
 
+  <div class="wizard-category">
+    <wizard-internet
+      contact="$ctrl.config.internet"
+      on-update="$ctrl.config.internet = internet"
+    ></wizard-internet>
+  </div>
+
 <pre>
 {{$ctrl.config | json}}
 </pre>

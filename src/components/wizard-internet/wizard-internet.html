@@ -1,10 +1,10 @@
 <!-- internet sharing -->
   <div class="container" translate-namespace="internetSharing">
     <h2>
-            <span class="fa-stack">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-share-alt fa-stack-1x fa-inverse"></i>
-            </span>
+      <span class="fa-stack">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-share-alt fa-stack-1x fa-inverse"></i>
+      </span>
       <span translate>.headline</span>
     </h2>
     <p>
@@ -20,8 +20,8 @@
         <div class="checkbox">
           <label class="text-muted">
             <input type="checkbox"
-                   name="internetShare" id="internetShare"
-                   data-ng-model="wizard.internet.share">
+              name="internetShare" id="internetShare"
+              data-ng-model="$ctrl.newInternet.share">
             <span translate>.help</span>
           </label>
         </div>
@@ -29,7 +29,7 @@
     </div>
     <!-- share internet row -->
 
-    <div uib-collapse="!wizard.internet.share">
+    <div uib-collapse="!$ctrl.newInternet.share">
       <div class="row">
         <div class="col-md-offset-3 col-md-9">
           <p class="text-info">
@@ -48,15 +48,15 @@
           <div class="checkbox">
             <label class="text-muted">
               <input type="checkbox"
-                     name="limitspeed" id="limitspeed"
-                     data-ng-model="wizard.internet.limitspeed.enabled">
+                name="limitspeed" id="limitspeed"
+                data-ng-model="$ctrl.newInternet.speedLimit">
               <span translate>.limitspeed.help</span>
             </label>
           </div>
         </div>
       </div>
 
-      <div uib-collapse="!wizard.internet.limitspeed.enabled">
+      <div uib-collapse="!$ctrl.newInternet.speedLimit">
 
         <div class="row">
           <div class="col-md-offset-3 col-md-9">
@@ -76,18 +76,18 @@
                 <div class="row">
                   <div class="col-md-6">
                     <input type="number" class="form-control"
-                           name="limitDown" id="limitDown"
-                           translate
-                           translate-attr-placeholder=".down.placeholder"
-                           data-ng-model="wizard.internet.limitDown">
-                              <div class="help-block" translate>.down.help</div>
+                      name="limitDown" id="limitDown"
+                      translate
+                      translate-attr-placeholder=".down.placeholder"
+                      data-ng-model="$ctrl.newInternet.speedLimitDown">
+                      <div class="help-block" translate>.down.help</div>
                   </div>
                   <div class="col-md-6">
                     <input type="number" class="form-control"
-                           name="limitUp" id="limitUp"
-                           translate
-                           translate-attr-placeholder=".up.placeholder"
-                           data-ng-model="wizard.internet.limitUp">
+                      name="limitUp" id="limitUp"
+                      translate
+                      translate-attr-placeholder=".up.placeholder"
+                      data-ng-model="$ctrl.newInternet.speedLimitUp">
                     <div class="help-block" translate>.up.help</div>
                   </div>
                 </div>
@@ -99,6 +99,7 @@
       <!-- / transfer rate -->
 
       <!-- anti-störerhaftungs-VPN -->
+      <!-- TODO: migrate! -->
       <div class="form-group" ng-hide="true">
         <label for="vpn" class="col-md-3 control-label" translate>
           .antistoererhaftung.label
@@ -107,8 +108,8 @@
           <div class="checkbox">
             <label class="text-muted">
               <input type="checkbox"
-                     name="vpn" id="vpn"
-                     data-ng-model="wizard.internet.vpn.enabled">
+                name="vpn" id="vpn"
+                data-ng-model="wizard.internet.vpn.enabled">
               <span translate>.antistoererhaftung.help</span>
             </label>
           </div>
