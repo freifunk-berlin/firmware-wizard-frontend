@@ -1,12 +1,12 @@
 import { module } from 'angular';
 
-export default module('app.components.router-location', []).component('routerLocation', {
+export default module('app.components.wizard-location', []).component('wizardLocation', {
   bindings: {
     name: '<',
     location: '<',
     onLocationUpdate: '&',
   },
-  controller: class RouterLocationCtrl {
+  controller: class WizardLocationCtrl {
     constructor($http, $scope, leafletData, online) {
       'ngInject';
       this.$http = $http;
@@ -127,5 +127,5 @@ export default module('app.components.router-location', []).component('routerLoc
       this.onLocationUpdate({location});
     }
   },
-  template: require('./router-location.html'),
+  template: require('./wizard-location.html'),
 });

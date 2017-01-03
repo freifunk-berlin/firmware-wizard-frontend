@@ -41,11 +41,11 @@
   </div>
 
   <div class="wizard-category">
-    <router-location
+    <wizard-location
       name="$ctrl.config.router.name"
       location="$ctrl.config.location"
       on-location-update="$ctrl.config.location = location"
-    ></router-location>
+    ></wizard-location>
   </div>
 
   {{$ctrl.config | json}}

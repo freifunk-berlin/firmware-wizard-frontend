@@ -5,8 +5,8 @@ import connectModal from './connect-modal/connect-modal';
 import home from './home/home';
 import languageDropdown from './language-dropdown/language-dropdown';
 import navbar from './navbar/navbar';
-import routerLocation from './router-location/router-location';
 import wizard from './wizard/wizard';
+import wizardLocation from './wizard-location/wizard-location';
 import wizardRouter from './wizard-router/wizard-router';
 
 export default module('app.components', [
@@ -15,7 +15,7 @@ export default module('app.components', [
   home.name,
   languageDropdown.name,
   navbar.name,
-  routerLocation.name,
   wizard.name,
+  wizardLocation.name,
   wizardRouter.name,
 ]);
