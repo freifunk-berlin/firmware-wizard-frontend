@@ -45,9 +45,12 @@ export default module('app.components.wizard', [uiRouter])
         );
       }
 
+      load(content) {
+        this.config = JSON.parse(content);
+      }
+
       submit() {
         if (!this.session.connection) {
-          console.log('bsasd')
           return this.$q.reject(new Error('no connection to router'));
         }
         if (!this.session.authentication) {

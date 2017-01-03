@@ -1,4 +1,4 @@
-<form novalidate name="wizardForm" ng-submit="submit()"
+<form novalidate name="wizardForm" ng-submit="$ctrl.submit()"
   class="form-horizontal wizard-categories"
 >
   <div class="jumbotron wizard-bg-highlight">
@@ -13,6 +13,14 @@
         <div class="ff-icon-body">
           <h1>{{'heading' | translate }}</h1>
           <p>This configuration wizard helps you to set up your router.</p>
+          <div>
+            Do you already have a config file?
+            <load-file-button accept=".json,application/json"
+              on-loaded="$ctrl.load(content)"
+            >
+              <i class="fa fa-fw fa-upload"></i> Load config
+            </load-file-button>
+          </div>
         </div>
       </div>
     </div>
