@@ -77,6 +77,14 @@
   </div>
 
   <div class="wizard-category">
+    <wizard-ip
+      device="$ctrl.device"
+      ip="$ctrl.config.ip"
+      on-update="$ctrl.config.ip = ip"
+    ></wizard-ip>
+  </div>
+
+  <div class="wizard-category">
     <wizard-monitoring
       contact="$ctrl.config.monitoring"
       on-update="$ctrl.config.monitoring = monitoring"

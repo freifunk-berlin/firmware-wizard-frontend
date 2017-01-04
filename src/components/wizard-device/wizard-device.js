@@ -6,28 +6,57 @@ export default module('app.components.wizard-device', [])
       onUpdate: '&',
     },
     controller: class WizardDeviceCtrl {
-      constructor($scope, router, session) {
+      constructor($filter, $scope, router, session) {
         'ngInject';
 
+        this.$filter = $filter;
         this.router = router;
         this.session = session;
 
-        this.newModel = {};
+        this.newDevice = {};
 
         $scope.$watch('$ctrl.session.connection', this.updateFromSession.bind(this), true);
-        $scope.$watch('$ctrl.newModel', this.updateOutput.bind(this), true);
+        $scope.$watch('$ctrl.newDevice', this.updateOutput.bind(this), true);
+
+        this.devices = devices;
+      }
+
+      getDeviceInfo() {
+        const device = {model: this.session.connection.board.model};
+        // get wireless interfaces
+        return this.router.getNetworkWireless()
+          .then(data => {
+            device.wirelessDevices = this.$filter('objectLength')(data);
+            return device;
+          });
       }
 
       updateFromSession(connection) {
         if (connection) {
-          this.router.getNetworkWireless().then(data => console.log(data));
+          // wait for current connect to finish
+          return this.session.currentConnect
+            .then(() => this.getDeviceInfo())
+            .then(device => this.newDevice = device);
+        } else {
+          this.newDevice = {};
         }
       }
 
-      updateOutput(newModel) {
-        let model = copy(newModel);
-        this.onUpdate({model});
+      updateOutput(newDevice) {
+        let device = copy(newDevice);
+        this.onUpdate({device});
       }
     },
     template: require('./wizard-device.html'),
   });
+
+const devices = [
+  {
+    model: 'TP-Link TL-WDR3600 v1',
+    wirelessDevices: 2,
+  },
+  {
+    model: 'TP-Link TL-WR741 v1',
+    wirelessDevices: 1,
+  },
+];

@@ -7,5 +7,33 @@
       </span>
       <span translate>.headline</span>
     </h2>
+    <div class="form-group" translate-namespace=".model">
+      <label for="model" class="col-md-3 control-label" translate>
+        .label
+      </label>
+      <div class="col-md-9">
+        <p class="form-control-static" ng-if="$ctrl.session.connection">
+          {{$ctrl.newDevice.model}}
+        </p>
+        <select class="form-control"
+          ng-if="!$ctrl.session.connection"
+          ng-model="$ctrl.newDevice"
+        >
+          <option ng-repeat="device in $ctrl.devices" ng-value="device">
+            {{device.model}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group" translate-namespace=".wireless">
+      <label for="wireless" class="col-md-3 control-label" translate>
+        .label
+      </label>
+      <div class="col-md-9">
+        <p class="form-control-static">
+          {{$ctrl.newDevice.wirelessDevices}}
+        </p>
+      </div>
+    </div>
   </div>
 </ng-form>

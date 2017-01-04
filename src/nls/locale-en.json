@@ -26,7 +26,13 @@
     }
   },
   "device": {
-    "headline": "Device"
+    "headline": "Device",
+    "model": {
+      "label": "Device model"
+    },
+    "wireless": {
+      "label": "Wireless devices"
+    }
   },
   "basicRouterSetup": {
     "headline": "Basic router setup",
