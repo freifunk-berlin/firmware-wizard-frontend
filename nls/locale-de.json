@@ -298,19 +298,5 @@
   "applyerror": "Deine Konfiguration konnte nicht gespeichert werden. Bitte schau in den Logs auf dem Router nach Details.",
   "uploaderror": "Deine Konfiguration konnte nicht zum Router geladen werden. Prüfe bitte deine Verbindung und deinen Router.",
   "save": "Speichern &amp; Neustarten",
-  "download": "Konfiguration herunterladen",
-  "olsrinfo": {
-    "headline": "OLSR Statusinformationen",
-    "help": "Diese Tabelle zeigt die OLSR-Nachbarn.",
-    "label": "Nachbarn",
-    "urllabel": "URL zum Router",
-    "refresh": "Tabelle aktualisieren",
-    "column": {
-      "localip": "Lokale IP",
-      "remoteip": "Entfernte IP",
-      "lq": "Linkqualität",
-      "nlq": "Linkqualität aus Sicht des Nachbarn",
-      "etx" : "Kosten"
-    }
-  }
+  "download": "Konfiguration herunterladen"
 }
