@@ -10,6 +10,7 @@ import statusOlsr from './status-olsr/status-olsr';
 import wizard from './wizard/wizard';
 import wizardContact from './wizard-contact/wizard-contact';
 import wizardInternet from './wizard-internet/wizard-internet';
+import wizardIp from './wizard-ip/wizard-ip';
 import wizardLocation from './wizard-location/wizard-location';
 import wizardMonitoring from './wizard-monitoring/wizard-monitoring';
 import wizardRouter from './wizard-router/wizard-router';
@@ -25,6 +26,7 @@ export default module('app.components', [
   wizard.name,
   wizardContact.name,
   wizardInternet.name,
+  wizardIp.name,
   wizardLocation.name,
   wizardMonitoring.name,
   wizardRouter.name,
