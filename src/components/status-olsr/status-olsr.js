@@ -8,7 +8,7 @@ export default module('app.components.status-olsr', [uiRouter])
       component: 'statusOlsr',
       name: 'statusOlsr',
       resolve: {
-        connection: ['session', session => session.currentConnect.catch()],
+        connection: ['session', session => session.currentConnect.catch(() => false)],
       },
       url: '/status/olsr',
     });
