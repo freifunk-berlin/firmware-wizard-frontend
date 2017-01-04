@@ -308,7 +308,6 @@
   "configIncorrect": "The data you entered is invalid. Please correct the fields marked with <i class=\"fa fa-times\"></i> before you continue.",
   "applysuccesful": "Your config was applied succesfully! Yeah!",
   "applyerror": "Your config could not be applied. See logs on your router for details.",
-  "uploaderror": "Your config could not be uploaded. Check your connection and your router.",
   "save": "Save &amp; Restart",
   "download": "Download configuration",
   "statusOlsr": {

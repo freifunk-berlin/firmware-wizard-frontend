@@ -64,6 +64,7 @@ export default module('app.components.wizard', [uiRouter])
         newConfig.location.lat = newConfig.location.lat && newConfig.location.lat.toString();
         newConfig.location.lng = newConfig.location.lng && newConfig.location.lat.toString();
 
+        this.applied = false;
         this.submitting = true;
         this.error = undefined;
         return this.router.applyConfig(newConfig).then(

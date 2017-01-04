@@ -97,25 +97,25 @@
           ng-if="wizardForm.$submitted && wizardForm.$invalid">
           configIncorrect
       </span>
-      <span class="text-success" translate
-            ng-show="state.apply.uploaded && state.apply.success">
+      <span class="text-success" translate ng-show="$ctrl.applied">
         applysuccesful
       </span>
-      <span class="text-danger" translate
-            ng-show="state.apply.uploaded && ! state.apply.success">
+      <span class="text-danger" translate ng-show="$ctrl.error">
         applyerror
-      </span>
-      <span class="text-danger" translate
-            ng-show="state.apply.error && ! state.apply.success">
-        uploaderror
       </span>
       <button type="button" class="btn btn-default" ng-click="$ctrl.download()">
         <i class="fa fa-fw fa-download"></i> <span translate>download</span>
       </button>
 
       <button type="submit" class="btn btn-primary"
-        ng-disabled="wizardForm.$invalid || !$ctrl.session.connection || !$ctrl.session.authentication">
-        <i class="fa fa-fw fa-check"></i> <span translate>save</span>
+        ng-disabled="wizardForm.$invalid || !$ctrl.session.connection ||
+          !$ctrl.session.authentication || $ctrl.submitting"
+      >
+        <i class="fa fa-fw" ng-class="{
+          'fa-check': !$ctrl.submitting,
+          'fa-spin fa-circle-o-notch': $ctrl.submitting,
+        }"></i>
+        <span translate>save</span>
       </button>
     </div>
   </div>
