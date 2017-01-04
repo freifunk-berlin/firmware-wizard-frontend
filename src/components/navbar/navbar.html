@@ -54,10 +54,14 @@
         <language-dropdown></language-dropdown>
         <button type="button" class="btn btn-primary"
           ng-if="!$ctrl.session.authentication"
-          ng-disabled="!$ctrl.session.connection"
+          ng-disabled="!$ctrl.session.connection || $ctrl.session.authenticating"
           ng-click="$ctrl.showAuthenticateModal()"
         >
-          <i class="fa fa-fw fa-sign-in"></i> Sign in
+          <i class="fa fa-fw" ng-class="{
+            'fa-sign-in': !$ctrl.session.authenticating,
+            'fa-spin fa-circle-o-notch': $ctrl.session.authenticating,
+          }"></i>
+          Sign in
         </button>
         <span class="text-muted" ng-if="$ctrl.session.authentication">
           Signed in as <em>{{$ctrl.session.authentication.username}}</em>
