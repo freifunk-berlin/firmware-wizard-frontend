@@ -30,7 +30,7 @@ export default module('app.components.status-olsr', [uiRouter])
         return this.router.getOlsrLinks().then(
           data => {
             this.refreshing = false;
-            this.links = data;
+            this.links = data.links;
           },
           data => {
             this.refreshing = false;
