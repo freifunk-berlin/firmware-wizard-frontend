@@ -320,6 +320,19 @@
       "noData": "Currently there is no data from OLSR.",
       "noNeighbors": "Currently there are no neighbors.",
       "columns": {
+        "ipAddress": "IP",
+        "multiPointRelay": "Multi point relay",
+        "multiPointRelaySelector": "Multi point relay selector",
+        "symmetric": "Symmetric",
+        "twoHopNeighborCount": "2 hop neighbor count",
+        "willingness" : "Willingness"
+      }
+    },
+    "links": {
+      "title": "Links",
+      "noData": "Currently there is no data from OLSR.",
+      "noLinks": "Currently there are no links.",
+      "columns": {
         "localip": "Local IP",
         "remoteip": "Remote IP",
         "lq": "Link Quality",

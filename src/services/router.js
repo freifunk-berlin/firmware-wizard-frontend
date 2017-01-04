@@ -39,6 +39,10 @@ export default module('app.services.router', [])
       return this.call('olsrd', 'links', {});
     }
 
+    getOlsrNeighbors() {
+      return this.call('olsrd', 'neighbors', {});
+    }
+
     getSystemBoard() {
       return this.call('system', 'board', {});
     }

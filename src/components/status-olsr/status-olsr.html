@@ -27,23 +27,25 @@
 <div class="container" translate-namespace="statusOlsr">
   <div translate-namespace=".neighbors">
     <h2 translate>.title</h2>
-    <p ng-if="$ctrl.links === undefined" translate>.noData</p>
-    <p ng-if="!$ctrl.links.length === 0" translate>.noNeighbors</p>
-    <table class="table table-striped table-hover" ng-if="$ctrl.links.length > 0">
+    <p ng-if="$ctrl.neighbors === undefined" translate>.noData</p>
+    <p ng-if="!$ctrl.neighbors.length === 0" translate>.noNeighbors</p>
+    <table class="table table-striped table-hover" ng-if="$ctrl.neighbors.length > 0">
       <thead translate-namespace=".columns">
-        <th translate>.localip</th>
-        <th translate>.remoteip</th>
-        <th translate>.lq</th>
-        <th translate>.nlq</th>
-        <th translate>.etx</th>
+        <th translate>.ipAddress</th>
+        <th translate>.multiPointRelay</th>
+        <th translate>.multiPointRelaySelector</th>
+        <th translate>.symmetric</th>
+        <th translate>.twoHopNeighborCount</th>
+        <th translate>.willingness</th>
       </thead>
       <tbody>
-        <tr ng-repeat="link in $ctrl.links" class="wizard-link">
-          <td>{{link.localIP}}</td>
-          <td><a href="http://{{link.remoteIP}}/">{{link.remoteIP}}</a></td>
-          <td>{{link.linkQuality}}</td>
-          <td>{{link.neighborLinkQuality}}</td>
-          <td>{{link.linkCost}}</td>
+        <tr ng-repeat="neighbor in $ctrl.neighbors" class="wizard-neighbor">
+          <td><a href="http://{{neighbor.ipAddress}}/">{{neighbor.ipAddress}}</a></td>
+          <td>{{neighbor.multiPointRelay}}</td>
+          <td>{{neighbor.multiPointRelaySelector}}</td>
+          <td>{{neighbor.symmetric}}</td>
+          <td>{{neighbor.twoHopNeighborCount}}</td>
+          <td>{{neighbor.willingness}}</td>
         </tr>
       </tbody>
     </table>
