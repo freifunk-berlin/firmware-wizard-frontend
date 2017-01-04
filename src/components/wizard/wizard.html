@@ -95,7 +95,6 @@
 {{$ctrl.device | json}}
 {{$ctrl.config | json}}
 </pre>
-Valid: {{wizardForm.$valid}}
   <!-- TODO: cleanup -->
   <div class="wizard-category">
     <div class="container text-right">
@@ -118,6 +117,7 @@ Valid: {{wizardForm.$valid}}
       <button type="button" class="btn btn-default" ng-click="$ctrl.download()">
         <i class="fa fa-fw fa-download"></i> <span translate>download</span>
       </button>
+
       <button type="submit" class="btn btn-primary"
         ng-disabled="wizardForm.$invalid || !$ctrl.session.connection || !$ctrl.session.authentication">
         <i class="fa fa-fw fa-check"></i> <span translate>save</span>

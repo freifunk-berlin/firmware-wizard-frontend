@@ -25,16 +25,13 @@ export default module('app.components.wizard', [uiRouter])
       config: '<',
     },
     controller: class WizardCtrl {
-      constructor($q, downloadFile, online, router) {
+      constructor($q, downloadFile, online, router, session) {
         'ngInject';
         this.$q = $q;
         this.downloadFile = downloadFile;
         this.online = online;
         this.router = router;
-      }
-
-      $onInit() {
-        console.log(this.config);
+        this.session = session;
       }
 
       download() {
