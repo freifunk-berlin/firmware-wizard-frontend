@@ -10,17 +10,19 @@ export default module('app.components.load-file-button', [])
       onLoaded: '&',
     },
     controller: class LoadFileButtonCtrl {
-      constructor($element, $scope) {
+      constructor($element, $scope, $window) {
         'ngInject';
+
         this.$scope = $scope;
+        this.$window = $window;
         $element.on('change', this.load.bind(this));
       }
 
       load(event) {
         if (!event.target.files || event.target.files.length === 0) return;
-        const reader = new FileReader();
-        reader.onload = event => this.$scope.$apply(() => {
-          this.onLoaded({content: event.target.result});
+        const reader = new this.$window.FileReader();
+        reader.onload = frEvent => this.$scope.$apply(() => {
+          this.onLoaded({content: frEvent.target.result});
         });
         reader.readAsText(event.target.files[0]);
       }

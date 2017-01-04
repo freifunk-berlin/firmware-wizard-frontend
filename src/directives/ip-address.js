@@ -2,7 +2,7 @@ import { module } from 'angular';
 import ip from 'ip-address';
 
 export default module('app.directives.ip-address', [])
-  .directive('ipAddress', () => {
+  .directive('ipAddress', () => ({
     // check if the provided value is a valid ipv4 or ipv6 address
     //
     // Usage example:
@@ -10,42 +10,39 @@ export default module('app.directives.ip-address', [])
     //   ip-address ip-version="6"
     //   ip-prefix-min-length="48"
     //   ip-prefix-max-length="62">
-    return {
-      require: 'ngModel',
-      link: function(scope, element, attributes, ngModel) {
+    require: 'ngModel',
+    link: (scope, element, attributes, ngModel) => {
+      const IpAddress = attributes.ipVersion === '4' ?
+        ip.Address4 : ip.Address6;
 
-        var IpAddress = attributes.ipVersion === '4' ?
-          ip.Address4 : ip.Address6;
+      ngModel.$validators.ipAddress = (modelValue) => {
+        if (modelValue === undefined) {
+          return true;
+        }
+        const parsedIp = new IpAddress(modelValue || '');
+        return parsedIp.valid;
+      };
 
-        ngModel.$validators.ipAddress = function(modelValue) {
+      if (attributes.ipPrefixMinLength !== undefined) {
+        const minLength = parseInt(attributes.ipPrefixMinLength, 10);
+        ngModel.$validators.ipPrefixMinLength = (modelValue) => {
           if (modelValue === undefined) {
             return true;
           }
-          var parsedIp = new IpAddress(modelValue || '');
-          return parsedIp.valid;
+          const parsedIp = new IpAddress(modelValue || '');
+          return parsedIp.valid && parsedIp.subnetMask >= minLength;
         };
-
-        if (attributes.ipPrefixMinLength !== undefined) {
-          var minLength = parseInt(attributes.ipPrefixMinLength);
-          ngModel.$validators.ipPrefixMinLength = function(modelValue) {
-            if (modelValue === undefined) {
-              return true;
-            }
-            var parsedIp = new IpAddress(modelValue || '');
-            return parsedIp.valid && parsedIp.subnetMask >= minLength;
-          };
-        }
-
-        if (attributes.ipPrefixMaxLength !== undefined) {
-          var maxLength = parseInt(attributes.ipPrefixMaxLength);
-          ngModel.$validators.ipPrefixMaxLength = function(modelValue) {
-            if (modelValue === undefined) {
-              return true;
-            }
-            var parsedIp = new IpAddress(modelValue || '');
-            return parsedIp.valid && parsedIp.subnetMask <= maxLength;
-          };
-        }
       }
-    };
-  });
+
+      if (attributes.ipPrefixMaxLength !== undefined) {
+        const maxLength = parseInt(attributes.ipPrefixMaxLength, 10);
+        ngModel.$validators.ipPrefixMaxLength = (modelValue) => {
+          if (modelValue === undefined) {
+            return true;
+          }
+          const parsedIp = new IpAddress(modelValue || '');
+          return parsedIp.valid && parsedIp.subnetMask <= maxLength;
+        };
+      }
+    },
+  }));

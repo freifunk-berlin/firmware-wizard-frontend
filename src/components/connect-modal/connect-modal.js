@@ -10,6 +10,7 @@ export default module('app.components.connect-modal', [])
     controller: class ConnectModalCtrl {
       constructor(session) {
         'ngInject';
+
         this.session = session;
         this.url = this.session.connection && this.session.connection.apiUrl;
       }
@@ -18,15 +19,15 @@ export default module('app.components.connect-modal', [])
         this.connecting = true;
         this.error = undefined;
         this.session.connect(this.url).then(
-          data => {
+          () => {
             this.connecting = false;
             this.close();
           },
-          data => {
-            this.connecting= false;
+          (data) => {
+            this.connecting = false;
             this.error = data;
-          }
-        )
+          },
+        );
       }
     },
     template: require('./connect-modal.html'),

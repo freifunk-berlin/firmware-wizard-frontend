@@ -1,12 +1,10 @@
-import { module } from 'angular';
+import { isObject, module } from 'angular';
 
 export default module('app.filters.object-length', [])
-  .filter('objectLength', () => {
+  .filter('objectLength', () => (input) => {
     // see http://stackoverflow.com/a/25299523/1219479
-    return function(input) {
-      if (!angular.isObject(input)) {
-        return;
-      }
-      return Object.keys(input).length;
-    };
+    if (!isObject(input)) {
+      return undefined;
+    }
+    return Object.keys(input).length;
   });

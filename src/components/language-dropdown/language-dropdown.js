@@ -5,6 +5,7 @@ export default module('app.components.language-dropdown', [])
     controller: class LanguageDropdownCtrl {
       constructor($scope, $translate) {
         'ngInject';
+
         this.selectedLanguage = $translate.proposedLanguage() || $translate.use();
         $scope.$watch('$ctrl.selectedLanguage', language => $translate.use(language));
       }

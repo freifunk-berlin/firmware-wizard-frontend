@@ -63,7 +63,7 @@ $scope.applyDefaults = function(device, config) {
 };
 
 $scope.applyScan = function(device, config, scan) {
-  var batRegexp = /.*bat([0-9]*).*/g;
+  var batRegexp = /bat([0-9]*)/g;
   var batMatch = batRegexp.exec(scan.ssid);
   var batVlan = batMatch ? parseInt(batMatch[1]) : 1;
 

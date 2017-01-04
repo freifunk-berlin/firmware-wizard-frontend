@@ -2,8 +2,9 @@ import { copy, module } from 'angular';
 import uiRouter from 'angular-ui-router';
 
 export default module('app.components.wizard', [uiRouter])
-  .config($stateProvider => {
+  .config(($stateProvider) => {
     'ngInject';
+
     $stateProvider.state({
       name: 'wizard',
       component: 'wizard',
@@ -27,6 +28,7 @@ export default module('app.components.wizard', [uiRouter])
     controller: class WizardCtrl {
       constructor($q, downloadFile, online, router, session) {
         'ngInject';
+
         this.$q = $q;
         this.downloadFile = downloadFile;
         this.online = online;
@@ -39,7 +41,7 @@ export default module('app.components.wizard', [uiRouter])
           `config-${this.config.router.name || 'unknown'}.json`,
           JSON.stringify(this.config, undefined, 2),
           'application/json',
-          true
+          true,
         );
       }
 
@@ -62,15 +64,15 @@ export default module('app.components.wizard', [uiRouter])
 
         this.submitting = true;
         this.error = undefined;
-        router.applyConfig(newConfig).then(
-          data => {
+        return this.router.applyConfig(newConfig).then(
+          () => {
             this.submitting = false;
             this.applied = true;
           },
-          data => {
+          (data) => {
             this.submitting = false;
             this.error = data;
-          }
+          },
         );
       }
     },

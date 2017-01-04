@@ -4,12 +4,13 @@ export default module('app.services.router', [])
   .service('router', class RouterService {
     constructor($q, jsonrpc, session) {
       'ngInject';
+
       this.$q = $q;
       this.jsonrpc = jsonrpc;
       this.session = session;
     }
 
-    _call(object, method, args) {
+    call(object, method, args) {
       if (!this.session.connection) {
         return this.$q.reject(new Error('not connected'));
       }
@@ -18,36 +19,31 @@ export default module('app.services.router', [])
         this.session.getSessionId(),
         object,
         method,
-        args
+        args,
       );
     }
 
     applyConfig(config) {
-      return this._call('ffwizard', 'apply', {config});
+      return this.call('ffwizard', 'apply', {config});
     }
 
     getIwinfoFreqlist(device) {
-      return this._call('iwinfo', 'freqlist', {device});
+      return this.call('iwinfo', 'freqlist', {device});
     }
 
     getNetworkWireless() {
-      return this._call('network.wireless', 'status', {});
+      return this.call('network.wireless', 'status', {});
     }
 
     getOlsrLinks() {
-      return this._call('olsrd', 'links', {});
+      return this.call('olsrd', 'links', {});
     }
 
     getSystemBoard() {
-      return this._call('system', 'board', {});
+      return this.call('system', 'board', {});
     }
 
     scanWifi(device) {
-      return this._call('iwinfo', 'scan', {'device': device});
-    }
-
-    updateInfo() {
-      this.getSystemBoard().then(data => this.systemBoard = data);
-      this.getNetworkWireless().then(data => this.networkWireless = data);
+      return this.call('iwinfo', 'scan', {device});
     }
   });

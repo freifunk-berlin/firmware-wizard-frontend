@@ -1,4 +1,4 @@
-import { copy, module } from 'angular';
+import { module } from 'angular';
 
 export default module('app.services.session', [])
   .service('session', class SessionService {
@@ -7,6 +7,7 @@ export default module('app.services.session', [])
 
     constructor($location, $q, $window, jsonrpc) {
       'ngInject';
+
       this.$q = $q;
       this.jsonrpc = jsonrpc;
       this.$window = $window;
@@ -35,7 +36,7 @@ export default module('app.services.session', [])
       }
       this.connecting = true;
       this.currentConnect = this.probeSystemBoard(apiUrl).then(
-        data => {
+        (data) => {
           this.connecting = false;
           this.connection = {apiUrl, board: data};
           this.authentication = undefined;
@@ -43,13 +44,13 @@ export default module('app.services.session', [])
           // try to authenticate with default credentials (for lede factory default)
           return this.$q(resolve => this.authenticate().finally(() => resolve(this.connection)));
         },
-        data => {
+        (data) => {
           this.connecting = false;
           this.connection = undefined;
           this.authentication = undefined;
           delete this.$window.localStorage.apiUrl;
           return this.$q.reject(data);
-        }
+        },
       );
       return this.currentConnect;
     }
@@ -75,7 +76,7 @@ export default module('app.services.session', [])
       };
       return this.jsonrpc.call(apiUrl, this.initialSessionId, 'session', 'login', args)
         .then(
-          data => {
+          (data) => {
             this.authenticating = false;
 
             // set expiry date
@@ -93,11 +94,11 @@ export default module('app.services.session', [])
             return this.authentication;
           },
           // failed http request
-          data => {
+          (data) => {
             this.authenticating = false;
             this.error = data;
             return this.$q.reject(data);
-          }
+          },
         );
     }
 

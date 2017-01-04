@@ -1,8 +1,9 @@
 import { module } from 'angular';
 
 export default module('app.config.log', [])
-  .config($logProvider => {
+  .config(($logProvider) => {
     'ngInject';
+
     // disable debug logging
     $logProvider.debugEnabled(false);
   });

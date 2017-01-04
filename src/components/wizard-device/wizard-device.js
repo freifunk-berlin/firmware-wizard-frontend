@@ -1,5 +1,17 @@
 import { copy, module } from 'angular';
 
+// TODO: get devices from somewhere else :)
+const devices = [
+  {
+    model: 'TP-Link TL-WDR3600 v1',
+    wirelessDevices: 2,
+  },
+  {
+    model: 'TP-Link TL-WR741 v1',
+    wirelessDevices: 1,
+  },
+];
+
 export default module('app.components.wizard-device', [])
   .component('wizardDevice', {
     bindings: {
@@ -25,7 +37,7 @@ export default module('app.components.wizard-device', [])
         const device = {model: this.session.connection.board.model};
         // get wireless interfaces
         return this.router.getNetworkWireless()
-          .then(data => {
+          .then((data) => {
             device.wirelessDevices = this.$filter('objectLength')(data);
             return device;
           });
@@ -34,29 +46,18 @@ export default module('app.components.wizard-device', [])
       updateFromSession(connection) {
         if (connection) {
           // wait for current connect to finish
-          return this.session.currentConnect
+          this.session.currentConnect
             .then(() => this.getDeviceInfo())
-            .then(device => this.newDevice = device);
-        } else {
-          this.newDevice = {};
+            .then(device => (this.newDevice = device));
+          return;
         }
+
+        this.newDevice = {};
       }
 
       updateOutput(newDevice) {
-        let device = copy(newDevice);
-        this.onUpdate({device});
+        this.onUpdate({device: copy(newDevice)});
       }
     },
     template: require('./wizard-device.html'),
   });
-
-const devices = [
-  {
-    model: 'TP-Link TL-WDR3600 v1',
-    wirelessDevices: 2,
-  },
-  {
-    model: 'TP-Link TL-WR741 v1',
-    wirelessDevices: 1,
-  },
-];

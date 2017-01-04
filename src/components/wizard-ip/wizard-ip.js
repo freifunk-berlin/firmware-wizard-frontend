@@ -12,6 +12,8 @@ export default module('app.components.wizard-ip', [])
         'ngInject';
 
         this.newIp = {};
+
+        // eslint-disable-next-line no-restricted-properties
         this.pow = Math.pow;
 
         $scope.$watch('$ctrl.ip', this.updateFromInput.bind(this), true);
@@ -23,7 +25,7 @@ export default module('app.components.wizard-ip', [])
       }
 
       updateOutput(newIp) {
-        let ip = copy(newIp);
+        const ip = copy(newIp);
         if (!ip.meshLan && ip.v4) {
           delete ip.v4.lan;
         }

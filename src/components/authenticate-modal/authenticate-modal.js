@@ -9,6 +9,7 @@ export default module('app.components.authenticate-modal', [])
     controller: class AuthenticateModalCtrl {
       constructor(session) {
         'ngInject';
+
         this.session = session;
       }
 
@@ -16,15 +17,15 @@ export default module('app.components.authenticate-modal', [])
         this.authenticating = true;
         this.error = undefined;
         this.session.authenticate('root', this.password).then(
-          data => {
+          () => {
             this.authenticating = false;
             this.close();
           },
-          data => {
+          (data) => {
             this.authenticating = false;
             this.error = data;
-          }
-        )
+          },
+        );
       }
     },
     template: require('./authenticate-modal.html'),

@@ -1,9 +1,10 @@
-import { copy, module } from 'angular';
+import { module } from 'angular';
 import uiRouter from 'angular-ui-router';
 
 export default module('app.components.status-olsr', [uiRouter])
-  .config($stateProvider => {
+  .config(($stateProvider) => {
     'ngInject';
+
     $stateProvider.state({
       component: 'statusOlsr',
       name: 'statusOlsr',
@@ -15,25 +16,27 @@ export default module('app.components.status-olsr', [uiRouter])
   })
   .component('statusOlsr', {
     controller: class StatusOlsrCtrl {
-      constructor(router) {
+      constructor($q, router) {
         'ngInject';
-        this.router = router
+
+        this.$q = $q;
+        this.router = router;
         this.refresh();
       }
 
       refresh() {
-        if (this.refreshing) return;
+        if (this.refreshing) return this.$q.reject(new Error('already refreshing'));
         this.refreshing = true;
         this.error = undefined;
         return this.router.getOlsrLinks().then(
-          data => {
+          (data) => {
             this.refreshing = false;
             this.links = data.links;
           },
-          data => {
+          (data) => {
             this.refreshing = false;
             this.error = data;
-          }
+          },
         );
       }
     },

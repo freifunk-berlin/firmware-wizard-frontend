@@ -10,6 +10,7 @@ export default module('app.components.wizard-router', [])
     controller: class WizardRouterCtrl {
       constructor($scope, session) {
         'ngInject';
+
         this.session = session;
         $scope.$watchCollection('$ctrl.router', this.updateFromInput.bind(this));
         $scope.$watchGroup(
@@ -19,12 +20,12 @@ export default module('app.components.wizard-router', [])
             '$ctrl.sshkeysEnabled',
             '$ctrl.sshkeys',
           ],
-          this.updateRouterOutput.bind(this)
+          this.updateRouterOutput.bind(this),
         );
         // update passwordHash
         $scope.$watchGroup(
           ['$ctrl.password', '$ctrl.passwordVerify', '$ctrl.router.passwordHash'],
-          this.updatePasswordHash.bind(this)
+          this.updatePasswordHash.bind(this),
         );
       }
 
@@ -43,7 +44,6 @@ export default module('app.components.wizard-router', [])
         if (this.password === this.passwordHashed) return;
         this.passwordHashed = this.password;
         this.passwordHash = crypt(this.password);
-
       }
 
       updateFromInput(router) {

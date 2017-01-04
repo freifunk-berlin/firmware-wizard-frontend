@@ -4,6 +4,7 @@ export default module('app.services.jsonrpc', [])
   .service('jsonrpc', class JsonrpcService {
     constructor($http, $q) {
       'ngInject';
+
       this.$http = $http;
       this.$q = $q;
     }
@@ -13,13 +14,13 @@ export default module('app.services.jsonrpc', [])
         jsonrpc: '2.0',
         id: 1,
         method: 'call',
-        params: [session, object, method, args]
+        params: [session, object, method, args],
       }, {
-        timeout: 10000
-      }).then(response => {
+        timeout: 10000,
+      }).then((response) => {
         const data = response.data;
         if (!data) {
-          return this.$q.reject(new Error(`JSON RPC Error: no data`));
+          return this.$q.reject(new Error('JSON RPC Error: no data'));
         }
         if (data.error) {
           return this.$q.reject(new Error(`JSON RPC Error: ${data.error.message} (code ${data.error.code})`));

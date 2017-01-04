@@ -6,6 +6,7 @@ export default module('app.components.navbar', []).component('navbar', {
   controller: class NavbarCtrl {
     constructor($uibModal, session) {
       'ngInject';
+
       this.$uibModal = $uibModal;
       this.session = session;
 

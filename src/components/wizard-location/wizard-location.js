@@ -9,6 +9,7 @@ export default module('app.components.wizard-location', []).component('wizardLoc
   controller: class WizardLocationCtrl {
     constructor($http, $scope, leafletData, online) {
       'ngInject';
+
       this.$http = $http;
       this.leafletData = leafletData;
       this.online = online;
@@ -27,8 +28,8 @@ export default module('app.components.wizard-location', []).component('wizardLoc
         events: {
           map: {
             enable: ['dblclick'],
-            logic: 'emit'
-          }
+            logic: 'emit',
+          },
         },
         markers: {
           router: {
@@ -36,7 +37,7 @@ export default module('app.components.wizard-location', []).component('wizardLoc
             lng: 13.40942,
             focus: true,
             draggable: true,
-          }
+          },
         },
       };
 
@@ -44,7 +45,7 @@ export default module('app.components.wizard-location', []).component('wizardLoc
       $scope.$watchCollection('$ctrl.location', this.updateLocationFromInput.bind(this));
       $scope.$on('leafletDirectiveMap.dblclick', (_, args) => this.updateLocationFromLatLng(args.leafletEvent.latlng));
       $scope.$on('leafletDirectiveMarker.dragend', (_, args) => this.updateLocationFromLatLng(args.model));
-      $scope.$watchCollection('$ctrl.map.markers.router', router => {
+      $scope.$watchCollection('$ctrl.map.markers.router', (router) => {
         this.updateCenterFromLocation(router);
         this.updateLocationOutput();
         this.updateAddressFromLocation(router);
@@ -56,16 +57,16 @@ export default module('app.components.wizard-location', []).component('wizardLoc
     getLocation() {
       this.mapRegistered = false;
       this.searchingGeolocation = true;
-      this.leafletData.getMap().then(map => {
+      this.leafletData.getMap().then((map) => {
         map.locate({setView: true, maxZoom: 16, enableHighAccuracy: true});
         if (this.mapRegistered) return;
 
         this.mapRegistered = true;
-        map.on('locationfound', event => {
+        map.on('locationfound', (event) => {
           this.updateLocationFromLatLng({lat: event.latitude, lng: event.longitude});
           this.searchingGeolocation = false;
         });
-        map.on('locationerror', event => this.searchingGeolocation = false);
+        map.on('locationerror', () => (this.searchingGeolocation = false));
       });
     }
 
@@ -83,8 +84,8 @@ export default module('app.components.wizard-location', []).component('wizardLoc
     }
 
     updateLocationFromLatLng(latlng) {
-      this.map.markers.router.lat = latlng && latlng.lat || 52.52080;
-      this.map.markers.router.lng = latlng && latlng.lng || 13.40942;
+      this.map.markers.router.lat = (latlng && latlng.lat) || 52.52080;
+      this.map.markers.router.lng = (latlng && latlng.lng) || 13.40942;
     }
 
     updateName(name) {
@@ -96,9 +97,9 @@ export default module('app.components.wizard-location', []).component('wizardLoc
       this.searchingAddress = true;
       this.$http.get(
         '//nominatim.openstreetmap.org/reverse',
-        {params: {format: 'json', lat: location.lat, lon: location.lng}}
+        {params: {format: 'json', lat: location.lat, lon: location.lng}},
       ).then(
-        response => {
+        (response) => {
           this.searchingAddress = false;
           const address = response.data && response.data.address;
           if (!address) return;
@@ -112,7 +113,7 @@ export default module('app.components.wizard-location', []).component('wizardLoc
 
           this.updateLocationOutput();
         },
-        data => this.searchingAddress = false
+        () => (this.searchingAddress = false),
       );
     }
 

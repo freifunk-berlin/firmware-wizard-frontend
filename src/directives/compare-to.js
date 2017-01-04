@@ -1,22 +1,16 @@
 import { module } from 'angular';
 
 export default module('app.directives.compare-to', [])
-  .directive('compareTo', () => {
+  .directive('compareTo', () => ({
     // http://odetocode.com/blogs/scott/archive/2014/10/13/confirm-password-validation-in-angularjs.aspx
-    return {
-      require: 'ngModel',
-      scope: {
-        otherModelValue: '=compareTo'
-      },
-      link: function(scope, element, attributes, ngModel) {
+    require: 'ngModel',
+    scope: {
+      otherModelValue: '=compareTo',
+    },
+    link: (scope, element, attributes, ngModel) => {
+      ngModel.$validators.compareTo =
+        modelValue => modelValue === scope.otherModelValue;
 
-        ngModel.$validators.compareTo = function(modelValue) {
-          return modelValue == scope.otherModelValue;
-        };
-
-        scope.$watch('otherModelValue', function() {
-          ngModel.$validate();
-        });
-      }
-    };
-  });
+      scope.$watch('otherModelValue', () => ngModel.$validate());
+    },
+  }));

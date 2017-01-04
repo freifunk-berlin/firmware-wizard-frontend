@@ -4,6 +4,7 @@ export default module('app.services.online', [])
   .service('online', class OnlineService {
     constructor($http, $q, $timeout, $window) {
       'ngInject';
+
       this.$http = $http;
       this.$q = $q;
       this.$timeout = $timeout;
@@ -19,8 +20,8 @@ export default module('app.services.online', [])
       // TODO: use a freifunk url with enabled CORS
       const probePromise = this.$http.head('https://paperhive.org/api/');
       probePromise.then(
-        () => this.isOnline = true,
-        () => this.isOnline = false,
+        () => (this.isOnline = true),
+        () => (this.isOnline = false),
       );
       return probePromise;
     }
@@ -28,7 +29,7 @@ export default module('app.services.online', [])
     probeLater() {
       // wait a bit before actually checking (network may not be fully initialized)
       const probePromise = this.$q(
-        (resolve, reject) => this.$timeout(() => this.probe().then(resolve, reject), 100)
+        (resolve, reject) => this.$timeout(() => this.probe().then(resolve, reject), 100),
       );
       this.currentProbe = probePromise;
       return probePromise;

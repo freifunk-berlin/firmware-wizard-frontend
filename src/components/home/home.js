@@ -2,8 +2,9 @@ import { module } from 'angular';
 import uiRouter from 'angular-ui-router';
 
 export default module('app.components.home', [uiRouter])
-  .config($stateProvider => {
+  .config(($stateProvider) => {
     'ngInject';
+
     $stateProvider.state({
       component: 'home',
       name: 'home',
