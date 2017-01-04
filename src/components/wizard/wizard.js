@@ -1,6 +1,8 @@
 import { copy, module } from 'angular';
 import uiRouter from 'angular-ui-router';
 
+require('./wizard.less');
+
 export default module('app.components.wizard', [uiRouter])
   .config(($stateProvider) => {
     'ngInject';
