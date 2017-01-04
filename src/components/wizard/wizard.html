@@ -26,8 +26,8 @@
     </div>
   </div>
 
-  <div ng-if="!$ctrl.online.isOnline" class="container" translate-namespace="offlineWarning">
-    <div class="alert alert-danger" role="alert">
+  <div ng-if="!$ctrl.online.isOnline" class="wizard-category">
+    <div class="container" translate-namespace="offlineWarning">
       <h2>
         <span class="fa-stack">
           <i class="fa fa-circle fa-stack-2x"></i>
@@ -39,6 +39,12 @@
         <span translate>.help</span>
       </p>
     </div>
+  </div>
+
+  <div class="wizard-category">
+    <wizard-device
+      on-update="$ctrl.device = device"
+    ></wizard-device>
   </div>
 
   <div class="wizard-category">

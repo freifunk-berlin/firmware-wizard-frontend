@@ -25,9 +25,11 @@
       "dropnotsupported": "Your browser doesn't support drag and drop for file uploads :("
     }
   },
+  "device": {
+    "headline": "Device"
+  },
   "basicRouterSetup": {
     "headline": "Basic router setup",
-    "model": " for {{model}}",
     "routerName": {
       "label": "Router name",
       "placeholder": "funkenpumpe3000",

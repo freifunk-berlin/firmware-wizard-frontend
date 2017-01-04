@@ -26,6 +26,10 @@ export default module('app.services.router', [])
       return this._call('ffwizard', 'apply', {config});
     }
 
+    getIwinfoFreqlist(device) {
+      return this._call('iwinfo', 'freqlist', {device});
+    }
+
     getNetworkWireless() {
       return this._call('network.wireless', 'status', {});
     }
