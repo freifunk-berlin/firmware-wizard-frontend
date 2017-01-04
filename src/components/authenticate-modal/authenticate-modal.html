@@ -1,7 +1,7 @@
 <form novalidate name="form" ng-submit="$ctrl.submit()">
   <div class="modal-header">
     <button type="button" class="close" ng-click="$ctrl.dismiss()">&times;</button>
-    <h4 class="modal-title">Login</h4>
+    <h4 class="modal-title">Sign in</h4>
   </div>
   <div class="modal-body">
     <div class="form-group">
@@ -32,12 +32,12 @@
           'fa-sign-in': !$ctrl.authenticating,
           'fa-spin fa-circle-o-notch': $ctrl.authenticating,
         }"></i>
-        Login
+        Sign in
       </button>
     </p>
     <p ng-if="$ctrl.error" class="text-danger">
       <i class="fa fa-fw fa-warning"></i>
-      Could not log you in. Check your password and the connection the
+      Could not sign you in. Check your password and the connection the
       router.
     </p>
   </div>
