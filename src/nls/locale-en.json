@@ -219,11 +219,11 @@
       "error.ipSubnet": "Not a valid IPv4 subnet.",
       "error.ipSubnetSmall": "The IPv4 subnet must be larger than /30.",
       "wifi": {
-        "label": "Mesh {{index}}",
+        "label": "Mesh IP {{index}}",
         "help": "A single IPv4 address for the wifi device {{name}}."
       },
       "lan": {
-        "label": "Mesh 3",
+        "label": "Mesh IP LAN",
         "help": "A single IPv4 address for the LAN interface."
       }
     },

@@ -78,7 +78,7 @@
 
   <div class="wizard-category">
     <wizard-ip
-      device="$ctrl.device"
+      wireless-devices="$ctrl.device.wirelessDevices"
       ip="$ctrl.config.ip"
       on-update="$ctrl.config.ip = ip"
     ></wizard-ip>
@@ -92,6 +92,7 @@
   </div>
 
 <pre>
+{{$ctrl.device | json}}
 {{$ctrl.config | json}}
 </pre>
 Valid: {{wizardForm.$valid}}

@@ -3,6 +3,7 @@ import { copy, module } from 'angular';
 export default module('app.components.wizard-ip', [])
   .component('wizardIp', {
     bindings: {
+      wirelessDevices: '<',
       ip: '<',
       onUpdate: '&',
     },
@@ -11,6 +12,7 @@ export default module('app.components.wizard-ip', [])
         'ngInject';
 
         this.newIp = {};
+        this.pow = Math.pow;
 
         $scope.$watch('$ctrl.ip', this.updateFromInput.bind(this), true);
         $scope.$watch('$ctrl.newIp', this.updateOutput.bind(this), true);

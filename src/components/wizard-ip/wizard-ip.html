@@ -1,16 +1,14 @@
-<!-- ip addresses -->
+<ng-form name="ipForm">
   <div class="container" translate-namespace="ip">
     <h2>
-            <span class="fa-stack">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-cogs fa-stack-1x fa-inverse"></i>
-            </span>
+      <span class="fa-stack">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-cogs fa-stack-1x fa-inverse"></i>
+      </span>
       <span translate>.headline</span>
     </h2>
 
-    <p>
-      <span translate>.help</span>
-    </p>
+    <p translate>.help</p>
 
     <div class="form-group">
       <label for="ipRegister" class="col-md-3 control-label" translate>
@@ -20,35 +18,44 @@
         <div class="checkbox">
           <label>
             <input type="checkbox"
-                   name="ipRegister" id="ipRegister"
-                   data-ng-model="state.ip.register"
-                   data-ng-disabled="true">
+              name="ipRegister" id="ipRegister"
+              data-ng-model="$ctrl.register"
+              data-ng-disabled="false">
             <span class="text-muted" translate>.register.help</span>
           </label>
         </div>
       </div>
     </div>
 
-    <div class="row" uib-collapse="state.ip.register">
+    <div class="row" uib-collapse="$ctrl.register">
       <div class="col-md-offset-3 col-md-9">
-        <div class="form-group has-feedback" ng-class="formFeedback('ipv6Prefix')">
+        <div class="form-group has-feedback"
+          ng-class="{
+            'has-success': (ipForm.ipv6Prefix | fieldSuccess),
+            'has-error': (ipForm.ipv6Prefix | fieldError),
+          }"
+        >
           <label for="ipv6Prefix" class="col-md-3 control-label" translate>
             .v6Prefix.label
           </label>
           <div class="col-md-9">
             <input type="text" class="form-control"
-                   name="ipv6Prefix" id="ipv6Prefix"
-                   placeholder="{{'ip.v6Prefix.placeholder' | translate}}"
-                   data-ng-model="wizard.ip.v6Prefix"
-                   data-ng-model-options="{ debounce: 500 }"
-                   data-ng-required="!state.ip.register && false"
-                   data-ip-address data-ip-version="6"
-                   data-ip-prefix-max-length="62"
-                   >
+              name="ipv6Prefix" id="ipv6Prefix"
+              placeholder="{{'ip.v6Prefix.placeholder' | translate}}"
+              data-ng-model="$ctrl.newIp.v6Prefix"
+              data-ng-model-options="{ debounce: 500 }"
+              data-ng-required="!$ctrl.register"
+              data-ip-address data-ip-version="6"
+              data-ip-prefix-max-length="62"
+            >
             <span class="fa form-control-feedback"
-                  ng-class="formControlFeedback('ipv6Prefix')"></span>
+              ng-class="{
+                'fa-check': (ipForm.ipv6Prefix | fieldSuccess),
+                'fa-times': (ipForm.ipv6Prefix | fieldError),
+              }"
+            ></span>
             <div class="help-block">
-              <div ng-messages="hasError('ipv6Prefix')">
+              <div ng-messages="ipForm.ipv6Prefix | fieldError">
                 <div ng-message="required">
                   <span translate>.error.required</span>
                 </div>
@@ -64,27 +71,36 @@
           </div>
         </div>
 
-        <div data-ng-repeat="(name, device) in state.wifi.devices"
-             class="form-group has-feedback"
-             ng-class="formFeedback('ipv4Wifi_' + $index)">
+        <div data-ng-repeat="number in [] | range:0:($ctrl.wirelessDevices - 1)"
+          class="form-group has-feedback"
+          ng-class="{
+            'has-success': (ipForm['ipv4Wifi_' + $index] | fieldSuccess),
+            'has-error': (ipForm['ipv4Wifi_' + $index] | fieldError),
+          }"
+        >
           <label for="ipv4Wifi_{{$index}}" class="col-md-3 control-label"
                  translate translate-values="{name: name, index: $index + 1}">
             .v4.wifi.label
           </label>
           <div class="col-md-9">
             <input type="text" class="form-control"
-                   name="ipv4Wifi_{{$index}}" id="ipv4Wifi_{{$index}}"
-                   translate translate-attr-placeholder=".v4.placeholder"
-                   translate-values="{index: $index + 1}"
-                   data-ng-model="wizard.ip.v4[name]"
-                   data-ng-model-options="{ debounce: 500 }"
-                   data-ng-required="!state.ip.register && $index==0"
-                   data-ip-address data-ip-version="4"
-                   data-ip-prefix-min-length="32">
+              name="ipv4Wifi_{{$index}}" id="ipv4Wifi_{{$index}}"
+              translate translate-attr-placeholder=".v4.placeholder"
+              translate-values="{index: $index + 1}"
+              data-ng-model="$ctrl.newIp.v4['radio' + $index]"
+              data-ng-model-options="{ debounce: 500 }"
+              data-ng-required="!$ctrl.register"
+              data-ip-address data-ip-version="4"
+              data-ip-prefix-min-length="32"
+            >
             <span class="fa form-control-feedback"
-                  ng-class="formControlFeedback('ipv4Wifi_' + $index)"></span>
+              ng-class="{
+                'fa-check': (ipForm['ipv4Wifi_' + $index] | fieldSuccess),
+                'fa-times': (ipForm['ipv4Wifi_' + $index] | fieldError),
+              }"
+            ></span>
             <div class="help-block">
-              <div ng-messages="hasError('ipv4Wifi_' + $index)">
+              <div ng-messages="ipForm['ipv4Wifi_' + $index] | fieldError">
                 <div ng-message="required">
                   <span translate>.error.required</span>
                 </div>
@@ -112,17 +128,23 @@
         <div class="checkbox">
           <label>
             <input type="checkbox"
-                   name="ipMeshLan" id="ipMeshLan"
-                   data-ng-model="wizard.ip.meshLan">
+              name="ipMeshLan" id="ipMeshLan"
+              data-ng-model="$ctrl.newIp.meshLan"
+            >
             <span class="text-muted" translate>.meshLan.help</span>
           </label>
         </div>
       </div>
     </div>
 
-    <div class="row" uib-collapse="state.ip.register || !wizard.ip.meshLan">
+    <div class="row" uib-collapse="$ctrl.register || !$ctrl.newIp.meshLan">
       <div class="col-md-offset-3 col-md-9">
-        <div class="form-group has-feedback" ng-class="formFeedback('ipv4Lan')">
+        <div class="form-group has-feedback"
+          ng-class="{
+            'has-success': (ipForm.ipv4Lan | fieldSuccess),
+            'has-error': (ipForm.ipv4Lan | fieldError),
+          }"
+        >
           <label for="ipv4Lan" class="col-md-3 control-label" translate>
             .v4.lan.label
           </label>
@@ -130,15 +152,20 @@
             <input type="text" class="form-control"
                    name="ipv4Lan" id="ipv4Lan"
                    translate translate-attr-placeholder=".v4.placeholder"
-                   translate-values="{index: (state.wifi.devices | objectLength) + 1}"
-                   data-ng-model="wizard.ip.v4.lan"
-                   data-ng-required="wizard.ip.meshLan && !state.ip.register"
+                   translate-values="{index: $ctrl.wirelessDevices + 1}"
+                   data-ng-model="$ctrl.newIp.v4.lan"
+                   data-ng-model-options="{ debounce: 500 }"
+                   data-ng-required="$ctrl.newIp.meshLan && !$ctrl.register"
                    data-ip-address data-ip-version="4"
                    data-ip-prefix-min-length="32">
-            <span class="fa form-control-feedback"
-                  ng-class="formControlFeedback('ipv4Lan')"></span>
+             <span class="fa form-control-feedback"
+               ng-class="{
+                 'fa-check': (ipForm.ipv4Lan | fieldSuccess),
+                 'fa-times': (ipForm.ipv4Lan | fieldError),
+               }"
+             ></span>
             <div class="help-block">
-              <div ng-messages="hasError('ipv4Lan')">
+              <div ng-messages="ipForm.ipv4Lan | fieldError">
                 <div ng-message="required">
                   <span translate>.error.required</span>
                 </div>
@@ -164,34 +191,45 @@
         <div class="checkbox">
           <label>
             <input type="checkbox"
-                   name="ipDistribute" id="ipDistribute"
-                   data-ng-model="wizard.ip.distribute">
+              name="ipDistribute" id="ipDistribute"
+              data-ng-model="$ctrl.newIp.distribute">
             <span class="text-muted" translate>.distribute.help</span>
           </label>
         </div>
       </div>
     </div>
 
-    <div class="row" uib-collapse="!wizard.ip.distribute">
+    <div class="row" uib-collapse="!$ctrl.newIp.distribute">
       <div class="col-md-offset-3 col-md-9">
 
-        <div uib-collapse="state.ip.register">
-          <div class="form-group has-feedback" data-ng-class="formFeedback('ipv4ClientSubnet')">
+        <div uib-collapse="$ctrl.register">
+          <div class="form-group has-feedback"
+            ng-class="{
+              'has-success': (ipForm.ipv4ClientSubnet | fieldSuccess),
+              'has-error': (ipForm.ipv4ClientSubnet | fieldError),
+            }"
+          >
             <label for="ipv4ClientSubnet" class="col-md-3 control-label" translate>
               .distribute.subnet.label
             </label>
             <div class="col-md-9">
               <input type="text" class="form-control"
-                     name="ipv4ClientSubnet" id="ipv4ClientSubnet"
-                     placeholder="{{'ip.distribute.subnet.placeholder' | translate}}"
-                     data-ng-model="wizard.ip.v4ClientSubnet"
-                     data-ng-required="wizard.ip.distribute && !state.ip.register"
-                     data-ip-address data-ip-version="4"
-                     data-ip-prefix-max-length="30">
+                name="ipv4ClientSubnet" id="ipv4ClientSubnet"
+                placeholder="{{'ip.distribute.subnet.placeholder' | translate}}"
+                data-ng-model="$ctrl.newIp.v4ClientSubnet"
+                data-ng-model-options="{ debounce: 500 }"
+                data-ng-required="$ctrl.newIp.distribute && !$ctrl.register"
+                data-ip-address data-ip-version="4"
+                data-ip-prefix-max-length="30"
+              >
               <span class="fa form-control-feedback"
-                    ng-class="formControlFeedback('ipv4ClientSubnet')"></span>
+                ng-class="{
+                  'fa-check': (ipForm.ipv4ClientSubnet | fieldSuccess),
+                  'fa-times': (ipForm.ipv4ClientSubnet | fieldError),
+                }"
+              ></span>
               <div class="help-block">
-                <div ng-messages="hasError('ipv4ClientSubnet')">
+                <div ng-messages="ipForm.ipv4ClientSubnet | fieldError">
                   <div ng-message="required">
                     <span translate>.error.required</span>
                   </div>
@@ -208,17 +246,17 @@
           </div>
         </div>
 
-        <div uib-collapse="!state.ip.register">
+        <div uib-collapse="!$ctrl.register">
           <div class="form-group">
             <label for="ipv4ClientCount" class="col-md-3 control-label" translate>
               .distribute.expectedClients.label
             </label>
             <div class="col-md-9">
               <select
-                      name="ipv4ClientCount" id="ipv4ClientCount"
-                      data-ng-model="state.ip.v4ClientSubnetSize"
-                      data-ng-options="n as ('max. ' + (pow(2, 32 - n) - 3) +' clients (IPv4 /' + n + ' subnet)') for n in [] | range:28:25"
-                      data-convert-to-number class="form-control">
+                name="ipv4ClientCount" id="ipv4ClientCount"
+                data-ng-model="$ctrl.v4ClientSubnetSize"
+                data-ng-options="n as ('max. ' + ($ctrl.pow(2, 32 - n) - 3) +' clients (IPv4 /' + n + ' subnet)') for n in [] | range:28:25"
+                data-convert-to-number class="form-control">
               </select>
               <div class="help-block" translate>
                 .distribute.expectedClients.help
@@ -230,4 +268,4 @@
       </div>
     </div>
   </div>
-<!-- / ip addresses -->
+</ng-form>
