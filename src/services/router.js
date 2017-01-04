@@ -13,11 +13,11 @@ export default module('app.services.router', [])
       if (!this.session.connection) {
         return this.$q.reject(new Error('not connected'));
       }
-      return jsonrpc.call(
+      return this.jsonrpc.call(
         this.session.connection.apiUrl,
         this.session.getSessionId(),
         object,
-        methods,
+        method,
         args
       );
     }
