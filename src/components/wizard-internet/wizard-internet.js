@@ -6,6 +6,7 @@ export default module('app.components.wizard-internet', [])
       internet: '<',
       onUpdate: '&',
     },
+    // TODO: handle vpn
     controller: class WizardContactCtrl {
       constructor($scope) {
         'ngInject';

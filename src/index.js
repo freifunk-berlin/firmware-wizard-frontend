@@ -23,15 +23,6 @@ import directives from './directives';
 import filters from './filters';
 import services from './services';
 
-// TODO: move to components
-/*
-require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/advancedWifi/advancedWifi.html');
-require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/internetSharing/internetSharing.html');
-require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/ipAddresses/ipAddresses.html');
-require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/monitoring/monitoring.html');
-require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/olsrInfo/olsrInfo.html');
-*/
-
 var wizard = module('WizardApp', [
   'ui.bootstrap',
   'ngAnimate',
@@ -46,5 +37,3 @@ var wizard = module('WizardApp', [
   filters.name,
   services.name,
 ]);
-
-require('./js/controllers')(wizard);
