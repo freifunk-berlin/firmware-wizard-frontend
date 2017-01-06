@@ -1,0 +1,44 @@
+<form novalidate name="form" ng-submit="$ctrl.submit()">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$ctrl.dismiss()">&times;</button>
+    <h4 class="modal-title">Sign in</h4>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password"
+        placeholder="Password"
+        ng-model="$ctrl.password"
+        ng-disabled="$ctrl.authenticating"
+      >
+      <span class="help-block">
+        Administrator password (<em>root</em> password).
+      </span>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <p>
+      <button type="button" class="btn btn-default"
+        ng-click="$ctrl.dismiss()"
+        ng-disabled="$ctrl.authenticating"
+      >
+        <i class="fa fa-fw fa-times"></i>
+        Close
+      </button>
+      <button type="submit" class="btn btn-primary"
+        ng-disabled="$ctrl.authenticating || form.$invalid"
+      >
+        <i class="fa fa-fw" ng-class="{
+          'fa-sign-in': !$ctrl.authenticating,
+          'fa-spin fa-circle-o-notch': $ctrl.authenticating,
+        }"></i>
+        Sign in
+      </button>
+    </p>
+    <p ng-if="$ctrl.error" class="text-danger">
+      <i class="fa fa-fw fa-warning"></i>
+      Could not sign you in. Check your password and the connection the
+      router.
+    </p>
+  </div>
+</form>

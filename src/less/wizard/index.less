@@ -2,16 +2,9 @@ a:hover {
   text-decoration: none;
 }
 
-.navbar {
-  margin-bottom: 0;
-}
-
 .jumbotron {
   margin-bottom: 0;
-}
-
-@media screen and (min-width: 768px) {
-  .jumbotron {
+  @media screen and (min-width: 768px) {
     padding-top: 48px;
   }
 }
@@ -82,16 +75,6 @@ a:hover {
   padding-top: 7px;
 }
 
-.intro {
-    padding-left: 8.2em;
-    margin-top: -3em;
-}
-
-p.description {
-  padding-left: 12.3em;
-  font-size: 14px;
-}
-
 .navbar-form > select.form-control {
   margin-left: 12px;
 }
@@ -125,4 +108,15 @@ p.description {
 }
 .dragover {
   border: 5px dashed blue;
+}
+
+@media (min-width: @screen-sm-min) {
+  .ff-icon-container {
+    display: flex;
+    > .ff-icon-body {
+      flex-grow: 1;
+      margin-top: 2em;
+      margin-left: 2em;
+    }
+  }
 }

@@ -1,48 +1,41 @@
-// include less
-require('./less/index.less');
-
 // official angular modules
 import { module } from 'angular';
-import ngAnimate from 'angular-animate';    // ngAnimate module
-import ngMessages from 'angular-messages';  // ngAnimate module
-import ngRoute from 'angular-route';        // ngRoute module
-import ngSanitize from 'angular-sanitize';  // ngSanitize module
+import 'angular-animate';   // ngAnimate module
+import 'angular-messages';  // ngAnimate module
+import 'angular-sanitize';  // ngSanitize module
+
+// dependency of ui-leaflet (global variable *facepalm*)
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'leaflet';
 
 // other modules
 import 'angular-translate';                 // pascalprecht.translate module
 import 'angular-translate-loader-static-files';
 import 'angular-ui-bootstrap';              // ui.bootstrap
-import 'ng-file-upload';                    // ngFileUpload
+// eslint-disable-next-line import/no-extraneous-dependencies
 import 'angular-simple-logger';             // nemLogger (dependency of ui-leaflet)
 import 'ui-leaflet';                        // ui-leaflet
 
-// TODO: move to components
-require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/loadConfig/loadConfig.html');
-require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/advancedWifi/advancedWifi.html');
-require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/basicRouterSetup/basicRouterSetup.html');
-require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/contactDetails/contactDetails.html');
-require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/internetSharing/internetSharing.html');
-require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/ipAddresses/ipAddresses.html');
-require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/monitoring/monitoring.html');
-require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/navbar/navbar.html');
-require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/offlineWarning/offlineWarning.html');
-require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/olsrInfo/olsrInfo.html');
-require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/passwordModal/passwordModal.html');
-require('!ngtemplate-loader?relativeTo=/src/!html-loader!./shared/routerLocation/routerLocation.html');
+// include less
+import './less/index.less';
 
-var wizard = module('WizardApp', [
+import components from './components';
+import config from './config';
+import directives from './directives';
+import filters from './filters';
+import services from './services';
+
+module('WizardApp', [
   'ui.bootstrap',
   'ngAnimate',
   'ngMessages',
   'ngSanitize',
   'pascalprecht.translate',
-  'ngFileUpload',
   'nemLogging',
   'ui-leaflet',
+  components.name,
+  config.name,
+  directives.name,
+  filters.name,
+  services.name,
 ]);
-
-require('./js/config')(wizard);
-require('./js/controllers')(wizard);
-require('./js/directives')(wizard);
-require('./js/filters')(wizard);
-require('./js/services')(wizard);

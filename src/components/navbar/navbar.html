@@ -1,0 +1,76 @@
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <!-- toggle nav -->
+      <button ng-click="$ctrl.collapsed =! $ctrl.collapsed" type="button" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- home -->
+      <a class="navbar-brand" ui-sref="home">
+        <span ng-if="$ctrl.session.connection"
+          uib-tooltip="{{$ctrl.session.connection.board.model}}"
+          tooltip-placement="bottom"
+        >{{$ctrl.session.connection.board.hostname}}</span>
+        <span ng-if="!$ctrl.session.connection">disconnected</span>
+      </a>
+      <div ng-if="$ctrl.session.connecting" class="navbar-brand">
+        <i class="fa fa-fw fa-spin fa-circle-o-notch"></i>
+      </div>
+      <a href class="navbar-brand"
+        ng-if="!$ctrl.session.connecting"
+        ng-click="$ctrl.showConnectModal()"
+      >
+        <i ng-if="$ctrl.session.connection"
+          class="fa fa-fw fa-bolt text-success"
+          uib-tooltip="Connected to {{$ctrl.session.connection.apiUrl}}. Click to connect to another router."
+          tooltip-placement="bottom"
+        ></i>
+        <i ng-if="!$ctrl.session.connection"
+          class="fa fa-fw fa-warning text-danger"
+          uib-tooltip="Not connected to a router! Click to connect."
+          tooltip-placement="bottom"
+        ></i>
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" uib-collapse="$ctrl.collapsed">
+      <ul class="nav navbar-nav">
+        <li ui-sref-active="active"><a ui-sref="home">Home</a></li>
+        <li ui-sref-active="active"><a ui-sref="wizard">Wizard</a></li>
+        <li ui-sref-active="active" class="dropdown" uib-dropdown>
+          <a href uib-dropdown-toggle>
+            Status <i class="fa fa-fw fa-caret-down"></i>
+          </a>
+          <ul class="dropdown-menu" uib-dropdown-menu>
+            <li ui-sref-active="active"><a ui-sref="statusOlsr">OLSR</a></li>
+            <li ui-sref-active="active"><a href>System</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="navbar-form navbar-right">
+        <language-dropdown></language-dropdown>
+        <button type="button" class="btn btn-primary"
+          ng-if="!$ctrl.session.authentication"
+          ng-disabled="!$ctrl.session.connection || $ctrl.session.authenticating"
+          ng-click="$ctrl.showAuthenticateModal()"
+        >
+          <i class="fa fa-fw" ng-class="{
+            'fa-sign-in': !$ctrl.session.authenticating,
+            'fa-spin fa-circle-o-notch': $ctrl.session.authenticating,
+          }"></i>
+          Sign in
+        </button>
+        <span class="text-muted" ng-if="$ctrl.session.authentication">
+          Signed in as <em>{{$ctrl.session.authentication.username}}</em>
+        </span>
+        <a href
+          ng-if="$ctrl.session.authentication"
+          ng-click="$ctrl.session.unauthenticate()"
+        >sign out</a>
+      </div>
+    </div>
+  </div>
+</div>

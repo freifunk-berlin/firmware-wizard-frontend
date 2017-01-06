@@ -1,0 +1,45 @@
+<form novalidate name="form" ng-submit="$ctrl.submit()">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$ctrl.dismiss()">&times;</button>
+    <h4 class="modal-title">Router connection</h4>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="url">Router URL</label>
+      <input type="url" class="form-control" id="url"
+        placeholder="Example: http://192.168.1.1/ubus"
+        ng-model="$ctrl.url"
+        ng-disabled="$ctrl.connecting"
+        ng-required="true"
+      >
+      <span class="help-block">
+        URL of the router to connect to. Example: <em>http://192.168.1.1/ubus</em>.
+      </span>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <p>
+      <button type="button" class="btn btn-default"
+        ng-click="$ctrl.dismiss()"
+        ng-disabled="$ctrl.connecting"
+      >
+        <i class="fa fa-fw fa-times"></i>
+        Close
+      </button>
+      <button type="submit" class="btn btn-primary"
+        ng-disabled="$ctrl.connecting || form.$invalid"
+      >
+        <i class="fa fa-fw" ng-class="{
+          'fa-bolt': !$ctrl.connecting,
+          'fa-spin fa-circle-o-notch': $ctrl.connecting,
+        }"></i>
+        Connect
+      </button>
+    </p>
+    <p ng-if="$ctrl.error" class="text-danger">
+      <i class="fa fa-fw fa-warning"></i>
+      Could not connect to the provided router URL. Check the router URL and
+      your connection to the router (e.g., wifi or ethernet).
+    </p>
+  </div>
+</form>

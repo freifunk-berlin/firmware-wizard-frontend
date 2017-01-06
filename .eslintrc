@@ -1,0 +1,12 @@
+{
+  "extends": "airbnb/base",
+  "rules": {
+    "global-require": 0,
+    "object-curly-spacing": 0,
+    "max-len": 0,
+    "newline-per-chained-call": 0,
+    "no-cond-assign": [2, "except-parens"],
+    "no-confusing-arrow": 0,
+    "no-param-reassign": [2, {"props": false}]
+  }
+}

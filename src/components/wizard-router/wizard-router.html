@@ -1,0 +1,177 @@
+<ng-form name="routerForm">
+  <div class="container" translate-namespace="basicRouterSetup">
+    <h2>
+      <span class="fa-stack">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-wifi fa-stack-1x fa-inverse"></i>
+      </span>
+      <span translate>.headline</span>
+    </h2>
+
+    <div class="form-group has-feedback"
+      ng-class="{
+        'has-success': (routerForm.name | fieldSuccess),
+        'has-error': (routerForm.name | fieldError),
+      }"
+      translate-namespace=".routerName"
+    >
+      <label for="routerName" class="col-md-3 control-label" translate>
+        .label
+      </label>
+      <div class="col-md-9">
+        <input type="text" class="form-control"
+          name="name" id="routerName"
+          translate translate-attr-placeholder=".placeholder"
+          data-ng-model="$ctrl.name"
+          data-ng-model-options="{ debounce: 250 }"
+          required
+          pattern="[A-Za-z0-9_\-]*[A-Za-z0-9]$"
+          data-ng-minlength="3"
+          data-ng-maxlength="32">
+        <span class="fa form-control-feedback"
+          ng-class="{
+            'fa-check': (routerForm.name | fieldSuccess),
+            'fa-times': (routerForm.name | fieldError),
+          }"
+        ></span>
+        <div class="help-block">
+          <div ng-messages="routerForm.name | fieldError">
+            <div ng-message="required">
+              <span translate>.error.required</span>
+            </div>
+            <div ng-message="pattern">
+              <span translate>.error.pattern</span>
+            </div>
+            <div ng-message="maxlength">
+              <span translate>.error.maxLength</span>
+            </div>
+            <div ng-message="minlength">
+              <span translate>.error.minLength</span>
+            </div>
+          </div>
+          <div translate>.help</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group has-feedback"
+      ng-class="{
+        'has-success': (routerForm.password | fieldSuccess),
+        'has-error': (routerForm.password | fieldError),
+      }"
+      translate-namespace=".password"
+    >
+      <label for="password" class="col-md-3 control-label" translate>
+        .label
+      </label>
+      <div class="col-md-9">
+        <input type="password" class="form-control"
+          name="password" id="password"
+          translate
+          data-ng-model="$ctrl.password"
+          data-ng-model-options="{ debounce: 250 }"
+          ng-required="!$ctrl.router.passwordHash"
+          data-ng-minlength="6">
+        <span class="fa form-control-feedback"
+          ng-class="{
+            'fa-check': (routerForm.password | fieldSuccess),
+            'fa-times': (routerForm.password | fieldError),
+          }"
+        ></span>
+        <div class="help-block">
+          <div ng-messages="routerForm.password | fieldError">
+            <div ng-message="required">
+              <span translate>.error.required</span>
+            </div>
+            <div ng-message="minlength">
+              <span translate>.error.minLength</span>
+            </div>
+          </div>
+          <div translate>.help</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group has-feedback"
+      ng-class="{
+        'has-success': (routerForm.passwordVerify | fieldSuccess),
+        'has-error': (routerForm.passwordVerify | fieldError),
+      }"
+      translate-namespace=".passwordVerify"
+    >
+      <label for="passwordVerify" class="col-md-3 control-label" translate>
+        .label
+      </label>
+      <div class="col-md-9">
+        <input type="password" class="form-control"
+          name="passwordVerify" id="passwordVerify"
+          data-ng-model="$ctrl.passwordVerify"
+          data-ng-model-options="{ debounce: 250 }"
+          ng-required="!$ctrl.router.passwordHash"
+          data-compare-to="$ctrl.password">
+        <span class="fa form-control-feedback"
+          ng-class="{
+            'fa-check': (routerForm.passwordVerify | fieldSuccess),
+            'fa-times': (routerForm.passwordVerify | fieldError),
+          }"
+         ></span>
+        <div class="help-block">
+          <div ng-messages="routerForm.passwordVerify | fieldError">
+            <div ng-message="compareTo">
+              <span translate>.error.match</span>
+            </div>
+          </div>
+          <div translate>.help</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group"
+         translate-namespace=".sshkeys">
+      <label for="sshkeys" class="col-md-3 control-label" translate>
+        .label
+      </label>
+      <div class="col-md-9">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"
+              name="sshkeys" id="sshkeys"
+              data-ng-model="$ctrl.sshkeysEnabled">
+            <span class="text-muted" translate>.help</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" uib-collapse="!$ctrl.sshkeysEnabled">
+      <div class="col-md-offset-3 col-md-9">
+        <div class="form-group has-feedback"
+          ng-class="{
+            'has-success': (routerForm.sshkeysText | fieldSuccess),
+            'has-error': (routerForm.sshkeysText | fieldError),
+          }"
+        >
+          <label for="sshkeys-text" class="col-md-3 control-label" translate>
+            .sshkeys.keys.label
+          </label>
+          <div class="col-md-9">
+            <textarea class="form-control" rows="6"
+              name="sshkeysText" id="sshkeys-text"
+              data-ng-model="$ctrl.sshkeys"
+              data-verifysshkey
+              ng-list="&#10;" ng-trim="false">
+            </textarea>
+            <div class="help-block">
+              <div ng-messages="routerForm.sshkeysText | fieldError">
+                <div ng-message="verifysshkey">
+                  <span translate>.sshkeys.keys.invalidkey</span>
+                </div>
+              </div>
+              <div translate>.sshkeys.keys.help</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form>

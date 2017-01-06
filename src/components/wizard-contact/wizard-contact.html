@@ -1,0 +1,95 @@
+<ng-form name="contactForm">
+  <div class="container" translate-namespace="contactDetails">
+    <h2>
+      <span class="fa-stack">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+      </span>
+      <span translate>.headline</span>
+    </h2>
+
+    <div class="form-group" translate-namespace=".name">
+      <label for="name" class="col-md-3 control-label" translate>
+        .label
+      </label>
+      <div class="col-md-9">
+        <input type="text" class="form-control"
+          name="name" id="name"
+          translate translate-attr-placeholder=".placeholder"
+          data-ng-model="$ctrl.newContact.name">
+      </div>
+    </div>
+
+    <div class="form-group has-feedback"
+      ng-class="{
+        'has-success': (contactForm.email | fieldSuccess),
+        'has-error': (contactForm.email | fieldError),
+      }"
+      translate-namespace=".email"
+    >
+      <label for="email" class="col-md-3 control-label" translate>
+        .label
+      </label>
+      <div class="col-md-9">
+        <input type="email" class="form-control"
+          name="email" id="email"
+          translate translate-attr-placeholder=".placeholder"
+          data-ng-model="$ctrl.newContact.email"
+          ng-required="$ctrl.emailRequired"
+          pattern=".*@.+\..+">
+        <span class="fa form-control-feedback"
+          ng-class="{
+            'fa-check': (contactForm.email | fieldSuccess),
+            'fa-times': (contactForm.email | fieldError),
+          }"
+        ></span>
+        <div class="help-block">
+          <div ng-messages="contactForm.email | fieldError">
+            <div ng-message="required">
+              <span translate>.error.required</span>
+            </div>
+            <div ng-message="pattern">
+              <span translate>.error.pattern</span>
+            </div>
+          </div>
+          <div translate>.help</div>
+        </div>
+      </div>
+    </div>
+    <div translate-namespace=".options">
+      <h4 translate>.label</h4>
+
+      <div class="form-group" translate-namespace=".contactPage">
+        <label for="showOnContactPage" class="col-md-3 control-label" translate>
+          .label
+        </label>
+        <div class="col-md-9">
+          <div class="checkbox">
+            <label class="text-muted">
+              <input type="checkbox"
+                name="showOnContactPage" id="showOnContactPage"
+                data-ng-model="$ctrl.newContact.showOnContactPage">
+            <span translate>.help</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" translate-namespace=".sendToMap">
+        <label for="sendToMap" class="col-md-3 control-label" translate>
+          .label
+        </label>
+        <div class="col-md-9">
+          <div class="checkbox">
+            <label class="text-muted">
+              <input type="checkbox" name="sendToMap" id="sendToMap"
+                ng-model="$ctrl.newContact.sendToMap">
+              <span translate>.help</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</ng-form>
