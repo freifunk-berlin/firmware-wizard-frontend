@@ -1,8 +1,0 @@
-{
-  "globals": {
-    "angular": false,
-    "console": false
-  },
-  "node": true,
-  "browser": true
-}

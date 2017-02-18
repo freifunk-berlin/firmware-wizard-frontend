@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ "${TRAVIS_PULL_REQUEST}" != "false" ]; then
+  echo "This is a pull request. Don't push or deploy."
+  exit 0
+fi
+
 if [ "${TRAVIS_BRANCH}" != "master" ]; then
   echo "not on master branch"
   exit 0
