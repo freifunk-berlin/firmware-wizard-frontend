@@ -72,7 +72,7 @@
           </div>
         </div>
 
-        <div data-ng-repeat="number in [] | range:0:($ctrl.wirelessDevices - 1)"
+        <div data-ng-repeat="number in $ctrl.wirelessDevices > 0 && ([] | range:0:($ctrl.wirelessDevices - 1))"
           class="form-group has-feedback"
           ng-class="{
             'has-success': (ipForm['ipv4Wifi_' + $index] | fieldSuccess),
