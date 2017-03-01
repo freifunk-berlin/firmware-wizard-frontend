@@ -10,6 +10,10 @@ const devices = [
     model: 'TP-Link TL-WR741 v1',
     wirelessDevices: 1,
   },
+  {
+    model: 'Ubiquiti EdgeRouter X',
+    wirelessDevices: 0,
+  },
 ];
 
 export default module('app.components.wizard-device', [])
