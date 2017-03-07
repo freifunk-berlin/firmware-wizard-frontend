@@ -6,6 +6,8 @@ export default module('app.components.load-file-button', [])
   .component('loadFileButton', {
     bindings: {
       accept: '@',
+      disabled: '<',
+      type: '@',
       onDismiss: '&',
       onLoaded: '&',
     },
@@ -24,7 +26,16 @@ export default module('app.components.load-file-button', [])
         reader.onload = frEvent => this.$scope.$apply(() => {
           this.onLoaded({content: frEvent.target.result});
         });
-        reader.readAsText(event.target.files[0]);
+        const file = event.target.files[0];
+        switch (this.type) {
+          case 'binary':
+            reader.readAsArrayBuffer(file);
+            break;
+          case 'text':
+            reader.readAsText(file);
+            break;
+          default: throw new Error(`type ${this.type} not recognized`);
+        }
       }
     },
     template: require('./load-file-button.html'),

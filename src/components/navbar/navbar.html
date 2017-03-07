@@ -45,7 +45,14 @@
           </a>
           <ul class="dropdown-menu" uib-dropdown-menu>
             <li ui-sref-active="active"><a ui-sref="statusOlsr">OLSR</a></li>
-            <li ui-sref-active="active"><a href>System</a></li>
+          </ul>
+        </li>
+        <li ui-sref-active="active" class="dropdown" uib-dropdown ng-if="$ctrl.session.authentication">
+          <a href uib-dropdown-toggle>
+            System <i class="fa fa-fw fa-caret-down"></i>
+          </a>
+          <ul class="dropdown-menu" uib-dropdown-menu>
+            <li ui-sref-active="active"><a ui-sref="systemUpgrade">Upgrade</a></li>
           </ul>
         </li>
       </ul>

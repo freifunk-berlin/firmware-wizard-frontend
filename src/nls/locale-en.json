@@ -339,5 +339,11 @@
         "etx" : "Link Cost"
       }
     }
+  },
+  "systemUpgrade": {
+    "headline": "Upgrade Firmware",
+    "help": "Uprades your router to another version of the Freifunk Firmware",
+    "success": "Firmware successfully upgraded.",
+    "error": "Firmware upgrade error"
   }
 }

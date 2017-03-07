@@ -1,0 +1,27 @@
+<div class="jumbotron wizard-bg-highlight" translate-namespace="systemUpgrade">
+  <div class="container">
+    <div class="ff-icon-container">
+      <div>
+        <span class="fa-stack fa-6x">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-wrench fa-stack-1x fa-inverse"></i>
+        </span>
+      </div>
+      <div class="ff-icon-body">
+        <h1 translate>.headline</h1>
+        <p translate>.help</p>
+        <load-file-button accept=".tar,.bin" on-loaded="$ctrl.upload(content)" type="binary" disabled="$ctrl.uploading">
+          <i class="fa fa-fw" ng-class="{
+            'fa-upload': !$ctrl.uploading,
+            'fa-spin fa-circle-o-notch': $ctrl.uploading,
+          }"></i>
+          Upload new firmware
+        </load-file-button>
+        <span ng-if="$ctrl.error" class="text-danger">
+          <span translate>.error</span>: {{$ctrl.error}}
+        </span>
+        <span ng-if="$ctrl.uploaded" class="text-success" translate>.success</span>
+      </div>
+    </div>
+  </div>
+</div>
