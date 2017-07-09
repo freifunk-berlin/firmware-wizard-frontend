@@ -1,11 +1,12 @@
-import { isObject, module } from 'angular';
+import { module } from 'angular';
 
 export default module('app.filters.byte-format', [])
     .filter('byteFormat', () => (bytes, precision) => {
-        if (isNaN(parseFloat(bytes)) || !isFinite(bytes)) return '-';
-        if (bytes === 0) return '0 MB';
-        if (typeof precision === 'undefined') precision = 1;
-        var units = ['bytes', 'kB', 'MB', 'GB', 'TB', 'PB'],
-            number = Math.floor(Math.log(bytes) / Math.log(1024));
-        return (bytes / Math.pow(1024, Math.floor(number))).toFixed(precision) +  ' ' + units[number];
-});
+      let myPrecision = precision;
+      const units = ['bytes', 'kB', 'MB', 'GB', 'TB', 'PB'];
+      const number = Math.floor(Math.log(bytes) / Math.log(1024));
+      if (isNaN(parseFloat(bytes)) || !isFinite(bytes)) return '-';
+      if (bytes === 0) return '0 MB';
+      if (typeof myPrecision === 'undefined') myPrecision = 1;
+      return `${(bytes / (1024 ** Math.floor(number))).toFixed(myPrecision)} ${units[number]}`;
+    });
