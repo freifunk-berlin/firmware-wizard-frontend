@@ -310,6 +310,32 @@
   "applyerror": "Your config could not be applied. See logs on your router for details.",
   "save": "Save &amp; Restart",
   "download": "Download configuration",
+  "statusSystem": {
+    "headline": "System status",
+    "help": "Some basic information on your router",
+    "noData": "Could not load all your system data. Please check if you're connected to your router",
+    "board": {
+      "title": "Hardware and Software details",
+      "systemheadline": "System",
+      "hostname": "Hostname",
+      "system": "Chipset",
+      "model": "Model",
+      "kernel": "Kernel",
+      "releaseheadline": "OS release",
+      "distribution": "Distribution",
+      "version": "Version",
+      "revision": "Revision",
+      "codename": "Codename",
+      "target": "Target",
+      "description": "Description"
+    },
+    "live": {
+      "status": "Live status",
+      "uptime": "Uptime",
+      "load": "Load",
+      "memory": "Memory"
+    }
+  },
   "statusOlsr": {
     "headline": "OLSR status information",
     "help": "This page shows OLSR neighbors, routes and interfaces",
@@ -330,7 +356,7 @@
     "links": {
       "title": "Links",
       "noData": "Currently there is no data from OLSR.",
-      "noLinks": "Currently there are no links.",
+      "noLinks": "Currentl,y there are no links.",
       "columns": {
         "localip": "Local IP",
         "remoteip": "Remote IP",
