@@ -8,5 +8,6 @@ export default module('app.filters.byte-format', [])
       if (isNaN(parseFloat(bytes)) || !isFinite(bytes)) return '-';
       if (bytes === 0) return '0 MB';
       if (typeof myPrecision === 'undefined') myPrecision = 1;
-      return `${(bytes / (1024 ** Math.floor(number))).toFixed(myPrecision)} ${units[number]}`;
+      // eslint-disable-next-line no-restricted-properties
+      return `${(bytes / (Math.pow(1024, Math.floor(number)))).toFixed(myPrecision)} ${units[number]}`;
     });
