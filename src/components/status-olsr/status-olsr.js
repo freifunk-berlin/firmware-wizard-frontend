@@ -28,7 +28,7 @@ export default module('app.components.status-olsr', [uiRouter])
         if (this.refreshing) return this.$q.reject(new Error('already refreshing'));
         this.refreshing = true;
         this.error = undefined;
-          return this.$q.all([this.router.getOlsrNeighbors(), this.router.getOlsrLinks()]).then(
+        return this.$q.all([this.router.getOlsrNeighbors(), this.router.getOlsrLinks()]).then(
           (data) => {
             this.refreshing = false;
             this.neighbors = data[0].neighbors;
