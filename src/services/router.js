@@ -50,4 +50,8 @@ export default module('app.services.router', [])
     scanWifi(device) {
       return this.call('iwinfo', 'scan', {device});
     }
+
+    upgradeFirmware(firmware) {
+      return this.call('ffwizard', 'upgrade', {firmware});
+    }
   });

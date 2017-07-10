@@ -7,6 +7,7 @@ import languageDropdown from './language-dropdown/language-dropdown';
 import loadFileButton from './load-file-button/load-file-button';
 import navbar from './navbar/navbar';
 import statusOlsr from './status-olsr/status-olsr';
+import systemUpgrade from './system-upgrade/system-upgrade';
 import wizard from './wizard/wizard';
 import wizardContact from './wizard-contact/wizard-contact';
 import wizardDevice from './wizard-device/wizard-device';
@@ -24,6 +25,7 @@ export default module('app.components', [
   loadFileButton.name,
   navbar.name,
   statusOlsr.name,
+  systemUpgrade.name,
   wizard.name,
   wizardContact.name,
   wizardDevice.name,
