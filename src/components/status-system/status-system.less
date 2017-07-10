@@ -1,19 +1,21 @@
 @import "../../less/variables.less";
 
-dt {
-  float: left;
-  font-weight: bold;
-  margin-right: 0.5em;
-}
+status-system {
+  dt {
+    float: left;
+    font-weight: bold;
+    margin-right: 0.5em;
+  }
 
-/* und noch der Doppelpunkt */
-dt::after {
-  content: ": ";
-}
+  /* und noch der Doppelpunkt */
+  dt::after {
+    content: ": ";
+  }
 
-/* einen Clearfix für Folge-dd-Elemente */
-dd::after {
-  clear: left;
-  content: " ";
-  display: block;
+  /* einen Clearfix für Folge-dd-Elemente */
+  dd::after {
+    clear: left;
+    content: " ";
+    display: block;
+  }
 }

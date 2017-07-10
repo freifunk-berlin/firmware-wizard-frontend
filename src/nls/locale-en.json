@@ -356,7 +356,7 @@
     "links": {
       "title": "Links",
       "noData": "Currently there is no data from OLSR.",
-      "noLinks": "Currentl,y there are no links.",
+      "noLinks": "Currently there are no links.",
       "columns": {
         "localip": "Local IP",
         "remoteip": "Remote IP",
