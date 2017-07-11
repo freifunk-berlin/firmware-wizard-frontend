@@ -360,6 +360,7 @@
       "columns": {
         "localip": "Local IP",
         "remoteip": "Remote IP",
+        "interface": "Interface",
         "lq": "Link Quality",
         "nlq": "Neighbor Link Quality",
         "etx" : "Link Cost"
