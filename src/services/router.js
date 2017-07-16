@@ -47,6 +47,10 @@ export default module('app.services.router', [])
       return this.call('system', 'board', {});
     }
 
+    getSystemInfo() {
+      return this.call('system', 'info', {});
+    }
+
     scanWifi(device) {
       return this.call('iwinfo', 'scan', {device});
     }

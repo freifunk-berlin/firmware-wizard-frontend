@@ -1,0 +1,21 @@
+@import "../../less/variables.less";
+
+status-system {
+  dt {
+    float: left;
+    font-weight: bold;
+    margin-right: 0.5em;
+  }
+
+  /* und noch der Doppelpunkt */
+  dt::after {
+    content: ": ";
+  }
+
+  /* einen Clearfix für Folge-dd-Elemente */
+  dd::after {
+    clear: left;
+    content: " ";
+    display: block;
+  }
+}

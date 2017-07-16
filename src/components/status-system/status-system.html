@@ -1,0 +1,138 @@
+<div class="jumbotron wizard-bg-highlight" translate-namespace="statusSystem">
+  <div class="container">
+    <div class="ff-icon-container">
+      <div>
+        <span class="fa-stack fa-6x">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-cogs fa-stack-1x fa-inverse"></i>
+        </span>
+      </div>
+      <div class="ff-icon-body">
+        <h1 translate>.headline</h1>
+        <p translate>.help</p>
+        <button class="btn btn-primary" ng-click="$ctrl.refresh()"
+          ng-disabled="$ctrl.refreshing"
+        >
+          <i class="fa fa-fw" ng-class="{
+            'fa-refresh': !$ctrl.refreshing,
+            'fa-spin fa-circle-o-notch': $ctrl.refreshing,
+          }"></i>
+          Refresh system info
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" translate-namespace="statusSystem">
+  <div>
+    <div class="container">
+      <div class="col-md-12">
+      <p ng-if="$ctrl.board === undefined || $ctrl.info === undefined" class="text-danger">
+        <i class="fa fa-fw fa-warning"></i>
+        <span translate>
+          .noData
+        </span>
+      </p>
+      </div>
+    </div>
+    <div ng-if="$ctrl.board !== undefined" class="container" translate-namespace=".board">
+      <h2 translate>.title</h2>
+      <div class="col-md-6">
+        <h3 translate>.systemheadline</h3>
+        <dl>
+          <dt translate>.hostname</dt>
+          <dd>{{$ctrl.board.hostname}}</dd>
+          <dt translate>.system</dt>
+          <dd>{{$ctrl.board.system}}</dd>
+          <dt translate>.model</dt>
+          <dd>{{$ctrl.board.model}}</dd>
+          <dt translate>.kernel</dt>
+          <dd>{{$ctrl.board.kernel}}</dd>
+        </dl>
+      </div>
+      <div class="col-md-6">
+        <h3 translate>.releaseheadline</h3>
+        <dl>
+          <dt translate>.distribution</dt>
+          <dd>{{$ctrl.board.release.distribution}}</dd>
+          <dt translate>.version</dt>
+          <dd>{{$ctrl.board.release.version}}</dd>
+          <dt translate>.revision</dt>
+          <dd>{{$ctrl.board.release.revision}}</dd>
+          <dt translate>.codename</dt>
+          <dd>{{$ctrl.board.release.codename}}</dd>
+          <dt translate>.target</dt>
+          <dd>{{$ctrl.board.release.target}}</dd>
+          <dt translate>.description</dt>
+          <dd>{{$ctrl.board.release.description}}</dd>
+        </dl>
+      </div>
+    </div>
+    <div ng-if="$ctrl.info !== undefined" class="container" translate-namespace=".live">
+      <h2 translate>.status</h2>
+      <div class="col-md-12">
+        <dl>
+          <dt translate>.uptime</dt>
+          <dd ng-if="$ctrl.info.uptime < 86400">{{$ctrl.info.uptime|secondsToDateTime|date:'HH:mm:ss'}}</dd>
+          <dd ng-if="$ctrl.info.uptime >= 86400">{{$ctrl.info.uptime|secondsToDateTime|date:'d HH:mm:ss'}}</dd>
+        </dl>
+      </div>
+      <div class="col-md-6">
+        <h3 translate>.load</h3>
+        <table class="table table-striped table-hover">
+          <thead translate-namespace=".columns">
+          <th></th>
+          <th>load</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1m</td>
+              <td>{{$ctrl.info.load[0]/100000|number: 2}}</td>
+            </tr>
+            <tr>
+              <td>5m</td>
+              <td>{{$ctrl.info.load[1]/100000|number: 2}}</td>
+            </tr>
+            <tr>
+              <td>15m</td>
+              <td>{{$ctrl.info.load[2]/100000|number: 2}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-6">
+        <h3 translate>.memory</h3>
+        <table class="table table-striped table-hover">
+          <thead translate-namespace=".columns">
+          <th></th>
+          <th>memory</th>
+          <th>swap</th>
+          </thead>
+          <tbody>
+          <tr>
+            <td>total</td>
+            <td>{{$ctrl.info.memory.total|byteFormat: 2}}</td>
+            <td>{{$ctrl.info.swap.total|byteFormat: 2}}</td>
+          </tr>
+          <tr>
+            <td>free</td>
+            <td>{{$ctrl.info.memory.free|byteFormat: 2}}</td>
+            <td>{{$ctrl.info.swap.free|byteFormat: 2}}</td>
+          </tr>
+          <tr>
+            <td>shared</td>
+            <td>{{$ctrl.info.memory.shared|byteFormat: 2}}</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>buffered</td>
+            <td>{{$ctrl.info.memory.buffered|byteFormat: 2}}</td>
+            <td>-</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
