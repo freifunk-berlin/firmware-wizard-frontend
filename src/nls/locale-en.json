@@ -148,7 +148,7 @@
         "help": "Upload transfer limit in <a href=\"https://en.wikipedia.org/wiki/Data_rate_units#Megabit_per_second\" target=\"_blank\">Mbit/s</a>."
       }
     },
-    "antistoererhaftung": {
+    "internettunnel": {
       "label": "VPN",
       "help": "Tunnels your internet traffic to a different server."
     },
