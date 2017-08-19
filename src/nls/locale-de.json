@@ -11,7 +11,7 @@
   },
   "authentication": {
     "headline": "Anmeldung",
-    "description": "Gib bitte die URL zu deinem Router und das root-Passwort ein, um Informationen  lesen und die Konfiguration zu speichern zu können.",
+    "description": "Gib bitte die URL zu deinem Router und das root-Passwort ein, um Informationen lesen und die Konfiguration zu speichern zu können.",
     "urllabel": "URL",
     "passwordlabel": "Passwort",
     "login": "Anmelden",
@@ -37,7 +37,7 @@
         "maxLength": "Nicht mehr als 32 Zeichen.",
         "minLength": "Mindestens 3 Zeichen."
       },
-      "help": "Der Routername wird im Mesh-Netzwerk angezeigt und außerdem bei verschiedenen anderen Diensten (z.B. Monitoring, Freifunkkarte, Kontaktseite) benutzt, sobald du sie aktiviertst."
+      "help": "Der Routername wird im Mesh-Netzwerk angezeigt und außerdem bei verschiedenen anderen Diensten (z.B. Monitoring, Freifunkkarte, Kontaktseite) benutzt, sobald du sie aktivierst."
     },
     "password": {
       "label": "Neues Router Passwort",
@@ -52,7 +52,7 @@
     },
     "sshkeys": {
       "label": "SSH-Schlüssel aktivieren",
-      "help": "Passwortloser Root-Login für deinen Router. SSH-Schlüssel sind sinnvoll, wenn du mehere Router betreibst oder wenn du einem befreundeten Menschen Zugriff geben möchtest.",
+      "help": "Passwortloser Root-Login für deinen Router. SSH-Schlüssel sind sinnvoll, wenn du mehrere Router betreibst oder wenn du einem befreundeten Menschen Zugriff geben möchtest.",
       "keys": {
         "label": "Deine Schlüssel",
         "help": "Füge deine Schlüssel hinzu, jeden in einer neuen Zeile",
@@ -88,14 +88,14 @@
       "mailinglist": {
         "label": "Mailingliste",
         "button": "Abonnieren",
-        "help": "Wir kommunizierenn über die <a href=\"https://lists.berlin.freifunk.net/cgi-bin/mailman/listinfo/berlin\" target=\"_blank\">Mailingliste der Berliner Community</a>.",
+        "help": "Wir kommunizieren über die <a href=\"https://lists.berlin.freifunk.net/cgi-bin/mailman/listinfo/berlin\" target=\"_blank\">Mailingliste der Berliner Community</a>.",
         "helpoffline": "Du kannst dich auf der <a href=\"https://lists.berlin.freifunk.net/cgi-bin/mailman/listinfo/berlin\" target=\"_blank\">Mailinglistenseite der Berliner Freifunk Community</a> anmelden, sobald du wieder online bist."
       }
     }
   },
   "routerLocation": {
     "headline": "Routerstandort",
-    "help": "Die Koordinaten werden benutzte um deinen Router in der <a href=\"http://map.berlin.freifunk.net\" target=\"_blank\">Freifunkkarte</a> zu platzieren.",
+    "help": "Die Koordinaten werden benutzt um deinen Router in der <a href=\"http://map.berlin.freifunk.net\" target=\"_blank\">Freifunkkarte</a> zu platzieren.",
     "getLocation": "Standort ermitteln",
     "geolocation": {
       "label": "Standort",
@@ -114,7 +114,7 @@
       "label": "Stadt",
       "placeholder": "Alt-Berlin"
     },
-    "offlineMsg" : "Du scheinst keine Verbindung zum Internet zu haben. Die Karte funktioniert nur, wenn du online bist. Du kansnt deinen Standort manuell setzen oder dies später tun."
+    "offlineMsg" : "Du scheinst keine Verbindung zum Internet zu haben. Die Karte funktioniert nur, wenn du online bist. Du kannst deinen Standort manuell setzen oder dies später tun."
   },
   "internetSharing": {
     "headline": "Internet teilen",
@@ -122,7 +122,7 @@
     "shareInternet": {
       "label": "Internet teilen",
       "help": "Ja, ich möchte meine Internetverbindung mit dem Freiunknetz teilen.",
-      "thanks": "Danke fürs Teilen deine Internetverbindung &#10084;"
+      "thanks": "Danke fürs Teilen deiner Internetverbindung &#10084;"
     },
     "limitspeed": {
       "label": "Geschwindigkeit beschränken.",
@@ -192,7 +192,7 @@
     "help": "Um mit anderen Routern und Clients, die sich zu deinem Router verbinden, kommunizieren zu können benötigt dein Router IP Adressen. Freifunk benutzt sowohl IPv4 (veraltet) und IPv6 (aktuell)",
     "register": {
       "label": "Neue IP Adressen registrieren",
-      "help": "Der Wizard registriert für dich automatisch IP Adressen im der Freifunk Berlin IP Registrierung. Du kannst das abwählen, wenn du bereits IP Adressen hast."
+      "help": "Der Wizard registriert für dich automatisch IP Adressen in der Freifunk Berlin IP Registrierung. Du kannst das abwählen, wenn du bereits IP Adressen hast."
     },
     "v6Prefix": {
       "label": "IPv6 Prefix",
@@ -236,8 +236,8 @@
       }
     },
     "error": {
-      "required": "Dieses Feld ist erforderlich, es sei denn du lässt IP Adressen automtisch registrieren.",
-      "ipPattern": "Das ist keine valide IPV4 Adresse."
+      "required": "Dieses Feld ist erforderlich, es sei denn du lässt IP Adressen automatisch registrieren.",
+      "ipPattern": "Das ist keine valide IPv4 Adresse."
     }
   },
   "monitoring" : {
