@@ -1,5 +1,5 @@
 import { module } from 'angular';
-import uiRouter from 'angular-ui-router';
+import uiRouter from '@uirouter/angularjs';
 
 require('./status-system.less');
 
