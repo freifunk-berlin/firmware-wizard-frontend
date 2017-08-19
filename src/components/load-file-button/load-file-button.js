@@ -7,6 +7,7 @@ export default module('app.components.load-file-button', [])
     bindings: {
       accept: '@',
       base64: '@',
+      required: '@',
       onDismiss: '&',
       onLoaded: '&',
     },

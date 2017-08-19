@@ -123,15 +123,31 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group has-feedback"
-                     ng-class="formFeedback('vpnConf')">
+                     ng-class="{
+                      'has-success': (ipForm.ipv6Prefix | fieldSuccess),
+                      'has-error': (ipForm.ipv6Prefix | fieldError),
+                      }">
                   <label for="tunnelConf" class="col-md-5 control-label" translate>
                     .conf.label
                   </label>
                   <load-file-button id="tunnelConf" accept=".ovpn,.cnf,text/*" base64="true"
+                                    required="$ctrl.newInternet.tunnel.enabled"
                                     on-loaded="$ctrl.uploadOpenvpnContent(content, 'config')">
                     <span translate>.conf.select</span>
                   </load-file-button>
+                    <span class="fa form-control-feedback"
+                          ng-class="{
+                        'fa-check': (ipForm.ipv6Prefix | fieldSuccess),
+                        'fa-times': (ipForm.ipv6Prefix | fieldError),
+                        }"></span>
                 </div>
+                  <div class="help-block">
+                      <div ng-messages="hasError('vpnConf')">
+                          <div ng-message="pattern">
+                              <span translate>.conf.error.pattern</span>
+                          </div>
+                      </div>
+                  </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group has-feedback"
@@ -256,7 +272,7 @@
             <div class="col-md-6">
               <div class="form-group has-feedback"
                    ng-class="formFeedback('meshvpnConf')">
-                <label for="vpnConf" class="col-md-5 control-label" translate>
+                  <label for="meshvpnConf" class="col-md-5 control-label" translate>
                   .conf.label
                 </label>
                 <div class="col-md-7">
