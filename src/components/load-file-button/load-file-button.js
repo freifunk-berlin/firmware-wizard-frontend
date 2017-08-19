@@ -36,13 +36,6 @@ export default module('app.components.load-file-button', [])
           reader.readAsText(event.target.files[0]);
         }
       }
-
-      removeBase64TypeString(contentString) {
-        if (this.base64) {
-          return contentString.split(',')[1];
-        }
-        return contentString.result;
-      }
     },
     template: require('./load-file-button.html'),
     transclude: true,
