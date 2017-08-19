@@ -1,0 +1,160 @@
+
+
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {},
+  "id": "http://example.com/example.json",
+  "properties": {
+    "contact": {
+      "id": "/properties/contact",
+      "properties": {
+        "email": {
+          "id": "/properties/contact/properties/email",
+          "type": "string"
+        },
+        "name": {
+          "description": "Nodemaintainer ",
+          "id": "/properties/contact/properties/name",
+          "type": "string"
+        },
+        "sendToMap": {
+          "description": "Send entered email contact to Freifunkmap",
+          "id": "/properties/contact/properties/sendToMap",
+          "type": "boolean"
+        },
+        "showOnContactPage": {
+          "id": "/properties/contact/properties/showOnContactPage",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "internet": {
+      "id": "/properties/internet",
+      "properties": {
+        "share": {
+          "id": "/properties/internet/properties/share",
+          "type": "boolean"
+        },
+        "speedLimit": {
+          "id": "/properties/internet/properties/speedLimit",
+          "type": "boolean"
+        },
+        "speedLimitDown": {
+          "id": "/properties/internet/properties/speedLimitDown",
+          "type": "number"
+        },
+        "speedLimitUp": {
+          "id": "/properties/internet/properties/speedLimitUp",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "ip": {
+      "id": "/properties/ip",
+      "properties": {
+        "distribute": {
+          "description": "Distribute IP addresses to clients",
+          "id": "/properties/ip/properties/distribute",
+          "title": "",
+          "type": "boolean"
+        },
+        "meshLan": {
+          "id": "/properties/ip/properties/meshLan",
+          "type": "boolean"
+        },
+        "v4": {
+          "id": "/properties/ip/properties/v4",
+          "properties": {
+            "lan": {
+              "description": "mesh IP for LAN (Lanmesh)",
+              "id": "/properties/ip/properties/v4/properties/lan",
+              "type": "string"
+            },
+            "radio0": {
+              "id": "/properties/ip/properties/v4/properties/radio0",
+              "type": "string"
+            },
+            "radio1": {
+              "id": "/properties/ip/properties/v4/properties/radio1",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "v4ClientSubnet": {
+          "id": "/properties/ip/properties/v4ClientSubnet",
+          "type": "string"
+        },
+        "v6Prefix": {
+          "id": "/properties/ip/properties/v6Prefix",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "location": {
+      "id": "/properties/location",
+      "properties": {
+        "city": {
+          "id": "/properties/location/properties/city",
+          "type": "string"
+        },
+        "lat": {
+          "id": "/properties/location/properties/lat",
+          "type": "number"
+        },
+        "lng": {
+          "description": "alternative lon",
+          "id": "/properties/location/properties/lng",
+          "type": "number"
+        },
+        "postalCode": {
+          "id": "/properties/location/properties/postalCode",
+          "type": "string"
+        },
+        "street": {
+          "id": "/properties/location/properties/street",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "monitoring": {
+      "id": "/properties/monitoring",
+      "properties": {
+        "enabled": {
+          "description": "",
+          "id": "/properties/monitoring/properties/enabled",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "router": {
+      "id": "/properties/router",
+      "properties": {
+        "name": {
+          "id": "/properties/router/properties/name",
+          "type": "string"
+        },
+        "passwordHash": {
+          "id": "/properties/router/properties/passwordHash",
+          "type": "string"
+        },
+        "sshkeys": {
+          "id": "/properties/router/properties/sshkeys",
+          "items": {
+            "id": "/properties/router/properties/sshkeys/items",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "object"
+}
+
