@@ -98,9 +98,9 @@
       </div>
       <!-- / transfer rate -->
 
-      <!-- anti-störerhaftungs-VPN -->
+      <!-- internettunnel -->
       <!-- TODO: migrate! -->
-        <div class="form-group" ng-hide="false">
+      <div class="form-group">
         <label for="vpn" class="col-md-3 control-label" translate>
             .internettunnel.label
         </label>
@@ -108,121 +108,108 @@
           <div class="checkbox">
             <label class="text-muted">
               <input type="checkbox"
-                name="vpn" id="vpn"
-                data-ng-model="wizard.internet.vpn.enabled">
+                     name="vpn" id="vpn"
+                     data-ng-model="$ctrl.newInternet.tunnel.enabled">
                 <span translate>.internettunnel.help</span>
             </label>
           </div>
         </div>
       </div>
 
-      <div uib-collapse="!wizard.internet.vpn.enabled">
+      <div uib-collapse="!$ctrl.newInternet.tunnel.enabled">
 
-        <div class="row" translate-namespace=".generateCertificate">
+        <div class="row" translate-namespace=".tunnel">
           <div class="col-md-offset-3 col-md-9">
-            <div class="col-md-6">
-              <div class="form-group has-feedback"
-                   ng-class="formFeedback('vpnConf')">
-                <label for="vpnConf" class="col-md-5 control-label" translate>
-                  .conf.label
-                </label>
-                <div class="col-md-7">
-                  <div class="btn btn-info" role="button" id="vpnConf" name="vpnConf"
-                       data-ng-model="vpnConf" data-ngf-select="uploadVpnFiles($files, 'conf')"
-                       data-ngf-multiple="false" ngf-pattern="'text/*,.cnf,.ovpn'" ngf-accept="'text/*,.ovpn,.cnf'"
-                       data-ng-required="!state.internet.vpn.vpn03generate
-                       && wizard.internet.vpn.enabled
-                       && wizard.internet.share" translate>
-                    .conf.select
-                  </div><br/>&nbsp;{{wizard.internet.vpn.conf.filename}}
-                  <span class="fa form-control-feedback"
-                        ng-class="formControlFeedback('vpnConf')"></span>
-                  <div class="help-block">
-                    <div ng-messages="hasError('vpnConf')">
-                      <div ng-message="pattern">
-                        <span translate>.conf.error.pattern</span>
-                      </div>
-                    </div>
-                  </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group has-feedback"
+                     ng-class="formFeedback('vpnConf')">
+                  <label for="tunnelConf" class="col-md-5 control-label" translate>
+                    .conf.label
+                  </label>
+                  <load-file-button id="tunnelConf" accept=".ovpn,.cnf,text/*" base64="true"
+                                    on-loaded="$ctrl.uploadOpenvpnContent(content, 'config')">
+                    <span translate>.conf.select</span>
+                  </load-file-button>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group has-feedback"
+                     ng-class="formFeedback('tunnelCert')">
+                  <label for="tunnelCert" class="col-md-5 control-label" translate>
+                    .certificate.label
+                  </label>
+                  <load-file-button id="tunnelCert" accept=".crt,text/*" base64="true"
+                                    on-loaded="$ctrl.uploadOpenvpnContent(content, 'cert')">
+                    <span translate>.certificate.select</span>
+                  </load-file-button>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group has-feedback"
+                     ng-class="formFeedback('tunnelCaCert')">
+                  <label for="tunnelCaCert" class="col-md-5 control-label" translate>
+                    .cacertificate.label
+                  </label>
+                  <load-file-button id="tunnelCaCert" accept=".crt,text/*" base64="true"
+                                    on-loaded="$ctrl.uploadOpenvpnContent(content, 'ca')">
+                    <span translate>.cacertificate.select</span>
+                  </load-file-button>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group has-feedback"
+                     ng-class="formFeedback('tunnelKey')">
+                  <label for="tunnelKey" class="col-md-5 control-label" translate>
+                    .key.label
+                  </label>
+                  <load-file-button id="tunnelKey" accept=".key,text/*" base64="true"
+                                    on-loaded="$ctrl.uploadOpenvpnContent(content, 'key')">
+                    <span translate>.key.select</span>
+                  </load-file-button>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group has-feedback"
+                     ng-class="formFeedback('tunnelTaKey')">
+                  <label for="tunnelTaKey" class="col-md-5 control-label" translate>
+                    .takey.label
+                  </label>
+                  <load-file-button id="tunnelTaKey" accept=".key,text/*" base64="true"
+                                    on-loaded="$ctrl.uploadOpenvpnContent(content, 'tls-auth')">
+                    <span translate>.takey.select</span>
+                  </load-file-button>
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="form-group has-feedback"
-                   ng-class="formFeedback('vpnCert')">
-                <label for="vpnCert" class="col-md-5 control-label" translate>
-                  .certificate.label
-                </label>
-                <div class="col-md-7">
-                  <div class="btn btn-info" role="button" id="vpnCert" name="vpnCert"
-                       data-ng-model="vpnCert" data-ngf-select="uploadVpnFiles($files, 'cert')"
-                       data-ngf-multiple="false" ngf-pattern="'text/*,.crt'" ngf-accept="'text/*,.crt'"
-                       data-ng-required="!state.internet.vpn.vpn03generate
-                       && wizard.internet.vpn.enabled
-                       && wizard.internet.share" translate>
-                    .certificate.select
-                  </div><br/>&nbsp;{{wizard.internet.vpn.cert.filename}}
-                  <span class="fa form-control-feedback"
-                        ng-class="formControlFeedback('vpnCert')"></span>
-                  <div class="help-block">
-                    <div ng-messages="hasError('vpnCert')">
-                      <div ng-message="pattern">
-                        <span translate>.cert.error.pattern</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <div class="row">
+              <div class="col-md-12">
+                <span translate>.secrethelp</span>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="form-group has-feedback"
-                   ng-class="formFeedback('vpnKey')">
-                <label for="vpnKey" class="col-md-5 control-label" translate>
-                  .key.label
-                </label>
-                <div class="col-md-7">
-                  <div class="btn btn-info" role="button" id="vpnKey" name="vpnKey"
-                       data-ng-model="vpnKey" data-ngf-select="uploadVpnFiles($files, 'key')"
-                       data-ngf-multiple="false" ngf-pattern="'text/*,.key'" ngf-accept="'text/*,.key'"
-                       data-ng-required="!state.internet.vpn.vpn03generate
-                       && wizard.internet.vpn.enabled
-                       && wizard.internet.share" translate>
-                    .key.select
-                  </div><br/>&nbsp;{{wizard.internet.vpn.key.filename}}
-                  <span class="fa form-control-feedback"
-                        ng-class="formControlFeedback('vpnKey')"></span>
-                  <div class="help-block">
-                    <div ng-messages="hasError('vpnKey')">
-                      <div ng-message="pattern">
-                        <span translate>.key.error.pattern</span>
-                      </div>
-                    </div>
-                  </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group has-feedback"
+                     ng-class="formFeedback('tunnelSecret')">
+                  <label for="tunnelSecret" class="col-md-5 control-label" translate>
+                    .secret.label
+                  </label>
+                  <load-file-button id="tunnelSecret" accept="*" base64="true"
+                                    on-loaded="$ctrl.uploadOpenvpnContent(content, 'secret')">
+                    <span translate>.secret.select</span>
+                  </load-file-button>
                 </div>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group has-feedback"
-                   ng-class="formFeedback('taKey')">
-                <label for="taKey" class="col-md-5 control-label" translate>
-                  .takey.label
-                </label>
-                <div class="col-md-7">
-                  <div class="btn btn-info" role="button" id="taKey" name="taKey"
-                       data-ng-model="taKey" data-ngf-select="uploadVpnFiles($files, 'takey')"
-                       data-ngf-multiple="false" ngf-pattern="'text/*,.key'" ngf-accept="'text/*,.key'"
-                       translate>
-                    .takey.select
-                  </div><br/>&nbsp;{{wizard.internet.vpn.takey.filename}}
-                  <span class="fa form-control-feedback"
-                        ng-class="formControlFeedback('taKey')"></span>
-                  <div class="help-block">
-                    <div ng-messages="hasError('taKey')">
-                      <div ng-message="pattern">
-                        <span translate>.takey.error.pattern</span>
-                      </div>
-                    </div>
-                  </div>
+              <div class="col-md-6">
+                <div class="form-group has-feedback"
+                     ng-class="formFeedback('tunnelAuthUserPass')">
+                  <label for="tunnelAuthUserPass" class="col-md-5 control-label" translate>
+                    .authuserpass.label
+                  </label>
+                  <load-file-button id="tunnelAuthUserPass" accept="*" base64="true"
+                                    on-loaded="$ctrl.uploadOpenvpnContent(content, 'auth-user-pass')">
+                    <span translate>.authuserpass.select</span>
+                  </load-file-button>
                 </div>
               </div>
             </div>
@@ -243,7 +230,7 @@
           </div>
         </div>
       </div>
-      <!-- / anti-störerhaftungs-VPN -->
+      <!-- / internettunnel-VPN -->
 
       <!-- mesh-VPN -->
       <div class="form-group" ng-hide="true">
