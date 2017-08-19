@@ -68,7 +68,7 @@ module.exports = {
         // less to css
         test: /\.less$/,
         loader: extractCss.extract({
-          loader: ['css-loader?sourceMap', 'less-loader?sourceMap'],
+          use: ['css-loader?sourceMap', 'less-loader?sourceMap'],
         }),
       },
       {
