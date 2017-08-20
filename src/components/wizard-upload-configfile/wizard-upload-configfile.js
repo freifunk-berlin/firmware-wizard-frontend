@@ -32,7 +32,7 @@ export default module('app.components.wizard-upload-configfile', [])
       }
 
       updateOutput(newFileContent) {
-        let fileContent = copy(newFileContent);
+        const fileContent = copy(newFileContent);
         this.onUpdate({fileContent});
       }
 
