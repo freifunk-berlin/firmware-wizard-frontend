@@ -4,14 +4,14 @@
   "loadconfiglink": "Existierende Konfiguration laden",
   "loadrouterinfolink": "Routerinfos aktualisieren",
   "description": "Freifunk ist ein unabhängiges, freies und offenes Communitynetzwerk, aufgebaut von Freiwilligen.",
-  "freifunk": "Wir unterstützen das <a href=\"\" target=\"_blank\">Pico Peering Agreement</a>. Bitte informier die dich auch über unsere <a href=\"https://freifunk.net/en/what-is-it-about/our-vision/\" target=\"_blank\">Vision</a> und unser <a href=\"http://blog.freifunk.net/2015/memorandum-understanding\" target=\"_blank\">Memorandum Of Understanding</a>.",
+  "freifunk": "Wir unterstützen das <a href=\"\" target=\"_blank\">Pico Peering Agreement</a>. Bitte informiere dich auch über unsere <a href=\"https://freifunk.net/en/what-is-it-about/our-vision/\" target=\"_blank\">Vision</a> und unser <a href=\"http://blog.freifunk.net/2015/memorandum-understanding\" target=\"_blank\">Memorandum Of Understanding</a>.",
   "offlineWarning": {
     "headline": "Keine Internetverbindung",
-    "help" : "Einige Funktionen dieses Assistenten brauchen eine Internetverbindung. Du kannst entweder Deiner Router mit dem Internet verbinden oder diese <a href=\"#\">Online Version des Assistenten</a> nutzen"
+    "help" : "Einige Funktionen dieses Assistenten brauchen eine Internetverbindung. Du kannst entweder deinen Router mit dem Internet verbinden oder diese <a href=\"#\">Onlineversion des Assistenten</a> nutzen"
   },
   "authentication": {
     "headline": "Anmeldung",
-    "description": "Gib bitte die URL zu deinem Router und das root-Passwort ein, um Informationen  lesen und die Konfiguration zu speichern zu können.",
+    "description": "Gib bitte die URL zu deinem Router und das root-Passwort ein, um Informationen lesen und die Konfiguration speichern zu können.",
     "urllabel": "URL",
     "passwordlabel": "Passwort",
     "login": "Anmelden",
@@ -19,7 +19,7 @@
   },
   "loadconfig": {
     "headline": "Konfiguration laden",
-    "help": "Für andere Router kannst eine bereits vorhandene Konfigurationsdatei anpassen und laden.",
+    "help": "Für andere Router kannst du eine bereits vorhandene Konfigurationsdatei anpassen und laden.",
     "upload": {
       "drop": "Datei hierher ziehen oder klicken.\n",
       "dropnotsupported": "Dein Browser unterstützt leider kein Drag and Drop für Dateiupload :("
@@ -29,7 +29,7 @@
     "headline": "Basis Router Einrichtung ",
     "model": "für {{model}}",
     "routerName": {
-      "label": "Router Name",
+      "label": "Routername",
       "placeholder": "funkenpumpe3000",
       "error": {
         "required": "Dies ist ein Pflichtfeld.",
@@ -37,22 +37,22 @@
         "maxLength": "Nicht mehr als 32 Zeichen.",
         "minLength": "Mindestens 3 Zeichen."
       },
-      "help": "Der Routername wird im Mesh-Netzwerk angezeigt und außerdem bei verschiedenen anderen Diensten (z.B. Monitoring, Freifunkkarte, Kontaktseite) benutzt, sobald du sie aktiviertst."
+      "help": "Der Routername wird im Mesh-Netzwerk angezeigt und außerdem bei verschiedenen anderen Diensten (z.B. Monitoring, Freifunkkarte, Kontaktseite) benutzt, sobald du sie aktivierst."
     },
     "password": {
-      "label": "Neues Router Passwort",
+      "label": "Neues Routerpasswort",
       "help": "Mindestens 6 Zeichen",
       "error.required": "Es wird ein Passwort benötigt.",
       "error.minLength": "Das Passwort muss mindestens 6 Zeichen haben."
     },
     "passwordVerify": {
-      "label": "Router Passwort wiederholen",
+      "label": "Routerpasswort wiederholen",
       "help": "Beide Passwörter müssen übereinstimmen",
       "error.match": "Passwörter müssen übereinstimmen\n"
     },
     "sshkeys": {
       "label": "SSH-Schlüssel aktivieren",
-      "help": "Passwortloser Root-Login für deinen Router. SSH-Schlüssel sind sinnvoll, wenn du mehere Router betreibst oder wenn du einem befreundeten Menschen Zugriff geben möchtest.",
+      "help": "Passwortloser Root-Login für deinen Router. SSH-Schlüssel sind sinnvoll, wenn du mehrere Router betreibst oder wenn du einem befreundeten Menschen Zugriff geben möchtest.",
       "keys": {
         "label": "Deine Schlüssel",
         "help": "Füge deine Schlüssel hinzu, jeden in einer neuen Zeile",
@@ -68,27 +68,27 @@
     },
     "email": {
       "label":"Deine E-Mail Adresse",
-      "help": "Deine Email Adresse wird benötigt, wenn du VPN Zertifikat- und Schlüsselgenerierung bzw. die IP Registrierung aktivierst.",
+      "help": "Deine E-Mail Adresse wird benötigt, wenn du VPN Zertifikat- und Schlüsselgenerierung bzw. die IP Registrierung aktivierst.",
       "placeholder": "name@example.org",
       "error": {
-        "required":"Für die aktuelle Konfiguration wird deine Email Adresse benötigt.",
-        "pattern": "Bitte gebe eine Email Adresse ein."
+        "required":"Für die aktuelle Konfiguration wird deine E-Mail Adresse benötigt.",
+        "pattern": "Bitte gebe eine E-Mail Adresse ein."
       }
     },
     "options": {
       "label": "Ist es ok für dich, wenn wir dich kontaktieren?",
       "contactPage": {
         "label": "Wird auf der Kontaktseite angezeigt.",
-        "help": "Sobald sich Menschen zum Freifunknetzwerk verbinden, können sie die Kontaktdaten unter <a href=\"http://frei.funk/cgi-bin/luci/freifunk/contact\" target=\"_blank\">frei.funk</a> sehen."
+        "help": "Sobald sich Menschen zum Freifunknetzwerk verbinden, können sie die Kontaktdaten unter <a href=\"http://frei.funk/cgi-bin/luci/freifunk/contact\" target=\"_blank\">frei.funk</a> sehen (nur sichtbar im Freifunk)."
       },
       "sendToMap": {
         "label": "Zur Freifunkkarte senden",
-        "help": "Ich möchte, dass meine Email Adresse auf der <a href=\"http://openwifimap.net\" target=\"_blank\">Freifunkkarte</a> angezeigt wird."
+        "help": "Ich möchte, dass meine E-Mail Adresse auf der <a href=\"http://openwifimap.net\" target=\"_blank\">Freifunkkarte</a> angezeigt wird."
       },
       "mailinglist": {
         "label": "Mailingliste",
         "button": "Abonnieren",
-        "help": "Wir kommunizierenn über die <a href=\"https://lists.berlin.freifunk.net/cgi-bin/mailman/listinfo/berlin\" target=\"_blank\">Mailingliste der Berliner Community</a>.",
+        "help": "Wir kommunizieren über die <a href=\"https://lists.berlin.freifunk.net/cgi-bin/mailman/listinfo/berlin\" target=\"_blank\">Mailingliste der Berliner Freifunk Community</a>.",
         "helpoffline": "Du kannst dich auf der <a href=\"https://lists.berlin.freifunk.net/cgi-bin/mailman/listinfo/berlin\" target=\"_blank\">Mailinglistenseite der Berliner Freifunk Community</a> anmelden, sobald du wieder online bist."
       }
     }
@@ -114,15 +114,15 @@
       "label": "Stadt",
       "placeholder": "Alt-Berlin"
     },
-    "offlineMsg" : "Du scheinst keine Verbindung zum Internet zu haben. Die Karte funktioniert nur, wenn du online bist. Du kansnt deinen Standort manuell setzen oder dies später tun."
+    "offlineMsg" : "Du scheinst keine Verbindung zum Internet zu haben. Die Karte funktioniert nur, wenn du online bist. Du kannst deinen Standort manuell setzen oder dies später tun."
   },
   "internetSharing": {
     "headline": "Internet teilen",
     "help": "Freifunk kann für lokale Dienste und den Zugang zum Internet genutzt werden. Letzteres wird erst dadurch ermöglicht, dass Menschen, die Router betreiben, ihre Internetverbindung teilen.",
     "shareInternet": {
       "label": "Internet teilen",
-      "help": "Ja, ich möchte meine Internetverbindung mit dem Freiunknetz teilen.",
-      "thanks": "Danke fürs Teilen deine Internetverbindung &#10084;"
+      "help": "Ja, ich möchte meine Internetverbindung mit dem Freifunknetz teilen.",
+      "thanks": "Danke fürs Teilen deiner Internetverbindung &#10084;"
     },
     "limitspeed": {
       "label": "Geschwindigkeit beschränken.",
@@ -173,14 +173,14 @@
       "conf": {
         "label": "VPN Konfigurationsdatei",
         "select": ".ovpn Datei",
-        "customvpn": "Ich möchte einen anderen VPN Service nutzen (Dann benötigst du eine opnVPN Konfigurationsdatei von deinem Provider)",
+        "customvpn": "Ich möchte einen anderen VPN Service nutzen. Dann benötigst du eine opnVPN Konfigurationsdatei von deinem Provider.",
         "error": {
           "pattern": "Falsches Dateiformat oder falscher Dateiname. Nur Textdateien sind erlaubt."
         }
       },
       "select": "Wähle eine Datei aus",
       "browse": "Durchsuchen",
-      "error.required": "Die Datei ist erforderlich. (Sie kann auch automatisch generiert werden, wenn du den Haken weiter oben setzt.)"
+      "error.required": "Die Datei ist erforderlich. Sie kann auch automatisch generiert werden, wenn du den Haken weiter oben setzt."
     },
     "vpninfo": {
       "showlist": "VPN Provider Liste",
@@ -236,8 +236,8 @@
       }
     },
     "error": {
-      "required": "Dieses Feld ist erforderlich, es sei denn du lässt IP Adressen automtisch registrieren.",
-      "ipPattern": "Das ist keine valide IPV4 Adresse."
+      "required": "Dieses Feld ist erforderlich, es sei denn du lässt IP Adressen automatisch registrieren.",
+      "ipPattern": "Das ist keine valide IPv4 Adresse."
     }
   },
   "monitoring" : {
@@ -310,7 +310,7 @@
       "remoteip": "Entfernte IP",
       "lq": "Linkqualität",
       "nlq": "Linkqualität aus Sicht des Nachbarn",
-      "etx" : "Kosten"
+      "etx" : "Linkkosten"
     }
   }
 }
