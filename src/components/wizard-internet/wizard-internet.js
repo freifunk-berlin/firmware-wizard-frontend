@@ -90,16 +90,8 @@ export default module('app.components.wizard-internet', [])
         $scope.$watch('$ctrl.newInternet', this.updateOutput.bind(this), true);
       }
 
-      updateFromInput(internet) {
-        this.internetTunnelEnabled = false;
-        this.meshTunnelEnabled = false;
-        copy(internet, this.newInternet);
-        if (internet && internet.internetTunnel) {
-          this.internetTunnelEnabled = true;
-        }
-        if (internet && internet.meshTunnel) {
-          this.meshTunnelEnabled = true;
-        }
+      toggleVpnList() {
+        this.showVpnList = !this.showVpnList;
       }
 
       setTunnelType(type) {
@@ -125,6 +117,18 @@ export default module('app.components.wizard-internet', [])
       clearMeshTunnelFiles() {
         if (this.newInternet.meshTunnel && this.newInternet.meshTunnel.files) {
           delete this.newInternet.meshTunnel.files;
+        }
+      }
+
+      updateFromInput(internet) {
+        this.internetTunnelEnabled = false;
+        this.meshTunnelEnabled = false;
+        copy(internet, this.newInternet);
+        if (internet && internet.internetTunnel) {
+          this.internetTunnelEnabled = true;
+        }
+        if (internet && internet.meshTunnel) {
+          this.meshTunnelEnabled = true;
         }
       }
 

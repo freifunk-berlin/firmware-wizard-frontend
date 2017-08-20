@@ -157,12 +157,12 @@
         </div>
         <div class="row" translate-namespace=".vpninfo">
           <div class="col-md-offset-3 col-md-9">
-            <div ng-click="toggleVpnList()">
-              <span ng-show="!state.internet.showVpnList">&#9658;</span>
-              <span ng-show="state.internet.showVpnList">&#9660;</span>
+            <div ng-click="$ctrl.toggleVpnList()">
+              <span ng-show="!$ctrl.showVpnList">&#9658;</span>
+              <span ng-show="$ctrl.showVpnList">&#9660;</span>
               <span translate>.showlist</span>
             </div>
-            <div uib-collapse="!state.internet.showVpnList">
+            <div uib-collapse="!$ctrl.showVpnList">
               <ul translate>
                 .list
               </ul>
