@@ -210,7 +210,6 @@
     },
     "tunnel": {
       "label": "VPN certificate and key for this router",
-      "help": "The <a href=\"http://foerderverein.freie-netzwerke.de/\" target=\"_blank\">Förderverein Freie Netzwerke</a> operates the <a href=\"http://wiki.freifunk.net/vpn03\" target=\"_blank\">VPN03</a> servers for protecting yourself from the <a href=\"https://de.wikipedia.org/wiki/St%C3%B6rerhaftung\" target=\"_blank\">Störerhaftung</a>. If this option is enabled, the wizard automatically generates a new certificate and key for VPN03. Disable this option if you already have a VPN03 config or if you want to use another VPN service (OpenVPN).",
       "secrethelp": "If you use password authentication instead of certificates, upload your secrets here:",
       "clearAllFiles": "clear all files",
       "select": "Select your file",
@@ -219,7 +218,7 @@
     },
     "vpninfo": {
       "showlist": "List VPN Providers",
-      "list": "<li><a href=\"http://www.evernet-eg.de/kontakt.html\" target=\"_blank\">Evernet eG</a> is providing VPN for Freifunkas</li><li><a href=\"https://www.ipredator.se/\" target=\"_blank\">IPredator</a> provides you with an encrypted tunnel from your computer to the Internet.</li><li><a href=\"mailto:kontakt@freifunk-rheinland.net\">Freifunk Rheinland</a> acts as Community Provider</li><li>Förderverein Freie Netzwerke operates non encrypted <a href=\"https://wiki.freifunk.net/Vpn03\" target=\"_blank\">VPN03 servers</a>.</li><li>Or choose an OpenVPN for example from this comparision: <a href=\"http://www.vpnvergleich.net/\" target=\"_blank\">http://www.vpnvergleich.net/</a></li>"
+      "list": "<li><a href=\"http://www.evernet-eg.de/kontakt.html\" target=\"_blank\">Evernet eG</a> is providing VPN for Freifunkas</li><li><a href=\"https://www.ipredator.se/\" target=\"_blank\">IPredator</a> provides you with an encrypted tunnel from your computer to the Internet.</li><li><a href=\"mailto:kontakt@freifunk-rheinland.net\">Freifunk Rheinland</a> acts as Community Provider</li><li>Or choose an OpenVPN for example from this comparision: <a href=\"http://www.vpnvergleich.net/\" target=\"_blank\">http://www.vpnvergleich.net/</a></li>"
     }
   },
   "ip": {
