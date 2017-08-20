@@ -124,6 +124,58 @@
     },
     "offlineMsg" : "Your internet connections seems offline. Using the map only works when you're online. You can add your location manually or do that later."
   },
+  "wizard-upload-configfile": {
+    "cert": {
+      "label": "VPN certificate",
+      "select": ".cert file",
+      "error": {
+        "pattern": "Wrong file format or name. Only text files are allowed."
+      }
+    },
+    "key": {
+      "label": "VPN key",
+      "select": ".key file",
+      "error": {
+        "pattern": "Wrong file format or name. Only text files are allowed."
+      }
+    },
+    "takey": {
+      "label": "TLS Auth key",
+      "select": ".key file",
+      "error": {
+        "pattern": "Wrong file format or name. Only text files are allowed."
+      }
+    },
+    "cacert": {
+      "label": "CA Certificate",
+      "select": ".cert file",
+      "error": {
+        "pattern": "Wrong file format or name. Only text files are allowed."
+      }
+    },
+    "secret": {
+      "label": "VPN secret",
+      "select": "secret file",
+      "error": {
+        "pattern": "Wrong file format or name. Only text files are allowed."
+      }
+    },
+    "auth-user-pass": {
+      "label": "Auth User pass",
+      "select": "auth user pass file",
+      "error": {
+        "pattern": "Wrong file format or name. Only text files are allowed."
+      }
+    },
+    "config": {
+      "label": "VPN configuration file",
+      "select": ".ovpn file",
+      "customvpn": "I want to use another VPN service. Then you need an opnVPN config file from your VPN provider.",
+      "error": {
+        "pattern": "Wrong file format or name. Only text files are allowed."
+      }
+    }
+  },
   "internetSharing": {
     "headline": "Internet sharing",
     "help": "Freifunk can be used for local services and grants access to the internet. This is possible because people within the network decide to share their internet connections.",
@@ -160,56 +212,6 @@
       "label": "VPN certificate and key for this router",
       "help": "The <a href=\"http://foerderverein.freie-netzwerke.de/\" target=\"_blank\">Förderverein Freie Netzwerke</a> operates the <a href=\"http://wiki.freifunk.net/vpn03\" target=\"_blank\">VPN03</a> servers for protecting yourself from the <a href=\"https://de.wikipedia.org/wiki/St%C3%B6rerhaftung\" target=\"_blank\">Störerhaftung</a>. If this option is enabled, the wizard automatically generates a new certificate and key for VPN03. Disable this option if you already have a VPN03 config or if you want to use another VPN service (OpenVPN).",
       "secrethelp": "If you use password authentication instead of certificates, upload your secrets here:",
-      "certificate": {
-        "label": "VPN certificate",
-        "select": ".cert file",
-        "error": {
-          "pattern": "Wrong file format or name. Only text files are allowed."
-        }
-      },
-      "key": {
-        "label": "VPN key",
-        "select": ".key file",
-        "error": {
-          "pattern": "Wrong file format or name. Only text files are allowed."
-        }
-      },
-      "takey": {
-        "label": "TLS Auth key",
-        "select": ".key file",
-        "error": {
-          "pattern": "Wrong file format or name. Only text files are allowed."
-        }
-      },
-      "cacertificate": {
-        "label": "CA Certificate",
-        "select": ".cert file",
-        "error": {
-          "pattern": "Wrong file format or name. Only text files are allowed."
-        }
-      },
-      "secret": {
-        "label": "VPN secret",
-        "select": "secret file",
-        "error": {
-          "pattern": "Wrong file format or name. Only text files are allowed."
-        }
-      },
-      "authuserpass": {
-        "label": "Auth User pass",
-        "select": "auth user pass file",
-        "error": {
-          "pattern": "Wrong file format or name. Only text files are allowed."
-        }
-      },
-      "conf": {
-        "label": "VPN configuration file",
-        "select": ".ovpn file",
-        "customvpn": "I want to use another VPN service. Then you need an opnVPN config file from your VPN provider.",
-        "error": {
-          "pattern": "Wrong file format or name. Only text files are allowed."
-        }
-      },
       "select": "Select your file",
       "browse": "Browse",
       "error.required": "The file is required. It is generated automatically if you select the checkbox above."

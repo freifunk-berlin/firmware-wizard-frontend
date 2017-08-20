@@ -15,25 +15,53 @@ export default module('app.components.wizard-internet', [])
         'ngInject';
 
         this.newInternet = {};
+        this.internetTunnelEnabled = false;
+        this.internetTunnelConf = [
+          {
+            fileExtensions: ".ovpn,.cnf,text/*",
+            property: "config",
+            tunnelType: "internettunnel",
+            required: true
+          },
+          {
+            fileExtensions: ".crt,text/*",
+            property: "cert",
+          },
+          {
+            fileExtensions: ".crt,text/*",
+            property: "cacert",
+          },
+          {
+            fileExtensions: ".key,text/*",
+            property: "key",
+          },
+          {
+            fileExtensions: ".key,text/*",
+            property: "takey",
+          }
+        ];
+
+        this.internetTunnelConfSecret = [
+          {
+            fileExtensions: "*",
+            property: "auth-user-pass",
+          },
+          {
+            fileExtensions: "*",
+            property: "secret",
+          }
+        ];
 
         $scope.$watch('$ctrl.internet', this.updateFromInput.bind(this), true);
         $scope.$watch('$ctrl.newInternet', this.updateOutput.bind(this), true);
       }
 
       updateFromInput(internet) {
+        this.internetTunnelEnabled = false;
         copy(internet, this.newInternet);
-      }
-
-      uploadOpenvpnContent(content, type) {
-        if (!this.newInternet.tunnel) {
-          this.newInternet.tunnel = {};
+        if (internet && internet.internetTunnel) {
+          this.internetTunnelEnabled = true;
         }
-        this.newInternet.tunnel.type = OPENVPN;
-        this.uploadContent(content, type);
-      }
-
-      uploadContent(content, type) {
-        this.newInternet.tunnel[type] = content;
       }
 
       updateOutput(newInternet) {
@@ -46,7 +74,7 @@ export default module('app.components.wizard-internet', [])
           delete internet.speedLimitDown;
           delete internet.speedLimitUp;
         }
-        if (!internet.tunnel || !internet.tunnel.enabled) {
+        if (!internet.tunnel || !this.internetTunnelEnabled) {
           delete internet.tunnel;
         }
         this.onUpdate({internet});
