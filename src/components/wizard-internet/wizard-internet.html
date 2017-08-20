@@ -117,7 +117,8 @@
         </div>
       </div>
 
-      <div uib-collapse="!$ctrl.internetTunnelEnabled">
+      <div uib-collapse="!$ctrl.internetTunnelEnabled"
+      ">
         <div class="row" translate-namespace=".tunnel">
           <div class="col-md-offset-3 col-md-9">
             <div class="row">
@@ -172,7 +173,7 @@
       <!-- / internettunnel-VPN -->
 
       <!-- mesh-VPN -->
-      <div class="form-group" ng-hide="true">
+    <div class="form-group">
         <label for="meshvpn" class="col-md-3 control-label" translate>
           .meshvpn.label
         </label>
@@ -181,122 +182,33 @@
             <label class="text-muted">
               <input type="checkbox"
                      name="meshvpn" id="meshvpn"
-                     data-ng-model="wizard.internet.meshvpn.enabled">
+                     data-ng-model="$ctrl.meshTunnelEnabled">
               <span translate>.meshvpn.help</span>
             </label>
           </div>
         </div>
       </div>
 
-      <div uib-collapse="!wizard.internet.meshvpn.enabled">
-
-        <div class="row" translate-namespace=".generateCertificate">
+    <div uib-collapse="!$ctrl.meshTunnelEnabled">
+      <div class="row" translate-namespace=".tunnel">
           <div class="col-md-offset-3 col-md-9">
-            <div class="col-md-6">
-              <div class="form-group has-feedback"
-                   ng-class="formFeedback('meshvpnConf')">
-                <label for="meshvpnConf" class="col-md-5 control-label" translate>
-                  .conf.label
-                </label>
-                <div class="col-md-7">
-                  <div class="btn btn-info" role="button" id="meshvpnConf" name="meshvpnConf"
-                       data-ng-model="meshvpnConf" data-ngf-select="uploadVpnFiles($files, 'meshconf')"
-                       data-ngf-multiple="false" ngf-pattern="'text/*,.cnf,.ovpn'" ngf-accept="'text/*,.ovpn,.cnf'"
-                       data-ng-required="wizard.internet.meshvpn.enabled
-                       && wizard.internet.share" translate>
-                    .conf.select
-                  </div>
-                  <br/>&nbsp;{{wizard.internet.meshvpn.conf.filename}}
-                  <span class="fa form-control-feedback"
-                        ng-class="formControlFeedback('meshvpnConf')"></span>
-                  <div class="help-block">
-                    <div ng-messages="hasError('meshvpnConf')">
-                      <div ng-message="pattern">
-                        <span translate>.conf.error.pattern</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <div class="row">
+              <ng-show ng-if="$ctrl.meshTunnelEnabled" ng-init="$ctrl.setMeshTunnelType('openvpn')"></ng-show>
+              <div ng-repeat="config in $ctrl.internetTunnelConf">
+                <wizard-upload-configfile details-string="{{config}}"
+                                          on-update="$ctrl.newInternet.meshTunnel.files[config.property] = fileContent"
+                                          file-content="$ctrl.newInternet.meshTunnel.files[config.property]"
+                ></wizard-upload-configfile>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="form-group has-feedback"
-                   ng-class="formFeedback('meshvpnCert')">
-                <label for="meshvpnCert" class="col-md-5 control-label" translate>
-                  .certificate.label
-                </label>
-                <div class="col-md-7">
-                  <div class="btn btn-info" role="button" id="meshvpnCert" name="meshvpnCert"
-                       data-ng-model="meshvpnCert" data-ngf-select="uploadVpnFiles($files, 'meshcert')"
-                       data-ngf-multiple="false" ngf-pattern="'text/*,.crt'" ngf-accept="'text/*,.crt'"
-                       data-ng-required="wizard.internet.meshvpn.enabled
-                       && wizard.internet.share" translate>
-                    .certificate.select
-                  </div>
-                  <br/>&nbsp;{{wizard.internet.meshvpn.cert.filename}}
-                  <span class="fa form-control-feedback"
-                        ng-class="formControlFeedback('meshvpnCert')"></span>
-                  <div class="help-block">
-                    <div ng-messages="hasError('meshvpnCert')">
-                      <div ng-message="pattern">
-                        <span translate>.cert.error.pattern</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group has-feedback"
-                   ng-class="formFeedback('meshvpnKey')">
-                <label for="meshvpnKey" class="col-md-5 control-label" translate>
-                  .key.label
-                </label>
-                <div class="col-md-7">
-                  <div class="btn btn-info" role="button" id="meshvpnKey" name="meshvpnKey"
-                       data-ng-model="meshvpnKey" data-ngf-select="uploadVpnFiles($files, 'meshkey')"
-                       data-ngf-multiple="false" ngf-pattern="'text/*,.key'" ngf-accept="'text/*,.key'"
-                       data-ng-required="wizard.internet.meshvpn.enabled
-                       && wizard.internet.share" translate>
-                    .key.select
-                  </div>
-                  <br/>&nbsp;{{wizard.internet.meshvpn.key.filename}}
-                  <span class="fa form-control-feedback"
-                        ng-class="formControlFeedback('meshvpnKey')"></span>
-                  <div class="help-block">
-                    <div ng-messages="hasError('meshvpnKey')">
-                      <div ng-message="pattern">
-                        <span translate>.key.error.pattern</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group has-feedback"
-                   ng-class="formFeedback('meshtaKey')">
-                <label for="meshtaKey" class="col-md-5 control-label" translate>
-                  .takey.label
-                </label>
-                <div class="col-md-7">
-                  <div class="btn btn-info" role="button" id="meshtaKey" name="meshtaKey"
-                       data-ng-model="meshtaKey" data-ngf-select="uploadVpnFiles($files, 'meshtakey')"
-                       data-ngf-multiple="false" ngf-pattern="'text/*,.key'" ngf-accept="'text/*,.key'"
-                       translate>
-                    .takey.select
-                  </div>
-                  <br/>&nbsp;{{wizard.internet.meshvpn.takey.filename}}
-                  <span class="fa form-control-feedback"
-                        ng-class="formControlFeedback('meshtaKey')"></span>
-                  <div class="help-block">
-                    <div ng-messages="hasError('meshtaKey')">
-                      <div ng-message="pattern">
-                        <span translate>.takey.error.pattern</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <div class="row">
+              <div class="col-md-offset-9 col-md-3">
+                <span class="btn-danger btn-sm" ng-click="$ctrl.clearMeshTunnelFiles()">
+                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+                  <span translate>
+                    .clearAllFiles
+                  </span>
+                </span>
               </div>
             </div>
           </div>

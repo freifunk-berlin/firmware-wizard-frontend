@@ -14,6 +14,7 @@ export default module('app.components.wizard-internet', [])
 
         this.newInternet = {};
         this.internetTunnelEnabled = false;
+        this.meshTunnelEnabled = false;
         this.internetTunnelConf = [
           {
             fileExtensions: '.ovpn,.cnf,text/*',
@@ -23,18 +24,22 @@ export default module('app.components.wizard-internet', [])
           },
           {
             fileExtensions: '.crt,text/*',
+            tunnelType: 'internettunnel',
             property: 'cert',
           },
           {
             fileExtensions: '.crt,text/*',
+            tunnelType: 'internettunnel',
             property: 'cacert',
           },
           {
             fileExtensions: '.key,text/*',
+            tunnelType: 'internettunnel',
             property: 'key',
           },
           {
             fileExtensions: '.key,text/*',
+            tunnelType: 'internettunnel',
             property: 'takey',
           },
         ];
@@ -42,11 +47,42 @@ export default module('app.components.wizard-internet', [])
         this.internetTunnelConfSecret = [
           {
             fileExtensions: '*',
+            tunnelType: 'internettunnel',
             property: 'auth-user-pass',
           },
           {
             fileExtensions: '*',
+            tunnelType: 'internettunnel',
             property: 'secret',
+          },
+        ];
+
+        this.meshTunnelConf = [
+          {
+            fileExtensions: '.ovpn,.cnf,text/*',
+            property: 'config',
+            tunnelType: 'meshTunnel',
+            required: true,
+          },
+          {
+            fileExtensions: '.crt,text/*',
+            tunnelType: 'meshTunnel',
+            property: 'cert',
+          },
+          {
+            fileExtensions: '.crt,text/*',
+            tunnelType: 'meshTunnel',
+            property: 'cacert',
+          },
+          {
+            fileExtensions: '.key,text/*',
+            tunnelType: 'meshTunnel',
+            property: 'key',
+          },
+          {
+            fileExtensions: '.key,text/*',
+            tunnelType: 'meshTunnel',
+            property: 'takey',
           },
         ];
 
@@ -56,9 +92,13 @@ export default module('app.components.wizard-internet', [])
 
       updateFromInput(internet) {
         this.internetTunnelEnabled = false;
+        this.meshTunnelEnabled = false;
         copy(internet, this.newInternet);
         if (internet && internet.internetTunnel) {
           this.internetTunnelEnabled = true;
+        }
+        if (internet && internet.meshTunnel) {
+          this.meshTunnelEnabled = true;
         }
       }
 
@@ -69,9 +109,22 @@ export default module('app.components.wizard-internet', [])
         this.newInternet.internetTunnel.type = type;
       }
 
+      setMeshTunnelType(type) {
+        if (!this.newInternet.meshTunnel) {
+          this.newInternet.meshTunnel = {};
+        }
+        this.newInternet.meshTunnel.type = type;
+      }
+
       clearFiles() {
         if (this.newInternet.internetTunnel && this.newInternet.internetTunnel.files) {
           delete this.newInternet.internetTunnel.files;
+        }
+      }
+
+      clearMeshTunnelFiles() {
+        if (this.newInternet.meshTunnel && this.newInternet.meshTunnel.files) {
+          delete this.newInternet.meshTunnel.files;
         }
       }
 
@@ -87,6 +140,9 @@ export default module('app.components.wizard-internet', [])
         }
         if (!internet.internetTunnel || !this.internetTunnelEnabled) {
           delete internet.internetTunnel;
+        }
+        if (!internet.meshTunnel || !this.meshTunnelEnabled) {
+          delete internet.meshTunnel;
         }
         this.onUpdate({internet});
       }
