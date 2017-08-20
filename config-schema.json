@@ -28,23 +28,102 @@
       "type": "object"
     },
     "internet": {
-      "id": "/properties/internet",
       "properties": {
+        "internetTunnel": {
+          "properties": {
+            "files": {
+              "properties": {
+                "config": {
+                  "description": "VPN configuration file",
+                  "type": "string"
+                },
+                "cert": {
+                  "description": "VPN certificate file",
+                  "type": "string"
+                },
+                "cacert": {
+                  "description": "VPN ca certificate file",
+                  "type": "string"
+                },
+                "takey": {
+                  "description": "TLS Auth key file",
+                  "type": "string"
+                },
+                "key": {
+                  "description": "VPN key file",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "config"
+              ],
+              "type": "object"
+            },
+            "type": {
+              "description": "type of VPN tunnel",
+              "enum": [
+                null,
+                "openvpn"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "type": "object"
+        },
+        "meshTunnel": {
+          "properties": {
+            "files": {
+              "properties": {
+                "config": {
+                  "description": "VPN configuration file",
+                  "type": "string"
+                },
+                "cert": {
+                  "description": "VPN certificate file",
+                  "type": "string"
+                },
+                "cacert": {
+                  "description": "VPN ca certificate file",
+                  "type": "string"
+                },
+                "takey": {
+                  "description": "TLS Auth key file",
+                  "type": "string"
+                },
+                "auth-user-pass": {
+                  "description": "Auth User Pass file",
+                  "type": "string"
+                },
+                "secret": {
+                  "description": "secret file",
+                  "type": "string"
+                },
+                "key": {
+                  "description": "VPN key file",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "config"
+              ],
+              "type": "object"
+            },
+            "type": {
+              "description": "type of VPN tunnel",
+              "enum": [
+                null,
+                "openvpn"
+              ],
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
         "share": {
-          "id": "/properties/internet/properties/share",
           "type": "boolean"
-        },
-        "speedLimit": {
-          "id": "/properties/internet/properties/speedLimit",
-          "type": "boolean"
-        },
-        "speedLimitDown": {
-          "id": "/properties/internet/properties/speedLimitDown",
-          "type": "number"
-        },
-        "speedLimitUp": {
-          "id": "/properties/internet/properties/speedLimitUp",
-          "type": "number"
         }
       },
       "type": "object"
