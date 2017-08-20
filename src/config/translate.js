@@ -21,5 +21,5 @@ export default module('app.config.translate', [])
     $translateProvider.determinePreferredLanguage();
 
     // sanitize translations with $sanitize
-    $translateProvider.useSanitizeValueStrategy('sanitize');
+    $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
   });

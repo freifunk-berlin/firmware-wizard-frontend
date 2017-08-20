@@ -168,7 +168,7 @@
       }
     },
     "config": {
-      "label": "VPN Konfigurationsdatei",
+      "label": "VPN Konfiguration",
       "select": ".ovpn Datei",
       "customvpn": "Ich möchte einen anderen VPN Service nutzen. Dann benötigst du eine opnVPN Konfigurationsdatei von deinem Provider.",
       "error": {
