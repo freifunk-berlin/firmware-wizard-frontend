@@ -69,6 +69,12 @@ export default module('app.components.wizard-internet', [])
         this.newInternet.internetTunnel.type = type;
       }
 
+      clearFiles() {
+        if (this.newInternet.internetTunnel && this.newInternet.internetTunnel.files) {
+          delete this.newInternet.internetTunnel.files;
+        }
+      }
+
       updateOutput(newInternet) {
         let internet = copy(newInternet);
         if (!internet.share) {
@@ -79,8 +85,8 @@ export default module('app.components.wizard-internet', [])
           delete internet.speedLimitDown;
           delete internet.speedLimitUp;
         }
-        if (!internet.tunnel || !this.internetTunnelEnabled) {
-          delete internet.tunnel;
+        if (!internet.internetTunnel || !this.internetTunnelEnabled) {
+          delete internet.internetTunnel;
         }
         this.onUpdate({internet});
       }
