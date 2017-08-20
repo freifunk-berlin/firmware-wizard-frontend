@@ -121,6 +121,7 @@
         <div class="row" translate-namespace=".tunnel">
           <div class="col-md-offset-3 col-md-9">
             <div class="row">
+              <ng-show ng-if="$ctrl.internetTunnelEnabled" ng-init="$ctrl.setTunnelType('openvpn')"></ng-show>
               <div ng-repeat="config in $ctrl.internetTunnelConf">
                 <wizard-upload-configfile details-string="{{config}}"
                                           on-update="$ctrl.newInternet.internetTunnel.files[config.property] = fileContent"

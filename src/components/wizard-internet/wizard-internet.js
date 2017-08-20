@@ -1,7 +1,5 @@
 import { copy, module } from 'angular';
 
-const OPENVPN = 'openvpn';
-
 export default module('app.components.wizard-internet', [])
   .component('wizardInternet', {
     bindings: {
@@ -61,8 +59,14 @@ export default module('app.components.wizard-internet', [])
         copy(internet, this.newInternet);
         if (internet && internet.internetTunnel) {
           this.internetTunnelEnabled = true;
-          this.newInternet.internetTunnel.type = OPENVPN;
         }
+      }
+
+      setTunnelType(type) {
+        if (!this.newInternet.internetTunnel) {
+          this.newInternet.internetTunnel = {};
+        }
+        this.newInternet.internetTunnel.type = type;
       }
 
       updateOutput(newInternet) {
