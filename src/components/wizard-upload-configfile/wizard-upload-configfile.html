@@ -1,11 +1,11 @@
 <div class="col-md-6">
   <div class="form-group has-feedback"
-       ng-class="formFeedback('{{$ctrl.details.tunnelType}}.{{$ctrl.details.property}}')">
-    <label for="{{$ctrl.details.tunnelType}}.{{$ctrl.details.property}}" class="col-md-5 control-label">
+       ng-class="formFeedback('{{$ctrl.idPrefix}}.{{$ctrl.details.property}}')">
+    <label for="{{$ctrl.idPrefix}}.{{$ctrl.details.property}}" class="col-md-5 control-label">
       {{'wizard-upload-configfile.' + $ctrl.details.property + '.label' | translate}}
     </label>
     <load-file-button
-            id="{{$ctrl.details.tunnelType}}.{{$ctrl.details.property}}"
+            id="{{$ctrl.idPrefix}}.{{$ctrl.details.property}}"
             accept="{{$ctrl.details.fileExtensions}}"
             base64="true"
             on-loaded="$ctrl.uploadContent(content)"

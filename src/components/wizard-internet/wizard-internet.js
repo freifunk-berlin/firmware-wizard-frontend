@@ -12,74 +12,38 @@ export default module('app.components.wizard-internet', [])
         'ngInject';
 
         this.newInternet = {};
-        this.internetTunnelConf = [
+        this.tunnelConf = [
           {
             fileExtensions: '.ovpn,.cnf,text/*',
             property: 'config',
-            tunnelType: 'internettunnel',
             required: true,
           },
           {
             fileExtensions: '.crt,text/*',
-            tunnelType: 'internettunnel',
             property: 'cert',
           },
           {
             fileExtensions: '.crt,text/*',
-            tunnelType: 'internettunnel',
             property: 'cacert',
           },
           {
             fileExtensions: '.key,text/*',
-            tunnelType: 'internettunnel',
             property: 'key',
           },
           {
             fileExtensions: '.key,text/*',
-            tunnelType: 'internettunnel',
             property: 'takey',
           },
         ];
 
-        this.internetTunnelConfSecret = [
+        this.tunnelConfSecret = [
           {
             fileExtensions: '*',
-            tunnelType: 'internettunnel',
             property: 'auth-user-pass',
           },
           {
             fileExtensions: '*',
-            tunnelType: 'internettunnel',
             property: 'secret',
-          },
-        ];
-
-        this.meshTunnelConf = [
-          {
-            fileExtensions: '.ovpn,.cnf,text/*',
-            property: 'config',
-            tunnelType: 'meshTunnel',
-            required: true,
-          },
-          {
-            fileExtensions: '.crt,text/*',
-            tunnelType: 'meshTunnel',
-            property: 'cert',
-          },
-          {
-            fileExtensions: '.crt,text/*',
-            tunnelType: 'meshTunnel',
-            property: 'cacert',
-          },
-          {
-            fileExtensions: '.key,text/*',
-            tunnelType: 'meshTunnel',
-            property: 'key',
-          },
-          {
-            fileExtensions: '.key,text/*',
-            tunnelType: 'meshTunnel',
-            property: 'takey',
           },
         ];
 

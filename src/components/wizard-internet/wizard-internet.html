@@ -122,8 +122,9 @@
           <div class="col-md-offset-3 col-md-9">
             <div class="row">
               <ng-show ng-if="$ctrl.internetTunnelEnabled" ng-init="$ctrl.setTunnelType('openvpn')"></ng-show>
-              <div ng-repeat="config in $ctrl.internetTunnelConf">
-                <wizard-upload-configfile details-string="{{config}}"
+              <div ng-repeat="config in $ctrl.tunnelConf">
+                <wizard-upload-configfile details="config"
+                                          id-prefix="internettunnel"
                                           on-update="$ctrl.newInternet.internetTunnel.files[config.property] = fileContent"
                                           file-content="$ctrl.newInternet.internetTunnel.files[config.property]"
                 ></wizard-upload-configfile>
@@ -135,8 +136,9 @@
               </div>
             </div>
             <div class="row">
-              <div ng-repeat="config in $ctrl.internetTunnelConfSecret">
-                <wizard-upload-configfile details-string="{{config}}"
+              <div ng-repeat="config in $ctrl.tunnelConfSecret">
+                <wizard-upload-configfile details="config"
+                                          id-prefix="internettunnel"
                                           on-update="$ctrl.newInternet.internetTunnel.files[config.property] = fileContent"
                                           file-content="$ctrl.newInternet.internetTunnel.files[config.property]"
                 ></wizard-upload-configfile>
@@ -193,8 +195,9 @@
           <div class="col-md-offset-3 col-md-9">
             <div class="row">
               <ng-show ng-if="$ctrl.meshTunnelEnabled" ng-init="$ctrl.setMeshTunnelType('openvpn')"></ng-show>
-              <div ng-repeat="config in $ctrl.internetTunnelConf">
-                <wizard-upload-configfile details-string="{{config}}"
+              <div ng-repeat="config in $ctrl.tunnelConf">
+                <wizard-upload-configfile details="config"
+                                          id-prefix="meshtunnel"
                                           on-update="$ctrl.newInternet.meshTunnel.files[config.property] = fileContent"
                                           file-content="$ctrl.newInternet.meshTunnel.files[config.property]"
                 ></wizard-upload-configfile>

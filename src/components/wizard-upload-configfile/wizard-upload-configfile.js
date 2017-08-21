@@ -3,9 +3,10 @@ import {copy, fromJson, module} from 'angular';
 export default module('app.components.wizard-upload-configfile', [])
   .component('wizardUploadConfigfile', {
     bindings: {
-      detailsString: '@',
+      details: '<',
       onUpdate: '&',
       fileContent: '<',
+      idPrefix: '@'
     },
     controller: class WizardTunnelCtrl {
       constructor($scope) {
@@ -17,10 +18,6 @@ export default module('app.components.wizard-upload-configfile', [])
 
         $scope.$watch('$ctrl.fileContent', this.updateFromInput.bind(this));
         $scope.$watch('$ctrl.newFileContent', this.updateOutput.bind(this));
-      }
-
-      $onInit() {
-        this.details = fromJson(this.$ctrl.detailsString);
       }
 
       updateFromInput(value) {
