@@ -124,7 +124,7 @@
     },
     "offlineMsg" : "Your internet connections seems offline. Using the map only works when you're online. You can add your location manually or do that later."
   },
-  "wizard-upload-configfile": {
+  "load-file-form": {
     "cert": {
       "label": "VPN certificate",
       "select": ".cert file",

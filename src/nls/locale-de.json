@@ -124,7 +124,7 @@
     },
     "offlineMsg" : "Du scheinst keine Verbindung zum Internet zu haben. Die Karte funktioniert nur, wenn du online bist. Du kannst deinen Standort manuell setzen oder dies später tun."
   },
-  "wizard-upload-configfile": {
+  "load-file-form": {
     "cert": {
       "label": "VPN Zertifikat",
       "select": "Zertifikatsdatei",
