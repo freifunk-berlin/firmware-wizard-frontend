@@ -126,14 +126,14 @@
   },
   "load-file-form": {
     "cert": {
-      "label": "VPN Zertifikat",
+      "label": "Zertifikat",
       "select": "Zertifikatsdatei",
       "error": {
         "pattern": "Falsches Dateiformat oder falscher Dateiname. Nur Textdateien sind erlaubt."
       }
     },
     "key": {
-      "label": "VPN Schlüssel",
+      "label": "Schlüssel",
       "select": "Schlüsseldatei",
       "error": {
         "pattern": "Falsches Dateiformat oder falscher Dateiname. Nur Textdateien sind erlaubt."
@@ -147,14 +147,14 @@
       }
     },
     "cacert": {
-      "label": "VPN CA Zertifikat",
+      "label": "CA Zertifikat",
       "select": "Zertifikatsdatei",
       "error": {
         "pattern": "Falsches Dateiformat oder falscher Dateiname. Nur Textdateien sind erlaubt."
       }
     },
     "secret": {
-      "label": "VPN secret",
+      "label": "Secret",
       "select": "secret file",
       "error": {
         "pattern": "Falsches Dateiformat oder falscher Dateiname. Nur Textdateien sind erlaubt."
@@ -168,7 +168,7 @@
       }
     },
     "config": {
-      "label": "VPN Konfiguration",
+      "label": "Konfiguration",
       "select": ".ovpn Datei",
       "customvpn": "Ich möchte einen anderen VPN Service nutzen. Dann benötigst du eine opnVPN Konfigurationsdatei von deinem Provider.",
       "error": {

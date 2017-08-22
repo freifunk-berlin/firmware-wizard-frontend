@@ -126,14 +126,14 @@
   },
   "load-file-form": {
     "cert": {
-      "label": "VPN certificate",
+      "label": "certificate",
       "select": ".cert file",
       "error": {
         "pattern": "Wrong file format or name. Only text files are allowed."
       }
     },
     "key": {
-      "label": "VPN key",
+      "label": "key",
       "select": ".key file",
       "error": {
         "pattern": "Wrong file format or name. Only text files are allowed."
@@ -154,7 +154,7 @@
       }
     },
     "secret": {
-      "label": "VPN secret",
+      "label": "secret",
       "select": "secret file",
       "error": {
         "pattern": "Wrong file format or name. Only text files are allowed."
@@ -168,7 +168,7 @@
       }
     },
     "config": {
-      "label": "VPN configuration file",
+      "label": "configuration file",
       "select": ".ovpn file",
       "customvpn": "I want to use another VPN service. Then you need an opnVPN config file from your VPN provider.",
       "error": {
