@@ -139,7 +139,7 @@
         "pattern": "Wrong file format or name. Only text files are allowed."
       }
     },
-    "takey": {
+    "tls-auth": {
       "label": "TLS Auth key",
       "select": ".key file",
       "error": {

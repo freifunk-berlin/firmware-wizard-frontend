@@ -32,7 +32,7 @@ export default module('app.components.wizard-internet', [])
           },
           {
             fileExtensions: '.key,text/*',
-            property: 'takey',
+            property: 'tls-auth',
           },
         ];
 
