@@ -16,7 +16,7 @@ import wizardIp from './wizard-ip/wizard-ip';
 import wizardLocation from './wizard-location/wizard-location';
 import wizardMonitoring from './wizard-monitoring/wizard-monitoring';
 import wizardRouter from './wizard-router/wizard-router';
-import wizardUploadConfigfile from './wizard-upload-configfile/wizard-upload-configfile';
+import loadFileForm from './load-file-form/load-file-form';
 
 export default module('app.components', [
   authenticateModal.name,
@@ -35,5 +35,5 @@ export default module('app.components', [
   wizardLocation.name,
   wizardMonitoring.name,
   wizardRouter.name,
-  wizardUploadConfigfile.name,
+  loadFileForm.name,
 ]);

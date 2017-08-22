@@ -124,11 +124,11 @@
               <ng-show ng-if="$ctrl.internetTunnelEnabled" ng-init="$ctrl.setTunnelType('openvpn')"></ng-show>
               <div ng-repeat="config in $ctrl.tunnelConf">
                 <div class="col-md-6">
-                  <wizard-upload-configfile details="config"
-                                            id-prefix="internettunnel"
-                                            on-update="$ctrl.newInternet.internetTunnel.files[config.property] = fileContent"
-                                            file-content="$ctrl.newInternet.internetTunnel.files[config.property]"
-                  ></wizard-upload-configfile>
+                  <load-file-form details="config"
+                                  id-prefix="internettunnel"
+                                  on-update="$ctrl.newInternet.internetTunnel.files[config.property] = fileContent"
+                                  file-content="$ctrl.newInternet.internetTunnel.files[config.property]"
+                  ></load-file-form>
                 </div>
               </div>
             </div>
@@ -140,11 +140,11 @@
             <div class="row">
               <div ng-repeat="config in $ctrl.tunnelConfSecret">
                 <div class="col-md-6">
-                  <wizard-upload-configfile details="config"
-                                            id-prefix="internettunnel"
-                                            on-update="$ctrl.newInternet.internetTunnel.files[config.property] = fileContent"
-                                            file-content="$ctrl.newInternet.internetTunnel.files[config.property]"
-                  ></wizard-upload-configfile>
+                  <load-file-form details="config"
+                                  id-prefix="internettunnel"
+                                  on-update="$ctrl.newInternet.internetTunnel.files[config.property] = fileContent"
+                                  file-content="$ctrl.newInternet.internetTunnel.files[config.property]"
+                  ></load-file-form>
                 </div>
               </div>
             </div>
@@ -201,11 +201,11 @@
               <ng-show ng-if="$ctrl.meshTunnelEnabled" ng-init="$ctrl.setMeshTunnelType('openvpn')"></ng-show>
               <div ng-repeat="config in $ctrl.tunnelConf">
                 <div class="col-md-6">
-                  <wizard-upload-configfile details="config"
-                                            id-prefix="meshtunnel"
-                                            on-update="$ctrl.newInternet.meshTunnel.files[config.property] = fileContent"
-                                            file-content="$ctrl.newInternet.meshTunnel.files[config.property]"
-                  ></wizard-upload-configfile>
+                  <load-file-form details="config"
+                                  id-prefix="meshtunnel"
+                                  on-update="$ctrl.newInternet.meshTunnel.files[config.property] = fileContent"
+                                  file-content="$ctrl.newInternet.meshTunnel.files[config.property]"
+                  ></load-file-form>
                 </div>
               </div>
             </div>

@@ -1,7 +1,7 @@
 import {copy, module} from 'angular';
 
-export default module('app.components.wizard-upload-configfile', [])
-  .component('wizardUploadConfigfile', {
+export default module('app.components.load-file-form', [])
+  .component('loadFileForm', {
     bindings: {
       details: '<',
       onUpdate: '&',
@@ -39,6 +39,6 @@ export default module('app.components.wizard-upload-configfile', [])
       }
 
     },
-    template: require('./wizard-upload-configfile.html'),
+    template: require('./load-file-form.html'),
     transclude: true,
   });
