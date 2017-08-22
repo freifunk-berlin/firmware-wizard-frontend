@@ -1,4 +1,4 @@
-import {copy, fromJson, module} from 'angular';
+import {copy, module} from 'angular';
 
 export default module('app.components.wizard-upload-configfile', [])
   .component('wizardUploadConfigfile', {
@@ -6,7 +6,7 @@ export default module('app.components.wizard-upload-configfile', [])
       details: '<',
       onUpdate: '&',
       fileContent: '<',
-      idPrefix: '@'
+      idPrefix: '@',
     },
     controller: class WizardTunnelCtrl {
       constructor($scope) {
