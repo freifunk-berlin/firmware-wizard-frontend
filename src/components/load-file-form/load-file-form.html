@@ -11,9 +11,5 @@
           required="{{$ctrl.details.required}}">
     <span>{{'load-file-form.' + $ctrl.details.property + '.select' | translate}}</span>
   </load-file-button>
-  <ng-show data-ng-if="$ctrl.success">
-    <span>
-      <i class="fa fa-check" aria-hidden="true"></i>
-    </span>
-  </ng-show>
+  <i class="fa fa-check" aria-hidden="true" ng-if="$ctrl.success"></i>
 </div>
