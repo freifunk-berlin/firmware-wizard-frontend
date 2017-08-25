@@ -8,7 +8,7 @@
           accept="{{$ctrl.details.fileExtensions}}"
           base64="true"
           on-loaded="$ctrl.uploadContent(content)"
-          required="{{$ctrl.details.required}}">
+          required="$ctrl.details.required">
     <span>{{'load-file-form.' + $ctrl.details.property + '.select' | translate}}</span>
   </load-file-button>
   <i class="fa fa-check" aria-hidden="true" ng-if="$ctrl.success"></i>
