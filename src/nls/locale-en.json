@@ -176,8 +176,8 @@
       }
     }
   },
-  "internetSharing": {
-    "headline": "Internet sharing",
+  "internet": {
+    "headline": "Internet",
     "help": "Freifunk can be used for local services and grants access to the internet. This is possible because people within the network decide to share their internet connections.",
     "shareInternet": {
       "label": "Share internet",
@@ -200,12 +200,12 @@
         "help": "Upload transfer limit in <a href=\"https://en.wikipedia.org/wiki/Data_rate_units#Megabit_per_second\" target=\"_blank\">Mbit/s</a>."
       }
     },
-    "internettunnel": {
-      "label": "VPN",
+    "internetTunnel": {
+      "label": "Internet tunnel",
       "help": "Tunnels your internet traffic to a different server."
     },
-    "meshvpn": {
-      "label": "Mesh VPN",
+    "meshTunnel": {
+      "label": "Mesh tunnel",
       "help": "Connects mesh clouds via internet tunnel. (Use, if your router is not connected to the backbone via radio.)"
     },
     "tunnel": {

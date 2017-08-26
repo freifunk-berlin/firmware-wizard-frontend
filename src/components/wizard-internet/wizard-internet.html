@@ -1,6 +1,6 @@
 <!-- internet sharing -->
 <ng-form name="internetForm">
-  <div class="container" translate-namespace="internetSharing">
+  <div class="container" translate-namespace="internet">
     <h2>
       <span class="fa-stack">
         <i class="fa fa-circle fa-stack-2x"></i>
@@ -99,11 +99,11 @@
       </div>
       <!-- / transfer rate -->
 
-      <!-- internettunnel -->
+      <!-- internetTunnel -->
       <!-- TODO: migrate! -->
       <div class="form-group">
         <label for="vpn" class="col-md-3 control-label" translate>
-          .internettunnel.label
+          .internetTunnel.label
         </label>
         <div class="col-md-9">
           <div class="checkbox">
@@ -111,7 +111,7 @@
               <input type="checkbox"
                      name="vpn" id="vpn"
                      data-ng-model="$ctrl.internetTunnelEnabled">
-              <span translate>.internettunnel.help</span>
+              <span translate>.internetTunnel.help</span>
             </label>
           </div>
         </div>
@@ -125,7 +125,7 @@
               <div ng-repeat="config in $ctrl.tunnelConf">
                 <div class="col-md-6">
                   <load-file-form details="config"
-                                  id-prefix="internettunnel"
+                                  id-prefix="internetTunnel"
                                   on-update="$ctrl.newInternet.internetTunnel.files[config.property] = fileContent"
                                   file-content="$ctrl.newInternet.internetTunnel.files[config.property]"
                   ></load-file-form>
@@ -141,7 +141,7 @@
               <div ng-repeat="config in $ctrl.tunnelConfSecret">
                 <div class="col-md-6">
                   <load-file-form details="config"
-                                  id-prefix="internettunnel"
+                                  id-prefix="internetTunnel"
                                   on-update="$ctrl.newInternet.internetTunnel.files[config.property] = fileContent"
                                   file-content="$ctrl.newInternet.internetTunnel.files[config.property]"
                   ></load-file-form>
@@ -175,57 +175,56 @@
           </div>
         </div>
       </div>
-      <!-- / internettunnel-VPN -->
-
-      <!-- mesh-VPN -->
-    <div class="form-group">
-        <label for="meshvpn" class="col-md-3 control-label" translate>
-          .meshvpn.label
-        </label>
-        <div class="col-md-9">
-          <div class="checkbox">
-            <label class="text-muted">
-              <input type="checkbox"
-                     name="meshvpn" id="meshvpn"
-                     data-ng-model="$ctrl.meshTunnelEnabled">
-              <span translate>.meshvpn.help</span>
-            </label>
-          </div>
-        </div>
-      </div>
-
-    <div uib-collapse="!$ctrl.meshTunnelEnabled">
-      <div class="row" translate-namespace=".tunnel">
-          <div class="col-md-offset-3 col-md-9">
-            <div class="row">
-              <ng-show ng-if="$ctrl.meshTunnelEnabled" ng-init="$ctrl.setMeshTunnelType('openvpn')"></ng-show>
-              <div ng-repeat="config in $ctrl.tunnelConf">
-                <div class="col-md-6">
-                  <load-file-form details="config"
-                                  id-prefix="meshtunnel"
-                                  on-update="$ctrl.newInternet.meshTunnel.files[config.property] = fileContent"
-                                  file-content="$ctrl.newInternet.meshTunnel.files[config.property]"
-                  ></load-file-form>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-offset-9 col-md-3">
-                <button class="btn-danger btn-sm" ng-click="$ctrl.clearMeshTunnelFiles()">
-                  <i class="fa fa-trash-o" aria-hidden="true"></i>
-                  <span translate>
-                    .clearAllFiles
-                  </span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- / mesh-VPN -->
-
-
+      <!-- / internetTunnel-VPN -->
     </div>
+
+    <!-- mesh-VPN -->
+    <div class="form-group">
+      <label for="meshTunnel" class="col-md-3 control-label" translate>
+        .meshTunnel.label
+      </label>
+      <div class="col-md-9">
+        <div class="checkbox">
+          <label class="text-muted">
+            <input type="checkbox"
+                   name="meshTunnel" id="meshTunnel"
+                   data-ng-model="$ctrl.meshTunnelEnabled">
+            <span translate>.meshTunnel.help</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+  <div uib-collapse="!$ctrl.meshTunnelEnabled">
+    <div class="row" translate-namespace=".tunnel">
+        <div class="col-md-offset-3 col-md-9">
+          <div class="row">
+            <ng-show ng-if="$ctrl.meshTunnelEnabled" ng-init="$ctrl.setMeshTunnelType('openvpn')"></ng-show>
+            <div ng-repeat="config in $ctrl.tunnelConf">
+              <div class="col-md-6">
+                <load-file-form details="config"
+                                id-prefix="meshtunnel"
+                                on-update="$ctrl.newInternet.meshTunnel.files[config.property] = fileContent"
+                                file-content="$ctrl.newInternet.meshTunnel.files[config.property]"
+                ></load-file-form>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-offset-9 col-md-3">
+              <button class="btn-danger btn-sm" ng-click="$ctrl.clearMeshTunnelFiles()">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                <span translate>
+                  .clearAllFiles
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- / mesh-VPN -->
+
   </div>
 </ng-form>
 <!-- / internet sharing -->

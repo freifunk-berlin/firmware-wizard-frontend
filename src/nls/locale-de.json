@@ -176,7 +176,7 @@
       }
     }
   },
-  "internetSharing": {
+  "internet": {
     "headline": "Internet teilen",
     "help": "Freifunk kann für lokale Dienste und den Zugang zum Internet genutzt werden. Letzteres wird erst dadurch ermöglicht, dass Menschen, die Router betreiben, ihre Internetverbindung teilen.",
     "shareInternet": {
@@ -198,12 +198,12 @@
         "help": "Upload Transfer Limit in <a href=\"https://en.wikipedia.org/wiki/Data_rate_units#Megabit_per_second\" target=\"_blank\">Mbit/s</a>."
       }
     },
-    "internettunnel": {
-      "label": "VPN",
+    "internetTunnel": {
+      "label": "Internet Tunnel",
       "help": "Leitet deinen Internetverkehr über einen Tunnel zu einem anderen Server weiter."
     },
-    "meshvpn": {
-      "label": "Mesh VPN",
+    "meshTunnel": {
+      "label": "Mesh Tunnel",
       "help": "Verbindet Mesh-Wolken über Internettunnel. (Du kannst das einschalten, wenn dein Router nicht zu anderen Routern per Funk verbunden ist.)"
     },
     "tunnel": {
