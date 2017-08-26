@@ -202,11 +202,11 @@
     },
     "internetTunnel": {
       "label": "Internet tunnel",
-      "help": "Tunnels your internet traffic to a different server."
+      "help": "Tunnels traffic from Freifunk to the internet via a different server. See <a href=\"https://wiki.freifunk.net/Berlin:Firmware:Internet%20Tunnel\" target=\"_blank\">Internet Tunnel</a> for more information."
     },
     "meshTunnel": {
       "label": "Mesh tunnel",
-      "help": "Connects mesh clouds via internet tunnel. (Use, if your router is not connected to the backbone via radio.)"
+      "help": "Use your internet connection to connect to other Freifunk routers in case your Freifunk router does not see any neighbors via wifi. See <a href=\"https://wiki.freifunk.net/Berlin:Firmware:Mesh%20Tunnel\" target=\"_blank\">Mesh Tunnel</a> for more information."
     },
     "tunnel": {
       "label": "VPN certificate and key for this router",
