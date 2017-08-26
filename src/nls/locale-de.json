@@ -154,7 +154,7 @@
       }
     },
     "secret": {
-      "label": "secret",
+      "label": "Secret",
       "select": "Zertifikatsdatei",
       "error": {
         "pattern": "Falsches Dateiformat oder falscher Dateiname. Nur Textdateien sind erlaubt."
