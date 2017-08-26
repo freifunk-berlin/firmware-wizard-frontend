@@ -154,15 +154,15 @@
       }
     },
     "secret": {
-      "label": "Secret",
-      "select": "secret file",
+      "label": "secret",
+      "select": "Zertifikatsdatei",
       "error": {
         "pattern": "Falsches Dateiformat oder falscher Dateiname. Nur Textdateien sind erlaubt."
       }
     },
     "auth-user-pass": {
       "label": "Auth User pass",
-      "select": "auth user pass file",
+      "select": "auth user pass Datei",
       "error": {
         "pattern": "Falsches Dateiformat oder falscher Dateiname. Nur Textdateien sind erlaubt."
       }
