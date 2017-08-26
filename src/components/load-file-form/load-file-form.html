@@ -1,15 +1,17 @@
 <div class="form-group has-feedback"
      ng-class="formFeedback('{{$ctrl.idPrefix}}.{{$ctrl.details.property}}')">
-  <label for="{{$ctrl.idPrefix}}.{{$ctrl.details.property}}" class="col-md-5 control-label">
+  <label for="{{$ctrl.idPrefix}}.{{$ctrl.details.property}}" class="col-xs-6 control-label">
     {{'load-file-form.' + $ctrl.details.property + '.label' | translate}}
   </label>
-  <load-file-button
-          id="{{$ctrl.idPrefix}}.{{$ctrl.details.property}}"
-          accept="{{$ctrl.details.fileExtensions}}"
-          base64="true"
-          on-loaded="$ctrl.uploadContent(content)"
-          required="$ctrl.details.required">
-    <span>{{'load-file-form.' + $ctrl.details.property + '.select' | translate}}</span>
-  </load-file-button>
-  <i class="fa fa-check" aria-hidden="true" ng-if="$ctrl.success"></i>
+  <div class="col-xs-6">
+    <load-file-button
+            id="{{$ctrl.idPrefix}}.{{$ctrl.details.property}}"
+            accept="{{$ctrl.details.fileExtensions}}"
+            base64="true"
+            on-loaded="$ctrl.fileContent = content"
+            required="$ctrl.details.required">
+      <span>{{'load-file-form.' + $ctrl.details.property + '.select' | translate}}</span>
+    </load-file-button>
+    <i class="fa fa-check" aria-hidden="true" ng-if="$ctrl.fileContent"></i>
+  </div>
 </div>
