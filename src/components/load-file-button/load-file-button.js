@@ -15,9 +15,11 @@ export default module('app.components.load-file-button', [])
       constructor($element, $scope, $window) {
         'ngInject';
 
+        this.$element = $element;
         this.$scope = $scope;
         this.$window = $window;
-        $element.on('change', this.load.bind(this));
+        this.bindedLoad = this.load.bind(this);
+        $element.on('change', this.bindedLoad);
       }
 
       load(event) {
@@ -35,6 +37,11 @@ export default module('app.components.load-file-button', [])
         } else {
           reader.readAsText(event.target.files[0]);
         }
+
+        // reset file
+        this.$element.off('change', this.bindedLoad);
+        event.target.value = '';
+        this.$element.on('change', this.bindedLoad);
       }
     },
     template: require('./load-file-button.html'),
