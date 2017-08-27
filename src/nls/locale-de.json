@@ -154,7 +154,7 @@
       }
     },
     "secret": {
-      "label": "Secret",
+      "label": "secret",
       "select": "Zertifikatsdatei",
       "error": {
         "pattern": "Falsches Dateiformat oder falscher Dateiname. Nur Textdateien sind erlaubt."
@@ -177,46 +177,44 @@
     }
   },
   "internet": {
-    "headline": "Internet teilen",
-    "help": "Freifunk kann für lokale Dienste und den Zugang zum Internet genutzt werden. Letzteres wird erst dadurch ermöglicht, dass Menschen, die Router betreiben, ihre Internetverbindung teilen.",
+    "headline": "Internet",
+    "help": "Du kannst deine vorhandene Internetverbindung nutzen, um den Internetzugang mit dem Freifunknetz zu teilen und/oder um dich mit anderen Freifunkroutern zu verbinden, die (noch) nicht über WLAN erreichbar sind. Verbinde dazu den <em>Internet</em> oder <em>WAN</em>-Anschluss deines Freifunkrouters mit deinem Internetrouter und konfiguriere es hier. ",
     "shareInternet": {
       "label": "Internet teilen",
       "help": "Ja, ich möchte meine Internetverbindung mit dem Freifunknetz teilen.",
       "thanks": "Danke fürs Teilen deiner Internetverbindung &#10084;"
     },
-    "limitspeed": {
-      "label": "Geschwindigkeit beschränken.",
-      "help": "Wir empfehlen keine Limits für den Datentransfer anzugeben. Solltest du später doch Probleme feststellen, kannst du immer noch die Übertragungsrate für deine geteilte Internetverbindung anpassen."
-    },
-    "transferSpeed": {
-      "label": "Übertragungslimit",
-      "help": "Du kannst die Schnelligkeit deiner aktuellen Verbindung  <a href=\"http://speedof.me/\" target=\"_blank\">hier</a> überprüfen. Lass die folgenden Felder leer, wenn die Datenübertragung nicht limitieren möchtest.",
+    "speedLimit": {
+      "enabled": {
+        "label": "Geschwindigkeit beschränken.",
+        "help": "Wir empfehlen keine Limits für den Datentransfer anzugeben. Solltest du später doch Probleme feststellen, kannst du immer noch die Übertragungsrate für deine geteilte Internetverbindung anpassen."
+      },
+      "help": "Du kannst die Schnelligkeit deiner aktuellen Verbindung  <a href=\\\"http://speedof.me/\\\" target=\\\"_blank\\\">hier</a> überprüfen. Lass die folgenden Felder leer, wenn die Datenübertragung nicht limitieren möchtest.",
       "down": {
-        "help": "Download Transfer Limit in <a href=\"https://en.wikipedia.org/wiki/Data_rate_units#Megabit_per_second\" target=\"_blank\">Mbit/s</a>."
+        "help": "Download Transfer Limit in <a href=\\\"https://en.wikipedia.org/wiki/Data_rate_units#Megabit_per_second\\\" target=\\\"_blank\\\">Mbit/s</a>."
       },
       "up": {
-        "help": "Upload Transfer Limit in <a href=\"https://en.wikipedia.org/wiki/Data_rate_units#Megabit_per_second\" target=\"_blank\">Mbit/s</a>."
+        "help": "Upload Transfer Limit in <a href=\\\"https://en.wikipedia.org/wiki/Data_rate_units#Megabit_per_second\\\" target=\\\"_blank\\\">Mbit/s</a>."
       }
     },
     "internetTunnel": {
-      "label": "Internet Tunnel",
-      "help": "Leitet deinen Internetverkehr über einen Tunnel zu einem anderen Server weiter."
+      "label": "Internettunnel",
+      "help": "Leite den Internetverkehr aus dem Freifunknetz über einen Tunnel über einen anderen Server. Mehr Informationen findest du unter <a href=\"https://wiki.freifunk.net/Berlin:Firmware:Internet%20Tunnel\" target=\"_blank\">Internet Tunnel</a>."
     },
     "meshTunnel": {
-      "label": "Mesh Tunnel",
-      "help": "Verbindet Mesh-Wolken über Internettunnel. (Du kannst das einschalten, wenn dein Router nicht zu anderen Routern per Funk verbunden ist.)"
+      "label": "Meshtunnel",
+      "help": "Benutz deine Internetverbindung, um dich mit anderen Freifunkroutern zu verbinden, falls dein Freifunkrouter keine anderen oder nur wenige Freifunknachbarn über WLAN sehen kann. Mehr Informationen findest du unter <a href=\"https://wiki.freifunk.net/Berlin:Firmware:Mesh%20Tunnel\" target=\"_blank\">Mesh Tunnel</a>."
     },
     "tunnel": {
       "label": "VPN Zertifikat und Schlüssel für diesen Router.",
       "secrethelp": "Wenn du dich anstatt mit Zertifikaten mit einem Passwort authentifizierst, lade die Dateien hier hoch:",
-      "clearAllFiles": "Alle Dateien zurücksetzen",
       "select": "Wähle eine Datei aus",
       "browse": "Durchsuchen",
       "error.required": "Die Datei ist erforderlich. Sie kann auch automatisch generiert werden, wenn du den Haken weiter oben setzt."
     },
     "vpninfo": {
       "showlist": "VPN Provider Liste",
-      "list": "<li><a href=\"http://www.evernet-eg.de/kontakt.html\" target=\"_blank\">Evernet eG</a> stellt VPN für Freifunkas bereit</li><li><a href=\"https://www.ipredator.se/\" target=\"_blank\">IPredator</a> stellt einen verschlüsselten Tunnel von deinem Computer zum Internet bereit</li><li><a href=\"mailto:kontakt@freifunk-rheinland.net\">Freifunk Rheinland</a> ist Community Provider</li><li>Oder wähle einen anderen VPN Provider z.B. aus dieser Liste: <a href=\"http://www.vpnvergleich.net/\" target=\"_blank\">http://www.vpnvergleich.net/</a></li>"
+      "list": "<li><a href=\\\"http://www.evernet-eg.de/kontakt.html\\\" target=\\\"_blank\\\">Evernet eG</a> stellt VPN für Freifunkas bereit</li><li><a href=\\\"https://www.ipredator.se/\\\" target=\\\"_blank\\\">IPredator</a> stellt einen verschlüsselten Tunnel von deinem Computer zum Internet bereit</li><li><a href=\\\"mailto:kontakt@freifunk-rheinland.net\\\">Freifunk Rheinland</a> ist Community Provider</li><li>Oder wähle einen anderen VPN Provider z.B. aus dieser Liste: <a href=\\\"http://www.vpnvergleich.net/\\\" target=\\\"_blank\\\">http://www.vpnvergleich.net/</a></li>"
     }
   },
   "ip": {
