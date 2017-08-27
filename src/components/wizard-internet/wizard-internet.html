@@ -114,24 +114,50 @@
         </div>
       </div>
 
-      <div class="row" uib-collapse="!$ctrl.speedLimitEnabled" >
-        <div class="col-md-offset-3 col-md-9">
+      <div class="row" uib-collapse="!$ctrl.speedLimitEnabled">
+        <div class="col-md-offset-3 col-md-9" ng-if="$ctrl.speedLimitEnabled">
           <p translate>.help</p>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 has-feedback"
+              ng-class="{
+                'has-success': (internetForm.limitDown | fieldSuccess),
+                'has-error': (internetForm.limitDown | fieldError),
+              }"
+            >
               <input type="number" class="form-control"
-                    name="limitDown" id="limitDown"
-                    translate
-                    translate-attr-placeholder=".down.placeholder"
-                    data-ng-model="$ctrl.newInternet.speedLimitDown">
+                name="limitDown" id="limitDown"
+                translate
+                translate-attr-placeholder=".down.placeholder"
+                ng-pattern="'[0-9]+(\.[0-9]+)?'"
+                data-ng-model="$ctrl.newInternet.speedLimitDown"
+              >
+              <span class="fa form-control-feedback"
+                ng-class="{
+                  'fa-check': (internetForm.limitDown | fieldSuccess),
+                  'fa-times': (internetForm.limitDown | fieldError),
+                }"
+              ></span>
               <div class="help-block" translate>.down.help</div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 has-feedback"
+              ng-class="{
+                'has-success': (internetForm.limitUp | fieldSuccess),
+                'has-error': (internetForm.limitUp | fieldError),
+              }"
+            >
               <input type="number" class="form-control"
-                    name="limitUp" id="limitUp"
-                    translate
-                    translate-attr-placeholder=".up.placeholder"
-                    data-ng-model="$ctrl.newInternet.speedLimitUp">
+                name="limitUp" id="limitUp"
+                translate
+                translate-attr-placeholder=".up.placeholder"
+                ng-pattern="'[0-9]+(\.[0-9]+)?'"
+                data-ng-model="$ctrl.newInternet.speedLimitUp"
+              >
+              <span class="fa form-control-feedback"
+                ng-class="{
+                  'fa-check': (internetForm.limitUp | fieldSuccess),
+                  'fa-times': (internetForm.limitUp | fieldError),
+                }"
+              ></span>
               <div class="help-block" translate>.up.help</div>
             </div>
           </div>

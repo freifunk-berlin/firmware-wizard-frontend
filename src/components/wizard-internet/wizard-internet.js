@@ -11,6 +11,8 @@ export default module('app.components.wizard-internet', [])
       constructor($scope) {
         'ngInject';
 
+        this.$scope = $scope;
+
         this.newInternet = {};
 
         $scope.$watch('$ctrl.internet', this.updateFromInput.bind(this));
@@ -36,6 +38,8 @@ export default module('app.components.wizard-internet', [])
         }
 
         this.speedLimitEnabled =
+          (this.$scope.internetForm.limitDown && !this.$scope.internetForm.limitDown.$pristine) ||
+          (this.$scope.internetForm.limitUp && !this.$scope.internetForm.limitUp.$pristine) ||
           newInternet.speedLimitDown !== undefined ||
           newInternet.speedLimitUp !== undefined;
 
