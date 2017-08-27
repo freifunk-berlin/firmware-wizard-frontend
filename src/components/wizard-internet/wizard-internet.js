@@ -1,4 +1,5 @@
 import { copy, module } from 'angular';
+import { assign, clone } from 'lodash';
 
 export default module('app.components.wizard-internet', [])
   .component('wizardInternet', {
@@ -6,109 +7,67 @@ export default module('app.components.wizard-internet', [])
       internet: '<',
       onUpdate: '&',
     },
-    controller: class WizardContactCtrl {
-
+    controller: class WizardInternetCtrl {
       constructor($scope) {
         'ngInject';
 
         this.newInternet = {};
-        this.tunnelConf = [
-          {
-            fileExtensions: '.ovpn,.cnf,text/*',
-            property: 'config',
-            required: true,
-          },
-          {
-            fileExtensions: '.crt,text/*',
-            property: 'cert',
-          },
-          {
-            fileExtensions: '.crt,text/*',
-            property: 'cacert',
-          },
-          {
-            fileExtensions: '.key,text/*',
-            property: 'key',
-          },
-          {
-            fileExtensions: '.key,text/*',
-            property: 'tls-auth',
-          },
-        ];
 
-        this.tunnelConfSecret = [
-          {
-            fileExtensions: '*',
-            property: 'auth-user-pass',
-          },
-          {
-            fileExtensions: '*',
-            property: 'secret',
-          },
-        ];
-
-        $scope.$watch('$ctrl.internet', this.updateFromInput.bind(this), true);
-        $scope.$watch('$ctrl.newInternet', this.updateOutput.bind(this), true);
-      }
-
-      toggleVpnList() {
-        this.showVpnList = !this.showVpnList;
-      }
-
-      setTunnelType(type) {
-        if (!this.newInternet.internetTunnel) {
-          this.newInternet.internetTunnel = {};
-        }
-        this.newInternet.internetTunnel.type = type;
-      }
-
-      setMeshTunnelType(type) {
-        if (!this.newInternet.meshTunnel) {
-          this.newInternet.meshTunnel = {};
-        }
-        this.newInternet.meshTunnel.type = type;
-      }
-
-      clearFiles() {
-        if (this.newInternet.internetTunnel && this.newInternet.internetTunnel.files) {
-          delete this.newInternet.internetTunnel.files;
-        }
-      }
-
-      clearMeshTunnelFiles() {
-        if (this.newInternet.meshTunnel && this.newInternet.meshTunnel.files) {
-          delete this.newInternet.meshTunnel.files;
-        }
+        $scope.$watch('$ctrl.internet', this.updateFromInput.bind(this));
+        $scope.$watchCollection('$ctrl.newInternet', this.updateOutput.bind(this));
+        ['internetTunnelEnabled', 'meshTunnelEnabled', 'speedLimitEnabled']
+          .forEach(property => $scope.$watch(`$ctrl.${property}`, this.updateOutput.bind(this)));
       }
 
       updateFromInput(internet) {
-        this.internetTunnelEnabled = false;
-        this.meshTunnelEnabled = false;
-        copy(internet, this.newInternet);
-        if (internet && internet.internetTunnel) {
-          this.internetTunnelEnabled = true;
+        this.lastone = internet;
+        const newInternet = clone(internet || {});
+
+        if (!newInternet.share) {
+          delete newInternet.internetTunnel;
         }
-        if (internet && internet.meshTunnel) {
-          this.meshTunnelEnabled = true;
+
+        this.internetTunnelEnabled = newInternet.internetTunnel !== undefined;
+        this.meshTunnelEnabled = newInternet.meshTunnel !== undefined;
+
+        if (!newInternet.share && !this.meshTunnelEnabled) {
+          delete newInternet.speedLimitDown;
+          delete newInternet.speedLimitUp;
         }
+
+        this.speedLimitEnabled =
+          newInternet.speedLimitDown !== undefined ||
+          newInternet.speedLimitUp !== undefined;
+
+        copy({}, this.newInternet);
+        assign(this.newInternet, newInternet);
       }
 
-      updateOutput(newInternet) {
-        let internet = copy(newInternet);
-        if (!internet.share) {
-          internet = {};
+      updateOutput() {
+        if (!this.newInternet.share && !this.newInternet.meshTunnel) {
+          this.onUpdate({internet: undefined});
+          return;
         }
-        if (!internet.speedLimit) {
-          delete internet.speedLimit;
+
+        const internet = clone(this.newInternet);
+
+        if (!internet.share) {
+          delete internet.share;
+        }
+
+        if (!internet.share || !this.internetTunnelEnabled) {
+          delete internet.internetTunnel;
+        }
+
+        if (!this.meshTunnelEnabled) {
+          delete internet.meshTunnel;
+        }
+
+        if (!this.speedLimitEnabled) {
           delete internet.speedLimitDown;
           delete internet.speedLimitUp;
         }
-        if (!internet.internetTunnel || !this.internetTunnelEnabled) {
-          delete internet.internetTunnel;
-        }
-        if (!internet.meshTunnel || !this.meshTunnelEnabled) {
-          delete internet.meshTunnel;
-        }
+
         this.onUpdate({internet});
       }
     },

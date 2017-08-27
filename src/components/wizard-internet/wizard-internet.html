@@ -1,4 +1,3 @@
-<!-- internet sharing -->
 <ng-form name="internetForm">
   <div class="container" translate-namespace="internet">
     <h2>
@@ -21,8 +20,8 @@
         <div class="checkbox">
           <label class="text-muted">
             <input type="checkbox"
-                   name="internetShare" id="internetShare"
-                   data-ng-model="$ctrl.newInternet.share">
+                  name="internetShare" id="internetShare"
+                  data-ng-model="$ctrl.newInternet.share">
             <span translate>.help</span>
           </label>
         </div>
@@ -40,67 +39,7 @@
         </div>
       </div>
 
-      <!-- transfer rate -->
-      <div class="form-group">
-        <label for="vpn" class="col-md-3 control-label" translate>
-          .limitspeed.label
-        </label>
-        <div class="col-md-9">
-          <div class="checkbox">
-            <label class="text-muted">
-              <input type="checkbox"
-                     name="limitspeed" id="limitspeed"
-                     data-ng-model="$ctrl.newInternet.speedLimit">
-              <span translate>.limitspeed.help</span>
-            </label>
-          </div>
-        </div>
-      </div>
-
-      <div uib-collapse="!$ctrl.newInternet.speedLimit">
-
-        <div class="row">
-          <div class="col-md-offset-3 col-md-9">
-
-            <div class="form-group" translate-namespace=".transferSpeed">
-              <div class="col-md-3">
-                <label class="control-label" translate>
-                  .label
-                </label>
-              </div>
-              <div class="col-md-9">
-                <div class="row">
-                  <div class="col-md-12 help-block" translate>
-                    .help
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <input type="number" class="form-control"
-                           name="limitDown" id="limitDown"
-                           translate
-                           translate-attr-placeholder=".down.placeholder"
-                           data-ng-model="$ctrl.newInternet.speedLimitDown">
-                    <div class="help-block" translate>.down.help</div>
-                  </div>
-                  <div class="col-md-6">
-                    <input type="number" class="form-control"
-                           name="limitUp" id="limitUp"
-                           translate
-                           translate-attr-placeholder=".up.placeholder"
-                           data-ng-model="$ctrl.newInternet.speedLimitUp">
-                    <div class="help-block" translate>.up.help</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- / transfer rate -->
-
       <!-- internetTunnel -->
-      <!-- TODO: migrate! -->
       <div class="form-group">
         <label for="vpn" class="col-md-3 control-label" translate>
           .internetTunnel.label
@@ -109,76 +48,26 @@
           <div class="checkbox">
             <label class="text-muted">
               <input type="checkbox"
-                     name="vpn" id="vpn"
-                     data-ng-model="$ctrl.internetTunnelEnabled">
+                    name="vpn" id="vpn"
+                    data-ng-model="$ctrl.internetTunnelEnabled">
               <span translate>.internetTunnel.help</span>
             </label>
           </div>
         </div>
       </div>
 
-      <div uib-collapse="!$ctrl.internetTunnelEnabled">
-        <div class="row" translate-namespace=".tunnel">
-          <div class="col-md-offset-3 col-md-9">
-            <div class="row">
-              <ng-show ng-if="$ctrl.internetTunnelEnabled" ng-init="$ctrl.setTunnelType('openvpn')"></ng-show>
-              <div ng-repeat="config in $ctrl.tunnelConf">
-                <div class="col-md-6">
-                  <load-file-form details="config"
-                                  id-prefix="internetTunnel"
-                                  on-update="$ctrl.newInternet.internetTunnel.files[config.property] = fileContent"
-                                  file-content="$ctrl.newInternet.internetTunnel.files[config.property]"
-                  ></load-file-form>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <span translate>.secrethelp</span>
-              </div>
-            </div>
-            <div class="row">
-              <div ng-repeat="config in $ctrl.tunnelConfSecret">
-                <div class="col-md-6">
-                  <load-file-form details="config"
-                                  id-prefix="internetTunnel"
-                                  on-update="$ctrl.newInternet.internetTunnel.files[config.property] = fileContent"
-                                  file-content="$ctrl.newInternet.internetTunnel.files[config.property]"
-                  ></load-file-form>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-offset-9 col-md-3">
-                <span class="btn-danger btn-sm" ng-click="$ctrl.clearFiles()">
-                  <i class="fa fa-trash-o" aria-hidden="true"></i>
-                  <span translate>
-                    .clearAllFiles
-                  </span>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row" translate-namespace=".vpninfo">
-          <div class="col-md-offset-3 col-md-9">
-            <div ng-click="$ctrl.toggleVpnList()">
-              <span ng-show="!$ctrl.showVpnList">&#9658;</span>
-              <span ng-show="$ctrl.showVpnList">&#9660;</span>
-              <span translate>.showlist</span>
-            </div>
-            <div uib-collapse="!$ctrl.showVpnList">
-              <ul translate>
-                .list
-              </ul>
-            </div>
-          </div>
+      <div class="row" uib-collapse="!$ctrl.internetTunnelEnabled">
+        <div class="col-md-offset-3 col-md-9">
+          <wizard-tunnel
+            tunnel="$ctrl.newInternet.internetTunnel"
+            on-update="$ctrl.newInternet.internetTunnel = tunnel"
+          ></wizard-tunnel>
         </div>
       </div>
-      <!-- / internetTunnel-VPN -->
+      <!-- / internetTunnel -->
     </div>
 
-    <!-- mesh-VPN -->
+    <!-- meshTunnel -->
     <div class="form-group">
       <label for="meshTunnel" class="col-md-3 control-label" translate>
         .meshTunnel.label
@@ -187,44 +76,66 @@
         <div class="checkbox">
           <label class="text-muted">
             <input type="checkbox"
-                   name="meshTunnel" id="meshTunnel"
-                   data-ng-model="$ctrl.meshTunnelEnabled">
+                  name="meshTunnel" id="meshTunnel"
+                  data-ng-model="$ctrl.meshTunnelEnabled">
             <span translate>.meshTunnel.help</span>
           </label>
         </div>
       </div>
     </div>
 
-  <div uib-collapse="!$ctrl.meshTunnelEnabled">
-    <div class="row" translate-namespace=".tunnel">
-        <div class="col-md-offset-3 col-md-9">
-          <div class="row">
-            <ng-show ng-if="$ctrl.meshTunnelEnabled" ng-init="$ctrl.setMeshTunnelType('openvpn')"></ng-show>
-            <div ng-repeat="config in $ctrl.tunnelConf">
-              <div class="col-md-6">
-                <load-file-form details="config"
-                                id-prefix="meshtunnel"
-                                on-update="$ctrl.newInternet.meshTunnel.files[config.property] = fileContent"
-                                file-content="$ctrl.newInternet.meshTunnel.files[config.property]"
-                ></load-file-form>
-              </div>
-            </div>
+    <div class="row" uib-collapse="!$ctrl.meshTunnelEnabled">
+      <div class="col-md-offset-3 col-md-9">
+        <wizard-tunnel
+          tunnel="$ctrl.newInternet.meshTunnel"
+          on-update="$ctrl.newInternet.meshTunnel = tunnel"
+        ></wizard-tunnel>
+      </div>
+    </div>
+    <!-- / meshTunnel -->
+
+    <!-- speedLimit -->
+    <div uib-collapse="!$ctrl.newInternet.share && !$ctrl.meshTunnelEnabled" translate-namespace=".speedLimit">
+      <div class="form-group">
+        <label for="speedLimitEnabled" class="col-md-3 control-label" translate>
+          .enabled.label
+        </label>
+        <div class="col-md-9">
+          <div class="checkbox">
+            <label class="text-muted">
+              <input type="checkbox"
+                    name="speedLimitEnabled" id="speedLimitEnabled"
+                    data-ng-model="$ctrl.speedLimitEnabled">
+              <span translate>.enabled.help</span>
+            </label>
           </div>
+        </div>
+      </div>
+
+      <div class="row" uib-collapse="!$ctrl.speedLimitEnabled" >
+        <div class="col-md-offset-3 col-md-9">
+          <p translate>.help</p>
           <div class="row">
-            <div class="col-md-offset-9 col-md-3">
-              <button class="btn-danger btn-sm" ng-click="$ctrl.clearMeshTunnelFiles()">
-                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                <span translate>
-                  .clearAllFiles
-                </span>
-              </button>
+            <div class="col-md-6">
+              <input type="number" class="form-control"
+                    name="limitDown" id="limitDown"
+                    translate
+                    translate-attr-placeholder=".down.placeholder"
+                    data-ng-model="$ctrl.newInternet.speedLimitDown">
+              <div class="help-block" translate>.down.help</div>
+            </div>
+            <div class="col-md-6">
+              <input type="number" class="form-control"
+                    name="limitUp" id="limitUp"
+                    translate
+                    translate-attr-placeholder=".up.placeholder"
+                    data-ng-model="$ctrl.newInternet.speedLimitUp">
+              <div class="help-block" translate>.up.help</div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- / mesh-VPN -->
-
+    <!-- / speedLimit -->
   </div>
 </ng-form>
-<!-- / internet sharing -->
