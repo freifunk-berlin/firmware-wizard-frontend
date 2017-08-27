@@ -1,4 +1,4 @@
-import {copy, module} from 'angular';
+import { module } from 'angular';
 
 export default module('app.components.load-file-form', [])
   .component('loadFileForm', {
