@@ -1,4 +1,5 @@
 import { copy, module } from 'angular';
+import { assign, clone } from 'lodash';
 
 export default module('app.components.wizard-internet', [])
   .component('wizardInternet', {
@@ -6,31 +7,76 @@ export default module('app.components.wizard-internet', [])
       internet: '<',
       onUpdate: '&',
     },
-    // TODO: handle vpn
-    controller: class WizardContactCtrl {
+    controller: class WizardInternetCtrl {
       constructor($scope) {
         'ngInject';
 
+        this.$scope = $scope;
+
         this.newInternet = {};
 
-        $scope.$watch('$ctrl.internet', this.updateFromInput.bind(this), true);
-        $scope.$watch('$ctrl.newInternet', this.updateOutput.bind(this), true);
+        $scope.$watch('$ctrl.internet', this.updateFromInput.bind(this));
+        $scope.$watch('$ctrl.internetTunnelEnabled', this.updateInternetTunnel.bind(this));
+        $scope.$watch('$ctrl.meshTunnelEnabled', this.updateMeshTunnel.bind(this));
+        $scope.$watch('$ctrl.speedLimitEnabled', this.updateSpeedLimit.bind(this));
+        $scope.$watchCollection('$ctrl.newInternet', this.updateOutput.bind(this));
       }
 
       updateFromInput(internet) {
-        copy(internet, this.newInternet);
+        const newInternet = clone(internet || {});
+
+        if (!newInternet.share) {
+          delete newInternet.internetTunnel;
+        }
+
+        this.internetTunnelEnabled = newInternet.internetTunnel !== undefined;
+        this.meshTunnelEnabled = newInternet.meshTunnel !== undefined;
+
+        if (!newInternet.share && !this.meshTunnelEnabled) {
+          delete newInternet.speedLimitDown;
+          delete newInternet.speedLimitUp;
+        }
+
+        this.speedLimitEnabled =
+          (this.$scope.internetForm.limitDown && !this.$scope.internetForm.limitDown.$pristine) ||
+          (this.$scope.internetForm.limitUp && !this.$scope.internetForm.limitUp.$pristine) ||
+          newInternet.speedLimitDown !== undefined ||
+          newInternet.speedLimitUp !== undefined;
+
+        copy({}, this.newInternet);
+        assign(this.newInternet, newInternet);
       }
 
-      updateOutput(newInternet) {
-        let internet = copy(newInternet);
+      updateInternetTunnel(enabled) {
+        if (!enabled) delete this.newInternet.internetTunnel;
+        if (enabled && !this.newInternet.internetTunnel) this.newInternet.internetTunnel = {};
+      }
+
+      updateMeshTunnel(enabled) {
+        if (!enabled) delete this.newInternet.meshTunnel;
+        if (enabled && !this.newInternet.meshTunnel) this.newInternet.meshTunnel = {};
+      }
+
+      updateSpeedLimit(enabled) {
+        if (!enabled) {
+          delete this.newInternet.speedLimitDown;
+          delete this.newInternet.speedLimitUp;
+        }
+      }
+
+      updateOutput() {
+        if (!this.newInternet.share && !this.newInternet.meshTunnel) {
+          this.onUpdate({internet: undefined});
+          return;
+        }
+
+        const internet = clone(this.newInternet);
+
         if (!internet.share) {
-          internet = {};
+          delete internet.share;
+          delete internet.internetTunnel;
         }
-        if (!internet.speedLimit) {
-          delete internet.speedLimit;
-          delete internet.speedLimitDown;
-          delete internet.speedLimitUp;
-        }
+
         this.onUpdate({internet});
       }
     },
