@@ -207,7 +207,6 @@
     },
     "tunnel": {
       "label": "VPN Zertifikat und Schlüssel für diesen Router.",
-      "secrethelp": "Wenn du dich anstatt mit Zertifikaten mit einem Passwort authentifizierst, lade die Dateien hier hoch:",
       "select": "Wähle eine Datei aus",
       "browse": "Durchsuchen",
       "error.required": "Die Datei ist erforderlich. Sie kann auch automatisch generiert werden, wenn du den Haken weiter oben setzt."

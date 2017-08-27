@@ -209,7 +209,6 @@
     },
     "tunnel": {
       "label": "VPN certificate and key for this router",
-      "secrethelp": "If you use password authentication instead of certificates, upload your secrets here:",
       "select": "Select your file",
       "browse": "Browse",
       "error.required": "The file is required. It is generated automatically if you select the checkbox above."
