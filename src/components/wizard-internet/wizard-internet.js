@@ -14,13 +14,13 @@ export default module('app.components.wizard-internet', [])
         this.newInternet = {};
 
         $scope.$watch('$ctrl.internet', this.updateFromInput.bind(this));
+        $scope.$watch('$ctrl.internetTunnelEnabled', this.updateInternetTunnel.bind(this));
+        $scope.$watch('$ctrl.meshTunnelEnabled', this.updateMeshTunnel.bind(this));
+        $scope.$watch(`$ctrl.speedLimitEnabled`, this.updateSpeedLimit.bind(this));
         $scope.$watchCollection('$ctrl.newInternet', this.updateOutput.bind(this));
-        ['internetTunnelEnabled', 'meshTunnelEnabled', 'speedLimitEnabled']
-          .forEach(property => $scope.$watch(`$ctrl.${property}`, this.updateOutput.bind(this)));
       }
 
       updateFromInput(internet) {
-        this.lastone = internet;
         const newInternet = clone(internet || {});
 
         if (!newInternet.share) {
@@ -43,6 +43,23 @@ export default module('app.components.wizard-internet', [])
         assign(this.newInternet, newInternet);
       }
 
+      updateInternetTunnel(enabled) {
+        if (!enabled) delete this.newInternet.internetTunnel;
+        if (enabled && !this.newInternet.internetTunnel) this.newInternet.internetTunnel = {};
+      }
+
+      updateMeshTunnel(enabled) {
+        if (!enabled) delete this.newInternet.meshTunnel;
+        if (enabled && !this.newInternet.meshTunnel) this.newInternet.meshTunnel = {};
+      }
+
+      updateSpeedLimit(enabled) {
+        if (!enabled) {
+          delete this.newInternet.speedLimitDown;
+          delete this.newInternet.speedLimitUp;
+        }
+      }
+
       updateOutput() {
         if (!this.newInternet.share && !this.newInternet.meshTunnel) {
           this.onUpdate({internet: undefined});
@@ -53,19 +70,7 @@ export default module('app.components.wizard-internet', [])
 
         if (!internet.share) {
           delete internet.share;
-        }
-
-        if (!internet.share || !this.internetTunnelEnabled) {
           delete internet.internetTunnel;
-        }
-
-        if (!this.meshTunnelEnabled) {
-          delete internet.meshTunnel;
-        }
-
-        if (!this.speedLimitEnabled) {
-          delete internet.speedLimitDown;
-          delete internet.speedLimitUp;
         }
 
         this.onUpdate({internet});

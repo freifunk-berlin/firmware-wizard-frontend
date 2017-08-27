@@ -59,6 +59,7 @@
       <div class="row" uib-collapse="!$ctrl.internetTunnelEnabled">
         <div class="col-md-offset-3 col-md-9">
           <wizard-tunnel
+            ng-if="$ctrl.internetTunnelEnabled"
             tunnel="$ctrl.newInternet.internetTunnel"
             on-update="$ctrl.newInternet.internetTunnel = tunnel"
           ></wizard-tunnel>
@@ -87,6 +88,7 @@
     <div class="row" uib-collapse="!$ctrl.meshTunnelEnabled">
       <div class="col-md-offset-3 col-md-9">
         <wizard-tunnel
+          ng-if="$ctrl.meshTunnelEnabled"
           tunnel="$ctrl.newInternet.meshTunnel"
           on-update="$ctrl.newInternet.meshTunnel = tunnel"
         ></wizard-tunnel>
