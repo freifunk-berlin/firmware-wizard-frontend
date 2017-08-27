@@ -46,6 +46,7 @@
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
+    "@uirouter/angularjs": "^1.0.6",
     "angular": "^1.6.1",
     "angular-animate": "^1.6.1",
     "angular-bootstrap": "^0.12.2",
@@ -55,11 +56,11 @@
     "angular-translate": "^2.13.1",
     "angular-translate-loader-static-files": "^2.13.1",
     "angular-ui-bootstrap": "^2.4.0",
-    "@uirouter/angularjs": "^1.0.6",
     "bootstrap": "^3.3.7",
     "font-awesome": "^4.7.0",
     "ip-address": "^5.0.2",
     "leaflet": "^1.2.0",
+    "lodash": "^4.17.4",
     "nano-md5": "^1.0.3",
     "ssh-pub-key-validation": "^1.0.0",
     "ui-leaflet": "^2.0.0"
