@@ -5,13 +5,20 @@
   </label>
   <div class="col-xs-6">
     <load-file-button
-            id="{{$ctrl.idPrefix}}.{{$ctrl.details.property}}"
-            accept="{{$ctrl.details.fileExtensions}}"
-            base64="true"
-            on-loaded="$ctrl.fileContent = content"
-            required="$ctrl.details.required">
+      ng-if="!$ctrl.fileContent"
+      id="{{$ctrl.idPrefix}}.{{$ctrl.details.property}}"
+      accept="{{$ctrl.details.fileExtensions}}"
+      base64="true"
+      on-loaded="$ctrl.fileContent = content"
+      required="$ctrl.details.required"
+    >
       <span>{{'load-file-form.' + $ctrl.details.property + '.select' | translate}}</span>
     </load-file-button>
-    <i class="fa fa-check" aria-hidden="true" ng-if="$ctrl.fileContent"></i>
+    <div ng-if="$ctrl.fileContent">
+      <i class="fa fa-fw fa-check text-success" aria-hidden="true"></i>
+      <button type="button" class="btn btn-sm btn-danger" ng-click="$ctrl.fileContent = undefined">
+        <i class="fa fa-fw fa-trash-o" aria-hidden="true"></i>
+      </buton>
+    </div>
   </div>
 </div>
