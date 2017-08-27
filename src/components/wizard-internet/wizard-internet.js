@@ -18,7 +18,7 @@ export default module('app.components.wizard-internet', [])
         $scope.$watch('$ctrl.internet', this.updateFromInput.bind(this));
         $scope.$watch('$ctrl.internetTunnelEnabled', this.updateInternetTunnel.bind(this));
         $scope.$watch('$ctrl.meshTunnelEnabled', this.updateMeshTunnel.bind(this));
-        $scope.$watch(`$ctrl.speedLimitEnabled`, this.updateSpeedLimit.bind(this));
+        $scope.$watch('$ctrl.speedLimitEnabled', this.updateSpeedLimit.bind(this));
         $scope.$watchCollection('$ctrl.newInternet', this.updateOutput.bind(this));
       }
 
