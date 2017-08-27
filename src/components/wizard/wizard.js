@@ -12,7 +12,14 @@ export default module('app.components.wizard', [uiRouter])
       component: 'wizard',
       resolve: {
         // TODO: load config from router here
-        config: () => Promise.resolve({}),
+        config: ['sessionService', 'router', (session, router) => {
+          console.log(session);
+          session.currentConnect.then(() => {
+            if (session.authentication) {
+              return router.getConfig();
+            }
+          })
+        }],
         // André: 'ngInject' does not work for some reason,
         //         so let's make it explicit here
         // catch error (we only want to wait for the check to finish)
@@ -35,7 +42,8 @@ export default module('app.components.wizard', [uiRouter])
         this.downloadFile = downloadFile;
         this.online = online;
         this.router = router;
-        this.session = session;
+        this.sessionService = session;
+        this.config = this.$resolve.config;
       }
 
       download() {
