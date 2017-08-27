@@ -25,9 +25,17 @@
       "dropnotsupported": "Dein Browser unterstützt leider kein Drag and Drop für Dateiupload :("
     }
   },
+  "device": {
+    "headline": "Gerät",
+    "model": {
+      "label": "Modell"
+    },
+    "wireless": {
+      "label": "WLAN-Schnittstellen"
+    }
+  },
   "basicRouterSetup": {
     "headline": "Basis Router Einrichtung ",
-    "model": "für {{model}}",
     "routerName": {
       "label": "Routername",
       "placeholder": "funkenpumpe3000",
@@ -116,75 +124,96 @@
     },
     "offlineMsg" : "Du scheinst keine Verbindung zum Internet zu haben. Die Karte funktioniert nur, wenn du online bist. Du kannst deinen Standort manuell setzen oder dies später tun."
   },
-  "internetSharing": {
-    "headline": "Internet teilen",
-    "help": "Freifunk kann für lokale Dienste und den Zugang zum Internet genutzt werden. Letzteres wird erst dadurch ermöglicht, dass Menschen, die Router betreiben, ihre Internetverbindung teilen.",
+  "load-file-form": {
+    "cert": {
+      "label": "Zertifikat",
+      "select": "Zertifikatsdatei",
+      "error": {
+        "pattern": "Falsches Dateiformat oder falscher Dateiname. Nur Textdateien sind erlaubt."
+      }
+    },
+    "key": {
+      "label": "Schlüssel",
+      "select": "Schlüsseldatei",
+      "error": {
+        "pattern": "Falsches Dateiformat oder falscher Dateiname. Nur Textdateien sind erlaubt."
+      }
+    },
+    "tls-auth": {
+      "label": "TLS Auth Schlüssel",
+      "select": "Schlüsseldatei",
+      "error": {
+        "pattern": "Falsches Dateiformat oder falscher Dateiname. Nur Textdateien sind erlaubt."
+      }
+    },
+    "ca": {
+      "label": "CA Zertifikat",
+      "select": "Zertifikatsdatei",
+      "error": {
+        "pattern": "Falsches Dateiformat oder falscher Dateiname. Nur Textdateien sind erlaubt."
+      }
+    },
+    "secret": {
+      "label": "secret",
+      "select": "Zertifikatsdatei",
+      "error": {
+        "pattern": "Falsches Dateiformat oder falscher Dateiname. Nur Textdateien sind erlaubt."
+      }
+    },
+    "auth-user-pass": {
+      "label": "Auth User pass",
+      "select": "auth user pass Datei",
+      "error": {
+        "pattern": "Falsches Dateiformat oder falscher Dateiname. Nur Textdateien sind erlaubt."
+      }
+    },
+    "config": {
+      "label": "Konfiguration",
+      "select": ".ovpn Datei",
+      "customvpn": "Ich möchte einen anderen VPN Service nutzen. Dann benötigst du eine opnVPN Konfigurationsdatei von deinem Provider.",
+      "error": {
+        "pattern": "Falsches Dateiformat oder falscher Dateiname. Nur Textdateien sind erlaubt."
+      }
+    }
+  },
+  "internet": {
+    "headline": "Internet",
+    "help": "Du kannst deine vorhandene Internetverbindung nutzen, um den Internetzugang mit dem Freifunknetz zu teilen und/oder um dich mit anderen Freifunkroutern zu verbinden, die (noch) nicht über WLAN erreichbar sind. Verbinde dazu den <em>Internet</em> oder <em>WAN</em>-Anschluss deines Freifunkrouters mit deinem Internetrouter und konfiguriere es hier. ",
     "shareInternet": {
       "label": "Internet teilen",
       "help": "Ja, ich möchte meine Internetverbindung mit dem Freifunknetz teilen.",
       "thanks": "Danke fürs Teilen deiner Internetverbindung &#10084;"
     },
-    "limitspeed": {
-      "label": "Geschwindigkeit beschränken.",
-      "help": "Wir empfehlen keine Limits für den Datentransfer anzugeben. Solltest du später doch Probleme feststellen, kannst du immer noch die Übertragungsrate für deine geteilte Internetverbindung anpassen."
-    },
-    "transferSpeed": {
-      "label": "Übertragungslimit",
-      "help": "Du kannst die Schnelligkeit deiner aktuellen Verbindung  <a href=\"http://speedof.me/\" target=\"_blank\">hier</a> überprüfen. Lass die folgenden Felder leer, wenn die Datenübertragung nicht limitieren möchtest.",
+    "speedLimit": {
+      "enabled": {
+        "label": "Geschwindigkeit beschränken.",
+        "help": "Wir empfehlen keine Limits für den Datentransfer anzugeben. Solltest du später doch Probleme feststellen, kannst du immer noch die Übertragungsrate für deine geteilte Internetverbindung anpassen."
+      },
+      "help": "Du kannst die Schnelligkeit deiner aktuellen Verbindung  <a href=\\\"http://speedof.me/\\\" target=\\\"_blank\\\">hier</a> überprüfen. Lass die folgenden Felder leer, wenn die Datenübertragung nicht limitieren möchtest.",
       "down": {
-        "help": "Download Transfer Limit in <a href=\"https://en.wikipedia.org/wiki/Data_rate_units#Megabit_per_second\" target=\"_blank\">Mbit/s</a>."
+        "help": "Download Transfer Limit in <a href=\\\"https://en.wikipedia.org/wiki/Data_rate_units#Megabit_per_second\\\" target=\\\"_blank\\\">Mbit/s</a>."
       },
       "up": {
-        "help": "Upload Transfer Limit in <a href=\"https://en.wikipedia.org/wiki/Data_rate_units#Megabit_per_second\" target=\"_blank\">Mbit/s</a>."
+        "help": "Upload Transfer Limit in <a href=\\\"https://en.wikipedia.org/wiki/Data_rate_units#Megabit_per_second\\\" target=\\\"_blank\\\">Mbit/s</a>."
       }
     },
-    "antistoererhaftung": {
-      "label": "VPN",
-      "help": "Leitet deinen Internetverkehr über einen Tunnel zu einem anderen Server weiter."
+    "internetTunnel": {
+      "label": "Internettunnel",
+      "help": "Leite den Internetverkehr aus dem Freifunknetz über einen Tunnel über einen anderen Server. Mehr Informationen findest du unter <a href=\"https://wiki.freifunk.net/Berlin:Firmware:Internet%20Tunnel\" target=\"_blank\">Internet Tunnel</a>."
     },
-    "meshvpn": {
-      "label": "Mesh VPN",
-      "help": "Verbindet Mesh-Wolken über Internettunnel. (Du kannst das einschalten, wenn dein Router nicht zu anderen Routern per Funk verbunden ist.)"
+    "meshTunnel": {
+      "label": "Meshtunnel",
+      "help": "Benutz deine Internetverbindung, um dich mit anderen Freifunkroutern zu verbinden, falls dein Freifunkrouter keine anderen oder nur wenige Freifunknachbarn über WLAN sehen kann. Mehr Informationen findest du unter <a href=\"https://wiki.freifunk.net/Berlin:Firmware:Mesh%20Tunnel\" target=\"_blank\">Mesh Tunnel</a>."
     },
-    "generateCertificate": {
+    "tunnel": {
       "label": "VPN Zertifikat und Schlüssel für diesen Router.",
-      "help": "Der <a href=\"http://foerderverein.freie-netzwerke.de/\" target=\"_blank\">Förderverein Freie Netzwerke</a> betreibt den <a href=\"http://wiki.freifunk.net/vpn03\" target=\"_blank\">VPN03</a> um dich vor der <a href=\"https://de.wikipedia.org/wiki/St%C3%B6rerhaftung\" target=\"_blank\">Störerhaftung</a> zu schützen. Wenn du hier den Haken setzt, werden automatisch Zertifikat und Schlüssel für den VPN03 generiert. Setzte den Haken nicht, wenn du bereits eine VPN03 Konfiguration hast oder einen anderen VPN Service nutzen möchtest.\n",
-      "certificate": {
-        "label": "VPN Zertifikat",
-        "select": "Zertifikatsdatei",
-        "error": {
-          "pattern": "Falsches Dateiformat oder falscher Dateiname. Nur Textdateien sind erlaubt."
-        }
-      },
-      "key": {
-        "label": "VPN Schlüssel",
-        "select": "Schlüsseldatei",
-        "error": {
-          "pattern": "Falsches Dateiformat oder falscher Dateiname. Nur Textdateien sind erlaubt."
-        }
-      },
-      "takey": {
-        "label": "TLS Auth Schlüssel",
-        "select": "Schlüsseldatei",
-        "error": {
-          "pattern": "Falsches Dateiformat oder falscher Dateiname. Nur Textdateien sind erlaubt."
-        }
-      },
-      "conf": {
-        "label": "VPN Konfigurationsdatei",
-        "select": ".ovpn Datei",
-        "customvpn": "Ich möchte einen anderen VPN Service nutzen. Dann benötigst du eine opnVPN Konfigurationsdatei von deinem Provider.",
-        "error": {
-          "pattern": "Falsches Dateiformat oder falscher Dateiname. Nur Textdateien sind erlaubt."
-        }
-      },
       "select": "Wähle eine Datei aus",
       "browse": "Durchsuchen",
       "error.required": "Die Datei ist erforderlich. Sie kann auch automatisch generiert werden, wenn du den Haken weiter oben setzt."
     },
     "vpninfo": {
       "showlist": "VPN Provider Liste",
-      "list": "<li><a href=\"http://www.evernet-eg.de/kontakt.html\" target=\"_blank\">Evernet eG</a> stellt VPN für Freifunkas bereit</li><li><a href=\"https://www.ipredator.se/\" target=\"_blank\">IPredator</a> stellt einen verschlüsselten Tunnel von deinem Computer zum Internet bereit</li><li><a href=\"mailto:kontakt@freifunk-rheinland.net\">Freifunk Rheinland</a> ist Community Provider</li><li>Förderverein Freie Netzwerke betreibt unverschlüsselte <a href=\"https://wiki.freifunk.net/Vpn03\" target=\"_blank\">VPN03 Server</a>.</li><li>Oder wähle einen anderen VPN Provider z.B. aus dieser Liste: <a href=\"http://www.vpnvergleich.net/\" target=\"_blank\">http://www.vpnvergleich.net/</a></li>"
+      "list": "<li><a href=\\\"http://www.evernet-eg.de/kontakt.html\\\" target=\\\"_blank\\\">Evernet eG</a> stellt VPN für Freifunkas bereit</li><li><a href=\\\"https://www.ipredator.se/\\\" target=\\\"_blank\\\">IPredator</a> stellt einen verschlüsselten Tunnel von deinem Computer zum Internet bereit</li><li><a href=\\\"mailto:kontakt@freifunk-rheinland.net\\\">Freifunk Rheinland</a> ist Community Provider</li><li>Oder wähle einen anderen VPN Provider z.B. aus dieser Liste: <a href=\\\"http://www.vpnvergleich.net/\\\" target=\\\"_blank\\\">http://www.vpnvergleich.net/</a></li>"
     }
   },
   "ip": {
@@ -209,11 +238,11 @@
       "error.ipSubnet": "Das ist kein valides IPv4 Subnetz.",
       "error.ipSubnetSmall": "Das IPv4 Subnetz darf nicht größer als /30 sein.",
       "wifi": {
-        "label": "Mesh {{index}}",
+        "label": "Mesh IP {{index}}",
         "help": "Eine einzelne IPv4 Addresse für das WIfi Device {{name}}."
       },
       "lan": {
-        "label": "Mesh 3",
+        "label": "Mesh IP LAN",
         "help": "Eine einzelne IPv4 Adresse für das LAN Interface."
       }
     },
@@ -296,21 +325,63 @@
   "configIncorrect": "Die Daten sind nicht korrekt. Bitte überprüfe die Felder die mit <i class=\"fa fa-times\"></i>  markiert sind.",
   "applysuccesful": "Deine Konfiguration wurde erfolgreich gespeichert! Yeah!",
   "applyerror": "Deine Konfiguration konnte nicht gespeichert werden. Bitte schau in den Logs auf dem Router nach Details.",
-  "uploaderror": "Deine Konfiguration konnte nicht zum Router geladen werden. Prüfe bitte deine Verbindung und deinen Router.",
   "save": "Speichern &amp; Neustarten",
   "download": "Konfiguration herunterladen",
-  "olsrinfo": {
-    "headline": "OLSR Statusinformationen",
-    "help": "Diese Tabelle zeigt die OLSR-Nachbarn.",
-    "label": "Nachbarn",
-    "urllabel": "URL zum Router",
+  "statusSystem": {
+    "headline": "Systemstatus",
+    "help": "Grundlegende Informationen zu deinem Router",
+    "noData": "Es konnten nicht alle Systemdaten geladen werden. Bitte überprüf die Verbindung zu deinem Router.",
+    "board": {
+      "title": "Hardware- und Softwaredetails",
+      "systemheadline": "System",
+      "hostname": "Hostname",
+      "system": "Chipsatz",
+      "model": "Modell",
+      "kernel": "Kernel",
+      "releaseheadline": "Betriebssystemversion",
+      "distribution": "Distribution",
+      "version": "Version",
+      "revision": "Revision",
+      "codename": "Codename",
+      "target": "Target",
+      "description": "Beschreibung"
+    },
+    "live": {
+      "status": "Livestatus",
+      "uptime": "Uptime",
+      "load": "Load",
+      "memory": "Arbeitsspeicher"
+    }
+  },
+  "statusOlsr": {
+    "headline": "OLSR Status",
+    "help": "Diese Seite zeigt OLSR Nachbarn, Routen und Schnittstellen",
     "refresh": "Tabelle aktualisieren",
-    "column": {
-      "localip": "Lokale IP",
-      "remoteip": "Entfernte IP",
-      "lq": "Linkqualität",
-      "nlq": "Linkqualität aus Sicht des Nachbarn",
-      "etx" : "Linkkosten"
+    "neighbors": {
+      "title": "Nachbarn",
+      "noData": "Aktuell gibt es keine Daten von OLSR.",
+      "noNeighbors": "Aktuell sind keine Nachbarn vorhanden.",
+      "columns": {
+        "ipAddress": "IP",
+        "multiPointRelay": "Multi point relay",
+        "multiPointRelaySelector": "Multi point relay selector",
+        "symmetric": "Symmetric",
+        "twoHopNeighborCount": "2 hop neighbor count",
+        "willingness": "Willingness"
+      }
+    },
+    "links": {
+      "title": "Links",
+      "noData": "Aktuell gibt es keine Daten von OLSR.",
+      "noLinks": "Aktuell sind keine Verbindungen vorhanden.",
+      "columns": {
+        "localip": "Lokale IP",
+        "remoteip": "Entfernte IP",
+        "interface": "Schnittstelle",
+        "lq": "Linkqualität",
+        "nlq": "Linkqualität des Nachbarn",
+        "etx": "Linkkosten"
+      }
     }
   }
 }
