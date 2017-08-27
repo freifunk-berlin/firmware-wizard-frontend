@@ -15,17 +15,17 @@ export default module('app.components.wizard-tunnel', [])
 
         this.tunnelConf = [
           {
-            fileExtensions: '.ovpn,.cnf,text/*',
+            fileExtensions: '.ovpn,.cnf,.conf,text/*',
             property: 'config',
             required: true,
           },
           {
-            fileExtensions: '.crt,text/*',
+            fileExtensions: '.crt,.cert,text/*',
             property: 'cert',
           },
           {
-            fileExtensions: '.crt,text/*',
-            property: 'cacert',
+            fileExtensions: '.crt,.cert,  text/*',
+            property: 'ca',
           },
           {
             fileExtensions: '.key,text/*',

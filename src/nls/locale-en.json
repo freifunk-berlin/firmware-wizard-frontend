@@ -146,7 +146,7 @@
         "pattern": "Wrong file format or name. Only text files are allowed."
       }
     },
-    "cacert": {
+    "ca": {
       "label": "CA Certificate",
       "select": ".cert file",
       "error": {

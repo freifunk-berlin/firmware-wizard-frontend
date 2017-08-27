@@ -146,7 +146,7 @@
         "pattern": "Falsches Dateiformat oder falscher Dateiname. Nur Textdateien sind erlaubt."
       }
     },
-    "cacert": {
+    "ca": {
       "label": "CA Zertifikat",
       "select": "Zertifikatsdatei",
       "error": {
