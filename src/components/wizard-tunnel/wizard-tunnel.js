@@ -35,9 +35,6 @@ export default module('app.components.wizard-tunnel', [])
             fileExtensions: '.key,text/*',
             property: 'tls-auth',
           },
-        ];
-
-        this.tunnelConfSecret = [
           {
             fileExtensions: '*',
             property: 'auth-user-pass',
@@ -51,10 +48,6 @@ export default module('app.components.wizard-tunnel', [])
         $scope.$watch('$ctrl.tunnel', this.updateFromInput.bind(this), true);
         $scope.$watch('$ctrl.type', this.updateOutput.bind(this));
         $scope.$watchCollection('$ctrl.files', this.updateOutput.bind(this));
-      }
-
-      clearFiles() {
-        copy({}, this.files);
       }
 
       updateFromInput() {
