@@ -14,15 +14,15 @@ export default module('app.components.wizard', [uiRouter])
         // André: 'ngInject' does not work for some reason,
         //         so let's make it explicit here
         // catch error (we only want to wait for the check to finish)
-        config: ['session', 'router', (session, router) => {
-          if (!session || !session.authentication) {
+        config: ['connection', 'router', 'session', (connection, router, session) => {
+          if (!session.authentication) {
             return {};
           }
           return router.getConfig();
         }],
         online: ['online', online => online.currentProbe.catch(() => false)],
         // catch error (we only want to wait for the check to finish)
-        session: ['session', session => session.currentConnect.catch(() => false)],
+        connection: ['session', session => session.currentConnect.catch(() => false)],
       },
       url: '/wizard',
     });
