@@ -12,14 +12,31 @@
         </div>
         <div class="ff-icon-body">
           <h1>{{'heading' | translate }}</h1>
-          <p>This configuration wizard helps you to set up your router.</p>
-          <div>
-            Do you already have a config file?
-            <load-file-button accept=".json,application/json"
-              on-loaded="$ctrl.load(content)"
-            >
-              <i class="fa fa-fw fa-upload"></i> Load config
-            </load-file-button>
+          <p translate>subheading</p>
+          <div class="container">
+            <div class="col-md-3">
+              <span translate>configfilequestion</span>
+            </div>
+            <div class="col-md-2">
+              <load-file-button accept=".json,application/json"
+                                on-loaded="$ctrl.load(content)"
+              >
+                <i class="fa fa-fw fa-upload"></i><span translate>loadconfigfilebutton</span>
+              </load-file-button>
+            </div>
+          </div>
+          <div class="container" ng-show="$ctrl.session.authentication">
+            <div class="col-md-3">
+              <div>
+                <span translate>configfromrouterquestion</span>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <button type="button" class="btn btn-sm btn-default" ng-click="$ctrl.loadConfigFromRouter()">
+                <i class="fa fa-fw fa-upload"></i>
+                <span translate>loadconfigfromrouterbutton</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -55,6 +55,10 @@ export default module('app.components.wizard', [uiRouter])
         this.config = JSON.parse(content);
       }
 
+      loadConfigFromRouter() {
+        this.router.getConfig().then(config => this.config = config);
+      }
+
       submit() {
         if (!this.session.connection) {
           return this.$q.reject(new Error('no connection to router'));

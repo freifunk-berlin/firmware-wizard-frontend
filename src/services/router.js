@@ -28,7 +28,7 @@ export default module('app.services.router', [])
     }
 
     getConfig() {
-      return this.call('ffwizard', 'config', {});
+      return this.call('ffwizard', 'getConfig', {});
     }
 
     getIwinfoFreqlist(device) {

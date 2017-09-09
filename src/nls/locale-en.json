@@ -1,5 +1,10 @@
 {
   "heading": "Configure your Router",
+  "subheading": "This configuration wizard helps you to set up your router.",
+  "configfilequestion": "Do you already have a config file?",
+  "loadconfigfilebutton": "Load config file",
+  "configfromrouterquestion": "Do you want to load your router config?",
+  "loadconfigfromrouterbutton": "Load router config",
   "intro": "Freifunk Berlin",
   "loadconfiglink": "Load existing config",
   "loadrouterinfolink": "Refresh information from router",
