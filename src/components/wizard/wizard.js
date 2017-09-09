@@ -56,7 +56,9 @@ export default module('app.components.wizard', [uiRouter])
       }
 
       loadConfigFromRouter() {
-        this.router.getConfig().then(config => this.config = config);
+        this.router.getConfig().then((config) => {
+          this.config = config;
+        });
       }
 
       submit() {
